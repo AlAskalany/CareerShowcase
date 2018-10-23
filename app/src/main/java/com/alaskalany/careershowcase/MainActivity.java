@@ -1,15 +1,22 @@
 package com.alaskalany.careershowcase;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
-public class MainActivity extends AppCompatActivity {
+import com.alaskalany.careershowcase.dummy.DummyContent;
 
-    private TextView mTextMessage;
+public class MainActivity extends AppCompatActivity implements OverviewFragment.OnFragmentInteractionListener, WorkFragment.OnListFragmentInteractionListener, EducationFragment.OnListFragmentInteractionListener, SkillFragment.OnListFragmentInteractionListener, ContactFragment.OnFragmentInteractionListener {
+
+    SparseArrayCompat<Fragment> fragments = new SparseArrayCompat<>();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -17,28 +24,63 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_overview:
+                    replaceFragment(new OverviewFragment());
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_education:
+                    replaceFragment(new EducationFragment());
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_work:
+                    replaceFragment(new WorkFragment());
+                    return true;
+                case R.id.navigation_skills:
+                    replaceFragment(new SkillFragment());
+                    return true;
+                case R.id.navigation_contact:
+                    replaceFragment(new ContactFragment());
                     return true;
             }
             return false;
         }
+
+        private void replaceFragment(Fragment fragment) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frameLayout, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     };
+
+    private final OverviewFragment overviewFragment = new OverviewFragment();
+    private final WorkFragment workFragment = new WorkFragment();
+    private final EducationFragment educationFragment = new EducationFragment();
+    private final SkillFragment skillFragment = new SkillFragment();
+    private final ContactFragment contactFragment = new ContactFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        fragments.put(R.id.navigation_work, new OverviewFragment());
+        FragmentManager supportFragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = supportFragmentManager.beginTransaction();
+        transaction.add(R.id.container, new OverviewFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
