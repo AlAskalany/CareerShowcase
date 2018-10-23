@@ -67,7 +67,7 @@ public class EducationFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyEducationFragmentRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyEducationRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

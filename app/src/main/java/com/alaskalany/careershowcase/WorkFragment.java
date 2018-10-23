@@ -67,7 +67,7 @@ public class WorkFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyWorkExperienceRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyWorkRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

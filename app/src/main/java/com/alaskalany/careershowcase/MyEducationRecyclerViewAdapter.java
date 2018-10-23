@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.alaskalany.careershowcase.WorkFragment.OnListFragmentInteractionListener;
+import com.alaskalany.careershowcase.EducationFragment.OnListFragmentInteractionListener;
 import com.alaskalany.careershowcase.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyWorkExperienceRecyclerViewAdapter extends RecyclerView.Adapter<MyWorkExperienceRecyclerViewAdapter.ViewHolder> {
+public class MyEducationRecyclerViewAdapter extends RecyclerView.Adapter<MyEducationRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyWorkExperienceRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyEducationRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -29,7 +29,7 @@ public class MyWorkExperienceRecyclerViewAdapter extends RecyclerView.Adapter<My
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_work, parent, false);
+                .inflate(R.layout.fragment_education, parent, false);
         return new ViewHolder(view);
     }
 
