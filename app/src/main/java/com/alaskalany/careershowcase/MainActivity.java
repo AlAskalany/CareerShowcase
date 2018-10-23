@@ -17,14 +17,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_overview:
+                    mTextMessage.setText(R.string.title_overview);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_education:
+                    mTextMessage.setText(R.string.title_education);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_work:
+                    mTextMessage.setText(R.string.title_work);
+                    return true;
+                case R.id.navigation_skills:
+                    mTextMessage.setText(R.string.title_skills);
+                    return true;
+                case R.id.navigation_contact:
+                    mTextMessage.setText(R.string.title_contact);
                     return true;
             }
             return false;
