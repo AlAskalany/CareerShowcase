@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.data.dummy;
+package com.alaskalany.careershowcase.data.contact;
 
 import androidx.annotation.NonNull;
 
@@ -13,36 +13,36 @@ import java.util.Map;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class DummyContent {
+public class ContactContent {
 
     /**
-     * An array of sample (dummy) items.
+     * An array of sample (contact) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<>();
+    public static final List<ContactItem> ITEMS = new ArrayList<>();
     /**
-     * A map of sample (dummy) items, by ID.
+     * A map of sample (contact) items, by ID.
      */
     @SuppressWarnings("WeakerAccess")
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<>();
+    public static final Map<String, ContactItem> ITEM_MAP = new HashMap<>();
     private static final int COUNT = 25;
 
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+            addItem(createContactItem(i));
         }
     }
 
-    private static void addItem(DummyItem item) {
+    private static void addItem(ContactItem item) {
 
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
     @NonNull
-    private static DummyItem createDummyItem(int position) {
+    private static ContactItem createContactItem(int position) {
 
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new ContactItem(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
     @NonNull

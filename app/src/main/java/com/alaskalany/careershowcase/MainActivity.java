@@ -9,7 +9,7 @@ import androidx.collection.SparseArrayCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import com.alaskalany.careershowcase.data.dummy.DummyContent;
+import com.alaskalany.careershowcase.data.dummy.DummyItem;
 import com.alaskalany.careershowcase.ui.contact.ContactFragment;
 import com.alaskalany.careershowcase.ui.education.EducationFragment;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
@@ -51,7 +51,7 @@ public class MainActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(DummyItem item) {
 
     }
 

@@ -5,7 +5,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.dummy.DummyContent;
+import com.alaskalany.careershowcase.data.dummy.DummyItem;
 
 public class SkillViewHolder
         extends RecyclerView.ViewHolder {
@@ -13,7 +13,7 @@ public class SkillViewHolder
     final View mView;
     final TextView mIdView;
     final TextView mContentView;
-    DummyContent.DummyItem mItem;
+    DummyItem mItem;
 
     SkillViewHolder(View view) {
 

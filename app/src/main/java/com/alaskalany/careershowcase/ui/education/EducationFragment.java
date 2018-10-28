@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.dummy.DummyContent;
-import com.alaskalany.careershowcase.data.dummy.DummyContent.DummyItem;
+import com.alaskalany.careershowcase.data.dummy.DummyItem;
 
 /**
  * A fragment representing a list of Items.
