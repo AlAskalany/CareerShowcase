@@ -22,6 +22,16 @@ public class MainActivity
                    SkillFragment.OnListFragmentInteractionListener,
                    ContactFragment.OnFragmentInteractionListener {
 
+    private final OverviewFragment overviewFragment = new OverviewFragment();
+
+    private final WorkFragment workFragment = new WorkFragment();
+
+    private final EducationFragment educationFragment = new EducationFragment();
+
+    private final SkillFragment skillFragment = new SkillFragment();
+
+    private final ContactFragment contactFragment = new ContactFragment();
+
     SparseArrayCompat<Fragment> fragments = new SparseArrayCompat<>();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
@@ -58,16 +68,6 @@ public class MainActivity
                     transaction.commit();
                 }
             };
-
-    private final OverviewFragment overviewFragment = new OverviewFragment();
-
-    private final WorkFragment workFragment = new WorkFragment();
-
-    private final EducationFragment educationFragment = new EducationFragment();
-
-    private final SkillFragment skillFragment = new SkillFragment();
-
-    private final ContactFragment contactFragment = new ContactFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
