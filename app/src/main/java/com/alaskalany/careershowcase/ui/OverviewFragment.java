@@ -3,10 +3,12 @@ package com.alaskalany.careershowcase.ui;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import androidx.fragment.app.Fragment;
+import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
 
 
@@ -65,7 +67,10 @@ public class OverviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_overview, container, false);
+        View view = inflater.inflate(R.layout.fragment_overview, container, false);
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+        GlideApp.with(this).load("http://chittagongit.com//images/app-icon-material-design/app-icon-material-design-11.jpg").into(imageView);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
