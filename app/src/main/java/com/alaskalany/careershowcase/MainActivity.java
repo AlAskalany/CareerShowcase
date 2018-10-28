@@ -13,7 +13,7 @@ import com.alaskalany.careershowcase.data.dummy.DummyContent;
 import com.alaskalany.careershowcase.ui.contact.ContactFragment;
 import com.alaskalany.careershowcase.ui.education.EducationFragment;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
-import com.alaskalany.careershowcase.ui.skills.SkillFragment;
+import com.alaskalany.careershowcase.ui.skills.SkillsFragment;
 import com.alaskalany.careershowcase.ui.work.WorkFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -25,7 +25,7 @@ public class MainActivity
         implements OverviewFragment.OnFragmentInteractionListener,
                    WorkFragment.OnListFragmentInteractionListener,
                    EducationFragment.OnListFragmentInteractionListener,
-                   SkillFragment.OnListFragmentInteractionListener,
+                   SkillsFragment.OnListFragmentInteractionListener,
                    ContactFragment.OnFragmentInteractionListener,
                    BottomNavigationView.OnNavigationItemSelectedListener,
                    BottomNavigationView.OnNavigationItemReselectedListener {
@@ -74,7 +74,7 @@ public class MainActivity
                 replaceFragment(new WorkFragment());
                 return true;
             case R.id.navigation_skills:
-                replaceFragment(new SkillFragment());
+                replaceFragment(new SkillsFragment());
                 return true;
             case R.id.navigation_contact:
                 replaceFragment(new ContactFragment());

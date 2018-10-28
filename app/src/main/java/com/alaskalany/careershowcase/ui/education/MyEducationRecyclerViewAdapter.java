@@ -3,7 +3,6 @@ package com.alaskalany.careershowcase.ui.education;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
@@ -18,7 +17,7 @@ import java.util.List;
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyEducationRecyclerViewAdapter
-        extends RecyclerView.Adapter<MyEducationRecyclerViewAdapter.ViewHolder> {
+        extends RecyclerView.Adapter<EducationViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
@@ -32,14 +31,14 @@ public class MyEducationRecyclerViewAdapter
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public EducationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_education, parent, false);
-        return new ViewHolder(view);
+        return new EducationViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final EducationViewHolder holder, int position) {
 
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
@@ -57,29 +56,5 @@ public class MyEducationRecyclerViewAdapter
     public int getItemCount() {
 
         return mValues.size();
-    }
-
-    public class ViewHolder
-            extends RecyclerView.ViewHolder {
-
-        final View mView;
-        final TextView mIdView;
-        final TextView mContentView;
-        DummyItem mItem;
-
-        ViewHolder(View view) {
-
-            super(view);
-            mView = view;
-            mIdView = view.findViewById(R.id.item_number);
-            mContentView = view.findViewById(R.id.content);
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

@@ -20,7 +20,7 @@ import com.alaskalany.careershowcase.data.dummy.DummyContent.DummyItem;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class SkillFragment
+public class SkillsFragment
         extends Fragment {
 
     // TODO: Customize parameter argument names
@@ -33,15 +33,15 @@ public class SkillFragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public SkillFragment() {
+    public SkillsFragment() {
 
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static SkillFragment newInstance(int columnCount) {
+    public static SkillsFragment newInstance(int columnCount) {
 
-        SkillFragment fragment = new SkillFragment();
+        SkillsFragment fragment = new SkillsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
