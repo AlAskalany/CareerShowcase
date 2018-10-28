@@ -1,5 +1,7 @@
 package com.alaskalany.careershowcase.data.dummy;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,13 +18,12 @@ public class DummyContent {
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
-
+    public static final List<DummyItem> ITEMS = new ArrayList<>();
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
-
+    @SuppressWarnings("WeakerAccess")
+    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<>();
     private static final int COUNT = 25;
 
     static {
@@ -38,11 +39,13 @@ public class DummyContent {
         ITEM_MAP.put(item.id, item);
     }
 
+    @NonNull
     private static DummyItem createDummyItem(int position) {
 
         return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
+    @NonNull
     private static String makeDetails(int position) {
 
         StringBuilder builder = new StringBuilder();
@@ -58,12 +61,14 @@ public class DummyContent {
      */
     public static class DummyItem {
 
+        @SuppressWarnings("WeakerAccess")
         public final String id;
-
+        @SuppressWarnings("WeakerAccess")
         public final String content;
-
+        @SuppressWarnings("WeakerAccess")
         public final String details;
 
+        @SuppressWarnings("WeakerAccess")
         public DummyItem(String id, String content, String details) {
 
             this.id = id;
@@ -71,6 +76,7 @@ public class DummyContent {
             this.details = details;
         }
 
+        @NonNull
         @Override
         public String toString() {
 

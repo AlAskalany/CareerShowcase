@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
@@ -25,14 +26,12 @@ public class OverviewFragment
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-
     private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam1;
-
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     public OverviewFragment() {
@@ -48,6 +47,7 @@ public class OverviewFragment
      * @return A new instance of fragment OverviewFragment.
      */
     // TODO: Rename and change types and number of parameters
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public static OverviewFragment newInstance(String param1, String param2) {
 
         OverviewFragment fragment = new OverviewFragment();
@@ -59,6 +59,7 @@ public class OverviewFragment
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+    @SuppressWarnings("unused")
     public void onButtonPressed(Uri uri) {
 
         if (mListener != null) {
@@ -88,10 +89,10 @@ public class OverviewFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+        ImageView imageView = view.findViewById(R.id.imageView);
         GlideApp.with(this)
                 .load("http://chittagongit.com//images/app-icon-material-design/app-icon-material-design-11.jpg")
                 .into(imageView);

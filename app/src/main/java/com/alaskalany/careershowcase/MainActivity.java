@@ -3,7 +3,6 @@ package com.alaskalany.careershowcase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.collection.SparseArrayCompat;
@@ -22,18 +21,7 @@ public class MainActivity
                    SkillFragment.OnListFragmentInteractionListener,
                    ContactFragment.OnFragmentInteractionListener {
 
-    private final OverviewFragment overviewFragment = new OverviewFragment();
-
-    private final WorkFragment workFragment = new WorkFragment();
-
-    private final EducationFragment educationFragment = new EducationFragment();
-
-    private final SkillFragment skillFragment = new SkillFragment();
-
-    private final ContactFragment contactFragment = new ContactFragment();
-
     SparseArrayCompat<Fragment> fragments = new SparseArrayCompat<>();
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -74,10 +62,7 @@ public class MainActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
-
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fragments.put(R.id.navigation_work, new OverviewFragment());
         FragmentManager supportFragmentManager = getSupportFragmentManager();

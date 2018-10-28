@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.dummy.DummyContent.DummyItem;
@@ -20,39 +21,34 @@ public class MyWorkRecyclerViewAdapter
         extends RecyclerView.Adapter<MyWorkRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-
     private final OnListFragmentInteractionListener mListener;
 
+    @SuppressWarnings("WeakerAccess")
     public MyWorkRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
 
         mValues = items;
         mListener = listener;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_work, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
+        holder.mView.setOnClickListener(v -> {
+            if (null != mListener) {
+                // Notify the active callbacks interface (the activity, if the
+                // fragment is attached to one) that an item has been selected.
+                mListener.onListFragmentInteraction(holder.mItem);
             }
         });
     }
@@ -66,22 +62,20 @@ public class MyWorkRecyclerViewAdapter
     public class ViewHolder
             extends RecyclerView.ViewHolder {
 
-        public final View mView;
+        final View mView;
+        final TextView mIdView;
+        final TextView mContentView;
+        DummyItem mItem;
 
-        public final TextView mIdView;
-
-        public final TextView mContentView;
-
-        public DummyItem mItem;
-
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
 
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.item_number);
+            mContentView = view.findViewById(R.id.content);
         }
 
+        @NonNull
         @Override
         public String toString() {
 

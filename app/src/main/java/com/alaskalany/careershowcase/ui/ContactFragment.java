@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.alaskalany.careershowcase.R;
 
@@ -23,14 +24,12 @@ public class ContactFragment
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-
     private static final String ARG_PARAM2 = "param2";
-
     // TODO: Rename and change types of parameters
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam1;
-
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     public ContactFragment() {
@@ -46,6 +45,7 @@ public class ContactFragment
      * @return A new instance of fragment ContactFragment.
      */
     // TODO: Rename and change types and number of parameters
+    @SuppressWarnings({"WeakerAccess", "unused"})
     public static ContactFragment newInstance(String param1, String param2) {
 
         ContactFragment fragment = new ContactFragment();
@@ -57,6 +57,7 @@ public class ContactFragment
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+    @SuppressWarnings("unused")
     public void onButtonPressed(Uri uri) {
 
         if (mListener != null) {
@@ -86,7 +87,7 @@ public class ContactFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_contact, container, false);
     }
