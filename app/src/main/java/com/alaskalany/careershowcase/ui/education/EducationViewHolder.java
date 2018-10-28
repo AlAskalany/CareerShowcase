@@ -5,7 +5,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.dummy.DummyItem;
+import com.alaskalany.careershowcase.data.education.EducationItem;
 
 public class EducationViewHolder
         extends RecyclerView.ViewHolder {
@@ -13,7 +13,7 @@ public class EducationViewHolder
     final View mView;
     final TextView mIdView;
     final TextView mContentView;
-    DummyItem mItem;
+    EducationItem mItem;
 
     EducationViewHolder(View view) {
 

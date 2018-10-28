@@ -9,7 +9,9 @@ import androidx.collection.SparseArrayCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import com.alaskalany.careershowcase.data.dummy.DummyItem;
+import com.alaskalany.careershowcase.data.education.EducationItem;
+import com.alaskalany.careershowcase.data.skills.SkillItem;
+import com.alaskalany.careershowcase.data.work.WorkItem;
 import com.alaskalany.careershowcase.ui.contact.ContactFragment;
 import com.alaskalany.careershowcase.ui.education.EducationFragment;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
@@ -51,11 +53,6 @@ public class MainActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyItem item) {
-
-    }
-
-    @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
@@ -93,6 +90,21 @@ public class MainActivity
 
     @Override
     public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(EducationItem item) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(SkillItem item) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(WorkItem item) {
 
     }
 }

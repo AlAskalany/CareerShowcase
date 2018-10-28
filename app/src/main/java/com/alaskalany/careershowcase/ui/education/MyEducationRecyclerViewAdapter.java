@@ -6,24 +6,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.dummy.DummyItem;
+import com.alaskalany.careershowcase.data.education.EducationItem;
 import com.alaskalany.careershowcase.ui.education.EducationFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link EducationItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyEducationRecyclerViewAdapter
         extends RecyclerView.Adapter<EducationViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<EducationItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
     @SuppressWarnings("WeakerAccess")
-    public MyEducationRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyEducationRecyclerViewAdapter(List<EducationItem> items, OnListFragmentInteractionListener listener) {
 
         mValues = items;
         mListener = listener;

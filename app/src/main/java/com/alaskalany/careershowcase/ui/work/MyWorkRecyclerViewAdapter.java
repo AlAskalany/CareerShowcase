@@ -6,24 +6,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.dummy.DummyItem;
+import com.alaskalany.careershowcase.data.work.WorkItem;
 import com.alaskalany.careershowcase.ui.work.WorkFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link WorkItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyWorkRecyclerViewAdapter
         extends RecyclerView.Adapter<WorkViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<WorkItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
     @SuppressWarnings("WeakerAccess")
-    public MyWorkRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyWorkRecyclerViewAdapter(List<WorkItem> items, OnListFragmentInteractionListener listener) {
 
         mValues = items;
         mListener = listener;

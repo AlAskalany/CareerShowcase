@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.dummy.DummyContent;
-import com.alaskalany.careershowcase.data.dummy.DummyItem;
+import com.alaskalany.careershowcase.data.work.WorkContent;
+import com.alaskalany.careershowcase.data.work.WorkItem;
 
 /**
  * A fragment representing a list of Items.
@@ -81,7 +81,7 @@ public class WorkFragment
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyWorkRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyWorkRecyclerViewAdapter(WorkContent.ITEMS, mListener));
         }
         return view;
     }
@@ -106,6 +106,6 @@ public class WorkFragment
     public interface OnListFragmentInteractionListener {
 
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(WorkItem item);
     }
 }
