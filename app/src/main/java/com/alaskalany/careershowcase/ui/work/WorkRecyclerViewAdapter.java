@@ -1,29 +1,29 @@
 package com.alaskalany.careershowcase.ui.work;
 
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.work.WorkItem;
-import com.alaskalany.careershowcase.ui.work.WorkFragment.OnListFragmentInteractionListener;
-
-import java.util.List;
+import com.alaskalany.careershowcase.data.work.Work;
+import com.alaskalany.careershowcase.ui.work.WorkListFragment.OnWorkListFragmentInteractionListener;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link WorkItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ * {@link RecyclerView.Adapter} that can display a {@link Work} and makes a call to the
+ * specified {@link WorkListFragment.OnWorkListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyWorkRecyclerViewAdapter
+public class WorkRecyclerViewAdapter
         extends RecyclerView.Adapter<WorkViewHolder> {
 
-    private final List<WorkItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final SparseArray<Work> mValues;
+    private final OnWorkListFragmentInteractionListener mListener;
 
     @SuppressWarnings("WeakerAccess")
-    public MyWorkRecyclerViewAdapter(List<WorkItem> items, OnListFragmentInteractionListener listener) {
+    public WorkRecyclerViewAdapter(SparseArray<Work> items,
+                                   WorkListFragment.OnWorkListFragmentInteractionListener listener) {
 
         mValues = items;
         mListener = listener;
@@ -41,13 +41,13 @@ public class MyWorkRecyclerViewAdapter
     public void onBindViewHolder(@NonNull final WorkViewHolder holder, int position) {
 
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        //        holder.mIdView.setText(String.valueOf(mValues.get(position).getId()));
+        holder.mContentView.setText(mValues.get(position + 1).getDescription());
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onListFragmentInteraction(holder.mItem);
+                mListener.onWorkListFragmentInteraction(holder.mItem);
             }
         });
     }

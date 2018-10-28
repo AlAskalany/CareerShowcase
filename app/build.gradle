@@ -44,4 +44,5 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$rootProject.testRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    compileOnly 'org.jetbrains:annotations:15.0'
 }

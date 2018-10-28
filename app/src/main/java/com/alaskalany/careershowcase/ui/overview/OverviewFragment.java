@@ -11,11 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
+import org.jetbrains.annotations.Contract;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OverviewFragment.OnFragmentInteractionListener} interface
+ * {@link OnOverviewFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link OverviewFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -32,7 +33,7 @@ public class OverviewFragment
     private String mParam1;
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
-    private OnFragmentInteractionListener mListener;
+    private OnOverviewFragmentInteractionListener mListener;
 
     public OverviewFragment() {
         // Required empty public constructor
@@ -63,7 +64,7 @@ public class OverviewFragment
     public void onButtonPressed(Uri uri) {
 
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onOverviewFragmentInteraction(uri);
         }
     }
 
@@ -71,10 +72,16 @@ public class OverviewFragment
     public void onAttach(Context context) {
 
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        registerListener(context);
+    }
+
+    @Contract("null -> fail")
+    private void registerListener(Context context) {
+
+        if (context instanceof OnOverviewFragmentInteractionListener) {
+            mListener = (OnOverviewFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnOverviewFragmentInteractionListener");
         }
     }
 
@@ -103,6 +110,11 @@ public class OverviewFragment
     public void onDetach() {
 
         super.onDetach();
+        unregisterListener();
+    }
+
+    private void unregisterListener() {
+
         mListener = null;
     }
 
@@ -116,9 +128,9 @@ public class OverviewFragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnOverviewFragmentInteractionListener {
 
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onOverviewFragmentInteraction(Uri uri);
     }
 }

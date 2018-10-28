@@ -1,29 +1,28 @@
 package com.alaskalany.careershowcase.data.skills;
 
+import android.util.SparseArray;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Helper class for providing sample content for user interfaces created by
+ * Helper class for providing sample description for user interfaces created by
  * Android template wizards.
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class SkillsContent {
+public class SkillContent {
 
     /**
      * An array of sample (skill) items.
      */
-    public static final List<SkillItem> ITEMS = new ArrayList<>();
+    public static final List<Skill> ITEMS = new ArrayList<>();
     /**
      * A map of sample (skill) items, by ID.
      */
     @SuppressWarnings("WeakerAccess")
-    public static final Map<String, SkillItem> ITEM_MAP = new HashMap<>();
+    public static final SparseArray<Skill> ITEM_MAP = new SparseArray<>();
     private static final int COUNT = 25;
 
     static {
@@ -33,16 +32,20 @@ public class SkillsContent {
         }
     }
 
-    private static void addItem(SkillItem item) {
+    private static void addItem(Skill item) {
 
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+        ITEM_MAP.put(item.getId(), item);
     }
 
     @NonNull
-    private static SkillItem createSkillItem(int position) {
+    private static Skill createSkillItem(int position) {
 
-        return new SkillItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        Skill skill = new Skill();
+        skill.setId(position);
+        skill.setLabel("Item " + position);
+        skill.setDetails(makeDetails(position));
+        return skill;
     }
 
     @NonNull

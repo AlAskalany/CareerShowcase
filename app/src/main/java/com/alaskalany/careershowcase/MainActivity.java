@@ -9,14 +9,14 @@ import androidx.collection.SparseArrayCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import com.alaskalany.careershowcase.data.education.EducationItem;
-import com.alaskalany.careershowcase.data.skills.SkillItem;
-import com.alaskalany.careershowcase.data.work.WorkItem;
+import com.alaskalany.careershowcase.data.education.Education;
+import com.alaskalany.careershowcase.data.skills.Skill;
+import com.alaskalany.careershowcase.data.work.Work;
 import com.alaskalany.careershowcase.ui.contact.ContactFragment;
-import com.alaskalany.careershowcase.ui.education.EducationFragment;
+import com.alaskalany.careershowcase.ui.education.EducationListFragment;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
-import com.alaskalany.careershowcase.ui.skills.SkillsFragment;
-import com.alaskalany.careershowcase.ui.work.WorkFragment;
+import com.alaskalany.careershowcase.ui.skills.SkillListFragment;
+import com.alaskalany.careershowcase.ui.work.WorkListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
@@ -24,11 +24,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  */
 public class MainActivity
         extends AppCompatActivity
-        implements OverviewFragment.OnFragmentInteractionListener,
-                   WorkFragment.OnListFragmentInteractionListener,
-                   EducationFragment.OnListFragmentInteractionListener,
-                   SkillsFragment.OnListFragmentInteractionListener,
-                   ContactFragment.OnFragmentInteractionListener,
+        implements OverviewFragment.OnOverviewFragmentInteractionListener,
+                   WorkListFragment.OnWorkListFragmentInteractionListener,
+                   EducationListFragment.OnEducationListFragmentInteractionListener,
+                   SkillListFragment.OnSkillListFragmentInteractionListener,
+                   ContactFragment.OnContactFragmentInteractionListener,
                    BottomNavigationView.OnNavigationItemSelectedListener,
                    BottomNavigationView.OnNavigationItemReselectedListener {
 
@@ -42,19 +42,22 @@ public class MainActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(this);
+        BottomNavigationView navigationView = findViewById(R.id.navigation);
+        setupBottomNavigation(navigationView, this, this);
+    }
+
+    private void setupBottomNavigation(@NonNull BottomNavigationView navigationView,
+                                       BottomNavigationView.OnNavigationItemSelectedListener selectedListener,
+                                       BottomNavigationView.OnNavigationItemReselectedListener reselectedListener) {
+
+        navigationView.setOnNavigationItemSelectedListener(selectedListener);
+        navigationView.setOnNavigationItemReselectedListener(reselectedListener);
         fragments.put(R.id.navigation_work, new OverviewFragment());
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        transaction.add(R.id.container, new OverviewFragment());
+        transaction.add(R.id.frameLayout, new OverviewFragment());
         transaction.addToBackStack(null);
         transaction.commit();
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override
@@ -65,13 +68,13 @@ public class MainActivity
                 replaceFragment(new OverviewFragment());
                 return true;
             case R.id.navigation_education:
-                replaceFragment(new EducationFragment());
+                replaceFragment(new EducationListFragment());
                 return true;
             case R.id.navigation_work:
-                replaceFragment(new WorkFragment());
+                replaceFragment(new WorkListFragment());
                 return true;
             case R.id.navigation_skills:
-                replaceFragment(new SkillsFragment());
+                replaceFragment(new SkillListFragment());
                 return true;
             case R.id.navigation_contact:
                 replaceFragment(new ContactFragment());
@@ -94,17 +97,27 @@ public class MainActivity
     }
 
     @Override
-    public void onListFragmentInteraction(EducationItem item) {
+    public void onOverviewFragmentInteraction(Uri uri) {
 
     }
 
     @Override
-    public void onListFragmentInteraction(SkillItem item) {
+    public void onEducationListFragmentInteraction(Education item) {
 
     }
 
     @Override
-    public void onListFragmentInteraction(WorkItem item) {
+    public void onSkillListFragmentInteraction(Skill item) {
+
+    }
+
+    @Override
+    public void onWorkListFragmentInteraction(Work item) {
+
+    }
+
+    @Override
+    public void onContactFragmentInteraction(Uri uri) {
 
     }
 }

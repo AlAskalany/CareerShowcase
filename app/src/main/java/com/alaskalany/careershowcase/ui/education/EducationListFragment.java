@@ -11,37 +11,38 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.data.education.Education;
 import com.alaskalany.careershowcase.data.education.EducationContent;
-import com.alaskalany.careershowcase.data.education.EducationItem;
+import org.jetbrains.annotations.Contract;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnEducationListFragmentInteractionListener}
  * interface.
  */
-public class EducationFragment
+public class EducationListFragment
         extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    private OnEducationListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public EducationFragment() {
+    public EducationListFragment() {
 
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static EducationFragment newInstance(int columnCount) {
+    public static EducationListFragment newInstance(int columnCount) {
 
-        EducationFragment fragment = new EducationFragment();
+        EducationListFragment fragment = new EducationListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -52,10 +53,16 @@ public class EducationFragment
     public void onAttach(Context context) {
 
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        registerListener(context);
+    }
+
+    @Contract("null -> fail")
+    private void registerListener(Context context) {
+
+        if (context instanceof OnEducationListFragmentInteractionListener) {
+            mListener = (OnEducationListFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnWorkListFragmentInteractionListener");
         }
     }
 
@@ -74,22 +81,34 @@ public class EducationFragment
         View view = inflater.inflate(R.layout.fragment_education_list, container, false);
         // Set the adapter
         if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MyEducationRecyclerViewAdapter(EducationContent.ITEMS, mListener));
+            setupRecyclerViewAdapter(view, mColumnCount,
+                                     new EducationRecyclerViewAdapter(EducationContent.ITEM_MAP, mListener));
         }
         return view;
+    }
+
+    private void setupRecyclerViewAdapter(@NonNull View view, int columns,
+                                          RecyclerView.Adapter<EducationViewHolder> adapter) {
+
+        Context context = view.getContext();
+        RecyclerView recyclerView = (RecyclerView) view;
+        if (columns <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, columns));
+        }
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onDetach() {
 
         super.onDetach();
+        unregisterListener();
+    }
+
+    private void unregisterListener() {
+
         mListener = null;
     }
 
@@ -103,9 +122,9 @@ public class EducationFragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
+    public interface OnEducationListFragmentInteractionListener {
 
         // TODO: Update argument type and name
-        void onListFragmentInteraction(EducationItem item);
+        void onEducationListFragmentInteraction(Education item);
     }
 }

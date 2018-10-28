@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.alaskalany.careershowcase.R;
+import org.jetbrains.annotations.Contract;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ContactFragment.OnFragmentInteractionListener} interface
+ * {@link OnContactFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link ContactFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -30,7 +31,7 @@ public class ContactFragment
     private String mParam1;
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
-    private OnFragmentInteractionListener mListener;
+    private OnContactFragmentInteractionListener mListener;
 
     public ContactFragment() {
         // Required empty public constructor
@@ -61,7 +62,7 @@ public class ContactFragment
     public void onButtonPressed(Uri uri) {
 
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onContactFragmentInteraction(uri);
         }
     }
 
@@ -69,10 +70,16 @@ public class ContactFragment
     public void onAttach(Context context) {
 
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        registerListener(context);
+    }
+
+    @Contract("null -> fail")
+    private void registerListener(Context context) {
+
+        if (context instanceof OnContactFragmentInteractionListener) {
+            mListener = (OnContactFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnOverviewFragmentInteractionListener");
         }
     }
 
@@ -96,6 +103,11 @@ public class ContactFragment
     public void onDetach() {
 
         super.onDetach();
+        unregisterListener();
+    }
+
+    private void unregisterListener() {
+
         mListener = null;
     }
 
@@ -109,9 +121,9 @@ public class ContactFragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnContactFragmentInteractionListener {
 
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onContactFragmentInteraction(Uri uri);
     }
 }

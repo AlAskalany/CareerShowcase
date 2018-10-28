@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.ui.skills;
+package com.alaskalany.careershowcase.ui.work;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,37 +11,38 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.skills.SkillItem;
-import com.alaskalany.careershowcase.data.skills.SkillsContent;
+import com.alaskalany.careershowcase.data.work.Work;
+import com.alaskalany.careershowcase.data.work.WorkContent;
+import org.jetbrains.annotations.Contract;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnWorkListFragmentInteractionListener}
  * interface.
  */
-public class SkillsFragment
+public class WorkListFragment
         extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    private OnWorkListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public SkillsFragment() {
+    public WorkListFragment() {
 
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static SkillsFragment newInstance(int columnCount) {
+    public static WorkListFragment newInstance(int columnCount) {
 
-        SkillsFragment fragment = new SkillsFragment();
+        WorkListFragment fragment = new WorkListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -52,10 +53,16 @@ public class SkillsFragment
     public void onAttach(Context context) {
 
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        registerListener(context);
+    }
+
+    @Contract("null -> fail")
+    private void registerListener(Context context) {
+
+        if (context instanceof OnWorkListFragmentInteractionListener) {
+            mListener = (OnWorkListFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnWorkListFragmentInteractionListener");
         }
     }
 
@@ -71,25 +78,36 @@ public class SkillsFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_skill_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_work_list, container, false);
         // Set the adapter
         if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MySkillRecyclerViewAdapter(SkillsContent.ITEMS, mListener));
+            setupRecyclerViewAdapter(view, mColumnCount, new WorkRecyclerViewAdapter(WorkContent.ITEM_MAP, mListener));
         }
         return view;
+    }
+
+    private void setupRecyclerViewAdapter(@NonNull View view, int columns,
+                                          RecyclerView.Adapter<WorkViewHolder> adapter) {
+
+        Context context = view.getContext();
+        RecyclerView recyclerView = (RecyclerView) view;
+        if (columns <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, columns));
+        }
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onDetach() {
 
         super.onDetach();
+        unregisterListener();
+    }
+
+    private void unregisterListener() {
+
         mListener = null;
     }
 
@@ -103,9 +121,9 @@ public class SkillsFragment
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
+    public interface OnWorkListFragmentInteractionListener {
 
         // TODO: Update argument type and name
-        void onListFragmentInteraction(SkillItem item);
+        void onWorkListFragmentInteraction(Work item);
     }
 }

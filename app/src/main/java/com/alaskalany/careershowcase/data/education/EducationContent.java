@@ -1,14 +1,13 @@
 package com.alaskalany.careershowcase.data.education;
 
+import android.util.SparseArray;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Helper class for providing sample content for user interfaces created by
+ * Helper class for providing sample description for user interfaces created by
  * Android template wizards.
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
@@ -18,12 +17,12 @@ public class EducationContent {
     /**
      * An array of sample (education) items.
      */
-    public static final List<EducationItem> ITEMS = new ArrayList<>();
+    public static final List<Education> ITEMS = new ArrayList<>();
     /**
      * A map of sample (education) items, by ID.
      */
     @SuppressWarnings("WeakerAccess")
-    public static final Map<String, EducationItem> ITEM_MAP = new HashMap<>();
+    public static final SparseArray<Education> ITEM_MAP = new SparseArray<>();
     private static final int COUNT = 25;
 
     static {
@@ -33,16 +32,20 @@ public class EducationContent {
         }
     }
 
-    private static void addItem(EducationItem item) {
+    private static void addItem(Education item) {
 
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+        ITEM_MAP.put(item.getId(), item);
     }
 
     @NonNull
-    private static EducationItem createEducationItem(int position) {
+    private static Education createEducationItem(int position) {
 
-        return new EducationItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        Education education = new Education();
+        education.setId(position);
+        education.setTitle("Item " + position);
+        education.setDescription(makeDetails(position));
+        return education;
     }
 
     @NonNull

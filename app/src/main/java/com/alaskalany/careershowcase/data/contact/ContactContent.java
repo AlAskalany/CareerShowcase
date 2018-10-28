@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Helper class for providing sample content for user interfaces created by
+ * Helper class for providing sample description for user interfaces created by
  * Android template wizards.
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
@@ -18,12 +18,12 @@ public class ContactContent {
     /**
      * An array of sample (contact) items.
      */
-    public static final List<ContactItem> ITEMS = new ArrayList<>();
+    public static final List<Contact> ITEMS = new ArrayList<>();
     /**
      * A map of sample (contact) items, by ID.
      */
     @SuppressWarnings("WeakerAccess")
-    public static final Map<String, ContactItem> ITEM_MAP = new HashMap<>();
+    public static final Map<String, Contact> ITEM_MAP = new HashMap<>();
     private static final int COUNT = 25;
 
     static {
@@ -33,16 +33,16 @@ public class ContactContent {
         }
     }
 
-    private static void addItem(ContactItem item) {
+    private static void addItem(Contact item) {
 
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
     @NonNull
-    private static ContactItem createContactItem(int position) {
+    private static Contact createContactItem(int position) {
 
-        return new ContactItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new Contact(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
     @NonNull
