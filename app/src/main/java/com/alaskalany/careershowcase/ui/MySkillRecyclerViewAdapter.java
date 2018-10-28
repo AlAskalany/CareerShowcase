@@ -1,14 +1,13 @@
 package com.alaskalany.careershowcase.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.ui.SkillFragment.OnListFragmentInteractionListener;
 import com.alaskalany.careershowcase.data.dummy.DummyContent.DummyItem;
+import com.alaskalany.careershowcase.ui.SkillFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
@@ -17,32 +16,38 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MySkillRecyclerViewAdapter extends RecyclerView.Adapter<MySkillRecyclerViewAdapter.ViewHolder> {
+public class MySkillRecyclerViewAdapter
+        extends RecyclerView.Adapter<MySkillRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
+
     private final OnListFragmentInteractionListener mListener;
 
     public MySkillRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+
         mValues = items;
         mListener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_skill, parent, false);
+
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_skill, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
@@ -54,16 +59,23 @@ public class MySkillRecyclerViewAdapter extends RecyclerView.Adapter<MySkillRecy
 
     @Override
     public int getItemCount() {
+
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder
+            extends RecyclerView.ViewHolder {
+
         public final View mView;
+
         public final TextView mIdView;
+
         public final TextView mContentView;
+
         public DummyItem mItem;
 
         public ViewHolder(View view) {
+
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
@@ -72,6 +84,7 @@ public class MySkillRecyclerViewAdapter extends RecyclerView.Adapter<MySkillRecy
 
         @Override
         public String toString() {
+
             return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
