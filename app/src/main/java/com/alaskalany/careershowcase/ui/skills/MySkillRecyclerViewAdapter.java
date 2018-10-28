@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.ui;
+package com.alaskalany.careershowcase.ui.skills;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.dummy.DummyContent.DummyItem;
-import com.alaskalany.careershowcase.ui.SkillFragment.OnListFragmentInteractionListener;
+import com.alaskalany.careershowcase.ui.skills.SkillFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.ui;
+package com.alaskalany.careershowcase.ui.skills;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import com.alaskalany.careershowcase.data.dummy.DummyContent.DummyItem;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class EducationFragment
+public class SkillFragment
         extends Fragment {
 
     // TODO: Customize parameter argument names
@@ -33,15 +33,15 @@ public class EducationFragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public EducationFragment() {
+    public SkillFragment() {
 
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static EducationFragment newInstance(int columnCount) {
+    public static SkillFragment newInstance(int columnCount) {
 
-        EducationFragment fragment = new EducationFragment();
+        SkillFragment fragment = new SkillFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -71,7 +71,7 @@ public class EducationFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_education_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_skill_list, container, false);
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -81,7 +81,7 @@ public class EducationFragment
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyEducationRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MySkillRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

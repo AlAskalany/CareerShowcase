@@ -10,7 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.alaskalany.careershowcase.data.dummy.DummyContent;
-import com.alaskalany.careershowcase.ui.*;
+import com.alaskalany.careershowcase.ui.contact.ContactFragment;
+import com.alaskalany.careershowcase.ui.education.EducationFragment;
+import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
+import com.alaskalany.careershowcase.ui.skills.SkillFragment;
+import com.alaskalany.careershowcase.ui.work.WorkFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**

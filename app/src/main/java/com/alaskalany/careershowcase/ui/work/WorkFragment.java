@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.ui;
+package com.alaskalany.careershowcase.ui.work;
 
 import android.content.Context;
 import android.os.Bundle;
