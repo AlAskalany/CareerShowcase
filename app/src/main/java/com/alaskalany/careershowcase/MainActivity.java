@@ -32,6 +32,11 @@ public class MainActivity
                    BottomNavigationView.OnNavigationItemSelectedListener,
                    BottomNavigationView.OnNavigationItemReselectedListener {
 
+    private final OverviewFragment overviewFragment = new OverviewFragment();
+    private final EducationListFragment educationListFragment = new EducationListFragment();
+    private final WorkListFragment workListFragment = new WorkListFragment();
+    private final SkillListFragment skillListFragment = new SkillListFragment();
+    private final ContactFragment contactFragment = new ContactFragment();
     /**
      * Fragments used in bottom navigation
      */
@@ -52,10 +57,9 @@ public class MainActivity
 
         navigationView.setOnNavigationItemSelectedListener(selectedListener);
         navigationView.setOnNavigationItemReselectedListener(reselectedListener);
-        fragments.put(R.id.navigation_work, new OverviewFragment());
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        transaction.add(R.id.frameLayout, new OverviewFragment());
+        transaction.add(R.id.frameLayout, overviewFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -65,19 +69,19 @@ public class MainActivity
         // Replace current fragment with requested fragment
         switch (menuItem.getItemId()) {
             case R.id.navigation_overview:
-                replaceFragment(new OverviewFragment());
+                replaceFragment(overviewFragment);
                 return true;
             case R.id.navigation_education:
-                replaceFragment(new EducationListFragment());
+                replaceFragment(educationListFragment);
                 return true;
             case R.id.navigation_work:
-                replaceFragment(new WorkListFragment());
+                replaceFragment(workListFragment);
                 return true;
             case R.id.navigation_skills:
-                replaceFragment(new SkillListFragment());
+                replaceFragment(skillListFragment);
                 return true;
             case R.id.navigation_contact:
-                replaceFragment(new ContactFragment());
+                replaceFragment(contactFragment);
                 return true;
         }
         return false;
