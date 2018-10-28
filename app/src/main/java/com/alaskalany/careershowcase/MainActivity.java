@@ -13,49 +13,23 @@ import com.alaskalany.careershowcase.data.dummy.DummyContent;
 import com.alaskalany.careershowcase.ui.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * Main activity
+ */
 public class MainActivity
         extends AppCompatActivity
         implements OverviewFragment.OnFragmentInteractionListener,
                    WorkFragment.OnListFragmentInteractionListener,
                    EducationFragment.OnListFragmentInteractionListener,
                    SkillFragment.OnListFragmentInteractionListener,
-                   ContactFragment.OnFragmentInteractionListener {
+                   ContactFragment.OnFragmentInteractionListener,
+                   BottomNavigationView.OnNavigationItemSelectedListener,
+                   BottomNavigationView.OnNavigationItemReselectedListener {
 
-    SparseArrayCompat<Fragment> fragments = new SparseArrayCompat<>();
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                    switch (item.getItemId()) {
-                        case R.id.navigation_overview:
-                            replaceFragment(new OverviewFragment());
-                            return true;
-                        case R.id.navigation_education:
-                            replaceFragment(new EducationFragment());
-                            return true;
-                        case R.id.navigation_work:
-                            replaceFragment(new WorkFragment());
-                            return true;
-                        case R.id.navigation_skills:
-                            replaceFragment(new SkillFragment());
-                            return true;
-                        case R.id.navigation_contact:
-                            replaceFragment(new ContactFragment());
-                            return true;
-                    }
-                    return false;
-                }
-
-                private void replaceFragment(Fragment fragment) {
-
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frameLayout, fragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                }
-            };
+    /**
+     * Fragments used in bottom navigation
+     */
+    private SparseArrayCompat<Fragment> fragments = new SparseArrayCompat<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +37,7 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setOnNavigationItemSelectedListener(this);
         fragments.put(R.id.navigation_work, new OverviewFragment());
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = supportFragmentManager.beginTransaction();
@@ -79,6 +53,42 @@ public class MainActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        // Replace current fragment with requested fragment
+        switch (menuItem.getItemId()) {
+            case R.id.navigation_overview:
+                replaceFragment(new OverviewFragment());
+                return true;
+            case R.id.navigation_education:
+                replaceFragment(new EducationFragment());
+                return true;
+            case R.id.navigation_work:
+                replaceFragment(new WorkFragment());
+                return true;
+            case R.id.navigation_skills:
+                replaceFragment(new SkillFragment());
+                return true;
+            case R.id.navigation_contact:
+                replaceFragment(new ContactFragment());
+                return true;
+        }
+        return false;
+    }
+
+    private void replaceFragment(Fragment fragment) {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frameLayout, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
 
     }
 }
