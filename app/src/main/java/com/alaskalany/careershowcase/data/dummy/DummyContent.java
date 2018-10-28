@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.dummy;
+package com.alaskalany.careershowcase.data.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

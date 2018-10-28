@@ -3,6 +3,7 @@ package com.alaskalany.careershowcase;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import com.alaskalany.careershowcase.ui.*;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.alaskalany.careershowcase.dummy.DummyContent;
+import com.alaskalany.careershowcase.data.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity implements OverviewFragment.OnFragmentInteractionListener, WorkFragment.OnListFragmentInteractionListener, EducationFragment.OnListFragmentInteractionListener, SkillFragment.OnListFragmentInteractionListener, ContactFragment.OnFragmentInteractionListener {
 

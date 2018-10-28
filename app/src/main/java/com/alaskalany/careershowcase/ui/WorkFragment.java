@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase;
+package com.alaskalany.careershowcase.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alaskalany.careershowcase.dummy.DummyContent;
-import com.alaskalany.careershowcase.dummy.DummyContent.DummyItem;
+import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.data.dummy.DummyContent;
+import com.alaskalany.careershowcase.data.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
