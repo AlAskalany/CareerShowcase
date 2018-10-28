@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.data;
+package com.alaskalany.careershowcase.data.common;
 
 import android.net.Uri;
 import androidx.room.ColumnInfo;
@@ -7,7 +7,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Company {
+public class School {
 
     @PrimaryKey
     private int id;
@@ -20,7 +20,7 @@ public class Company {
     @Embedded
     private Logo logo;
 
-    public Company() {
+    public School() {
 
     }
 

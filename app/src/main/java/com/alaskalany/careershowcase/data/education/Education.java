@@ -1,8 +1,8 @@
 package com.alaskalany.careershowcase.data.education;
 
 import androidx.room.*;
-import com.alaskalany.careershowcase.data.Duration;
-import com.alaskalany.careershowcase.data.School;
+import com.alaskalany.careershowcase.data.common.Duration;
+import com.alaskalany.careershowcase.data.common.School;
 
 /**
  * A education item representing a piece of description.

@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.data;
+package com.alaskalany.careershowcase.data.common;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

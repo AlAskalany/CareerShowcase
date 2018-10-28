@@ -5,8 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import com.alaskalany.careershowcase.data.Company;
-import com.alaskalany.careershowcase.data.Duration;
+import com.alaskalany.careershowcase.data.common.Company;
+import com.alaskalany.careershowcase.data.common.Duration;
 
 /**
  * A work item representing a piece of description.

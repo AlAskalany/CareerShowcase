@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.data;
+package com.alaskalany.careershowcase.data.common;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

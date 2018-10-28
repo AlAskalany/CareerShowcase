@@ -41,7 +41,7 @@ public class SkillRecyclerViewAdapter
 
         holder.mItem = mValues.get(position);
         //        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position + 1).label);
+        holder.mContentView.setText(mValues.get(position + 1).getDetails());
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
