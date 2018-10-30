@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.databinding.FragmentOverviewBinding;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -34,6 +36,7 @@ public class OverviewFragment
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
     private OnOverviewFragmentInteractionListener mListener;
+    private FragmentOverviewBinding binding;
 
     public OverviewFragment() {
         // Required empty public constructor
@@ -97,13 +100,22 @@ public class OverviewFragment
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false);
+        binding.setName("Ahmed AlAskalany");
+        binding.setHeadline("Software Engineer");
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_overview, container, false);
-        ImageView imageView = view.findViewById(R.id.imageView_profile_picture);
         GlideApp.with(this)
                 .load("http://chittagongit.com//images/app-icon-material-design/app-icon-material-design-11.jpg")
-                .into(imageView);
-        return view;
+                .into(binding.imageViewProfilePicture);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+        binding.executePendingBindings();
     }
 
     @Override
