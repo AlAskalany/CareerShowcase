@@ -13,7 +13,7 @@
             type="com.alaskalany.careershowcase.ui.work.WorkOnClickCallback" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:id="@+id/cardView_Work"
         style="@style/AppTheme.ItemCardView"
         android:onClick="@{() -> callback.onClick(work)}">
@@ -27,5 +27,5 @@
             android:id="@+id/textView_education_description"
             style="@style/AppTheme.ItemDescriptionTextView"
             tools:text="@{work.description}" />
-    </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 </layout>

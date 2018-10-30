@@ -12,7 +12,7 @@
             type="com.alaskalany.careershowcase.ui.skills.SkillOnClickCallback" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:id="@+id/cardView_Skill"
         style="@style/AppTheme.ItemCardView"
         android:onClick="@{() -> callback.onClick(skill)}">
@@ -26,5 +26,5 @@
             android:id="@+id/textView_skill_description"
             style="@style/AppTheme.ItemDescriptionTextView"
             tools:text="@{skill.description}" />
-    </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 </layout>
