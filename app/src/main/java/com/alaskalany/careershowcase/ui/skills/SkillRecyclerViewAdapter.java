@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.skills.Skill;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
+import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
 import com.alaskalany.careershowcase.ui.skills.SkillListFragment.OnSkillListFragmentInteractionListener;
-import org.jetbrains.annotations.Contract;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Skill} and makes a call to the
@@ -18,15 +18,14 @@ import org.jetbrains.annotations.Contract;
  * TODO: Replace the implementation with code for your data type.
  */
 public class SkillRecyclerViewAdapter
-        extends RecyclerView.Adapter<SkillViewHolder> {
+        extends BaseRecyclerViewAdapter<SkillViewHolder, Skill> {
 
-    private final SparseArray<Skill> mValues;
     private final OnSkillListFragmentInteractionListener mListener;
 
     @SuppressWarnings("WeakerAccess")
     public SkillRecyclerViewAdapter(SparseArray<Skill> items, OnSkillListFragmentInteractionListener listener) {
 
-        mValues = items;
+        super(items);
         mListener = listener;
     }
 
@@ -46,12 +45,6 @@ public class SkillRecyclerViewAdapter
 
         holder.binding.setSkill(mValues.get(positionToKey(position)));
         holder.binding.executePendingBindings();
-    }
-
-    @Contract(pure = true)
-    private static int positionToKey(int position) {
-
-        return position + 1;
     }
 
     @Override

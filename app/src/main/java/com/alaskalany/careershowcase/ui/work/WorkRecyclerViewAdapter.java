@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.work.Work;
 import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
+import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
 import com.alaskalany.careershowcase.ui.work.WorkListFragment.OnWorkListFragmentInteractionListener;
-import org.jetbrains.annotations.Contract;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Work} and makes a call to the
@@ -18,16 +18,15 @@ import org.jetbrains.annotations.Contract;
  * TODO: Replace the implementation with code for your data type.
  */
 public class WorkRecyclerViewAdapter
-        extends RecyclerView.Adapter<WorkViewHolder> {
+        extends BaseRecyclerViewAdapter<WorkViewHolder, Work> {
 
-    private final SparseArray<Work> mValues;
     private final OnWorkListFragmentInteractionListener mListener;
 
     @SuppressWarnings("WeakerAccess")
     public WorkRecyclerViewAdapter(SparseArray<Work> items,
                                    WorkListFragment.OnWorkListFragmentInteractionListener listener) {
 
-        mValues = items;
+        super(items);
         mListener = listener;
     }
 
@@ -47,17 +46,5 @@ public class WorkRecyclerViewAdapter
 
         holder.binding.setWork(mValues.get(positionToKey(position)));
         holder.binding.executePendingBindings();
-    }
-
-    @Contract(pure = true)
-    private static int positionToKey(int position) {
-
-        return position + 1;
-    }
-
-    @Override
-    public int getItemCount() {
-
-        return mValues.size();
     }
 }
