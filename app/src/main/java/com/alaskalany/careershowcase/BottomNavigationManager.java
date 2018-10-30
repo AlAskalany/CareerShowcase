@@ -14,18 +14,45 @@ import com.alaskalany.careershowcase.ui.skills.SkillListFragment;
 import com.alaskalany.careershowcase.ui.work.WorkListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ *
+ */
 class BottomNavigationManager
         implements BottomNavigationView.OnNavigationItemSelectedListener,
                    BottomNavigationView.OnNavigationItemReselectedListener {
 
+    /**
+     *
+     */
     private static final int OVERVIEW = 0;
+    /**
+     *
+     */
     private static final int EDUCATION = 1;
+    /**
+     *
+     */
     private static final int WORK = 2;
+    /**
+     *
+     */
     private static final int SKILLS = 3;
+    /**
+     *
+     */
     private static final int CONTACT = 4;
+    /**
+     *
+     */
     private final FragmentActivity mActivity;
+    /**
+     *
+     */
     private final SparseArrayCompat<Fragment> mFragments;
 
+    /**
+     * @param fragmentActivity
+     */
     BottomNavigationManager(FragmentActivity fragmentActivity) {
 
         mActivity = fragmentActivity;
@@ -37,19 +64,10 @@ class BottomNavigationManager
         mFragments.put(CONTACT, new ContactFragment());
     }
 
-    private void replaceFragment(int navFragment) throws RuntimeException {
-
-        Fragment fragment = mFragments.get(navFragment);
-        if (fragment != null) {
-            FragmentTransaction transaction = mActivity.getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container_navigation, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        } else {
-            throw new RuntimeException("Navigation fragment shouldn't be null");
-        }
-    }
-
+    /**
+     * @param menuItem
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         // Replace current fragment with requested fragment
@@ -73,11 +91,34 @@ class BottomNavigationManager
         return false;
     }
 
+    /**
+     * @param navFragment
+     * @throws RuntimeException
+     */
+    private void replaceFragment(int navFragment) throws RuntimeException {
+
+        Fragment fragment = mFragments.get(navFragment);
+        if (fragment != null) {
+            FragmentTransaction transaction = mActivity.getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.container_navigation, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } else {
+            throw new RuntimeException("Navigation fragment shouldn't be null");
+        }
+    }
+
+    /**
+     * @param menuItem
+     */
     @Override
     public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
 
     }
 
+    /**
+     * @param freshStart
+     */
     void init(boolean freshStart) {
 
         if (freshStart) {

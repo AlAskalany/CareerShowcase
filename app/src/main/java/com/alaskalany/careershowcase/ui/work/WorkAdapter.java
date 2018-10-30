@@ -19,12 +19,21 @@ import com.alaskalany.careershowcase.ui.BaseViewHolder;
 public class WorkAdapter
         extends BaseRecyclerViewAdapter<WorkAdapter.ViewHolder, Work, WorkOnClickCallback> {
 
+    /**
+     * @param items
+     * @param callback
+     */
     @SuppressWarnings("WeakerAccess")
     public WorkAdapter(SparseArray<Work> items, WorkOnClickCallback callback) {
 
         super(items, callback);
     }
 
+    /**
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,6 +45,10 @@ public class WorkAdapter
         return new ViewHolder(binding);
     }
 
+    /**
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
@@ -44,9 +57,15 @@ public class WorkAdapter
         holder.mBinding.executePendingBindings();
     }
 
+    /**
+     *
+     */
     public static class ViewHolder
             extends BaseViewHolder<FragmentWorkBinding> {
 
+        /**
+         * @param binding
+         */
         ViewHolder(FragmentWorkBinding binding) {
 
             super(binding.getRoot(), binding);

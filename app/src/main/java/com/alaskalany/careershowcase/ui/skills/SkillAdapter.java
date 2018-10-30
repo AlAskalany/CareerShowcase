@@ -19,12 +19,21 @@ import com.alaskalany.careershowcase.ui.BaseViewHolder;
 public class SkillAdapter
         extends BaseRecyclerViewAdapter<SkillAdapter.ViewHolder, Skill, SkillOnClickCallback> {
 
+    /**
+     * @param items
+     * @param callback
+     */
     @SuppressWarnings("WeakerAccess")
     public SkillAdapter(SparseArray<Skill> items, SkillOnClickCallback callback) {
 
         super(items, callback);
     }
 
+    /**
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,6 +45,10 @@ public class SkillAdapter
         return new ViewHolder(binding);
     }
 
+    /**
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
@@ -44,9 +57,15 @@ public class SkillAdapter
         holder.mBinding.executePendingBindings();
     }
 
+    /**
+     *
+     */
     public static class ViewHolder
             extends BaseViewHolder<FragmentSkillBinding> {
 
+        /**
+         * @param binding
+         */
         public ViewHolder(FragmentSkillBinding binding) {
 
             super(binding.getRoot(), binding);

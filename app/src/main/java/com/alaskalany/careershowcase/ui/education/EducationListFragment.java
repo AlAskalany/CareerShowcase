@@ -22,8 +22,9 @@ import com.alaskalany.careershowcase.ui.BaseListFragment;
 public class EducationListFragment
         extends BaseListFragment<EducationAdapter, FragmentEducationListBinding> {
 
-    // TODO: Customize parameter argument names
-    // TODO: Customize parameters
+    /**
+     *
+     */
     private final EducationOnClickCallback mCallBack =
             item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
 
@@ -35,7 +36,10 @@ public class EducationListFragment
 
     }
 
-    // TODO: Customize parameter initialization
+    /**
+     * @param columnCount
+     * @return
+     */
     @SuppressWarnings("unused")
     public static EducationListFragment newInstance(int columnCount) {
 
@@ -46,6 +50,12 @@ public class EducationListFragment
         return fragment;
     }
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

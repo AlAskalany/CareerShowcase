@@ -25,18 +25,36 @@ import org.jetbrains.annotations.Contract;
 public class ContactFragment
         extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    /**
+     *
+     */
     private static final String ARG_PARAM1 = "param1";
+    /**
+     *
+     */
     private static final String ARG_PARAM2 = "param2";
-    // TODO: Rename and change types of parameters
+    /**
+     *
+     */
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam1;
+    /**
+     *
+     */
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
+    /**
+     *
+     */
     private OnContactFragmentInteractionListener mListener;
+    /**
+     *
+     */
     private FragmentContactBinding mBinding;
 
+    /**
+     *
+     */
     public ContactFragment() {
         // Required empty public constructor
     }
@@ -49,7 +67,6 @@ public class ContactFragment
      * @param param2 Parameter 2.
      * @return A new instance of fragment ContactFragment.
      */
-    // TODO: Rename and change types and number of parameters
     @SuppressWarnings({"WeakerAccess", "unused"})
     public static ContactFragment newInstance(String param1, String param2) {
 
@@ -61,7 +78,9 @@ public class ContactFragment
         return fragment;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * @param uri
+     */
     @SuppressWarnings("unused")
     public void onButtonPressed(Uri uri) {
 
@@ -70,6 +89,9 @@ public class ContactFragment
         }
     }
 
+    /**
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
 
@@ -77,6 +99,9 @@ public class ContactFragment
         registerListener(context);
     }
 
+    /**
+     * @param context
+     */
     @Contract("null -> fail")
     private void registerListener(Context context) {
 
@@ -87,6 +112,9 @@ public class ContactFragment
         }
     }
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -97,6 +125,12 @@ public class ContactFragment
         }
     }
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -105,6 +139,9 @@ public class ContactFragment
         return mBinding.getRoot();
     }
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
@@ -112,6 +149,9 @@ public class ContactFragment
         mBinding.executePendingBindings();
     }
 
+    /**
+     *
+     */
     @Override
     public void onDetach() {
 
@@ -119,6 +159,9 @@ public class ContactFragment
         unregisterListener();
     }
 
+    /**
+     *
+     */
     private void unregisterListener() {
 
         mListener = null;

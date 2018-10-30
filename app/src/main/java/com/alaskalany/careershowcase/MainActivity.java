@@ -16,9 +16,18 @@ public class MainActivity
         implements OverviewFragment.OnOverviewFragmentInteractionListener,
                    ContactFragment.OnContactFragmentInteractionListener {
 
-    private ActivityMainBinding mBinding;
+    /**
+     *
+     */
     private final BottomNavigationManager mNavigationManager = new BottomNavigationManager(this);
+    /**
+     *
+     */
+    private ActivityMainBinding mBinding;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -30,11 +39,17 @@ public class MainActivity
         mNavigationManager.init(savedInstanceState == null);
     }
 
+    /**
+     * @param uri
+     */
     @Override
     public void onOverviewFragmentInteraction(Uri uri) {
 
     }
 
+    /**
+     * @param uri
+     */
     @Override
     public void onContactFragmentInteraction(Uri uri) {
 

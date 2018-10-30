@@ -9,11 +9,20 @@ import com.alaskalany.careershowcase.database.entity.WorkEntity;
 
 import java.util.List;
 
+/**
+ *
+ */
 public class WorkListViewModel
         extends AndroidViewModel {
 
+    /**
+     *
+     */
     private MediatorLiveData<List<WorkEntity>> observableWorks;
 
+    /**
+     * @param application
+     */
     public WorkListViewModel(@NonNull Application application) {
 
         super(application);
@@ -23,6 +32,9 @@ public class WorkListViewModel
         observableWorks.addSource(works, observableWorks::setValue);
     }
 
+    /**
+     * @return
+     */
     public LiveData<List<WorkEntity>> getWorks() {
 
         return observableWorks;

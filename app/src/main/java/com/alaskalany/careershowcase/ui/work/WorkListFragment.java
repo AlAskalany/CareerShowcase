@@ -22,7 +22,9 @@ import com.alaskalany.careershowcase.ui.BaseListFragment;
 public class WorkListFragment
         extends BaseListFragment<WorkAdapter, FragmentWorkListBinding> {
 
-    // TODO: Customize parameters
+    /**
+     *
+     */
     private final WorkOnClickCallback mCallback =
             item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
 
@@ -34,7 +36,10 @@ public class WorkListFragment
 
     }
 
-    // TODO: Customize parameter initialization
+    /**
+     * @param columnCount
+     * @return
+     */
     @SuppressWarnings("unused")
     public static BaseListFragment newInstance(int columnCount) {
 
@@ -45,6 +50,12 @@ public class WorkListFragment
         return fragment;
     }
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

@@ -19,12 +19,21 @@ import com.alaskalany.careershowcase.ui.BaseViewHolder;
 public class EducationAdapter
         extends BaseRecyclerViewAdapter<EducationAdapter.ViewHolder, Education, EducationOnClickCallback> {
 
+    /**
+     * @param items
+     * @param callback
+     */
     @SuppressWarnings("WeakerAccess")
     public EducationAdapter(SparseArray<Education> items, EducationOnClickCallback callback) {
 
         super(items, callback);
     }
 
+    /**
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,6 +45,10 @@ public class EducationAdapter
         return new ViewHolder(binding);
     }
 
+    /**
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
@@ -44,9 +57,15 @@ public class EducationAdapter
         holder.mBinding.executePendingBindings();
     }
 
+    /**
+     *
+     */
     public static class ViewHolder
             extends BaseViewHolder<FragmentEducationBinding> {
 
+        /**
+         * @param binding
+         */
         public ViewHolder(FragmentEducationBinding binding) {
 
             super(binding.getRoot(), binding);

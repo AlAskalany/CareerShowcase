@@ -25,8 +25,14 @@ public class SkillContent {
      */
     @SuppressWarnings("WeakerAccess")
     public static final SparseArray<Skill> ITEM_MAP = new SparseArray<>();
+    /**
+     *
+     */
     private static final int COUNT = 25;
 
+    /**
+     *
+     */
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
@@ -34,12 +40,19 @@ public class SkillContent {
         }
     }
 
+    /**
+     * @param item
+     */
     private static void addItem(Skill item) {
 
         ITEMS.add(item);
         ITEM_MAP.put(item.getId(), item);
     }
 
+    /**
+     * @param position
+     * @return
+     */
     @NonNull
     private static Skill createSkillItem(int position) {
 
@@ -50,6 +63,10 @@ public class SkillContent {
         return skillEntity;
     }
 
+    /**
+     * @param position
+     * @return
+     */
     @NonNull
     private static String makeDetails(int position) {
 

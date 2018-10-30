@@ -22,7 +22,9 @@ import com.alaskalany.careershowcase.ui.BaseListFragment;
 public class SkillListFragment
         extends BaseListFragment<SkillAdapter, FragmentSkillListBinding> {
 
-    // TODO: Customize parameter argument names
+    /**
+     *
+     */
     private final SkillOnClickCallback mCallback =
             item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
 
@@ -34,7 +36,10 @@ public class SkillListFragment
 
     }
 
-    // TODO: Customize parameter initialization
+    /**
+     * @param columnCount
+     * @return
+     */
     @SuppressWarnings("unused")
     public static SkillListFragment newInstance(int columnCount) {
 
@@ -45,6 +50,12 @@ public class SkillListFragment
         return fragment;
     }
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
