@@ -7,8 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.databinding.FragmentContactBinding;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -32,6 +35,7 @@ public class ContactFragment
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
     private OnContactFragmentInteractionListener mListener;
+    private FragmentContactBinding binding;
 
     public ContactFragment() {
         // Required empty public constructor
@@ -95,8 +99,17 @@ public class ContactFragment
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+        binding.executePendingBindings();
     }
 
     @Override
