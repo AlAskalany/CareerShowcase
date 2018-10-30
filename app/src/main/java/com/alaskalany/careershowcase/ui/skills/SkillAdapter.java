@@ -39,9 +39,9 @@ public class SkillAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.binding.setSkill(mValues.get(positionToKey(position)));
-        holder.binding.setCallback(getCallback());
-        holder.binding.executePendingBindings();
+        holder.mBinding.setSkill(mValues.get(positionToKey(position)));
+        holder.mBinding.setCallback(getCallback());
+        holder.mBinding.executePendingBindings();
     }
 
     public static class ViewHolder

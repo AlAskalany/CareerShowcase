@@ -10,8 +10,8 @@ public abstract class BaseListFragment<A extends BaseRecyclerViewAdapter, B exte
 
     // TODO: Customize parameter argument names
     protected static final String ARG_COLUMN_COUNT = "column-count";
-    protected B binding;
-    private A adapter;
+    protected B mBinding;
+    private A mAdapter;
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
@@ -27,12 +27,12 @@ public abstract class BaseListFragment<A extends BaseRecyclerViewAdapter, B exte
 
     protected A getAdapter() {
 
-        return adapter;
+        return mAdapter;
     }
 
     protected void setAdapter(A adapter) {
 
-        this.adapter = adapter;
+        this.mAdapter = adapter;
     }
 
     @Override

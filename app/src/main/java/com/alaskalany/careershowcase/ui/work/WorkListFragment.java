@@ -23,7 +23,7 @@ public class WorkListFragment
         extends BaseListFragment<WorkAdapter, FragmentWorkListBinding> {
 
     // TODO: Customize parameters
-    private final WorkOnClickCallback callback =
+    private final WorkOnClickCallback mCallback =
             item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
@@ -48,15 +48,15 @@ public class WorkListFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
-        setAdapter(new WorkAdapter(WorkContent.ITEM_MAP, callback));
-        Context context = binding.getRoot().getContext();
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
+        setAdapter(new WorkAdapter(WorkContent.ITEM_MAP, mCallback));
+        Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
-            binding.listWork.setLayoutManager(new LinearLayoutManager(context));
+            mBinding.listWork.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            binding.listWork.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+            mBinding.listWork.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
-        binding.listWork.setAdapter(getAdapter());
-        return binding.getRoot();
+        mBinding.listWork.setAdapter(getAdapter());
+        return mBinding.getRoot();
     }
 }

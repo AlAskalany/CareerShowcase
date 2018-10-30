@@ -8,12 +8,12 @@ public abstract class BaseRecyclerViewAdapter<T extends RecyclerView.ViewHolder,
         extends RecyclerView.Adapter<T> {
 
     protected final SparseArray<V> mValues;
-    protected final M callback;
+    protected final M mCallback;
 
     public BaseRecyclerViewAdapter(SparseArray<V> items, M callback) {
 
         this.mValues = items;
-        this.callback = callback;
+        this.mCallback = callback;
     }
 
     @Contract(pure = true)
@@ -24,7 +24,7 @@ public abstract class BaseRecyclerViewAdapter<T extends RecyclerView.ViewHolder,
 
     public M getCallback() {
 
-        return callback;
+        return mCallback;
     }
 
     @Override

@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public abstract class BaseViewHolder<B extends ViewDataBinding>
         extends RecyclerView.ViewHolder {
 
-    public final B binding;
+    public final B mBinding;
 
     public BaseViewHolder(View itemView, B binding) {
 
         super(itemView);
-        this.binding = binding;
+        this.mBinding = binding;
     }
 }

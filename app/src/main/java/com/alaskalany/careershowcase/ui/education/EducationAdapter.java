@@ -39,9 +39,9 @@ public class EducationAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.binding.setEducation(mValues.get(positionToKey(position)));
-        holder.binding.setCallback(getCallback());
-        holder.binding.executePendingBindings();
+        holder.mBinding.setEducation(mValues.get(positionToKey(position)));
+        holder.mBinding.setCallback(getCallback());
+        holder.mBinding.executePendingBindings();
     }
 
     public static class ViewHolder

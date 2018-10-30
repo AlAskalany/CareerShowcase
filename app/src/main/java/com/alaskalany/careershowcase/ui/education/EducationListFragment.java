@@ -24,7 +24,7 @@ public class EducationListFragment
 
     // TODO: Customize parameter argument names
     // TODO: Customize parameters
-    private final EducationOnClickCallback callback =
+    private final EducationOnClickCallback mCallBack =
             item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
@@ -49,15 +49,15 @@ public class EducationListFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
-        setAdapter(new EducationAdapter(EducationContent.ITEM_MAP, callback));
-        Context context = binding.getRoot().getContext();
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
+        setAdapter(new EducationAdapter(EducationContent.ITEM_MAP, mCallBack));
+        Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
-            binding.listEducation.setLayoutManager(new LinearLayoutManager(context));
+            mBinding.listEducation.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            binding.listEducation.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+            mBinding.listEducation.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
-        binding.listEducation.setAdapter(getAdapter());
-        return binding.getRoot();
+        mBinding.listEducation.setAdapter(getAdapter());
+        return mBinding.getRoot();
     }
 }

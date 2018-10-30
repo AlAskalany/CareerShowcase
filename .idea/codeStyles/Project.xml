@@ -4,6 +4,10 @@
       <option name="USE_CUSTOM_SETTINGS" value="true" />
     </AndroidXmlCodeStyleSettings>
     <JavaCodeStyleSettings>
+      <option name="FIELD_NAME_PREFIX" value="m" />
+      <option name="STATIC_FIELD_NAME_PREFIX" value="s" />
+      <option name="PARAMETER_NAME_PREFIX" value="p" />
+      <option name="LOCAL_VARIABLE_NAME_PREFIX" value="_" />
       <option name="ANNOTATION_PARAMETER_WRAP" value="1" />
       <option name="ALIGN_MULTILINE_ANNOTATION_PARAMETERS" value="true" />
     </JavaCodeStyleSettings>

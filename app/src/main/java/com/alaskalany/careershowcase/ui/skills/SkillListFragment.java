@@ -23,7 +23,7 @@ public class SkillListFragment
         extends BaseListFragment<SkillAdapter, FragmentSkillListBinding> {
 
     // TODO: Customize parameter argument names
-    private final SkillOnClickCallback callback =
+    private final SkillOnClickCallback mCallback =
             item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
@@ -48,15 +48,15 @@ public class SkillListFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
-        setAdapter(new SkillAdapter(SkillContent.ITEM_MAP, callback));
-        binding.listSkill.setAdapter(getAdapter());
-        Context context = binding.getRoot().getContext();
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
+        setAdapter(new SkillAdapter(SkillContent.ITEM_MAP, mCallback));
+        mBinding.listSkill.setAdapter(getAdapter());
+        Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
-            binding.listSkill.setLayoutManager(new LinearLayoutManager(context));
+            mBinding.listSkill.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            binding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+            mBinding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 }

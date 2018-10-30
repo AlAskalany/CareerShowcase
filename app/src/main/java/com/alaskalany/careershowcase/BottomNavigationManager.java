@@ -23,25 +23,25 @@ class BottomNavigationManager
     private static final int WORK = 2;
     private static final int SKILLS = 3;
     private static final int CONTACT = 4;
-    private final FragmentActivity activity;
-    private final SparseArrayCompat<Fragment> fragments;
+    private final FragmentActivity mActivity;
+    private final SparseArrayCompat<Fragment> mFragments;
 
     BottomNavigationManager(FragmentActivity fragmentActivity) {
 
-        activity = fragmentActivity;
-        fragments = new SparseArrayCompat<>();
-        fragments.put(OVERVIEW, new OverviewFragment());
-        fragments.put(EDUCATION, new EducationListFragment());
-        fragments.put(WORK, new WorkListFragment());
-        fragments.put(SKILLS, new SkillListFragment());
-        fragments.put(CONTACT, new ContactFragment());
+        mActivity = fragmentActivity;
+        mFragments = new SparseArrayCompat<>();
+        mFragments.put(OVERVIEW, new OverviewFragment());
+        mFragments.put(EDUCATION, new EducationListFragment());
+        mFragments.put(WORK, new WorkListFragment());
+        mFragments.put(SKILLS, new SkillListFragment());
+        mFragments.put(CONTACT, new ContactFragment());
     }
 
     private void replaceFragment(int navFragment) throws RuntimeException {
 
-        Fragment fragment = fragments.get(navFragment);
+        Fragment fragment = mFragments.get(navFragment);
         if (fragment != null) {
-            FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+            FragmentTransaction transaction = mActivity.getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.container_navigation, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -81,9 +81,9 @@ class BottomNavigationManager
     void init(boolean freshStart) {
 
         if (freshStart) {
-            Fragment fragment = fragments.get(OVERVIEW);
+            Fragment fragment = mFragments.get(OVERVIEW);
             if (fragment != null) {
-                FragmentManager supportFragmentManager = activity.getSupportFragmentManager();
+                FragmentManager supportFragmentManager = mActivity.getSupportFragmentManager();
                 FragmentTransaction transaction = supportFragmentManager.beginTransaction();
                 transaction.add(R.id.container_navigation, fragment);
                 transaction.addToBackStack(null);

@@ -35,7 +35,7 @@ public class ContactFragment
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
     private OnContactFragmentInteractionListener mListener;
-    private FragmentContactBinding binding;
+    private FragmentContactBinding mBinding;
 
     public ContactFragment() {
         // Required empty public constructor
@@ -100,16 +100,16 @@ public class ContactFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact, container, false);
         // Inflate the layout for this fragment
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        binding.executePendingBindings();
+        mBinding.executePendingBindings();
     }
 
     @Override
