@@ -59,7 +59,7 @@ public class MainActivity
         navigationView.setOnNavigationItemReselectedListener(reselectedListener);
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        transaction.add(R.id.frameLayout, overviewFragment);
+        transaction.add(R.id.container_navigation, overviewFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -90,7 +90,7 @@ public class MainActivity
     private void replaceFragment(Fragment fragment) {
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frameLayout, fragment);
+        transaction.replace(R.id.container_navigation, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

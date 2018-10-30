@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/material_card_spacing"
-    android:layout_marginTop="@dimen/material_card_spacing"
-    android:layout_marginRight="@dimen/material_card_spacing"
-    android:minHeight="200dp"
-    android:orientation="horizontal">
+    android:id="@+id/cardView_Education"
+    style="@style/AppTheme.ItemCardView">
 
     <TextView
-        android:id="@+id/item_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:id="@+id/textView_education_title"
+        style="@style/AppTheme.ItemTitleTextView"
+        tools:text="Education Title" />
 
     <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem"
-        tools:text="Education" />
+        android:id="@+id/textView_education_description"
+        style="@style/AppTheme.ItemDescriptionTextView"
+        tools:text="Education description" />
 </com.google.android.material.card.MaterialCardView>

@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
+
+    <!-- Bottom Navigation -->
+    <color name="bottomNavigation">@color/colorPrimary</color>
+    <color name="bottomNavigation_iconTint">@color/white</color>
+    <color name="bottomNavigation_textColor">@color/white</color>
 </resources>

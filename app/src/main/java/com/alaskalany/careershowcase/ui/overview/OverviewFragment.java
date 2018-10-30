@@ -99,7 +99,7 @@ public class OverviewFragment
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
-        ImageView imageView = view.findViewById(R.id.imageView);
+        ImageView imageView = view.findViewById(R.id.imageView_profile_picture);
         GlideApp.with(this)
                 .load("http://chittagongit.com//images/app-icon-material-design/app-icon-material-design-11.jpg")
                 .into(imageView);

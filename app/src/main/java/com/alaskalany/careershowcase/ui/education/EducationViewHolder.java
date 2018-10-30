@@ -19,8 +19,8 @@ public class EducationViewHolder
 
         super(view);
         mView = view;
-        mIdView = view.findViewById(R.id.item_number);
-        mContentView = view.findViewById(R.id.description);
+        mIdView = view.findViewById(R.id.textView_education_title);
+        mContentView = view.findViewById(R.id.textView_education_description);
     }
 
     @NonNull
