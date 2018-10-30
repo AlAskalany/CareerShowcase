@@ -52,6 +52,14 @@ public class MainActivity
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         BottomNavigationView navigationView = findViewById(R.id.navigation);
         setupBottomNavigation(navigationView, this, this);
+        // Set bottom navigation to first fragment
+        if (savedInstanceState == null) {
+            FragmentManager supportFragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = supportFragmentManager.beginTransaction();
+            transaction.add(R.id.container_navigation, overviewFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 
     private void setupBottomNavigation(@NonNull BottomNavigationView navigationView,
@@ -60,11 +68,6 @@ public class MainActivity
 
         navigationView.setOnNavigationItemSelectedListener(selectedListener);
         navigationView.setOnNavigationItemReselectedListener(reselectedListener);
-        FragmentManager supportFragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        transaction.add(R.id.container_navigation, overviewFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
     @Override
