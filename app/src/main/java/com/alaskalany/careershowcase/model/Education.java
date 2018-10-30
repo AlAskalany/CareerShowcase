@@ -1,6 +1,7 @@
 package com.alaskalany.careershowcase.model;
 
-public interface Education {
+public interface Education
+        extends Model {
 
     int getId();
     void setId(int id);

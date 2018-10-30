@@ -1,6 +1,7 @@
 package com.alaskalany.careershowcase.model;
 
-public interface Work {
+public interface Work
+        extends Model {
 
     int getId();
     String getDescription();

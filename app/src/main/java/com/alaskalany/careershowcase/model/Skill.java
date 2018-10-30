@@ -2,7 +2,8 @@ package com.alaskalany.careershowcase.model;
 
 import androidx.annotation.NonNull;
 
-public interface Skill {
+public interface Skill
+        extends Model {
 
     int getId();
     void setId(int id);
