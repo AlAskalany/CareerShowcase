@@ -43,7 +43,7 @@ public class EducationContent {
 
         Education education = new Education();
         education.setId(position);
-        education.setTitle("Item " + position);
+        education.setTitle("Education " + position);
         education.setDescription(makeDetails(position));
         return education;
     }
@@ -52,7 +52,7 @@ public class EducationContent {
     private static String makeDetails(int position) {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
+        builder.append("Details about Education: ").append(position);
         for (int i = 0; i < position; i++) {
             builder.append("\nMore details information here.");
         }

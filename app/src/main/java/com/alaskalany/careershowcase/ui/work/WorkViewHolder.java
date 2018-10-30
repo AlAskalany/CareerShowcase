@@ -1,32 +1,24 @@
 package com.alaskalany.careershowcase.ui.work;
 
-import android.view.View;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.work.Work;
+import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
 
 public class WorkViewHolder
         extends RecyclerView.ViewHolder {
 
-    final View mView;
-    final TextView mIdView;
-    final TextView mContentView;
-    Work mItem;
+    final FragmentWorkBinding binding;
 
-    WorkViewHolder(View view) {
+    WorkViewHolder(FragmentWorkBinding binding) {
 
-        super(view);
-        mView = view;
-        mIdView = view.findViewById(R.id.textView_work_title);
-        mContentView = view.findViewById(R.id.textView_education_description);
+        super(binding.getRoot());
+        this.binding = binding;
     }
 
     @NonNull
     @Override
     public String toString() {
 
-        return super.toString() + " '" + mContentView.getText() + "'";
+        return super.toString() + " '" + binding.textViewWorkTitle.getText() + "'";
     }
 }

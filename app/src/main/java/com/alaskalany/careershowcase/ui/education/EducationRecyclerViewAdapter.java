@@ -44,8 +44,8 @@ public class EducationRecyclerViewAdapter
     @Override
     public void onBindViewHolder(@NonNull final EducationViewHolder holder, int position) {
 
-        holder.mBinding.setEducation(mValues.get(position));
-        holder.mBinding.executePendingBindings();
+        holder.binding.setEducation(mValues.get(position));
+        holder.binding.executePendingBindings();
     }
 
     @Override

@@ -43,8 +43,8 @@ public class SkillContent {
 
         Skill skill = new Skill();
         skill.setId(position);
-        skill.setLabel("Item " + position);
-        skill.setDetails(makeDetails(position));
+        skill.setTitle("Skill " + position);
+        skill.setDescription(makeDetails(position));
         return skill;
     }
 
@@ -52,7 +52,7 @@ public class SkillContent {
     private static String makeDetails(int position) {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
+        builder.append("Details about Skill: ").append(position);
         for (int i = 0; i < position; i++) {
             builder.append("\nMore details information here.");
         }

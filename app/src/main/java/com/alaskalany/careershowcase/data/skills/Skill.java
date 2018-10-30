@@ -14,9 +14,9 @@ public class Skill {
     @SuppressWarnings("WeakerAccess")
     public int id;
     @SuppressWarnings("WeakerAccess")
-    public String label;
+    public String title;
     @SuppressWarnings("WeakerAccess")
-    public String details;
+    public String description;
 
     @SuppressWarnings("WeakerAccess")
     public Skill() {
@@ -33,30 +33,30 @@ public class Skill {
         this.id = id;
     }
 
-    public String getLabel() {
+    public String getTitle() {
 
-        return label;
+        return title;
     }
 
-    public void setLabel(String label) {
+    public void setTitle(String title) {
 
-        this.label = label;
+        this.title = title;
     }
 
-    public String getDetails() {
+    public String getDescription() {
 
-        return details;
+        return description;
     }
 
-    public void setDetails(String details) {
+    public void setDescription(String description) {
 
-        this.details = details;
+        this.description = description;
     }
 
     @NonNull
     @Override
     public String toString() {
 
-        return label;
+        return title;
     }
 }

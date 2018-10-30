@@ -2,12 +2,13 @@ package com.alaskalany.careershowcase.ui.work;
 
 import android.util.SparseArray;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.work.Work;
+import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
 import com.alaskalany.careershowcase.ui.work.WorkListFragment.OnWorkListFragmentInteractionListener;
 
 /**
@@ -33,23 +34,18 @@ public class WorkRecyclerViewAdapter
     @Override
     public WorkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_work, parent, false);
-        return new WorkViewHolder(view);
+        FragmentWorkBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                                                              R.layout.fragment_work,
+                                                              parent,
+                                                              false);
+        return new WorkViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final WorkViewHolder holder, int position) {
 
-        holder.mItem = mValues.get(position);
-        //        holder.mIdView.setText(String.valueOf(mValues.get(position).getId()));
-        holder.mContentView.setText(mValues.get(position + 1).getDescription());
-        holder.mView.setOnClickListener(v -> {
-            if (null != mListener) {
-                // Notify the active callbacks interface (the activity, if the
-                // fragment is attached to one) that an item has been selected.
-                mListener.onWorkListFragmentInteraction(holder.mItem);
-            }
-        });
+        holder.binding.setWork(mValues.get(position));
+        holder.binding.executePendingBindings();
     }
 
     @Override

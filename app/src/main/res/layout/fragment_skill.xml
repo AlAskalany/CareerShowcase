@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView_Skill"
-    style="@style/AppTheme.ItemCardView">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView_skill_title"
-        style="@style/AppTheme.ItemTitleTextView"
-        tools:text="Skill title" />
+    <data>
 
-    <TextView
-        android:id="@+id/textView_skill_description"
-        style="@style/AppTheme.ItemDescriptionTextView"
-        tools:text="Skill description" />
-</com.google.android.material.card.MaterialCardView>
+        <variable
+            name="skill"
+            type="com.alaskalany.careershowcase.data.skills.Skill" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView_Skill"
+        style="@style/AppTheme.ItemCardView">
+
+        <TextView
+            android:id="@+id/textView_skill_title"
+            style="@style/AppTheme.ItemTitleTextView"
+            tools:text="@{skill.title}" />
+
+        <TextView
+            android:id="@+id/textView_skill_description"
+            style="@style/AppTheme.ItemDescriptionTextView"
+            tools:text="@{skill.description}" />
+    </com.google.android.material.card.MaterialCardView>
+</layout>

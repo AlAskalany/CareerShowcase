@@ -43,7 +43,7 @@ public class WorkContent {
 
         Work work = new Work();
         work.setId(position);
-        work.setTitle("Item " + position);
+        work.setTitle("Work " + position);
         work.setDescription(makeDetails(position));
         return work;
     }
@@ -52,7 +52,7 @@ public class WorkContent {
     private static String makeDetails(int position) {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
+        builder.append("Details about Work: ").append(position);
         for (int i = 0; i < position; i++) {
             builder.append("\nMore details information here.");
         }

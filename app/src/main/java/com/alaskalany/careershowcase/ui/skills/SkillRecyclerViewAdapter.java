@@ -2,12 +2,13 @@ package com.alaskalany.careershowcase.ui.skills;
 
 import android.util.SparseArray;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.skills.Skill;
+import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
 import com.alaskalany.careershowcase.ui.skills.SkillListFragment.OnSkillListFragmentInteractionListener;
 
 /**
@@ -32,23 +33,18 @@ public class SkillRecyclerViewAdapter
     @Override
     public SkillViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_skill, parent, false);
-        return new SkillViewHolder(view);
+        FragmentSkillBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                                                               R.layout.fragment_skill,
+                                                               parent,
+                                                               false);
+        return new SkillViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final SkillViewHolder holder, int position) {
 
-        holder.mItem = mValues.get(position);
-        //        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position + 1).getDetails());
-        holder.mView.setOnClickListener(v -> {
-            if (null != mListener) {
-                // Notify the active callbacks interface (the activity, if the
-                // fragment is attached to one) that an item has been selected.
-                mListener.onSkillListFragmentInteraction(holder.mItem);
-            }
-        });
+        holder.binding.setSkill(mValues.get(position));
+        holder.binding.executePendingBindings();;
     }
 
     @Override
