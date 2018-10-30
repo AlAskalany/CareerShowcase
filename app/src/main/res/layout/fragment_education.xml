@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView_Education"
-    style="@style/AppTheme.ItemCardView">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView_education_title"
-        style="@style/AppTheme.ItemTitleTextView"
-        tools:text="Education Title" />
+    <data>
 
-    <TextView
-        android:id="@+id/textView_education_description"
-        style="@style/AppTheme.ItemDescriptionTextView"
-        tools:text="Education description" />
-</com.google.android.material.card.MaterialCardView>
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView_Education"
+        style="@style/AppTheme.ItemCardView">
+
+        <TextView
+            android:id="@+id/textView_education_title"
+            style="@style/AppTheme.ItemTitleTextView"
+            tools:text="Education Title" />
+
+        <TextView
+            android:id="@+id/textView_education_description"
+            style="@style/AppTheme.ItemDescriptionTextView"
+            tools:text="Education description" />
+    </com.google.android.material.card.MaterialCardView>
+</layout>
