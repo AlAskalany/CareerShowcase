@@ -10,6 +10,7 @@ import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.skills.Skill;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
 import com.alaskalany.careershowcase.ui.skills.SkillListFragment.OnSkillListFragmentInteractionListener;
+import org.jetbrains.annotations.Contract;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Skill} and makes a call to the
@@ -43,8 +44,14 @@ public class SkillRecyclerViewAdapter
     @Override
     public void onBindViewHolder(@NonNull final SkillViewHolder holder, int position) {
 
-        holder.binding.setSkill(mValues.get(position));
-        holder.binding.executePendingBindings();;
+        holder.binding.setSkill(mValues.get(positionToKey(position)));
+        holder.binding.executePendingBindings();
+    }
+
+    @Contract(pure = true)
+    private static int positionToKey(int position) {
+
+        return position + 1;
     }
 
     @Override

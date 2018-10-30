@@ -10,6 +10,7 @@ import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.education.Education;
 import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
 import com.alaskalany.careershowcase.ui.education.EducationListFragment.OnEducationListFragmentInteractionListener;
+import org.jetbrains.annotations.Contract;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Education} and makes a call to the
@@ -44,8 +45,14 @@ public class EducationRecyclerViewAdapter
     @Override
     public void onBindViewHolder(@NonNull final EducationViewHolder holder, int position) {
 
-        holder.binding.setEducation(mValues.get(position));
+        holder.binding.setEducation(mValues.get(positionToKey(position)));
         holder.binding.executePendingBindings();
+    }
+
+    @Contract(pure = true)
+    private static int positionToKey(int position) {
+
+        return position + 1;
     }
 
     @Override
