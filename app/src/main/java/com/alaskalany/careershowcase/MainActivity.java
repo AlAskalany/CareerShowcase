@@ -6,12 +6,14 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.collection.SparseArrayCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.alaskalany.careershowcase.data.education.Education;
 import com.alaskalany.careershowcase.data.skills.Skill;
 import com.alaskalany.careershowcase.data.work.Work;
+import com.alaskalany.careershowcase.databinding.ActivityMainBinding;
 import com.alaskalany.careershowcase.ui.contact.ContactFragment;
 import com.alaskalany.careershowcase.ui.education.EducationListFragment;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
@@ -41,12 +43,13 @@ public class MainActivity
      * Fragments used in bottom navigation
      */
     private SparseArrayCompat<Fragment> fragments = new SparseArrayCompat<>();
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         BottomNavigationView navigationView = findViewById(R.id.navigation);
         setupBottomNavigation(navigationView, this, this);
     }
