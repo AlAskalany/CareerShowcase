@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.database.WorkContent;
+import com.alaskalany.careershowcase.databinding.FragmentWorkListBinding;
 
 /**
  * A fragment representing a list of Items.
@@ -28,6 +29,7 @@ public class WorkListFragment
     private final WorkOnClickCallback callback = item -> {
         Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
     };
+    private WorkAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -66,25 +68,17 @@ public class WorkListFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_work_list, container, false);
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            setupRecyclerViewAdapter(view, mColumnCount, new WorkAdapter(WorkContent.ITEM_MAP, callback));
-        }
-        return view;
-    }
-
-    private void setupRecyclerViewAdapter(@NonNull View view, int columns,
-                                          RecyclerView.Adapter<WorkAdapter.ViewHolder> adapter) {
-
-        Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view;
-        if (columns <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        FragmentWorkListBinding binding =
+                DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
+        adapter = new WorkAdapter(WorkContent.ITEM_MAP, callback);
+        Context context = binding.getRoot().getContext();
+        if (mColumnCount <= 1) {
+            binding.listWork.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, columns));
+            binding.listWork.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
-        recyclerView.setAdapter(adapter);
+        binding.listWork.setAdapter(adapter);
+        return binding.getRoot();
     }
 
     @Override
