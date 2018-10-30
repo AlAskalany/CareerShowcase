@@ -10,6 +10,7 @@ import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
 import com.alaskalany.careershowcase.model.Skill;
 import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
+import com.alaskalany.careershowcase.ui.BaseViewHolder;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Skill}
@@ -44,21 +45,11 @@ public class SkillAdapter
     }
 
     public static class ViewHolder
-            extends RecyclerView.ViewHolder {
+            extends BaseViewHolder<FragmentSkillBinding> {
 
-        final FragmentSkillBinding binding;
+        public ViewHolder(FragmentSkillBinding binding) {
 
-        ViewHolder(FragmentSkillBinding binding) {
-
-            super(binding.getRoot());
-            this.binding = binding;
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-
-            return super.toString() + " '" + binding.textViewSkillTitle.getText() + "'";
+            super(binding.getRoot(), binding);
         }
     }
 }
