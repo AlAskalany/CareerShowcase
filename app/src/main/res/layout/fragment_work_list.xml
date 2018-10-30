@@ -12,7 +12,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listWork"
-        android:name="com.alaskalany.careershowcase.WorkExperienceFragment"
         style="@style/AppTheme.RecyclerView"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context=".ui.work.WorkListFragment"

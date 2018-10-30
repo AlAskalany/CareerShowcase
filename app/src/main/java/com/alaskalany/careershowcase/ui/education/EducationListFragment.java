@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.database.EducationContent;
+import com.alaskalany.careershowcase.databinding.FragmentEducationListBinding;
 
 /**
  * A fragment representing a list of Items.
@@ -28,6 +29,8 @@ public class EducationListFragment
     private final EducationOnClickCallback callback = item -> {
         Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
     };
+    private FragmentEducationListBinding binding;
+    private EducationAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -66,27 +69,16 @@ public class EducationListFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_education_list, container, false);
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            setupRecyclerViewAdapter(view,
-                                     mColumnCount,
-                                     new EducationAdapter(EducationContent.ITEM_MAP, callback));
-        }
-        return view;
-    }
-
-    private void setupRecyclerViewAdapter(@NonNull View view, int columns,
-                                          RecyclerView.Adapter<EducationAdapter.ViewHolder> adapter) {
-
-        Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view;
-        if (columns <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
+        adapter = new EducationAdapter(EducationContent.ITEM_MAP, callback);
+        Context context = binding.getRoot().getContext();
+        if (mColumnCount <= 1) {
+            binding.listEducation.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, columns));
+            binding.listEducation.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
-        recyclerView.setAdapter(adapter);
+        binding.listEducation.setAdapter(adapter);
+        return binding.getRoot();
     }
 
     @Override

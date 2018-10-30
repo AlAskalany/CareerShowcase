@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.database.SkillContent;
+import com.alaskalany.careershowcase.databinding.FragmentSkillListBinding;
 
 /**
  * A fragment representing a list of Items.
@@ -21,6 +22,7 @@ import com.alaskalany.careershowcase.database.SkillContent;
 public class SkillListFragment
         extends Fragment {
 
+    private FragmentSkillListBinding binding;
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
@@ -28,6 +30,7 @@ public class SkillListFragment
     private final SkillOnClickCallback callback = item -> {
         Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
     };
+    private SkillAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -66,25 +69,16 @@ public class SkillListFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_skill_list, container, false);
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            setupRecyclerViewAdapter(view, mColumnCount, new SkillAdapter(SkillContent.ITEM_MAP, callback));
-        }
-        return view;
-    }
-
-    private void setupRecyclerViewAdapter(@NonNull View view, int columns,
-                                          RecyclerView.Adapter<SkillAdapter.ViewHolder> adapter) {
-
-        Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view;
-        if (columns <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
+        adapter = new SkillAdapter(SkillContent.ITEM_MAP, callback);
+        binding.listSkill.setAdapter(adapter);
+        Context context = binding.getRoot().getContext();
+        if (mColumnCount <= 1) {
+            binding.listSkill.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, columns));
+            binding.listSkill.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
-        recyclerView.setAdapter(adapter);
+        return binding.getRoot();
     }
 
     @Override

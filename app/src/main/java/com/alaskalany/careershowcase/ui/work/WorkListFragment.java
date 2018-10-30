@@ -29,6 +29,7 @@ public class WorkListFragment
     private final WorkOnClickCallback callback = item -> {
         Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
     };
+    private FragmentWorkListBinding binding;
     private WorkAdapter adapter;
 
     /**
@@ -68,8 +69,7 @@ public class WorkListFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        FragmentWorkListBinding binding =
-                DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
         adapter = new WorkAdapter(WorkContent.ITEM_MAP, callback);
         Context context = binding.getRoot().getContext();
         if (mColumnCount <= 1) {
