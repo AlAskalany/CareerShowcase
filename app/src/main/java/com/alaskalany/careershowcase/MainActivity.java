@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.alaskalany.careershowcase.databinding.ActivityMainBinding;
+import com.alaskalany.careershowcase.ui.BaseListFragment;
 import com.alaskalany.careershowcase.ui.contact.ContactFragment;
 import com.alaskalany.careershowcase.ui.education.EducationListFragment;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
@@ -29,9 +30,9 @@ public class MainActivity
                    BottomNavigationView.OnNavigationItemReselectedListener {
 
     private final OverviewFragment overviewFragment = new OverviewFragment();
-    private final EducationListFragment educationListFragment = new EducationListFragment();
-    private final WorkListFragment workListFragment = new WorkListFragment();
-    private final SkillListFragment skillListFragment = new SkillListFragment();
+    private final BaseListFragment educationListFragment = new EducationListFragment();
+    private final BaseListFragment workListFragment = new WorkListFragment();
+    private final BaseListFragment skillListFragment = new SkillListFragment();
     private final ContactFragment contactFragment = new ContactFragment();
     /**
      * Fragments used in bottom navigation
