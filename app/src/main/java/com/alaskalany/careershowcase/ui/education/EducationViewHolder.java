@@ -1,32 +1,26 @@
 package com.alaskalany.careershowcase.ui.education;
 
-import android.view.View;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.education.Education;
+import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
 
 public class EducationViewHolder
         extends RecyclerView.ViewHolder {
 
-    final View mView;
-    final TextView mIdView;
-    final TextView mContentView;
+    final FragmentEducationBinding mBinding;
     Education mItem;
 
-    EducationViewHolder(View view) {
+    EducationViewHolder(FragmentEducationBinding binding) {
 
-        super(view);
-        mView = view;
-        mIdView = view.findViewById(R.id.textView_education_title);
-        mContentView = view.findViewById(R.id.textView_education_description);
+        super(binding.getRoot());
+        mBinding = binding;
     }
 
     @NonNull
     @Override
     public String toString() {
 
-        return super.toString() + " '" + mContentView.getText() + "'";
+        return super.toString() + " '" + mBinding.textViewEducationTitle.getText() + "'";
     }
 }

@@ -2,12 +2,13 @@ package com.alaskalany.careershowcase.ui.education;
 
 import android.util.SparseArray;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.education.Education;
+import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
 import com.alaskalany.careershowcase.ui.education.EducationListFragment.OnEducationListFragmentInteractionListener;
 
 /**
@@ -33,23 +34,18 @@ public class EducationRecyclerViewAdapter
     @Override
     public EducationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_education, parent, false);
-        return new EducationViewHolder(view);
+        FragmentEducationBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                                                                   R.layout.fragment_education,
+                                                                   parent,
+                                                                   false);
+        return new EducationViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final EducationViewHolder holder, int position) {
 
-        holder.mItem = mValues.get(position);
-        //        holder.mIdView.setText(String.valueOf(mValues.get(position).getId()));
-        holder.mContentView.setText(mValues.get(position + 1).getTitle());
-        holder.mView.setOnClickListener(v -> {
-            if (null != mListener) {
-                // Notify the active callbacks interface (the activity, if the
-                // fragment is attached to one) that an item has been selected.
-                mListener.onEducationListFragmentInteraction(holder.mItem);
-            }
-        });
+        holder.mBinding.setEducation(mValues.get(position));
+        holder.mBinding.executePendingBindings();
     }
 
     @Override

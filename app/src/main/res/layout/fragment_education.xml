@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="education"
+            type="com.alaskalany.careershowcase.data.education.Education" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -13,11 +16,11 @@
         <TextView
             android:id="@+id/textView_education_title"
             style="@style/AppTheme.ItemTitleTextView"
-            tools:text="Education Title" />
+            tools:text="@{education.title}" />
 
         <TextView
             android:id="@+id/textView_education_description"
             style="@style/AppTheme.ItemDescriptionTextView"
-            tools:text="Education description" />
+            tools:text="@{education.description}" />
     </com.google.android.material.card.MaterialCardView>
 </layout>
