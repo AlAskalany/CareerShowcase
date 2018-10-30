@@ -2,6 +2,7 @@ package com.alaskalany.careershowcase.data.work;
 
 import android.util.SparseArray;
 import androidx.annotation.NonNull;
+import com.alaskalany.careershowcase.model.Work;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +42,9 @@ public class WorkContent {
     @NonNull
     private static Work createWorkItem(int position) {
 
-        Work work = new Work();
+        Work work = new WorkEntity();
         work.setId(position);
-        work.setTitle("Work " + position);
+        work.setTitle("WorkEntity " + position);
         work.setDescription(makeDetails(position));
         return work;
     }
@@ -52,7 +53,7 @@ public class WorkContent {
     private static String makeDetails(int position) {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("Details about Work: ").append(position);
+        builder.append("Details about WorkEntity: ").append(position);
         for (int i = 0; i < position; i++) {
             builder.append("\nMore details information here.");
         }

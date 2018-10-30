@@ -6,5 +6,5 @@
     android:name="com.alaskalany.careershowcase.EducationFragmentFragment"
     style="@style/AppTheme.RecyclerView"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    tools:context=".ui.education.EducationListFragment"
+    tools:context=".ui.educationEntity.EducationListFragment"
     tools:listitem="@layout/fragment_education" />

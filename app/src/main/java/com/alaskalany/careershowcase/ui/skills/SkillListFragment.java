@@ -26,7 +26,7 @@ public class SkillListFragment
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private final SkillOnClickCallback callback = item -> {
-        Toast.makeText(getContext(), "Clicked on Skill Item", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
     };
 
     /**

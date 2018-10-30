@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.work.Work;
 import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
+import com.alaskalany.careershowcase.model.Work;
 import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
 
 /**

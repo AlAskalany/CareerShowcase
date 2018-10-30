@@ -7,12 +7,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.alaskalany.careershowcase.data.common.Company;
 import com.alaskalany.careershowcase.data.common.Duration;
+import com.alaskalany.careershowcase.model.Work;
 
 /**
  * A work item representing a piece of description.
  */
 @Entity
-public class Work {
+public class WorkEntity
+        implements Work {
 
     @PrimaryKey
     private int id;
@@ -26,10 +28,11 @@ public class Work {
     private Duration duration;
 
     @SuppressWarnings("WeakerAccess")
-    public Work() {
+    public WorkEntity() {
 
     }
 
+    @Override
     public int getId() {
 
         return id;
@@ -40,6 +43,7 @@ public class Work {
         this.id = id;
     }
 
+    @Override
     public String getDescription() {
 
         return description;
@@ -50,6 +54,7 @@ public class Work {
         this.description = description;
     }
 
+    @Override
     public Duration getDuration() {
 
         return duration;
@@ -60,6 +65,7 @@ public class Work {
         this.duration = duration;
     }
 
+    @Override
     public Company getCompany() {
 
         return company;
@@ -77,6 +83,7 @@ public class Work {
         return description;
     }
 
+    @Override
     public String getTitle() {
 
         return title;

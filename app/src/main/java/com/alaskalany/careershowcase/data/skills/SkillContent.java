@@ -2,6 +2,7 @@ package com.alaskalany.careershowcase.data.skills;
 
 import android.util.SparseArray;
 import androidx.annotation.NonNull;
+import com.alaskalany.careershowcase.model.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,18 +42,18 @@ public class SkillContent {
     @NonNull
     private static Skill createSkillItem(int position) {
 
-        Skill skill = new Skill();
-        skill.setId(position);
-        skill.setTitle("Skill " + position);
-        skill.setDescription(makeDetails(position));
-        return skill;
+        SkillEntity skillEntity = new SkillEntity();
+        skillEntity.setId(position);
+        skillEntity.setTitle("SkillEntity " + position);
+        skillEntity.setDescription(makeDetails(position));
+        return skillEntity;
     }
 
     @NonNull
     private static String makeDetails(int position) {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("Details about Skill: ").append(position);
+        builder.append("Details about SkillEntity: ").append(position);
         for (int i = 0; i < position; i++) {
             builder.append("\nMore details information here.");
         }

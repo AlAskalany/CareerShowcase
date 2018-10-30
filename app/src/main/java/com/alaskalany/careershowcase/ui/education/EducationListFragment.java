@@ -26,7 +26,7 @@ public class EducationListFragment
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private final EducationOnClickCallback callback = item -> {
-        Toast.makeText(getContext(), "Clicked on Education Item", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
     };
 
     /**

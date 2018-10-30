@@ -26,7 +26,7 @@ public class WorkListFragment
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private final WorkOnClickCallback callback = item -> {
-        Toast.makeText(getContext(), "Clicked on Work Item", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
     };
 
     /**

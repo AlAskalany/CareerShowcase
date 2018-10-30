@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Career Showcase</string>
     <string name="title_overview">Overview</string>
-    <string name="title_education">Education</string>
+    <string name="title_education">EducationEntity</string>
     <string name="title_work">Work</string>
     <string name="title_skills">Skills</string>
     <string name="title_contact">Contact</string>

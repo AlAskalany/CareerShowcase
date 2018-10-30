@@ -6,7 +6,7 @@
 
         <variable
             name="education"
-            type="com.alaskalany.careershowcase.data.education.Education" />
+            type="com.alaskalany.careershowcase.model.Education" />
 
         <variable
             name="callback"

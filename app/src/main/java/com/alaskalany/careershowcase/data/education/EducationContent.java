@@ -2,6 +2,7 @@ package com.alaskalany.careershowcase.data.education;
 
 import android.util.SparseArray;
 import androidx.annotation.NonNull;
+import com.alaskalany.careershowcase.model.Education;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +42,9 @@ public class EducationContent {
     @NonNull
     private static Education createEducationItem(int position) {
 
-        Education education = new Education();
+        Education education = new EducationEntity();
         education.setId(position);
-        education.setTitle("Education " + position);
+        education.setTitle("EducationEntity " + position);
         education.setDescription(makeDetails(position));
         return education;
     }
@@ -52,7 +53,7 @@ public class EducationContent {
     private static String makeDetails(int position) {
 
         StringBuilder builder = new StringBuilder();
-        builder.append("Details about Education: ").append(position);
+        builder.append("Details about EducationEntity: ").append(position);
         for (int i = 0; i < position; i++) {
             builder.append("\nMore details information here.");
         }
