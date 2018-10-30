@@ -10,24 +10,18 @@ import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.work.Work;
 import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
 import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
-import com.alaskalany.careershowcase.ui.work.WorkListFragment.OnWorkListFragmentInteractionListener;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Work} and makes a call to the
- * specified {@link WorkListFragment.OnWorkListFragmentInteractionListener}.
+ * {@link RecyclerView.Adapter} that can display a {@link Work}
  * TODO: Replace the implementation with code for your data type.
  */
 public class WorkRecyclerViewAdapter
-        extends BaseRecyclerViewAdapter<WorkViewHolder, Work> {
-
-    private final OnWorkListFragmentInteractionListener mListener;
+        extends BaseRecyclerViewAdapter<WorkViewHolder, Work, WorkOnClickCallback> {
 
     @SuppressWarnings("WeakerAccess")
-    public WorkRecyclerViewAdapter(SparseArray<Work> items,
-                                   WorkListFragment.OnWorkListFragmentInteractionListener listener) {
+    public WorkRecyclerViewAdapter(SparseArray<Work> items, WorkOnClickCallback callback) {
 
-        super(items);
-        mListener = listener;
+        super(items, callback);
     }
 
     @NonNull
@@ -45,6 +39,7 @@ public class WorkRecyclerViewAdapter
     public void onBindViewHolder(@NonNull final WorkViewHolder holder, int position) {
 
         holder.binding.setWork(mValues.get(positionToKey(position)));
+        holder.binding.setCallback(getCallback());
         holder.binding.executePendingBindings();
     }
 }

@@ -5,21 +5,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.work.Work;
 import com.alaskalany.careershowcase.data.work.WorkContent;
-import org.jetbrains.annotations.Contract;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnWorkListFragmentInteractionListener}
- * interface.
  */
 public class WorkListFragment
         extends Fragment {
@@ -28,7 +25,9 @@ public class WorkListFragment
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnWorkListFragmentInteractionListener mListener;
+    private final WorkOnClickCallback callback = item -> {
+        Toast.makeText(getContext(), "Clicked on Work Item", Toast.LENGTH_SHORT).show();
+    };
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -53,17 +52,6 @@ public class WorkListFragment
     public void onAttach(Context context) {
 
         super.onAttach(context);
-        registerListener(context);
-    }
-
-    @Contract("null -> fail")
-    private void registerListener(Context context) {
-
-        if (context instanceof OnWorkListFragmentInteractionListener) {
-            mListener = (OnWorkListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + " must implement OnWorkListFragmentInteractionListener");
-        }
     }
 
     @Override
@@ -81,7 +69,7 @@ public class WorkListFragment
         View view = inflater.inflate(R.layout.fragment_work_list, container, false);
         // Set the adapter
         if (view instanceof RecyclerView) {
-            setupRecyclerViewAdapter(view, mColumnCount, new WorkRecyclerViewAdapter(WorkContent.ITEM_MAP, mListener));
+            setupRecyclerViewAdapter(view, mColumnCount, new WorkRecyclerViewAdapter(WorkContent.ITEM_MAP, callback));
         }
         return view;
     }
@@ -103,27 +91,5 @@ public class WorkListFragment
     public void onDetach() {
 
         super.onDetach();
-        unregisterListener();
-    }
-
-    private void unregisterListener() {
-
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnWorkListFragmentInteractionListener {
-
-        // TODO: Update argument type and name
-        void onWorkListFragmentInteraction(Work item);
     }
 }

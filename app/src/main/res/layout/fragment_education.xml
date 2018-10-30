@@ -7,11 +7,16 @@
         <variable
             name="education"
             type="com.alaskalany.careershowcase.data.education.Education" />
+
+        <variable
+            name="callback"
+            type="com.alaskalany.careershowcase.ui.education.EducationOnClickCallback" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView_Education"
-        style="@style/AppTheme.ItemCardView">
+        style="@style/AppTheme.ItemCardView"
+        android:onClick="@{() -> callback.onClick(education)}">
 
         <TextView
             android:id="@+id/textView_education_title"

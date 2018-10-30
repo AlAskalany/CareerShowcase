@@ -10,24 +10,18 @@ import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.education.Education;
 import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
 import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
-import com.alaskalany.careershowcase.ui.education.EducationListFragment.OnEducationListFragmentInteractionListener;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Education} and makes a call to the
- * specified {@link OnEducationListFragmentInteractionListener}.
+ * {@link RecyclerView.Adapter} that can display a {@link Education}
  * TODO: Replace the implementation with code for your data type.
  */
 public class EducationRecyclerViewAdapter
-        extends BaseRecyclerViewAdapter<EducationViewHolder, Education> {
-
-    private final OnEducationListFragmentInteractionListener mListener;
+        extends BaseRecyclerViewAdapter<EducationViewHolder, Education, EducationOnClickCallback> {
 
     @SuppressWarnings("WeakerAccess")
-    public EducationRecyclerViewAdapter(SparseArray<Education> items,
-                                        OnEducationListFragmentInteractionListener listener) {
+    public EducationRecyclerViewAdapter(SparseArray<Education> items, EducationOnClickCallback callback) {
 
-        super(items);
-        mListener = listener;
+        super(items, callback);
     }
 
     @NonNull
@@ -45,6 +39,7 @@ public class EducationRecyclerViewAdapter
     public void onBindViewHolder(@NonNull final EducationViewHolder holder, int position) {
 
         holder.binding.setEducation(mValues.get(positionToKey(position)));
+        holder.binding.setCallback(getCallback());
         holder.binding.executePendingBindings();
     }
 }

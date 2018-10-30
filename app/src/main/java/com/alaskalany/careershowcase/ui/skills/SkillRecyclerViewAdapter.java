@@ -10,23 +10,18 @@ import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.data.skills.Skill;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
 import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
-import com.alaskalany.careershowcase.ui.skills.SkillListFragment.OnSkillListFragmentInteractionListener;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Skill} and makes a call to the
- * specified {@link OnSkillListFragmentInteractionListener}.
+ * {@link RecyclerView.Adapter} that can display a {@link Skill}
  * TODO: Replace the implementation with code for your data type.
  */
 public class SkillRecyclerViewAdapter
-        extends BaseRecyclerViewAdapter<SkillViewHolder, Skill> {
-
-    private final OnSkillListFragmentInteractionListener mListener;
+        extends BaseRecyclerViewAdapter<SkillViewHolder, Skill, SkillOnClickCallback> {
 
     @SuppressWarnings("WeakerAccess")
-    public SkillRecyclerViewAdapter(SparseArray<Skill> items, OnSkillListFragmentInteractionListener listener) {
+    public SkillRecyclerViewAdapter(SparseArray<Skill> items, SkillOnClickCallback callback) {
 
-        super(items);
-        mListener = listener;
+        super(items, callback);
     }
 
     @NonNull
@@ -44,12 +39,7 @@ public class SkillRecyclerViewAdapter
     public void onBindViewHolder(@NonNull final SkillViewHolder holder, int position) {
 
         holder.binding.setSkill(mValues.get(positionToKey(position)));
+        holder.binding.setCallback(getCallback());
         holder.binding.executePendingBindings();
-    }
-
-    @Override
-    public int getItemCount() {
-
-        return mValues.size();
     }
 }

@@ -7,11 +7,15 @@
         <variable
             name="skill"
             type="com.alaskalany.careershowcase.data.skills.Skill" />
+        <variable
+            name="callback"
+            type="com.alaskalany.careershowcase.ui.skills.SkillOnClickCallback" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView_Skill"
-        style="@style/AppTheme.ItemCardView">
+        style="@style/AppTheme.ItemCardView"
+        android:onClick="@{() -> callback.onClick(skill)}">
 
         <TextView
             android:id="@+id/textView_skill_title"

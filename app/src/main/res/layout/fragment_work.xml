@@ -7,11 +7,16 @@
         <variable
             name="work"
             type="com.alaskalany.careershowcase.data.work.Work" />
+
+        <variable
+            name="callback"
+            type="com.alaskalany.careershowcase.ui.work.WorkOnClickCallback" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView_Work"
-        style="@style/AppTheme.ItemCardView">
+        style="@style/AppTheme.ItemCardView"
+        android:onClick="@{() -> callback.onClick(work)}">
 
         <TextView
             android:id="@+id/textView_work_title"
