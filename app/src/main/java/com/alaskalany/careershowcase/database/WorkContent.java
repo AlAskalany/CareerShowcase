@@ -1,7 +1,8 @@
-package com.alaskalany.careershowcase.data.work;
+package com.alaskalany.careershowcase.database;
 
 import android.util.SparseArray;
 import androidx.annotation.NonNull;
+import com.alaskalany.careershowcase.database.entity.WorkEntity;
 import com.alaskalany.careershowcase.model.Work;
 
 import java.util.ArrayList;

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.data.education.EducationContent;
+import com.alaskalany.careershowcase.database.EducationContent;
 
 /**
  * A fragment representing a list of Items.

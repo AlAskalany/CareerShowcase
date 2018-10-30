@@ -1,12 +1,9 @@
-package com.alaskalany.careershowcase.data.work;
+package com.alaskalany.careershowcase.database.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import com.alaskalany.careershowcase.data.common.Company;
-import com.alaskalany.careershowcase.data.common.Duration;
 import com.alaskalany.careershowcase.model.Work;
 
 /**
@@ -22,10 +19,10 @@ public class WorkEntity
     private String title;
     @ColumnInfo(name = "description")
     private String description;
-    @Embedded
-    private Company company;
-    @Embedded
-    private Duration duration;
+    @ColumnInfo(name = "company")
+    private String company;
+    @ColumnInfo(name = "duration")
+    private String duration;
 
     @SuppressWarnings("WeakerAccess")
     public WorkEntity() {
@@ -55,23 +52,23 @@ public class WorkEntity
     }
 
     @Override
-    public Duration getDuration() {
+    public String getDuration() {
 
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(String duration) {
 
         this.duration = duration;
     }
 
     @Override
-    public Company getCompany() {
+    public String getCompany() {
 
         return company;
     }
 
-    public void setCompany(Company company) {
+    public void setCompany(String company) {
 
         this.company = company;
     }

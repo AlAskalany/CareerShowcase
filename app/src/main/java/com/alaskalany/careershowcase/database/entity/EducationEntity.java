@@ -1,8 +1,6 @@
-package com.alaskalany.careershowcase.data.education;
+package com.alaskalany.careershowcase.database.entity;
 
 import androidx.room.*;
-import com.alaskalany.careershowcase.data.common.Duration;
-import com.alaskalany.careershowcase.data.common.School;
 import com.alaskalany.careershowcase.model.Education;
 
 /**
@@ -17,15 +15,15 @@ public class EducationEntity
     @ColumnInfo(name = "title")
     private String title;
     @Embedded
-    private School school;
+    private String school;
     @ColumnInfo(name = "degree")
     private String degree;
     @ColumnInfo(name = "study_field")
     private String studyField;
     @ColumnInfo(name = "description")
     private String description;
-    @Embedded
-    private Duration duration;
+    @ColumnInfo(name = "duration")
+    private String duration;
 
     @SuppressWarnings("WeakerAccess")
     public EducationEntity() {
@@ -57,13 +55,13 @@ public class EducationEntity
     }
 
     @Override
-    public School getSchool() {
+    public String getSchool() {
 
         return school;
     }
 
     @Override
-    public void setSchool(School school) {
+    public void setSchool(String school) {
 
         this.school = school;
     }
@@ -105,13 +103,13 @@ public class EducationEntity
     }
 
     @Override
-    public Duration getDuration() {
+    public String getDuration() {
 
         return duration;
     }
 
     @Override
-    public void setDuration(Duration duration) {
+    public void setDuration(String duration) {
 
         this.duration = duration;
     }

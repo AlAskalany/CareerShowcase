@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.data.skills;
+package com.alaskalany.careershowcase.database.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
