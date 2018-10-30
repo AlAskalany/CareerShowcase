@@ -71,13 +71,13 @@ public class EducationListFragment
         if (view instanceof RecyclerView) {
             setupRecyclerViewAdapter(view,
                                      mColumnCount,
-                                     new EducationRecyclerViewAdapter(EducationContent.ITEM_MAP, callback));
+                                     new EducationAdapter(EducationContent.ITEM_MAP, callback));
         }
         return view;
     }
 
     private void setupRecyclerViewAdapter(@NonNull View view, int columns,
-                                          RecyclerView.Adapter<EducationViewHolder> adapter) {
+                                          RecyclerView.Adapter<EducationAdapter.ViewHolder> adapter) {
 
         Context context = view.getContext();
         RecyclerView recyclerView = (RecyclerView) view;

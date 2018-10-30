@@ -69,13 +69,13 @@ public class WorkListFragment
         View view = inflater.inflate(R.layout.fragment_work_list, container, false);
         // Set the adapter
         if (view instanceof RecyclerView) {
-            setupRecyclerViewAdapter(view, mColumnCount, new WorkRecyclerViewAdapter(WorkContent.ITEM_MAP, callback));
+            setupRecyclerViewAdapter(view, mColumnCount, new WorkAdapter(WorkContent.ITEM_MAP, callback));
         }
         return view;
     }
 
     private void setupRecyclerViewAdapter(@NonNull View view, int columns,
-                                          RecyclerView.Adapter<WorkViewHolder> adapter) {
+                                          RecyclerView.Adapter<WorkAdapter.ViewHolder> adapter) {
 
         Context context = view.getContext();
         RecyclerView recyclerView = (RecyclerView) view;

@@ -69,13 +69,13 @@ public class SkillListFragment
         View view = inflater.inflate(R.layout.fragment_skill_list, container, false);
         // Set the adapter
         if (view instanceof RecyclerView) {
-            setupRecyclerViewAdapter(view, mColumnCount, new SkillRecyclerViewAdapter(SkillContent.ITEM_MAP, callback));
+            setupRecyclerViewAdapter(view, mColumnCount, new SkillAdapter(SkillContent.ITEM_MAP, callback));
         }
         return view;
     }
 
     private void setupRecyclerViewAdapter(@NonNull View view, int columns,
-                                          RecyclerView.Adapter<SkillViewHolder> adapter) {
+                                          RecyclerView.Adapter<SkillAdapter.ViewHolder> adapter) {
 
         Context context = view.getContext();
         RecyclerView recyclerView = (RecyclerView) view;
