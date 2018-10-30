@@ -81,7 +81,8 @@ public class EducationListFragment
         View view = inflater.inflate(R.layout.fragment_education_list, container, false);
         // Set the adapter
         if (view instanceof RecyclerView) {
-            setupRecyclerViewAdapter(view, mColumnCount,
+            setupRecyclerViewAdapter(view,
+                                     mColumnCount,
                                      new EducationRecyclerViewAdapter(EducationContent.ITEM_MAP, mListener));
         }
         return view;
