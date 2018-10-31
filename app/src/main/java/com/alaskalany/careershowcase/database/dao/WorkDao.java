@@ -10,17 +10,22 @@ import com.alaskalany.careershowcase.database.entity.WorkEntity;
 import java.util.List;
 
 @Dao
-public interface WorkDao {
+public interface WorkDao
+        extends BaseDao<WorkEntity> {
 
+    @Override
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllWork(List<WorkEntity> workEntities);
+    void insertAll(List<WorkEntity> workEntities);
 
+    @Override
     @Query("select * from works_table where workId = :workId")
-    LiveData<WorkEntity> loadWork(int workId);
+    LiveData<WorkEntity> load(int workId);
 
+    @Override
     @Query("select * from works_table where workId = :workId")
-    WorkEntity loadWorkSync(int workId);
+    WorkEntity loadSync(int workId);
 
+    @Override
     @Query("SELECT * FROM works_table")
-    LiveData<List<WorkEntity>> loadAllWorks();
+    LiveData<List<WorkEntity>> loadAll();
 }

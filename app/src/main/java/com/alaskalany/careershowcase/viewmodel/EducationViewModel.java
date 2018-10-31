@@ -24,7 +24,7 @@ public class EducationViewModel
 
         super(application);
         mEducationId = educationId;
-        mObservableEducation = dataRepository.loadEducation(educationId);
+        mObservableEducation = dataRepository.load(educationId);
     }
 
     public LiveData<EducationEntity> getObservableEducation() {

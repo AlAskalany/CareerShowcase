@@ -10,14 +10,12 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.alaskalany.careershowcase.AppExecutors;
-import com.alaskalany.careershowcase.database.dao.ContactDao;
-import com.alaskalany.careershowcase.database.dao.EducationDao;
-import com.alaskalany.careershowcase.database.dao.SkillDao;
-import com.alaskalany.careershowcase.database.dao.WorkDao;
+import com.alaskalany.careershowcase.database.dao.*;
 import com.alaskalany.careershowcase.database.entity.ContactEntity;
 import com.alaskalany.careershowcase.database.entity.EducationEntity;
 import com.alaskalany.careershowcase.database.entity.SkillEntity;
 import com.alaskalany.careershowcase.database.entity.WorkEntity;
+import com.alaskalany.careershowcase.model.Model;
 
 import java.util.List;
 
@@ -50,27 +48,35 @@ public abstract class AppDatabase
     @NonNull
     private static AppDatabase buildDatabase(final Context context, final AppExecutors executors) {
 
-        return Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME).addCallback(new Callback() {
+        return Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME)
+                   .addCallback(new Callback() {
 
-            @Override
-            public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                       @Override
+                       public void onCreate(@NonNull SupportSQLiteDatabase db) {
 
-                super.onCreate(db);
-                executors.diskIO().execute(() -> {
-                    // Add a delay to simulate a long-running operation
-                    addDelay();
-                    // Generate the data for pre-population
-                    AppDatabase database = AppDatabase.getInstance(context, executors);
-                    List<ContactEntity> contactEntities = DataGenerator.generateContacts();
-                    List<EducationEntity> educationEntities = DataGenerator.generateEducations();
-                    List<SkillEntity> skillEntities = DataGenerator.generateSkills();
-                    List<WorkEntity> workEntities = DataGenerator.generateWorks();
-                    insertData(database, contactEntities, educationEntities, skillEntities, workEntities);
-                    // notify that the database was created and it's ready to be used
-                    database.setDatabaseCreated();
-                });
-            }
-        }).build();
+                           super.onCreate(db);
+                           executors.diskIO()
+                                    .execute(() -> {
+                                        // Add a delay to simulate a long-running operation
+                                        addDelay();
+                                        // Generate the data for pre-population
+                                        AppDatabase database = AppDatabase.getInstance(context, executors);
+                                        List<ContactEntity> contactEntities = DataGenerator.generateContacts();
+                                        List<EducationEntity> educationEntities = DataGenerator.generateEducations();
+                                        List<SkillEntity> skillEntities = DataGenerator.generateSkills();
+                                        List<WorkEntity> workEntities = DataGenerator.generateWorks();
+                                        insertData(database,
+                                                   contactEntities,
+                                                   educationEntities,
+                                                   skillEntities,
+                                                   workEntities);
+                                        // notify that the database was created and it's ready to be used
+                                        database.setDatabaseCreated();
+                                    });
+                       }
+                   })
+                   .fallbackToDestructiveMigration()
+                   .build();
     }
 
     private static void insertData(@NonNull AppDatabase database, List<ContactEntity> contactEntities,
@@ -78,11 +84,16 @@ public abstract class AppDatabase
                                    List<WorkEntity> workEntities) {
 
         database.runInTransaction(() -> {
-            database.contactDao().insertAllContacts(contactEntities);
-            database.educationDao().insertAllEducation(educationEntities);
-            database.skillDao().insertAllSkills(skillEntities);
-            database.workDao().insertAllWork(workEntities);
+            insertAllEntities(contactEntities, database.contactDao());
+            insertAllEntities(educationEntities, database.educationDao());
+            insertAllEntities(skillEntities, database.skillDao());
+            insertAllEntities(workEntities, database.workDao());
         });
+    }
+
+    private static <T extends BaseDao, L extends List<? extends Model>> void insertAllEntities(L entities, T pDao) {
+
+        pDao.insertAll(entities);
     }
 
     private static void addDelay() {
@@ -103,7 +114,8 @@ public abstract class AppDatabase
 
     private void updateDatabaseCreated(@NonNull final Context context) {
 
-        if (context.getDatabasePath(DATABASE_NAME).exists()) {
+        if (context.getDatabasePath(DATABASE_NAME)
+                   .exists()) {
             setDatabaseCreated();
         }
     }

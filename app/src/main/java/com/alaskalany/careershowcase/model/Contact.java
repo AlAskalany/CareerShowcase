@@ -1,6 +1,7 @@
 package com.alaskalany.careershowcase.model;
 
-public interface Contact {
+public interface Contact
+        extends Model {
 
     int getContactId();
 

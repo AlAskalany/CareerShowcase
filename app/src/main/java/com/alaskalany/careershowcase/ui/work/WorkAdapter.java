@@ -46,6 +46,7 @@ public class WorkAdapter
                                                               R.layout.fragment_work,
                                                               parent,
                                                               false);
+        binding.setCallback(mCallback);
         return new ViewHolder(binding);
     }
 
@@ -61,7 +62,7 @@ public class WorkAdapter
         holder.mBinding.executePendingBindings();
     }
 
-    public void setProductList(final List<WorkEntity> workList) {
+    public void setWorkList(final List<WorkEntity> workList) {
 
         if (mValues == null) {
             mValues = workList;

@@ -22,8 +22,8 @@ public class SkillListViewModel
         mObservableSkills = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         mObservableSkills.setValue(null);
-
-        LiveData<List<SkillEntity>> skills = ((CareerShowcaseApp) application).getRepository().getSkills();
+        LiveData<List<SkillEntity>> skills =
+                ((CareerShowcaseApp) application).getRepository().mSkillRepository.getSkills();
 
         // observe the changes of the products from the database and forward them
         mObservableSkills.addSource(skills, mObservableSkills::setValue);

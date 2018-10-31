@@ -10,17 +10,22 @@ import com.alaskalany.careershowcase.database.entity.EducationEntity;
 import java.util.List;
 
 @Dao
-public interface EducationDao {
+public interface EducationDao
+        extends BaseDao<EducationEntity> {
 
+    @Override
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllEducation(List<EducationEntity> educationEntities);
+    void insertAll(List<EducationEntity> educationEntities);
 
+    @Override
     @Query("select * from education_table where educationId = :educationId")
-    LiveData<EducationEntity> loadEducation(int educationId);
+    LiveData<EducationEntity> load(int educationId);
 
+    @Override
     @Query("select * from education_table where educationId = :educationId")
-    EducationEntity loadEducationSync(int educationId);
+    EducationEntity loadSync(int educationId);
 
+    @Override
     @Query("SELECT * FROM education_table")
-    LiveData<List<EducationEntity>> loadAllEducation();
+    LiveData<List<EducationEntity>> loadAll();
 }

@@ -10,17 +10,22 @@ import com.alaskalany.careershowcase.database.entity.ContactEntity;
 import java.util.List;
 
 @Dao
-public interface ContactDao {
+public interface ContactDao
+        extends BaseDao<ContactEntity> {
 
+    @Override
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllContacts(List<ContactEntity> contactEntities);
+    void insertAll(List<ContactEntity> contactEntities);
 
+    @Override
     @Query("select * from contacts_table where contactId = :contactId")
-    LiveData<ContactEntity> loadContact(int contactId);
+    LiveData<ContactEntity> load(int contactId);
 
+    @Override
     @Query("select * from contacts_table where contactId = :contactId")
-    ContactEntity loadContactSync(int contactId);
+    ContactEntity loadSync(int contactId);
 
+    @Override
     @Query("SELECT * FROM contacts_table")
-    LiveData<List<ContactEntity>> loadAllContacts();
+    LiveData<List<ContactEntity>> loadAll();
 }

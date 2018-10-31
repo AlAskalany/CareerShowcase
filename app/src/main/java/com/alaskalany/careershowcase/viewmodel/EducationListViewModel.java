@@ -22,8 +22,8 @@ public class EducationListViewModel
         mObservableEducations = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         mObservableEducations.setValue(null);
-
-        LiveData<List<EducationEntity>> educations = ((CareerShowcaseApp) application).getRepository().getEducations();
+        LiveData<List<EducationEntity>> educations =
+                ((CareerShowcaseApp) application).getRepository().mEducationRepository.getEducations();
 
         // observe the changes of the products from the database and forward them
         mObservableEducations.addSource(educations, mObservableEducations::setValue);

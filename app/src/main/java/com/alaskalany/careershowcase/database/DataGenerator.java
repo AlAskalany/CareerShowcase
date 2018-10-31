@@ -6,7 +6,6 @@ import com.alaskalany.careershowcase.database.entity.ContactEntity;
 import com.alaskalany.careershowcase.database.entity.EducationEntity;
 import com.alaskalany.careershowcase.database.entity.SkillEntity;
 import com.alaskalany.careershowcase.database.entity.WorkEntity;
-import com.alaskalany.careershowcase.model.Work;
 import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
@@ -135,7 +134,7 @@ public class DataGenerator {
 
             EducationEntity educationEntity = new EducationEntity();
             educationEntity.setEducationId(position);
-            educationEntity.setEducationTitle("Item " + position);
+            educationEntity.setEducationTitle("Education " + position);
             educationEntity.setEducationDescription(makeDetails(position));
             return educationEntity;
         }
@@ -144,7 +143,7 @@ public class DataGenerator {
         private static String makeDetails(int position) {
 
             StringBuilder builder = new StringBuilder();
-            builder.append("Details about Item: ").append(position);
+            builder.append("Details about Education: ").append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }
@@ -191,7 +190,7 @@ public class DataGenerator {
 
             SkillEntity skillEntity = new SkillEntity();
             skillEntity.setSkillId(position);
-            skillEntity.setTitle("Item " + position);
+            skillEntity.setTitle("Skill " + position);
             skillEntity.setDescription(makeDetails(position));
             return skillEntity;
         }
@@ -200,7 +199,7 @@ public class DataGenerator {
         private static String makeDetails(int position) {
 
             StringBuilder builder = new StringBuilder();
-            builder.append("Details about Item: ").append(position);
+            builder.append("Details about Skill: ").append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }
@@ -247,7 +246,7 @@ public class DataGenerator {
 
             WorkEntity workEntity = new WorkEntity();
             workEntity.setWorkId(position);
-            workEntity.setTitle("Item " + position);
+            workEntity.setTitle("Work " + position);
             workEntity.setDescription(makeDetails(position));
             return workEntity;
         }
@@ -256,7 +255,7 @@ public class DataGenerator {
         private static String makeDetails(int position) {
 
             StringBuilder builder = new StringBuilder();
-            builder.append("Details about Item: ").append(position);
+            builder.append("Details about Work: ").append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }

@@ -73,9 +73,10 @@ public class WorkListFragment
         final WorkListViewModel _model = ViewModelProviders.of(this).get(WorkListViewModel.class);
         _model.getWorks().observe(this, pWorkEntities -> {
             if (pWorkEntities != null) {
-                
+                getAdapter().setWorkList(pWorkEntities);
             } else {
             }
+            mBinding.executePendingBindings();
         });
     }
 

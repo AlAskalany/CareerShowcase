@@ -22,8 +22,8 @@ public class ContactListViewModel
         mObservableContacts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         mObservableContacts.setValue(null);
-
-        LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository().getContacts();
+        LiveData<List<ContactEntity>> contacts =
+                ((CareerShowcaseApp) application).getRepository().mContactRepository.getContacts();
 
         // observe the changes of the products from the database and forward them
         mObservableContacts.addSource(contacts, mObservableContacts::setValue);

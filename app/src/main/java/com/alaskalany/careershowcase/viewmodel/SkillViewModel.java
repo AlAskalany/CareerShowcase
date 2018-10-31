@@ -24,7 +24,7 @@ public class SkillViewModel
 
         super(application);
         mSkillId = skillId;
-        mObservableSkill = dataRepository.loadSkill(skillId);
+        mObservableSkill = dataRepository.load(skillId);
     }
 
     public LiveData<SkillEntity> getObservableSkill() {

@@ -10,17 +10,22 @@ import com.alaskalany.careershowcase.database.entity.SkillEntity;
 import java.util.List;
 
 @Dao
-public interface SkillDao {
+public interface SkillDao
+        extends BaseDao<SkillEntity> {
 
+    @Override
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllSkills(List<SkillEntity> skillEntities);
+    void insertAll(List<SkillEntity> skillEntities);
 
+    @Override
     @Query("select * from skills_table where skillId = :skillId")
-    LiveData<SkillEntity> loadSkill(int skillId);
+    LiveData<SkillEntity> load(int skillId);
 
+    @Override
     @Query("select * from skills_table where skillId = :skillId")
-    SkillEntity loadSkillSync(int skillId);
+    SkillEntity loadSync(int skillId);
 
+    @Override
     @Query("SELECT * FROM skills_table")
-    LiveData<List<SkillEntity>> loadAllSkills();
+    LiveData<List<SkillEntity>> loadAll();
 }
