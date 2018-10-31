@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.SkillContent;
+import com.alaskalany.careershowcase.database.DataGenerator;
 import com.alaskalany.careershowcase.databinding.FragmentSkillListBinding;
 import com.alaskalany.careershowcase.ui.BaseListFragment;
 
@@ -60,7 +60,7 @@ public class SkillListFragment
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
-        setAdapter(new SkillAdapter(SkillContent.ITEM_MAP, mCallback));
+        setAdapter(new SkillAdapter(DataGenerator.generateSkills(), mCallback));
         mBinding.listSkill.setAdapter(getAdapter());
         Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {

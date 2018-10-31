@@ -5,35 +5,35 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.database.entity.SkillEntity;
+import com.alaskalany.careershowcase.database.entity.ContactEntity;
 
 import java.util.List;
 
-public class SkillListViewModel
+public class ContactListViewModel
         extends AndroidViewModel {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<SkillEntity>> mObservableSkills;
+    private final MediatorLiveData<List<ContactEntity>> mObservableContacts;
 
-    public SkillListViewModel(Application application) {
+    public ContactListViewModel(Application application) {
 
         super(application);
 
-        mObservableSkills = new MediatorLiveData<>();
+        mObservableContacts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableSkills.setValue(null);
+        mObservableContacts.setValue(null);
 
-        LiveData<List<SkillEntity>> skills = ((CareerShowcaseApp) application).getRepository().getSkills();
+        LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository().getContacts();
 
         // observe the changes of the products from the database and forward them
-        mObservableSkills.addSource(skills, mObservableSkills::setValue);
+        mObservableContacts.addSource(contacts, mObservableContacts::setValue);
     }
 
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
-    public LiveData<List<SkillEntity>> getSkills() {
+    public LiveData<List<ContactEntity>> getContacts() {
 
-        return mObservableSkills;
+        return mObservableContacts;
     }
 }

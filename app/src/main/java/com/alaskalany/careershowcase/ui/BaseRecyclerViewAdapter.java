@@ -1,21 +1,25 @@
 package com.alaskalany.careershowcase.ui;
 
-import android.util.SparseArray;
 import androidx.recyclerview.widget.RecyclerView;
+import com.alaskalany.careershowcase.model.Model;
+import com.alaskalany.careershowcase.model.Work;
 import org.jetbrains.annotations.Contract;
+
+import java.util.List;
 
 /**
  * @param <T>
  * @param <V>
  * @param <M>
  */
-public abstract class BaseRecyclerViewAdapter<T extends RecyclerView.ViewHolder, V, M extends ItemOnClickCallback>
+public abstract class BaseRecyclerViewAdapter<T extends RecyclerView.ViewHolder, V extends Model, M extends ItemOnClickCallback>
         extends RecyclerView.Adapter<T> {
 
     /**
      *
      */
-    protected final SparseArray<V> mValues;
+    protected List<V> mValues;
+
     /**
      *
      */
@@ -25,7 +29,7 @@ public abstract class BaseRecyclerViewAdapter<T extends RecyclerView.ViewHolder,
      * @param items
      * @param callback
      */
-    public BaseRecyclerViewAdapter(SparseArray<V> items, M callback) {
+    public BaseRecyclerViewAdapter(List<V> items, M callback) {
 
         this.mValues = items;
         this.mCallback = callback;

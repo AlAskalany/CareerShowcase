@@ -6,33 +6,42 @@ public interface Work
     /**
      * @return
      */
-    int getId();
+    int getWorkId();
+
     /**
      * @param position
      */
-    void setId(int position);
+    void setWorkId(int position);
+
     /**
      * @return
      */
     String getDescription();
+
     /**
      * @param description
      */
     void setDescription(String description);
+
     /**
      * @return
      */
     String getDuration();
+
     /**
      * @return
      */
     String getCompany();
+
     /**
      * @return
      */
     String getTitle();
+
     /**
      * @param title
      */
     void setTitle(String title);
+
+    void setCompany(String pCompany);
 }

@@ -9,32 +9,32 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
 import com.alaskalany.careershowcase.DataRepository;
-import com.alaskalany.careershowcase.database.entity.WorkEntity;
+import com.alaskalany.careershowcase.database.entity.ContactEntity;
 
-public class WorkViewModel
+public class ContactViewModel
         extends AndroidViewModel {
 
-    private final LiveData<WorkEntity> mObservableWork;
+    private final LiveData<ContactEntity> mObservableContact;
 
-    private final int mWorkId;
+    private final int mContactId;
 
-    public ObservableField<WorkEntity> work = new ObservableField<>();
+    public ObservableField<ContactEntity> contact = new ObservableField<>();
 
-    public WorkViewModel(@NonNull Application application, DataRepository dataRepository, final int workId) {
+    public ContactViewModel(@NonNull Application application, DataRepository dataRepository, final int contactId) {
 
         super(application);
-        mWorkId = workId;
-        mObservableWork = dataRepository.loadWork(workId);
+        mContactId = contactId;
+        mObservableContact = dataRepository.loadContact(contactId);
     }
 
-    public LiveData<WorkEntity> getObservableWork() {
+    public LiveData<ContactEntity> getObservableContact() {
 
-        return mObservableWork;
+        return mObservableContact;
     }
 
-    public void setWork(WorkEntity product) {
+    public void setContact(ContactEntity contact) {
 
-        this.work.set(product);
+        this.contact.set(contact);
     }
 
     /**
@@ -49,21 +49,21 @@ public class WorkViewModel
         @NonNull
         private final Application mApplication;
 
-        private final int mWorkId;
+        private final int mContactId;
 
         private final DataRepository mRepository;
 
-        public Factory(@NonNull Application application, int workId) {
+        public Factory(@NonNull Application application, int contactId) {
 
             mApplication = application;
-            mWorkId = workId;
+            mContactId = contactId;
             mRepository = ((CareerShowcaseApp) application).getRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new WorkViewModel(mApplication, mRepository, mWorkId);
+            return (T) new ContactViewModel(mApplication, mRepository, mContactId);
         }
     }
 }

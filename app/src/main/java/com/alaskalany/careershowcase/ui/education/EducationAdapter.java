@@ -1,30 +1,32 @@
 package com.alaskalany.careershowcase.ui.education;
 
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.database.entity.EducationEntity;
 import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
 import com.alaskalany.careershowcase.model.Education;
 import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
 import com.alaskalany.careershowcase.ui.BaseViewHolder;
 
+import java.util.List;
+
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Education}
+ * {@link RecyclerView.Adapter} that can display a {@link EducationEntity}
  * TODO: Replace the implementation with code for your data type.
  */
 public class EducationAdapter
-        extends BaseRecyclerViewAdapter<EducationAdapter.ViewHolder, Education, EducationOnClickCallback> {
+        extends BaseRecyclerViewAdapter<EducationAdapter.ViewHolder, EducationEntity, EducationOnClickCallback> {
 
     /**
      * @param items
      * @param callback
      */
     @SuppressWarnings("WeakerAccess")
-    public EducationAdapter(SparseArray<Education> items, EducationOnClickCallback callback) {
+    public EducationAdapter(List<EducationEntity> items, EducationOnClickCallback callback) {
 
         super(items, callback);
     }

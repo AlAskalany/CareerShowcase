@@ -16,14 +16,17 @@ public abstract class BaseListFragment<A extends BaseRecyclerViewAdapter, B exte
      *
      */
     protected static final String ARG_COLUMN_COUNT = "column-count";
+
     /**
      *
      */
     protected B mBinding;
+
     /**
      *
      */
     private A mAdapter;
+
     /**
      *
      */

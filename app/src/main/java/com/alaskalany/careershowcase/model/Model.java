@@ -3,6 +3,6 @@ package com.alaskalany.careershowcase.model;
 /**
  *
  */
-interface Model {
+public interface Model {
 
 }

@@ -7,24 +7,27 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.database.entity.SkillEntity;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
 import com.alaskalany.careershowcase.model.Skill;
 import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
 import com.alaskalany.careershowcase.ui.BaseViewHolder;
 
+import java.util.List;
+
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Skill}
+ * {@link RecyclerView.Adapter} that can display a {@link SkillEntity}
  * TODO: Replace the implementation with code for your data type.
  */
 public class SkillAdapter
-        extends BaseRecyclerViewAdapter<SkillAdapter.ViewHolder, Skill, SkillOnClickCallback> {
+        extends BaseRecyclerViewAdapter<SkillAdapter.ViewHolder, SkillEntity, SkillOnClickCallback> {
 
     /**
      * @param items
      * @param callback
      */
     @SuppressWarnings("WeakerAccess")
-    public SkillAdapter(SparseArray<Skill> items, SkillOnClickCallback callback) {
+    public SkillAdapter(List<SkillEntity> items, SkillOnClickCallback callback) {
 
         super(items, callback);
     }

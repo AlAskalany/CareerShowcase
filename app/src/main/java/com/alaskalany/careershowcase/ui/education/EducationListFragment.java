@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.EducationContent;
+import com.alaskalany.careershowcase.database.DataGenerator;
 import com.alaskalany.careershowcase.databinding.FragmentEducationListBinding;
 import com.alaskalany.careershowcase.ui.BaseListFragment;
 
@@ -60,7 +60,7 @@ public class EducationListFragment
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
-        setAdapter(new EducationAdapter(EducationContent.ITEM_MAP, mCallBack));
+        setAdapter(new EducationAdapter(DataGenerator.generateEducations(), mCallBack));
         Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             mBinding.listEducation.setLayoutManager(new LinearLayoutManager(context));

@@ -8,7 +8,7 @@ import com.alaskalany.careershowcase.model.Skill;
 /**
  * A skill item representing a piece of description.
  */
-@Entity
+@Entity(tableName = "skills_table")
 public class SkillEntity
         implements Skill {
 
@@ -17,12 +17,14 @@ public class SkillEntity
      */
     @PrimaryKey
     @SuppressWarnings("WeakerAccess")
-    public int id;
+    public int skillId;
+
     /**
      *
      */
     @SuppressWarnings("WeakerAccess")
     public String title;
+
     /**
      *
      */
@@ -41,18 +43,18 @@ public class SkillEntity
      * @return
      */
     @Override
-    public int getId() {
+    public int getSkillId() {
 
-        return id;
+        return skillId;
     }
 
     /**
-     * @param id
+     * @param pSkillId
      */
     @Override
-    public void setId(int id) {
+    public void setSkillId(int pSkillId) {
 
-        this.id = id;
+        this.skillId = pSkillId;
     }
 
     /**

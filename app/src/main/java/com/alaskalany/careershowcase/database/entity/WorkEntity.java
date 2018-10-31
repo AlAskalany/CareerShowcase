@@ -1,144 +1,84 @@
 package com.alaskalany.careershowcase.database.entity;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.alaskalany.careershowcase.model.Work;
 
 /**
- * A work item representing a piece of description.
+ * A contact item representing a piece of description.
  */
-@Entity
+@Entity(tableName = "works_table")
 public class WorkEntity
         implements Work {
 
-    /**
-     *
-     */
-    @PrimaryKey
-    private int id;
-    /**
-     *
-     */
-    @ColumnInfo(name = "title")
-    private String title;
-    /**
-     *
-     */
-    @ColumnInfo(name = "description")
-    private String description;
-    /**
-     *
-     */
-    @ColumnInfo(name = "company")
-    private String company;
-    /**
-     *
-     */
-    @ColumnInfo(name = "duration")
-    private String duration;
+    @PrimaryKey(autoGenerate = true)
+    private int workId;
 
-    /**
-     *
-     */
-    @SuppressWarnings("WeakerAccess")
+    @ColumnInfo(name = "work_title")
+    private String title;
+
+    @ColumnInfo(name = "work_description")
+    private String description;
+
+    @ColumnInfo(name = "work_company")
+    private String company;
+
     public WorkEntity() {
 
     }
 
-    /**
-     * @return
-     */
     @Override
-    public int getId() {
+    public int getWorkId() {
 
-        return id;
+        return workId;
     }
 
-    /**
-     * @param id
-     */
-    public void setId(int id) {
+    @Override
+    public void setWorkId(int workId) {
 
-        this.id = id;
+        this.workId = workId;
     }
 
-    /**
-     * @return
-     */
     @Override
     public String getDescription() {
 
         return description;
     }
 
-    /**
-     * @param description
-     */
+    @Override
     public void setDescription(String description) {
 
         this.description = description;
     }
 
-    /**
-     * @return
-     */
     @Override
     public String getDuration() {
 
-        return duration;
+        return null;
     }
 
-    /**
-     * @param duration
-     */
-    public void setDuration(String duration) {
-
-        this.duration = duration;
-    }
-
-    /**
-     * @return
-     */
     @Override
     public String getCompany() {
 
         return company;
     }
 
-    /**
-     * @param company
-     */
-    public void setCompany(String company) {
-
-        this.company = company;
-    }
-
-    /**
-     * @return
-     */
     @Override
     public String getTitle() {
 
         return title;
     }
 
-    /**
-     * @param title
-     */
+    @Override
     public void setTitle(String title) {
 
         this.title = title;
     }
 
-    /**
-     * @return
-     */
-    @NonNull
     @Override
-    public String toString() {
+    public void setCompany(String pCompany) {
 
-        return description;
+        company = pCompany;
     }
 }

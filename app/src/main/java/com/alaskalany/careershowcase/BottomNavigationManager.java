@@ -25,26 +25,32 @@ class BottomNavigationManager
      *
      */
     private static final int OVERVIEW = 0;
+
     /**
      *
      */
     private static final int EDUCATION = 1;
+
     /**
      *
      */
     private static final int WORK = 2;
+
     /**
      *
      */
     private static final int SKILLS = 3;
+
     /**
      *
      */
     private static final int CONTACT = 4;
+
     /**
      *
      */
     private final FragmentActivity mActivity;
+
     /**
      *
      */

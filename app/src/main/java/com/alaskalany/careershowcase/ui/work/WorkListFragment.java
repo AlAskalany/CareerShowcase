@@ -7,13 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.WorkContent;
+import com.alaskalany.careershowcase.database.DataGenerator;
 import com.alaskalany.careershowcase.databinding.FragmentWorkListBinding;
 import com.alaskalany.careershowcase.ui.BaseListFragment;
+import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
 
 /**
  * A fragment representing a list of Items.
@@ -51,6 +54,32 @@ public class WorkListFragment
     }
 
     /**
+     * Called when the fragment's activity has been created and this
+     * fragment's view hierarchy instantiated.  It can be used to do final
+     * initialization once these pieces are in place, such as retrieving
+     * views or restoring state.  It is also useful for fragments that use
+     * {@link #setRetainInstance(boolean)} to retain their instance,
+     * as this callback tells the fragment when it is fully associated with
+     * the new activity instance.  This is called after {@link #onCreateView}
+     * and before {@link #onViewStateRestored(Bundle)}.
+     *
+     * @param savedInstanceState If the fragment is being re-created from
+     *                           a previous saved state, this is the state.
+     */
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+        final WorkListViewModel _model = ViewModelProviders.of(this).get(WorkListViewModel.class);
+        _model.getWorks().observe(this, pWorkEntities -> {
+            if (pWorkEntities != null) {
+                
+            } else {
+            }
+        });
+    }
+
+    /**
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -60,7 +89,7 @@ public class WorkListFragment
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
-        setAdapter(new WorkAdapter(WorkContent.ITEM_MAP, mCallback));
+        setAdapter(new WorkAdapter(DataGenerator.generateWorks(), mCallback));
         Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             mBinding.listWork.setLayoutManager(new LinearLayoutManager(context));

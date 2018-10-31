@@ -20,6 +20,7 @@ public class MainActivity
      *
      */
     private final BottomNavigationManager mNavigationManager = new BottomNavigationManager(this);
+
     /**
      *
      */
