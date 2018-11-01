@@ -1,7 +1,6 @@
 package com.alaskalany.careershowcase.model;
 
-public interface Work
-        extends Model {
+public interface Work {
 
     /**
      * @return

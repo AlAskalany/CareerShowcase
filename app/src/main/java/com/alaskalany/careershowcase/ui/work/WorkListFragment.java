@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.database.DataGenerator;
 import com.alaskalany.careershowcase.databinding.FragmentWorkListBinding;
-import com.alaskalany.careershowcase.ui.BaseListFragment;
 import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
 
 /**
@@ -22,7 +22,12 @@ import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
  * <p/>
  */
 public class WorkListFragment
-        extends BaseListFragment<WorkAdapter, FragmentWorkListBinding> {
+        extends androidx.fragment.app.Fragment {
+
+    /**
+     *
+     */
+    protected static final String ARG_COLUMN_COUNT = "column-count";
 
     /**
      *
@@ -30,6 +35,21 @@ public class WorkListFragment
     private final WorkOnClickCallback mCallback =
             item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT)
                          .show();
+
+    /**
+     *
+     */
+    protected FragmentWorkListBinding mBinding;
+
+    /**
+     *
+     */
+    protected WorkAdapter mAdapter;
+
+    /**
+     *
+     */
+    protected int mColumnCount = 1;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -45,9 +65,9 @@ public class WorkListFragment
      * @return
      */
     @SuppressWarnings("unused")
-    public static BaseListFragment newInstance(int columnCount) {
+    public static WorkListFragment newInstance(int columnCount) {
 
-        BaseListFragment fragment = new WorkListFragment();
+        WorkListFragment fragment = new WorkListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -105,5 +125,67 @@ public class WorkListFragment
                   }
                   mBinding.executePendingBindings();
               });
+    }
+
+    /**
+     * @return
+     */
+    protected int getColumnCount() {
+
+        return mColumnCount;
+    }
+
+    /**
+     * @param mColumnCount
+     */
+    protected void setColumnCount(int mColumnCount) {
+
+        this.mColumnCount = mColumnCount;
+    }
+
+    /**
+     * @return
+     */
+    protected WorkAdapter getAdapter() {
+
+        return mAdapter;
+    }
+
+    /**
+     * @param adapter
+     */
+    protected void setAdapter(WorkAdapter adapter) {
+
+        this.mAdapter = adapter;
+    }
+
+    /**
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+
+        super.onAttach(context);
+    }
+
+    /**
+     * @param savedInstanceState
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
+        }
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onDetach() {
+
+        super.onDetach();
     }
 }

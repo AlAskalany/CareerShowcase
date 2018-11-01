@@ -40,7 +40,7 @@ public class DataGenerator {
     @Contract(pure = true)
     public static List<WorkEntity> generateWorks() {
 
-        return (List<WorkEntity>) WorkContent.ITEM_MAP;
+        return WorkContent.ITEMS;
     }
 
     /**

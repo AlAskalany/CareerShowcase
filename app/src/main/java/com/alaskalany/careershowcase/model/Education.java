@@ -3,8 +3,7 @@ package com.alaskalany.careershowcase.model;
 /**
  *
  */
-public interface Education
-        extends Model {
+public interface Education {
 
     /**
      * @return

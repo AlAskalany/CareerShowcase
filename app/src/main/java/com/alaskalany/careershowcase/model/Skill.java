@@ -1,7 +1,6 @@
 package com.alaskalany.careershowcase.model;
 
-public interface Skill
-        extends Model {
+public interface Skill {
 
     int getSkillId();
 

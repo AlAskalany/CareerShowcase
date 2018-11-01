@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.database.entity.WorkEntity;
 import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
-import com.alaskalany.careershowcase.model.Work;
-import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
-import com.alaskalany.careershowcase.ui.BaseViewHolder;
+import org.jetbrains.annotations.Contract;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +19,17 @@ import java.util.Objects;
  * TODO: Replace the implementation with code for your data type.
  */
 public class WorkAdapter
-        extends BaseRecyclerViewAdapter<WorkAdapter.ViewHolder, WorkEntity, WorkOnClickCallback> {
+        extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
+
+    /**
+     *
+     */
+    protected final WorkOnClickCallback mCallback;
+
+    /**
+     *
+     */
+    protected List<WorkEntity> mValues;
 
     /**
      * @param callback
@@ -29,12 +37,24 @@ public class WorkAdapter
     @SuppressWarnings("WeakerAccess")
     public WorkAdapter(WorkOnClickCallback callback) {
 
-        super(callback);
+        this.mCallback = callback;
+    }
+
+    /**
+     * @param position
+     *
+     * @return
+     */
+    @Contract(pure = true)
+    protected static int positionToKey(int position) {
+
+        return position + 1;
     }
 
     /**
      * @param parent
      * @param viewType
+     *
      * @return
      */
     @NonNull
@@ -56,14 +76,15 @@ public class WorkAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setWork(mValues.get(position));
+        holder.mBinding.setWork(mValues.get(positionToKey(position)));
+        holder.mBinding.setCallback(mCallback);
         holder.mBinding.executePendingBindings();
     }
 
-    public void setWorkList(final List<? extends Work> workList) {
+    public void setWorkList(final List<WorkEntity> workList) {
 
         if (mValues == null) {
-            mValues = (List<WorkEntity>) workList;
+            mValues = workList;
             notifyItemRangeInserted(0, workList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
@@ -84,38 +105,61 @@ public class WorkAdapter
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
                     return mValues.get(oldItemPosition)
-                                  .getWorkId() ==
-                           workList.get(newItemPosition).getWorkId();
+                                  .getWorkId() == workList.get(newItemPosition)
+                                                          .getWorkId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    Work newWork = workList.get(newItemPosition);
-                    Work oldProduct = (Work) mValues.get(oldItemPosition);
+                    WorkEntity newWork = workList.get(newItemPosition);
+                    WorkEntity oldProduct = mValues.get(oldItemPosition);
                     return newWork.getWorkId() == oldProduct.getWorkId() &&
                            Objects.equals(newWork.getDescription(), oldProduct.getDescription()) &&
                            Objects.equals(newWork.getTitle(), oldProduct.getTitle()) &&
                            newWork.getDescription() == oldProduct.getDescription();
                 }
             });
-            mValues = (List<WorkEntity>) workList;
+            mValues = workList;
             result.dispatchUpdatesTo(this);
         }
+    }
+
+    /**
+     * @return
+     */
+    public WorkOnClickCallback getCallback() {
+
+        return mCallback;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int getItemCount() {
+
+        return mValues == null ? 0 : mValues.size();
     }
 
     /**
      *
      */
     public static class ViewHolder
-            extends BaseViewHolder<FragmentWorkBinding> {
+            extends RecyclerView.ViewHolder {
+
+        /**
+         *
+         */
+        public final FragmentWorkBinding mBinding;
 
         /**
          * @param binding
          */
         ViewHolder(FragmentWorkBinding binding) {
 
-            super(binding.getRoot(), binding);
+            super(binding.getRoot());
+            this.mBinding = binding;
         }
     }
 }
