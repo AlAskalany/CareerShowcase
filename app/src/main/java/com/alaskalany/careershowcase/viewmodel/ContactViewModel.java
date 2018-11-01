@@ -24,7 +24,7 @@ public class ContactViewModel
 
         super(application);
         mContactId = contactId;
-        mObservableContact = dataRepository.load(contactId);
+        mObservableContact = dataRepository.mContactRepository.load(contactId);
     }
 
     public LiveData<ContactEntity> getObservableContact() {

@@ -24,13 +24,12 @@ public class WorkAdapter
         extends BaseRecyclerViewAdapter<WorkAdapter.ViewHolder, WorkEntity, WorkOnClickCallback> {
 
     /**
-     * @param items
      * @param callback
      */
     @SuppressWarnings("WeakerAccess")
-    public WorkAdapter(List<WorkEntity> items, WorkOnClickCallback callback) {
+    public WorkAdapter(WorkOnClickCallback callback) {
 
-        super(items, callback);
+        super(callback);
     }
 
     /**
@@ -57,15 +56,14 @@ public class WorkAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setWork(mValues.get(positionToKey(position)));
-        holder.mBinding.setCallback(getCallback());
+        holder.mBinding.setWork(mValues.get(position));
         holder.mBinding.executePendingBindings();
     }
 
-    public void setWorkList(final List<WorkEntity> workList) {
+    public void setWorkList(final List<? extends Work> workList) {
 
         if (mValues == null) {
-            mValues = workList;
+            mValues = (List<WorkEntity>) workList;
             notifyItemRangeInserted(0, workList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
@@ -85,7 +83,8 @@ public class WorkAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    return ((Work) mValues.get(oldItemPosition)).getWorkId() ==
+                    return mValues.get(oldItemPosition)
+                                  .getWorkId() ==
                            workList.get(newItemPosition).getWorkId();
                 }
 
@@ -100,7 +99,7 @@ public class WorkAdapter
                            newWork.getDescription() == oldProduct.getDescription();
                 }
             });
-            mValues = workList;
+            mValues = (List<WorkEntity>) workList;
             result.dispatchUpdatesTo(this);
         }
     }

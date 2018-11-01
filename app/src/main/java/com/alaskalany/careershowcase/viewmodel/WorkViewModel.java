@@ -24,7 +24,7 @@ public class WorkViewModel
 
         super(application);
         mWorkId = workId;
-        mObservableWork = dataRepository.load(workId);
+        mObservableWork = dataRepository.mWorkRepository.load(workId);
     }
 
     public LiveData<WorkEntity> getObservableWork() {

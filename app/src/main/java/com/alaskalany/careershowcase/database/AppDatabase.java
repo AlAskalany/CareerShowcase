@@ -19,7 +19,7 @@ import com.alaskalany.careershowcase.model.Model;
 
 import java.util.List;
 
-@Database(version = 1, entities = {
+@Database(version = 3, entities = {
         ContactEntity.class, EducationEntity.class, SkillEntity.class, WorkEntity.class
 })
 public abstract class AppDatabase

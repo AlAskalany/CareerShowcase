@@ -13,6 +13,7 @@ public class WorkEntity
         implements Work {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "work_id")
     private int workId;
 
     @ColumnInfo(name = "work_title")

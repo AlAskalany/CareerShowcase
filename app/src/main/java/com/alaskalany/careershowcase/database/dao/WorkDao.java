@@ -18,11 +18,11 @@ public interface WorkDao
     void insertAll(List<WorkEntity> workEntities);
 
     @Override
-    @Query("select * from works_table where workId = :workId")
+    @Query("select * from works_table where work_id = :workId")
     LiveData<WorkEntity> load(int workId);
 
     @Override
-    @Query("select * from works_table where workId = :workId")
+    @Query("select * from works_table where work_id = :workId")
     WorkEntity loadSync(int workId);
 
     @Override

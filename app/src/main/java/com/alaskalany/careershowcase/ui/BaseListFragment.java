@@ -25,12 +25,12 @@ public abstract class BaseListFragment<A extends BaseRecyclerViewAdapter, B exte
     /**
      *
      */
-    private A mAdapter;
+    protected A mAdapter;
 
     /**
      *
      */
-    private int mColumnCount = 1;
+    protected int mColumnCount = 1;
 
     /**
      * @return

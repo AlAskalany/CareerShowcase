@@ -1,10 +1,10 @@
 package com.alaskalany.careershowcase.viewmodel;
 
 import android.app.Application;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.*;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
+import com.alaskalany.careershowcase.DataRepository;
 import com.alaskalany.careershowcase.database.entity.WorkEntity;
 
 import java.util.List;
@@ -34,5 +34,29 @@ public class WorkListViewModel
     public LiveData<List<WorkEntity>> getWorks() {
 
         return mObservableProducts;
+    }
+
+    public static class Factory
+            extends ViewModelProvider.NewInstanceFactory {
+
+        @NonNull
+        private final Application mApplication;
+
+        private final int mWorkId;
+
+        private final DataRepository mRepository;
+
+        public Factory(@NonNull Application application, int workId) {
+
+            mApplication = application;
+            mWorkId = workId;
+            mRepository = ((CareerShowcaseApp) application).getRepository();
+        }
+
+        @Override
+        public <T extends ViewModel> T create(Class<T> modelClass) {
+            //noinspection unchecked
+            return (T) new WorkViewModel(mApplication, mRepository, mWorkId);
+        }
     }
 }

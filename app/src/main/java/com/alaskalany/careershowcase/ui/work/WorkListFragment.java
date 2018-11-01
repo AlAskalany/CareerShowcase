@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.DataGenerator;
 import com.alaskalany.careershowcase.databinding.FragmentWorkListBinding;
 import com.alaskalany.careershowcase.ui.BaseListFragment;
 import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
@@ -29,7 +28,8 @@ public class WorkListFragment
      *
      */
     private final WorkOnClickCallback mCallback =
-            item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
+            item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT)
+                         .show();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -41,6 +41,7 @@ public class WorkListFragment
 
     /**
      * @param columnCount
+     *
      * @return
      */
     @SuppressWarnings("unused")
@@ -51,6 +52,29 @@ public class WorkListFragment
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     *
+     * @return
+     */
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
+        mAdapter = new WorkAdapter(mCallback);
+        Context context = mBinding.getRoot()
+                                  .getContext();
+        if (mColumnCount <= 1) {
+            mBinding.listWork.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            mBinding.listWork.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        }
+        mBinding.listWork.setAdapter(mAdapter);
+        return mBinding.getRoot();
     }
 
     /**
@@ -70,34 +94,16 @@ public class WorkListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        final WorkListViewModel _model = ViewModelProviders.of(this).get(WorkListViewModel.class);
-        _model.getWorks().observe(this, pWorkEntities -> {
-            if (pWorkEntities != null) {
-                getAdapter().setWorkList(pWorkEntities);
-            } else {
-            }
-            mBinding.executePendingBindings();
-        });
-    }
-
-    /**
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
-        setAdapter(new WorkAdapter(DataGenerator.generateWorks(), mCallback));
-        Context context = mBinding.getRoot().getContext();
-        if (getColumnCount() <= 1) {
-            mBinding.listWork.setLayoutManager(new LinearLayoutManager(context));
-        } else {
-            mBinding.listWork.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
-        }
-        mBinding.listWork.setAdapter(getAdapter());
-        return mBinding.getRoot();
+        final WorkListViewModel _model = ViewModelProviders.of(this)
+                                                           .get(WorkListViewModel.class);
+        mBinding.setWorkListViewModel(_model);
+        _model.getWorks()
+              .observe(this, pWorkEntities -> {
+                  if (pWorkEntities != null) {
+                      mAdapter.setWorkList(pWorkEntities);
+                  } else {
+                  }
+                  mBinding.executePendingBindings();
+              });
     }
 }

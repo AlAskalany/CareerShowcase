@@ -13,13 +13,13 @@ public class DataRepository {
 
     private final AppDatabase mDatabase;
 
-    private final ContactRepository mContactRepository = new ContactRepository(this);
+    public final ContactRepository mContactRepository = new ContactRepository(this);
 
-    private final WorkRepository mWorkRepository = new WorkRepository(this);
+    public final WorkRepository mWorkRepository = new WorkRepository(this);
 
-    private final SkillRepository mSkillRepository = new SkillRepository(this);
+    public final SkillRepository mSkillRepository = new SkillRepository(this);
 
-    private final EducationRepository mEducationRepository = new EducationRepository(this);
+    public final EducationRepository mEducationRepository = new EducationRepository(this);
 
     private DataRepository(final AppDatabase database) {
 

@@ -2,7 +2,6 @@ package com.alaskalany.careershowcase.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.model.Model;
-import com.alaskalany.careershowcase.model.Work;
 import org.jetbrains.annotations.Contract;
 
 import java.util.List;
@@ -35,8 +34,14 @@ public abstract class BaseRecyclerViewAdapter<T extends RecyclerView.ViewHolder,
         this.mCallback = callback;
     }
 
+    public BaseRecyclerViewAdapter(M pCallback) {
+
+        this.mCallback = pCallback;
+    }
+
     /**
      * @param position
+     *
      * @return
      */
     @Contract(pure = true)
@@ -59,6 +64,6 @@ public abstract class BaseRecyclerViewAdapter<T extends RecyclerView.ViewHolder,
     @Override
     public int getItemCount() {
 
-        return mValues.size();
+        return mValues == null ? 0 : mValues.size();
     }
 }
