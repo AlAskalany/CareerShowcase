@@ -1,182 +1,93 @@
 package com.alaskalany.careershowcase.database.entity;
 
-import androidx.room.*;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 import com.alaskalany.careershowcase.model.Education;
 
 /**
- * A education item representing a piece of description.
+ * A education item representing a piece of educationDescription.
  */
-@Entity(tableName = "education", indices = {@Index(value = {"title"}, unique = true)})
+@Entity(tableName = "education_table")
 public class EducationEntity
         implements Education {
 
-    /**
-     *
-     */
-    @PrimaryKey
-    private int id;
-    /**
-     *
-     */
-    @ColumnInfo(name = "title")
-    private String title;
-    /**
-     *
-     */
-    @Embedded
-    private String school;
-    /**
-     *
-     */
-    @ColumnInfo(name = "degree")
-    private String degree;
-    /**
-     *
-     */
-    @ColumnInfo(name = "study_field")
-    private String studyField;
-    /**
-     *
-     */
-    @ColumnInfo(name = "description")
-    private String description;
-    /**
-     *
-     */
-    @ColumnInfo(name = "duration")
-    private String duration;
+    @PrimaryKey(autoGenerate = true)
+    private int educationId;
 
-    /**
-     *
-     */
-    @SuppressWarnings("WeakerAccess")
+    @ColumnInfo(name = "educationTitle")
+    private String educationTitle;
+
+    @ColumnInfo(name = "educationDegree")
+    private String educationDegree;
+
+    @ColumnInfo(name = "study_field")
+    private String educationStudyField;
+
+    @ColumnInfo(name = "educationDescription")
+    private String educationDescription;
+
     public EducationEntity() {
 
     }
 
-    /**
-     * @return
-     */
     @Override
-    public int getId() {
+    public int getEducationId() {
 
-        return id;
+        return educationId;
     }
 
-    /**
-     * @param id
-     */
     @Override
-    public void setId(int id) {
+    public void setEducationId(int educationId) {
 
-        this.id = id;
+        this.educationId = educationId;
     }
 
-    /**
-     * @return
-     */
     @Override
-    public String getTitle() {
+    public String getEducationTitle() {
 
-        return title;
+        return educationTitle;
     }
 
-    /**
-     * @param title
-     */
     @Override
-    public void setTitle(String title) {
+    public void setEducationTitle(String educationTitle) {
 
-        this.title = title;
+        this.educationTitle = educationTitle;
     }
 
-    /**
-     * @return
-     */
     @Override
-    public String getSchool() {
+    public String getEducationDegree() {
 
-        return school;
+        return educationDegree;
     }
 
-    /**
-     * @param school
-     */
     @Override
-    public void setSchool(String school) {
+    public void setEducationDegree(String educationDegree) {
 
-        this.school = school;
+        this.educationDegree = educationDegree;
     }
 
-    /**
-     * @return
-     */
     @Override
-    public String getDegree() {
+    public String getEducationStudyField() {
 
-        return degree;
+        return educationStudyField;
     }
 
-    /**
-     * @param degree
-     */
     @Override
-    public void setDegree(String degree) {
+    public void setEducationStudyField(String educationStudyField) {
 
-        this.degree = degree;
+        this.educationStudyField = educationStudyField;
     }
 
-    /**
-     * @return
-     */
     @Override
-    public String getStudyField() {
+    public String getEducationDescription() {
 
-        return studyField;
+        return educationDescription;
     }
 
-    /**
-     * @param studyField
-     */
     @Override
-    public void setStudyField(String studyField) {
+    public void setEducationDescription(String educationDescription) {
 
-        this.studyField = studyField;
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public String getDescription() {
-
-        return description;
-    }
-
-    /**
-     * @param description
-     */
-    @Override
-    public void setDescription(String description) {
-
-        this.description = description;
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public String getDuration() {
-
-        return duration;
-    }
-
-    /**
-     * @param duration
-     */
-    @Override
-    public void setDuration(String duration) {
-
-        this.duration = duration;
+        this.educationDescription = educationDescription;
     }
 }

@@ -10,6 +10,10 @@
       <option name="LOCAL_VARIABLE_NAME_PREFIX" value="_" />
       <option name="ANNOTATION_PARAMETER_WRAP" value="1" />
       <option name="ALIGN_MULTILINE_ANNOTATION_PARAMETERS" value="true" />
+      <option name="JD_ADD_BLANK_AFTER_PARM_COMMENTS" value="true" />
+      <option name="JD_ADD_BLANK_AFTER_RETURN" value="true" />
+      <option name="JD_KEEP_EMPTY_LINES" value="false" />
+      <option name="JD_INDENT_ON_CONTINUATION" value="true" />
     </JavaCodeStyleSettings>
     <Objective-C-extensions>
       <file>
@@ -48,9 +52,9 @@
       <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="0" />
       <option name="KEEP_BLANK_LINES_IN_CODE" value="0" />
       <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="0" />
+      <option name="BLANK_LINES_AROUND_FIELD" value="1" />
       <option name="BLANK_LINES_BEFORE_METHOD_BODY" value="1" />
       <option name="BLANK_LINES_AROUND_FIELD_IN_INTERFACE" value="1" />
-      <option name="BLANK_LINES_AROUND_METHOD_IN_INTERFACE" value="0" />
       <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1" />
       <option name="BLANK_LINES_AFTER_ANONYMOUS_CLASS_HEADER" value="1" />
       <option name="WHILE_ON_NEW_LINE" value="true" />
@@ -69,7 +73,7 @@
       <option name="THROWS_LIST_WRAP" value="1" />
       <option name="EXTENDS_KEYWORD_WRAP" value="2" />
       <option name="THROWS_KEYWORD_WRAP" value="1" />
-      <option name="METHOD_CALL_CHAIN_WRAP" value="5" />
+      <option name="METHOD_CALL_CHAIN_WRAP" value="2" />
       <option name="BINARY_OPERATION_WRAP" value="1" />
       <option name="TERNARY_OPERATION_WRAP" value="5" />
       <option name="TERNARY_OPERATION_SIGNS_ON_NEXT_LINE" value="true" />

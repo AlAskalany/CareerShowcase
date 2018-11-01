@@ -9,32 +9,32 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
 import com.alaskalany.careershowcase.DataRepository;
-import com.alaskalany.careershowcase.database.entity.EducationEntity;
+import com.alaskalany.careershowcase.database.entity.ContactEntity;
 
-public class EducationViewModel
+public class ContactViewModel
         extends AndroidViewModel {
 
-    private final LiveData<EducationEntity> mObservableEducation;
+    private final LiveData<ContactEntity> mObservableContact;
 
-    private final int mEducationId;
+    private final int mContactId;
 
-    public ObservableField<EducationEntity> education = new ObservableField<EducationEntity>();
+    public ObservableField<ContactEntity> contact = new ObservableField<>();
 
-    public EducationViewModel(@NonNull Application application, DataRepository dataRepository, final int educationId) {
+    public ContactViewModel(@NonNull Application application, DataRepository dataRepository, final int contactId) {
 
         super(application);
-        mEducationId = educationId;
-        mObservableEducation = dataRepository.mEducationRepository.load(educationId);
+        mContactId = contactId;
+        mObservableContact = dataRepository.mContactRepository.load(contactId);
     }
 
-    public LiveData<EducationEntity> getObservableEducation() {
+    public LiveData<ContactEntity> getObservableContact() {
 
-        return mObservableEducation;
+        return mObservableContact;
     }
 
-    public void setEducation(EducationEntity education) {
+    public void setContact(ContactEntity contact) {
 
-        this.education.set(education);
+        this.contact.set(contact);
     }
 
     /**
@@ -49,21 +49,21 @@ public class EducationViewModel
         @NonNull
         private final Application mApplication;
 
-        private final int mEducationId;
+        private final int mContactId;
 
         private final DataRepository mRepository;
 
-        public Factory(@NonNull Application application, int educationId) {
+        public Factory(@NonNull Application application, int contactId) {
 
             mApplication = application;
-            mEducationId = educationId;
+            mContactId = contactId;
             mRepository = ((CareerShowcaseApp) application).getRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new EducationViewModel(mApplication, mRepository, mEducationId);
+            return (T) new ContactViewModel(mApplication, mRepository, mContactId);
         }
     }
 }

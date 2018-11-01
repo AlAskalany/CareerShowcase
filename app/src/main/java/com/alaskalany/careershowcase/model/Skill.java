@@ -1,41 +1,16 @@
 package com.alaskalany.careershowcase.model;
 
-import androidx.annotation.NonNull;
+public interface Skill {
 
-/**
- *
- */
-public interface Skill
-        extends Model {
+    int getSkillId();
 
-    /**
-     * @return
-     */
-    int getId();
-    /**
-     * @param id
-     */
-    void setId(int id);
-    /**
-     * @return
-     */
+    void setSkillId(int id);
+
     String getTitle();
-    /**
-     * @param title
-     */
+
     void setTitle(String title);
-    /**
-     * @return
-     */
+
     String getDescription();
-    /**
-     * @param description
-     */
+
     void setDescription(String description);
-    /**
-     * @return
-     */
-    @NonNull
-    @Override
-    String toString();
 }

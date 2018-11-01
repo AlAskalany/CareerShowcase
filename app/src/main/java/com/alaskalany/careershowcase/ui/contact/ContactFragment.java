@@ -29,24 +29,29 @@ public class ContactFragment
      *
      */
     private static final String ARG_PARAM1 = "param1";
+
     /**
      *
      */
     private static final String ARG_PARAM2 = "param2";
+
     /**
      *
      */
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam1;
+
     /**
      *
      */
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String mParam2;
+
     /**
      *
      */
     private OnContactFragmentInteractionListener mListener;
+
     /**
      *
      */

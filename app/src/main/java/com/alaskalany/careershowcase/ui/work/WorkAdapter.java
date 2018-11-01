@@ -1,37 +1,60 @@
 package com.alaskalany.careershowcase.ui.work;
 
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.database.entity.WorkEntity;
 import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
-import com.alaskalany.careershowcase.model.Work;
-import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
-import com.alaskalany.careershowcase.ui.BaseViewHolder;
+import org.jetbrains.annotations.Contract;
+
+import java.util.List;
+import java.util.Objects;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Work}
+ * {@link RecyclerView.Adapter} that can display a {@link WorkEntity}
  * TODO: Replace the implementation with code for your data type.
  */
 public class WorkAdapter
-        extends BaseRecyclerViewAdapter<WorkAdapter.ViewHolder, Work, WorkOnClickCallback> {
+        extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
 
     /**
-     * @param items
+     *
+     */
+    protected final WorkOnClickCallback mCallback;
+
+    /**
+     *
+     */
+    protected List<WorkEntity> mValues;
+
+    /**
      * @param callback
      */
     @SuppressWarnings("WeakerAccess")
-    public WorkAdapter(SparseArray<Work> items, WorkOnClickCallback callback) {
+    public WorkAdapter(WorkOnClickCallback callback) {
 
-        super(items, callback);
+        this.mCallback = callback;
+    }
+
+    /**
+     * @param position
+     *
+     * @return
+     */
+    @Contract(pure = true)
+    protected static int positionToKey(int position) {
+
+        return position + 1;
     }
 
     /**
      * @param parent
      * @param viewType
+     *
      * @return
      */
     @NonNull
@@ -42,6 +65,7 @@ public class WorkAdapter
                                                               R.layout.fragment_work,
                                                               parent,
                                                               false);
+        binding.setCallback(mCallback);
         return new ViewHolder(binding);
     }
 
@@ -53,22 +77,89 @@ public class WorkAdapter
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         holder.mBinding.setWork(mValues.get(positionToKey(position)));
-        holder.mBinding.setCallback(getCallback());
+        holder.mBinding.setCallback(mCallback);
         holder.mBinding.executePendingBindings();
+    }
+
+    public void setWorkList(final List<WorkEntity> workList) {
+
+        if (mValues == null) {
+            mValues = workList;
+            notifyItemRangeInserted(0, workList.size());
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+
+                @Override
+                public int getOldListSize() {
+
+                    return mValues.size();
+                }
+
+                @Override
+                public int getNewListSize() {
+
+                    return workList.size();
+                }
+
+                @Override
+                public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+
+                    return mValues.get(oldItemPosition)
+                                  .getWorkId() == workList.get(newItemPosition)
+                                                          .getWorkId();
+                }
+
+                @Override
+                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+
+                    WorkEntity newWork = workList.get(newItemPosition);
+                    WorkEntity oldProduct = mValues.get(oldItemPosition);
+                    return newWork.getWorkId() == oldProduct.getWorkId() &&
+                           Objects.equals(newWork.getDescription(), oldProduct.getDescription()) &&
+                           Objects.equals(newWork.getTitle(), oldProduct.getTitle()) &&
+                           newWork.getDescription() == oldProduct.getDescription();
+                }
+            });
+            mValues = workList;
+            result.dispatchUpdatesTo(this);
+        }
+    }
+
+    /**
+     * @return
+     */
+    public WorkOnClickCallback getCallback() {
+
+        return mCallback;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int getItemCount() {
+
+        return mValues == null ? 0 : mValues.size();
     }
 
     /**
      *
      */
     public static class ViewHolder
-            extends BaseViewHolder<FragmentWorkBinding> {
+            extends RecyclerView.ViewHolder {
+
+        /**
+         *
+         */
+        public final FragmentWorkBinding mBinding;
 
         /**
          * @param binding
          */
         ViewHolder(FragmentWorkBinding binding) {
 
-            super(binding.getRoot(), binding);
+            super(binding.getRoot());
+            this.mBinding = binding;
         }
     }
 }
