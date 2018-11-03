@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import com.alaskalany.careershowcase.MainActivity;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.ui.contact.ContactFragment;
 import com.alaskalany.careershowcase.ui.education.EducationListFragment;
@@ -25,32 +26,32 @@ public class BottomNavigationManager
                    BottomNavigationView.OnNavigationItemReselectedListener {
 
     /**
-     *
+     * {@link OverviewFragment}
      */
     private static final int OVERVIEW = 0;
 
     /**
-     *
+     * {@link EducationListFragment}
      */
     private static final int EDUCATION = 1;
 
     /**
-     *
+     * {@link WorkListFragment}
      */
     private static final int WORK = 2;
 
     /**
-     *
+     * {@link SkillListFragment}
      */
     private static final int SKILLS = 3;
 
     /**
-     *
+     * {@link ContactFragment}
      */
     private static final int CONTACT = 4;
 
     /**
-     *
+     * {@link MainActivity}
      */
     private final FragmentActivity mActivity;
 
@@ -60,7 +61,7 @@ public class BottomNavigationManager
     private final SparseArrayCompat<ScrollToTop> mFragments;
 
     /**
-     * @param fragmentActivity
+     * @param fragmentActivity {@link MainActivity}
      */
     public BottomNavigationManager(FragmentActivity fragmentActivity) {
 
@@ -74,9 +75,9 @@ public class BottomNavigationManager
     }
 
     /**
-     * @param menuItem
+     * @param menuItem Bottom navigation menu item
      *
-     * @return
+     * @return True if a menu item was selected
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -102,16 +103,15 @@ public class BottomNavigationManager
     }
 
     /**
-     * @param navFragment
+     * @param navFragment Navigation fragment
      *
-     * @throws RuntimeException
+     * @throws RuntimeException If the navigation fragment is null
      */
     private void replaceFragment(int navFragment) throws RuntimeException {
 
         ScrollToTop fragment = mFragments.get(navFragment);
         if (fragment != null) {
-            FragmentTransaction transaction = mActivity.getSupportFragmentManager()
-                                                       .beginTransaction();
+            FragmentTransaction transaction = mActivity.getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.container_navigation, (Fragment) fragment);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -121,7 +121,7 @@ public class BottomNavigationManager
     }
 
     /**
-     * @param menuItem
+     * @param menuItem Bottom navigation menu item
      */
     @Override
     public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
@@ -145,18 +145,26 @@ public class BottomNavigationManager
         }
     }
 
-    private void scrollToFragmentTop(ScrollToTop fragment) {
+    /**
+     * @param fragment Bottom navigation fragment
+     */
+    private void scrollToFragmentTop(@NonNull ScrollToTop fragment) {
 
         fragment.top();
     }
 
-    private ScrollToTop getFragment(int pPOverview) {
+    /**
+     * @param fragmentId Fragment id
+     *
+     * @return Bottom navigation fragment
+     */
+    private ScrollToTop getFragment(int fragmentId) {
 
-        return Objects.requireNonNull(mFragments.get(pPOverview));
+        return Objects.requireNonNull(mFragments.get(fragmentId));
     }
 
     /**
-     * @param freshStart
+     * @param freshStart Is this a fresh activity start
      */
     public void init(boolean freshStart) {
 

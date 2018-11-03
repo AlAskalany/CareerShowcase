@@ -7,9 +7,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.entity.WorkEntity;
+import com.alaskalany.careershowcase.entity.WorkEntity;
 import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
-import org.jetbrains.annotations.Contract;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,17 +40,6 @@ public class WorkAdapter
     }
 
     /**
-     * @param position
-     *
-     * @return
-     */
-    @Contract(pure = true)
-    protected static int positionToKey(int position) {
-
-        return position + 1;
-    }
-
-    /**
      * @param parent
      * @param viewType
      *
@@ -76,7 +64,7 @@ public class WorkAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setWork(mValues.get(positionToKey(position)));
+        holder.mBinding.setWork(mValues.get(position));
         holder.mBinding.setCallback(mCallback);
         holder.mBinding.executePendingBindings();
     }
@@ -105,8 +93,8 @@ public class WorkAdapter
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
                     return mValues.get(oldItemPosition)
-                                  .getWorkId() == workList.get(newItemPosition)
-                                                          .getWorkId();
+                                  .getId() == workList.get(newItemPosition)
+                                                      .getId();
                 }
 
                 @Override
@@ -114,7 +102,7 @@ public class WorkAdapter
 
                     WorkEntity newWork = workList.get(newItemPosition);
                     WorkEntity oldProduct = mValues.get(oldItemPosition);
-                    return newWork.getWorkId() == oldProduct.getWorkId() &&
+                    return newWork.getId() == oldProduct.getId() &&
                            Objects.equals(newWork.getDescription(), oldProduct.getDescription()) &&
                            Objects.equals(newWork.getTitle(), oldProduct.getTitle()) &&
                            newWork.getDescription() == oldProduct.getDescription();

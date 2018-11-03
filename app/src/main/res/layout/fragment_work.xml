@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -15,17 +16,111 @@
 
     <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:id="@+id/cardView_Work"
-        style="@style/AppTheme.ItemCardView"
-        android:onClick="@{() -> callback.onClick(work)}">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="@{() -> callback.onClick(work)}"
+        app:contentPadding="8dp">
 
-        <TextView
-            android:id="@+id/textView_work_title"
-            style="@style/AppTheme.ItemTitleTextView"
-            tools:text="@{work.title}" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView_education_description"
-            style="@style/AppTheme.ItemDescriptionTextView"
-            tools:text="@{work.description}" />
+            <ImageView
+                android:id="@+id/imageView_work_logo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:contentDescription="@string/image_view_description_work_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_work_black_24dp" />
+
+            <TextView
+                android:id="@+id/textView_work_title"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="true"
+                android:text="@{work.title}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_work_logo"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Instrumentaion Engineer" />
+
+            <TextView
+                android:id="@+id/textView_work_company"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="true"
+                android:text="@{work.company}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_work_logo"
+                app:layout_constraintTop_toBottomOf="@+id/textView_work_title"
+                tools:text="Schlumberger Oil Field Services" />
+
+            <TextView
+                android:id="@+id/textView_work_duration"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="true"
+                android:text="@{work.duration}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_work_logo"
+                app:layout_constraintTop_toBottomOf="@+id/textView_work_company"
+                tools:text="Aug 2012- Nov 2014" />
+
+            <TextView
+                android:id="@+id/textView_work_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="true"
+                android:text="@{work.location}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_work_logo"
+                app:layout_constraintTop_toBottomOf="@+id/textView_work_duration"
+                tools:text="Cairo, Egypt" />
+
+            <TextView
+                android:id="@+id/textView_work_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:singleLine="false"
+                android:text="@{work.description}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_work_logo"
+                app:layout_constraintTop_toBottomOf="@+id/textView_work_location"
+                tools:text="Performed maintenance and repair for Electronic cartridges of Wire-line logging tools and data acquisition computer systems " />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 </layout>

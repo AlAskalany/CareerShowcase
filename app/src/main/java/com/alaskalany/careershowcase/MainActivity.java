@@ -18,23 +18,15 @@ public class MainActivity
                    ContactFragment.OnContactFragmentInteractionListener {
 
     /**
-     *
+     * Bottom navigation
      */
     private final BottomNavigationManager mNavigationManager = new BottomNavigationManager(this);
 
-    /**
-     *
-     */
-    private ActivityMainBinding mBinding;
-
-    /**
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.navigation.setOnNavigationItemSelectedListener(mNavigationManager);
         mBinding.navigation.setOnNavigationItemReselectedListener(mNavigationManager);
         // Set bottom navigation to first fragment
@@ -42,7 +34,7 @@ public class MainActivity
     }
 
     /**
-     * @param uri
+     * @param uri uri
      */
     @Override
     public void onOverviewFragmentInteraction(Uri uri) {
@@ -50,7 +42,7 @@ public class MainActivity
     }
 
     /**
-     * @param uri
+     * @param uri uri
      */
     @Override
     public void onContactFragmentInteraction(Uri uri) {

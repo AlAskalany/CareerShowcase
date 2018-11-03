@@ -5,7 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import com.alaskalany.careershowcase.database.entity.SkillEntity;
+import com.alaskalany.careershowcase.entity.SkillEntity;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ public interface SkillDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<SkillEntity> skillEntities);
 
-    @Query("select * from skills_table where skillId = :skillId")
-    LiveData<SkillEntity> load(int skillId);
+    @Query("select * from skills_table where skill_id = :id")
+    LiveData<SkillEntity> load(int id);
 
-    @Query("select * from skills_table where skillId = :skillId")
-    SkillEntity loadSync(int skillId);
+    @Query("select * from skills_table where skill_id = :id")
+    SkillEntity loadSync(int id);
 
     @Query("SELECT * FROM skills_table")
     LiveData<List<SkillEntity>> loadAll();

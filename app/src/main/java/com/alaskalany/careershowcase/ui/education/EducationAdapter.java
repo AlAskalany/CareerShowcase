@@ -7,9 +7,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.entity.EducationEntity;
+import com.alaskalany.careershowcase.entity.EducationEntity;
 import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
-import org.jetbrains.annotations.Contract;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,17 +40,6 @@ public class EducationAdapter
     }
 
     /**
-     * @param position
-     *
-     * @return
-     */
-    @Contract(pure = true)
-    protected static int positionToKey(int position) {
-
-        return position + 1;
-    }
-
-    /**
      * @param parent
      * @param viewType
      *
@@ -76,7 +64,7 @@ public class EducationAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setEducation(mValues.get(positionToKey(position)));
+        holder.mBinding.setEducation(mValues.get(position));
         holder.mBinding.setCallback(getCallback());
         holder.mBinding.executePendingBindings();
     }
@@ -105,8 +93,8 @@ public class EducationAdapter
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
                     return mValues.get(oldItemPosition)
-                                  .getEducationId() == educationList.get(newItemPosition)
-                                                                    .getEducationId();
+                                  .getId() == educationList.get(newItemPosition)
+                                                           .getId();
                 }
 
                 @Override
@@ -114,10 +102,18 @@ public class EducationAdapter
 
                     EducationEntity newSkill = educationList.get(newItemPosition);
                     EducationEntity oldSkill = mValues.get(oldItemPosition);
-                    return newSkill.getEducationId() == oldSkill.getEducationId() &&
-                           Objects.equals(newSkill.getEducationDescription(), oldSkill.getEducationDescription()) &&
-                           Objects.equals(newSkill.getEducationTitle(), oldSkill.getEducationTitle()) &&
-                           newSkill.getEducationDescription() == oldSkill.getEducationDescription();
+                    boolean isIdEqual = newSkill.getId() == oldSkill.getId();
+                    boolean isDescriptionEqual =
+                            Objects.equals(newSkill.getDescription(), oldSkill.getDescription());
+                    boolean isTitleEqual = Objects.equals(newSkill.getTitle(), oldSkill.getTitle());
+                    boolean isInstitutionEqual =
+                            Objects.equals(newSkill.getInstitution(), oldSkill.getInstitution());
+                    boolean isLocationEqual =
+                            Objects.equals(newSkill.getLocation(), oldSkill.getLocation());
+                    boolean isDurationEqual =
+                            Objects.equals(newSkill.getDegree(), oldSkill.getDuration());
+                    return isIdEqual && isDescriptionEqual && isTitleEqual && isInstitutionEqual && isLocationEqual &&
+                           isDurationEqual;
                 }
             });
             mValues = educationList;

@@ -1,0 +1,54 @@
+{
+  "education": [
+    {
+      "id": 1,
+      "title": "asd",
+      "degree": "qwe",
+      "studyField": "dfg",
+      "institution": "lfjghg",
+      "location": "kgjggj",
+      "duration": "dsfsdf"
+    }
+  ],
+  "work": [
+    {
+      "id": 1,
+      "title": "Software Academy Development Trainee",
+      "company": "Novare Potential",
+      "duration": "Aug 2012 - Aug 2015",
+      "location": "Stockholm, Sweden",
+      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
+    },
+    {
+      "id": 1,
+      "title": "CTO & Android Developer",
+      "company": "Wasder",
+      "duration": "Aug 2012 - Aug 2015",
+      "location": "Stockholm, Sweden",
+      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
+    },
+    {
+      "id": 1,
+      "title": "Lead QA Engineer",
+      "company": "Novare Potential",
+      "duration": "Aug 2012 - Aug 2015",
+      "location": "Stockholm, Sweden",
+      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
+    },
+    {
+      "id": 1,
+      "title": "Instrumentation Engineer",
+      "company": "Novare Potential",
+      "duration": "Aug 2012 - Aug 2015",
+      "location": "Stockholm, Sweden",
+      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "title": "qwe",
+      "level": 4
+    }
+  ]
+}

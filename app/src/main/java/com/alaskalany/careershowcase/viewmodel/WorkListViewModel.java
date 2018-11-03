@@ -4,8 +4,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.*;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.DataRepository;
-import com.alaskalany.careershowcase.database.entity.WorkEntity;
+import com.alaskalany.careershowcase.file.FileData;
+import com.alaskalany.careershowcase.repository.DataRepository;
+import com.alaskalany.careershowcase.entity.WorkEntity;
 
 import java.util.List;
 
@@ -18,12 +19,14 @@ public class WorkListViewModel
     public WorkListViewModel(Application application) {
 
         super(application);
-
         mObservableProducts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         mObservableProducts.setValue(null);
-        LiveData<List<WorkEntity>> works = ((CareerShowcaseApp) application).getRepository().mWorkRepository.getWorks();
-
+        //LiveData<List<WorkEntity>> works = ((CareerShowcaseApp) application).getRepository().mWorkRepository.getWorks();
+        FileData fileData = FileData.getInstance();
+        List<WorkEntity> worksASD = fileData.getWork(application.getApplicationContext());
+        LiveData<List<WorkEntity>> works = new MediatorLiveData<>();
+        ((MediatorLiveData<List<WorkEntity>>) works).postValue(worksASD);
         // observe the changes of the products from the database and forward them
         mObservableProducts.addSource(works, mObservableProducts::setValue);
     }

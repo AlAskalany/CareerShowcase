@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.database.entity.ContactEntity;
+import com.alaskalany.careershowcase.entity.ContactEntity;
 
 import java.util.List;
 

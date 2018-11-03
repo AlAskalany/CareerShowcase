@@ -2,8 +2,7 @@ package com.alaskalany.careershowcase.repository;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import com.alaskalany.careershowcase.DataRepository;
-import com.alaskalany.careershowcase.database.entity.ContactEntity;
+import com.alaskalany.careershowcase.entity.ContactEntity;
 
 import java.util.List;
 

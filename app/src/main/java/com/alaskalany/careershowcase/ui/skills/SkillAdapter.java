@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.entity.SkillEntity;
+import com.alaskalany.careershowcase.entity.SkillEntity;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
 import org.jetbrains.annotations.Contract;
 
@@ -76,7 +76,7 @@ public class SkillAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setSkill(mValues.get(positionToKey(position)));
+        holder.mBinding.setSkill(mValues.get(position));
         holder.mBinding.setCallback(getCallback());
         holder.mBinding.executePendingBindings();
     }
@@ -105,8 +105,8 @@ public class SkillAdapter
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
                     return mValues.get(oldItemPosition)
-                                  .getSkillId() == skillList.get(newItemPosition)
-                                                            .getSkillId();
+                                  .getId() == skillList.get(newItemPosition)
+                                                       .getId();
                 }
 
                 @Override
@@ -114,10 +114,9 @@ public class SkillAdapter
 
                     SkillEntity newSkill = skillList.get(newItemPosition);
                     SkillEntity oldSkill = mValues.get(oldItemPosition);
-                    return newSkill.getSkillId() == oldSkill.getSkillId() &&
-                           Objects.equals(newSkill.getDescription(), oldSkill.getDescription()) &&
+                    return newSkill.getId() == oldSkill.getId() &&
                            Objects.equals(newSkill.getTitle(), oldSkill.getTitle()) &&
-                           newSkill.getDescription() == oldSkill.getDescription();
+                           newSkill.getLevel() == oldSkill.getLevel();
                 }
             });
             mValues = skillList;

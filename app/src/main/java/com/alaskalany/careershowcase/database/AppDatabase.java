@@ -16,17 +16,17 @@ import com.alaskalany.careershowcase.database.dao.ContactDao;
 import com.alaskalany.careershowcase.database.dao.EducationDao;
 import com.alaskalany.careershowcase.database.dao.SkillDao;
 import com.alaskalany.careershowcase.database.dao.WorkDao;
-import com.alaskalany.careershowcase.database.entity.ContactEntity;
-import com.alaskalany.careershowcase.database.entity.EducationEntity;
-import com.alaskalany.careershowcase.database.entity.SkillEntity;
-import com.alaskalany.careershowcase.database.entity.WorkEntity;
+import com.alaskalany.careershowcase.entity.ContactEntity;
+import com.alaskalany.careershowcase.entity.EducationEntity;
+import com.alaskalany.careershowcase.entity.SkillEntity;
+import com.alaskalany.careershowcase.entity.WorkEntity;
 
 import java.util.List;
 
 /**
  *
  */
-@Database(version = 3, entities = {
+@Database(version = 5, entities = {
         ContactEntity.class, EducationEntity.class, SkillEntity.class, WorkEntity.class
 })
 public abstract class AppDatabase
@@ -111,6 +111,7 @@ public abstract class AppDatabase
                        }
                    })
                    .addCallback(mCallback)
+                   .fallbackToDestructiveMigration()
                    .build();
     }
 
