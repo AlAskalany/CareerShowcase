@@ -9,4 +9,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imageView_profile_picture_description">Profile picture in overview fragment</string>
+    <string name="profile_name">profile name</string>
+    <string name="profile_headline">profile headline</string>
+    <string name="text_introduction">I have a B.Sc. in Electrical and Computer Engineering and studied for a M.Sc. in Nanotechnology. Worked in the software industry for 2 years, in Quality Assurance and Mobile App Development. My primary fields of expertise is Java development for Android applications and building mobile back-ends using Firebase and Google Cloud Platform. My goal is to work on building quality Android applications with reliable back-end services, and to become a world-class expert in this specialty. I combine my educational background and technical skills with a broad knowledge of various technologies to come up with highly efficient and cost-effective solutions. Through motivation and high work ethic, I create and thrive in an environment of collaboration and eagerness to achieve set goals.</string>
 </resources>
