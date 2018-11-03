@@ -1,16 +1,10 @@
 package com.alaskalany.careershowcase.model;
 
-public interface Skill {
+import com.alaskalany.careershowcase.model.properties.Id;
+import com.alaskalany.careershowcase.model.properties.Level;
+import com.alaskalany.careershowcase.model.properties.Title;
 
-    int getSkillId();
+public interface Skill
+        extends Id, Title, Level {
 
-    void setSkillId(int id);
-
-    String getTitle();
-
-    void setTitle(String title);
-
-    String getDescription();
-
-    void setDescription(String description);
 }
