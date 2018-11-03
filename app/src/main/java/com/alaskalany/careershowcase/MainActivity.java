@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import com.alaskalany.careershowcase.databinding.ActivityMainBinding;
+import com.alaskalany.careershowcase.ui.BottomNavigationManager;
 import com.alaskalany.careershowcase.ui.contact.ContactFragment;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
 

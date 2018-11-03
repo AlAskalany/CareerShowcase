@@ -9,11 +9,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentSkillListBinding;
+import com.alaskalany.careershowcase.ui.ScrollToTop;
 import com.alaskalany.careershowcase.viewmodel.SkillListViewModel;
 
 /**
@@ -21,7 +23,8 @@ import com.alaskalany.careershowcase.viewmodel.SkillListViewModel;
  * <p/>
  */
 public class SkillListFragment
-        extends androidx.fragment.app.Fragment {
+        extends Fragment
+        implements ScrollToTop {
 
     /**
      *
@@ -186,5 +189,11 @@ public class SkillListFragment
     public void onDetach() {
 
         super.onDetach();
+    }
+
+    @Override
+    public void top() {
+
+        mBinding.listSkill.smoothScrollToPosition(0);
     }
 }

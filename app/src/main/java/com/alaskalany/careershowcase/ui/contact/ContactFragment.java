@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentContactBinding;
+import com.alaskalany.careershowcase.ui.ScrollToTop;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -23,7 +24,8 @@ import org.jetbrains.annotations.Contract;
  * create an instance of this fragment.
  */
 public class ContactFragment
-        extends Fragment {
+        extends Fragment
+        implements ScrollToTop {
 
     /**
      *
@@ -70,6 +72,7 @@ public class ContactFragment
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
+     *
      * @return A new instance of fragment ContactFragment.
      */
     @SuppressWarnings({"WeakerAccess", "unused"})
@@ -134,6 +137,7 @@ public class ContactFragment
      * @param inflater
      * @param container
      * @param savedInstanceState
+     *
      * @return
      */
     @Override
@@ -170,6 +174,11 @@ public class ContactFragment
     private void unregisterListener() {
 
         mListener = null;
+    }
+
+    @Override
+    public void top() {
+
     }
 
     /**

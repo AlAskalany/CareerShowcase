@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.DataGenerator;
 import com.alaskalany.careershowcase.databinding.FragmentWorkListBinding;
+import com.alaskalany.careershowcase.ui.ScrollToTop;
 import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
 
 /**
@@ -22,7 +22,8 @@ import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
  * <p/>
  */
 public class WorkListFragment
-        extends androidx.fragment.app.Fragment {
+        extends androidx.fragment.app.Fragment
+        implements ScrollToTop {
 
     /**
      *
@@ -187,5 +188,11 @@ public class WorkListFragment
     public void onDetach() {
 
         super.onDetach();
+    }
+
+    @Override
+    public void top() {
+        mBinding.listWork.smoothScrollToPosition(0);
+
     }
 }
