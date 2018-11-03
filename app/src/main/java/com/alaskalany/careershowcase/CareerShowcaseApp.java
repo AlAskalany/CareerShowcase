@@ -2,6 +2,7 @@ package com.alaskalany.careershowcase;
 
 import android.app.Application;
 import com.alaskalany.careershowcase.database.AppDatabase;
+import com.alaskalany.careershowcase.repository.DataRepository;
 
 public class CareerShowcaseApp
         extends Application {
