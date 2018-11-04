@@ -1,22 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="contact"
+            type="com.alaskalany.careershowcase.model.Contact" />
+
+        <variable
+            name="callback"
+            type="com.alaskalany.careershowcase.ui.contact.ContactOnClickCallback" />
     </data>
 
-    <FrameLayout
-        android:id="@+id/container_fragment_contact"
-        style="@style/AppTheme.FragmentContainer"
-        tools:context=".ui.contact.ContactFragment">
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/cardView_Contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="@{() -> callback.onClick(contact)}"
+        app:contentPadding="8dp">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/textView_contact_title"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content">
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/imageView_Contact_logo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:contentDescription="@string/image_view_description_contact_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_work_black_24dp" />
+
+            <TextView
+                android:id="@+id/textView_Contact_title"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="true"
+                android:text="@{contact.title}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_Contact_logo"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Instrumentaion Engineer" />
+
+            <TextView
+                android:id="@+id/textView_Contact_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:singleLine="false"
+                android:text="@{contact.description}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_Contact_logo"
+                app:layout_constraintTop_toBottomOf="@+id/textView_Contact_title"
+                tools:text="Performed maintenance and repair for Electronic cartridges of Wire-line logging tools and data acquisition computer systems " />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 </layout>

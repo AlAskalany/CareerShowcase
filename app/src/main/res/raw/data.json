@@ -87,7 +87,7 @@
     {
       "id": 4,
       "title": "Unity 3D",
-      "level": 4
+      "level": 2
     },
     {
       "id": 5,
@@ -107,7 +107,7 @@
     {
       "id": 8,
       "title": "Docker",
-      "level": 4
+      "level": 2
     },
     {
       "id": 9,
@@ -117,12 +117,29 @@
     {
       "id": 10,
       "title": "IntelliJ IDEA",
-      "level": 4
+      "level": 3
     },
     {
       "id": 11,
       "title": "Agile Software Development",
       "level": 4
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "title": "E-mail",
+      "description": "ahmed.alaskalany@gmail.com"
+    },
+    {
+      "id": 2,
+      "title": "Mobile",
+      "description": "+46 73 489 47 96"
+    },
+    {
+      "id": 3,
+      "title": "Skype",
+      "description": "ahmed.al-askalany"
     }
   ]
 }

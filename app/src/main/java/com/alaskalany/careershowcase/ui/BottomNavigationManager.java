@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.alaskalany.careershowcase.MainActivity;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.ui.contact.ContactFragment;
+import com.alaskalany.careershowcase.ui.contact.ContactListFragment;
 import com.alaskalany.careershowcase.ui.education.EducationListFragment;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
 import com.alaskalany.careershowcase.ui.skills.SkillListFragment;
@@ -46,7 +46,7 @@ public class BottomNavigationManager
     private static final int SKILLS = 3;
 
     /**
-     * {@link ContactFragment}
+     * {@link ContactListFragment}
      */
     private static final int CONTACT = 4;
 
@@ -71,7 +71,7 @@ public class BottomNavigationManager
         mFragments.put(EDUCATION, new EducationListFragment());
         mFragments.put(WORK, new WorkListFragment());
         mFragments.put(SKILLS, new SkillListFragment());
-        mFragments.put(CONTACT, new ContactFragment());
+        mFragments.put(CONTACT, new ContactListFragment());
     }
 
     /**
