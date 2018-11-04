@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
@@ -35,8 +36,7 @@ public class EducationListFragment
      *
      */
     private final EducationOnClickCallback mCallBack =
-            item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT)
-                         .show();
+            item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
      *
@@ -88,8 +88,7 @@ public class EducationListFragment
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
         setAdapter(new EducationAdapter(mCallBack));
-        Context context = mBinding.getRoot()
-                                  .getContext();
+        Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             mBinding.listEducation.setLayoutManager(new LinearLayoutManager(context));
         } else {
@@ -116,17 +115,15 @@ public class EducationListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        final EducationListViewModel _model = ViewModelProviders.of(this)
-                                                                .get(EducationListViewModel.class);
+        final EducationListViewModel _model = ViewModelProviders.of(this).get(EducationListViewModel.class);
         mBinding.setEducationListViewModel(_model);
-        _model.getEducations()
-              .observe(this, pWorkEntities -> {
-                  if (pWorkEntities != null) {
-                      mAdapter.setEducationList(pWorkEntities);
-                  } else {
-                  }
-                  mBinding.executePendingBindings();
-              });
+        _model.getEducations().observe(this, pWorkEntities -> {
+            if (pWorkEntities != null) {
+                mAdapter.setEducationList(pWorkEntities);
+            } else {
+            }
+            mBinding.executePendingBindings();
+        });
     }
 
     /**
