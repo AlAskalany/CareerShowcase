@@ -1,11 +1,13 @@
 package com.alaskalany.careershowcase.ui.contact;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentContactBinding;
 import com.alaskalany.careershowcase.entity.ContactEntity;
@@ -66,6 +68,8 @@ public class ContactAdapter
 
         holder.mBinding.setContact(mValues.get(position));
         holder.mBinding.setCallback(getCallback());
+        View rootView = holder.mBinding.getRoot();
+        GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewContactLogo);
         holder.mBinding.executePendingBindings();
     }
 

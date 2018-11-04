@@ -1,11 +1,13 @@
 package com.alaskalany.careershowcase.ui.education;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.entity.EducationEntity;
 import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
@@ -66,6 +68,8 @@ public class EducationAdapter
 
         holder.mBinding.setEducation(mValues.get(position));
         holder.mBinding.setCallback(getCallback());
+        View rootView = holder.mBinding.getRoot();
+        GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewEducationLogo);
         holder.mBinding.executePendingBindings();
     }
 
@@ -92,9 +96,7 @@ public class EducationAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    return mValues.get(oldItemPosition)
-                                  .getId() == educationList.get(newItemPosition)
-                                                           .getId();
+                    return mValues.get(oldItemPosition).getId() == educationList.get(newItemPosition).getId();
                 }
 
                 @Override
@@ -103,15 +105,11 @@ public class EducationAdapter
                     EducationEntity newSkill = educationList.get(newItemPosition);
                     EducationEntity oldSkill = mValues.get(oldItemPosition);
                     boolean isIdEqual = newSkill.getId() == oldSkill.getId();
-                    boolean isDescriptionEqual =
-                            Objects.equals(newSkill.getDescription(), oldSkill.getDescription());
+                    boolean isDescriptionEqual = Objects.equals(newSkill.getDescription(), oldSkill.getDescription());
                     boolean isTitleEqual = Objects.equals(newSkill.getTitle(), oldSkill.getTitle());
-                    boolean isInstitutionEqual =
-                            Objects.equals(newSkill.getInstitution(), oldSkill.getInstitution());
-                    boolean isLocationEqual =
-                            Objects.equals(newSkill.getLocation(), oldSkill.getLocation());
-                    boolean isDurationEqual =
-                            Objects.equals(newSkill.getDegree(), oldSkill.getDuration());
+                    boolean isInstitutionEqual = Objects.equals(newSkill.getInstitution(), oldSkill.getInstitution());
+                    boolean isLocationEqual = Objects.equals(newSkill.getLocation(), oldSkill.getLocation());
+                    boolean isDurationEqual = Objects.equals(newSkill.getDegree(), oldSkill.getDuration());
                     return isIdEqual && isDescriptionEqual && isTitleEqual && isInstitutionEqual && isLocationEqual &&
                            isDurationEqual;
                 }

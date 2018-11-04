@@ -37,6 +37,9 @@ public class EducationEntity
     @ColumnInfo(name = "education_duration")
     private String duration;
 
+    @ColumnInfo(name = "education_logo_url")
+    private String logoUrl;
+
     public EducationEntity() {
 
     }
@@ -135,5 +138,17 @@ public class EducationEntity
     public void setDuration(String pEducationDuration) {
 
         duration = pEducationDuration;
+    }
+
+    @Override
+    public String getLogoUrl() {
+
+        return logoUrl;
+    }
+
+    @Override
+    public void setLogoUrl(String logoUrl) {
+
+        this.logoUrl = logoUrl;
     }
 }

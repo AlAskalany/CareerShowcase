@@ -7,7 +7,8 @@
       "studyField": "Java",
       "institution": "KTH Royal Institute of Technology",
       "location": "Stockholm, Sweden",
-      "duration": "Aug 2018 - Present"
+      "duration": "Aug 2018 - Present",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcompany%2Fnovare_logo.png?alt=media&token=05ed0c85-66f3-489c-adb5-df0d14b72b5e"
     },
     {
       "id": 1,
@@ -16,7 +17,8 @@
       "studyField": "Nanotechnology",
       "institution": "KTH Royal Institute of Technology",
       "location": "Stockholm, Sweden",
-      "duration": "Sep 2016 - Jun 2016"
+      "duration": "Sep 2016 - Jun 2016",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Fkth_logo.png?alt=media&token=0b544c25-c5d2-4f33-8248-bc5b64967ede"
     },
     {
       "id": 1,
@@ -25,7 +27,8 @@
       "studyField": "Nanoelectronics",
       "institution": "Information Technology Institute",
       "location": "Cairo, Egypt",
-      "duration": "2012 - 2013"
+      "duration": "2012 - 2013",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Fiti_logo.png?alt=media&token=f91e6fc0-41c3-47b9-9971-95bc75dd9a04"
     },
     {
       "id": 1,
@@ -34,7 +37,8 @@
       "studyField": "Electrical and Computer Engineering",
       "institution": "Higher Technological Institute",
       "location": "AsSharqia, Egypt",
-      "duration": "Sep 2004 - Feb 2010"
+      "duration": "Sep 2004 - Feb 2010",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Fhti_logo.png?alt=media&token=256f5d3f-5dee-4480-91d7-9bbd1586ddcd"
     }
   ],
   "work": [
@@ -44,7 +48,8 @@
       "company": "Novare Potential",
       "duration": "Aug 2018 - Present",
       "location": "Stockholm, Sweden",
-      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
+      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden.",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcompany%2Fnovare_logo.png?alt=media&token=05ed0c85-66f3-489c-adb5-df0d14b72b5e"
     },
     {
       "id": 3,
@@ -52,7 +57,8 @@
       "company": "Wasder",
       "duration": "Sep 2017 - Aug 2018",
       "location": "Stockholm, Sweden",
-      "description": "Established the development environments for and developed Wasder E-Sports platform’s Android MVP with back-end services using Firebase and Google Cloud Platform."
+      "description": "Established the development environments for and developed Wasder E-Sports platform’s Android MVP with back-end services using Firebase and Google Cloud Platform.",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcompany%2Fwasder_logo.png?alt=media&token=7af103b0-d5bf-478d-818b-b4cfd611e337"
     },
     {
       "id": 4,
@@ -60,7 +66,8 @@
       "company": "FunRock",
       "duration": "Oct 2016 - Apr 2017",
       "location": "Stockholm, Sweden",
-      "description": "Debugging and analytics using C# in Unity 3D. Administered Jira and Confluence. Tested multiple production releases of Etihad Al Abtal Android Unity 3D game. Contributed to the Arabic/cultural localization for the game."
+      "description": "Debugging and analytics using C# in Unity 3D. Administered Jira and Confluence. Tested multiple production releases of Etihad Al Abtal Android Unity 3D game. Contributed to the Arabic/cultural localization for the game.",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcompany%2Ffunrock_logo.png?alt=media&token=9de5fca0-2bbb-42b1-be9a-bac730e248e5"
     },
     {
       "id": 5,
@@ -68,7 +75,8 @@
       "company": "One Planet Rating",
       "duration": "Jul 2017 - Aug 2017",
       "location": "Stockholm, Sweden",
-      "description": "Learned about back-end development using Python and the Django Framework. "
+      "description": "Learned about back-end development using Python and the Django Framework. ",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcompany%2Fopr_logo.png?alt=media&token=1319bc1d-3df9-4293-a697-ba0d9e2c6a3a"
     },
     {
       "id": 6,
@@ -76,7 +84,8 @@
       "company": "The American University in Cairo",
       "duration": "Nov 2012 - Oct 2012",
       "location": "Cairo, Egypt",
-      "description": "Center of Nanoelectronics and Devices"
+      "description": "Center of Nanoelectronics and Devices",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Fauc_logo.png?alt=media&token=63132a76-8abd-4c2c-879e-7edee8fc9750"
     },
     {
       "id": 7,
@@ -84,7 +93,8 @@
       "company": "Vertex",
       "duration": "Nov 2011 - Oct 2012",
       "location": "Cairo, Egypt",
-      "description": "Instructed undergraduate students in their graduation projects ."
+      "description": "Instructed undergraduate students in their graduation projects .",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcompany%2Fvertex_logo.png?alt=media&token=0532d783-e3e7-462d-9201-46b4522bf4c5"
     },
     {
       "id": 8,
@@ -92,81 +102,96 @@
       "company": "Schlumberger Oil Field Services",
       "duration": "Jul 2010 - Apr 2012",
       "location": "Red Sea, Egypt",
-      "description": "Performed maintenance and repair for Electronic cartridges of Wire-line logging tools and data acquisition computer systems."
+      "description": "Performed maintenance and repair for Electronic cartridges of Wire-line logging tools and data acquisition computer systems.",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcompany%2Fslb_logo.png?alt=media&token=71ebade0-ab56-486c-90ba-65b44d026c1f"
     }
   ],
   "skills": [
     {
       "id": 1,
       "title": "Java",
-      "level": 4
+      "level": 4,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F652579%20-%20code%20command%20d.png?alt=media&token=323c43c6-4699-435a-bac8-b5aa961b6fae"
     },
     {
       "id": 2,
       "title": "Android",
-      "level": 4
+      "level": 4,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
     },
     {
       "id": 3,
       "title": "Firebase",
-      "level": 4
+      "level": 4,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2Fif_google_firebase_1175532.png?alt=media&token=1aa8ac1d-debe-4f77-ba3f-dfd374c4fd6d"
     },
     {
       "id": 4,
       "title": "Unity 3D",
-      "level": 2
+      "level": 2,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2Fif_Unity_1082443.png?alt=media&token=e64f05d5-85b8-4bf9-a0ab-7160d90eb1f0"
     },
     {
       "id": 5,
       "title": "C#",
-      "level": 4
+      "level": 4,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
     },
     {
       "id": 6,
       "title": "Jira",
-      "level": 4
+      "level": 4,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F2317762%20-%20agile%20boards%20.png?alt=media&token=1de0e772-3cdc-427f-9f95-8b545b6ae984"
     },
     {
       "id": 7,
       "title": "Git",
-      "level": 4
+      "level": 4,
+      "logoUrl": "-https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2Fif_github_287583.png?alt=media&token=d0a71bfd-fa63-4a6a-a183-f7ea058c2c82"
     },
     {
       "id": 8,
       "title": "Docker",
-      "level": 2
+      "level": 2,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
     },
     {
       "id": 9,
       "title": "Android Studio",
-      "level": 4
+      "level": 4,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2FAndroid_Studio_icon.svg.png?alt=media&token=a1cc7a27-b46d-4370-816a-7605dd851cbf"
     },
     {
       "id": 10,
       "title": "IntelliJ IDEA",
-      "level": 3
+      "level": 3,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
     },
     {
       "id": 11,
       "title": "Agile Software Development",
-      "level": 4
+      "level": 4,
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
     }
   ],
   "contacts": [
     {
       "id": 1,
       "title": "E-mail",
-      "description": "ahmed.alaskalany@gmail.com"
+      "description": "ahmed.alaskalany@gmail.com",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
     },
     {
       "id": 2,
       "title": "Mobile",
-      "description": "+46 73 489 47 96"
+      "description": "+46 73 489 47 96",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
     },
     {
       "id": 3,
       "title": "Skype",
-      "description": "ahmed.al-askalany"
+      "description": "ahmed.al-askalany",
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
     }
   ]
 }

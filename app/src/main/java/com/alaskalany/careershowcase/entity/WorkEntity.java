@@ -31,6 +31,9 @@ public class WorkEntity
     @ColumnInfo(name = "work_duration")
     private String duration;
 
+    @ColumnInfo(name = "work_logo_url")
+    private String logoUrl;
+
     public WorkEntity() {
 
     }
@@ -105,5 +108,17 @@ public class WorkEntity
     public void setDuration(String duration) {
 
         this.duration = duration;
+    }
+
+    @Override
+    public String getLogoUrl() {
+
+        return logoUrl;
+    }
+
+    @Override
+    public void setLogoUrl(String logoUrl) {
+
+        this.logoUrl = logoUrl;
     }
 }

@@ -35,8 +35,8 @@
 
             <ImageView
                 android:id="@+id/imageView_Contact_logo"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:contentDescription="@string/image_view_description_contact_logo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,17 +45,18 @@
             <TextView
                 android:id="@+id/textView_Contact_title"
                 android:layout_width="0dp"
-                android:layout_height="34dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:singleLine="true"
                 android:text="@{contact.title}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView_Contact_logo"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Instrumentaion Engineer" />
+                tools:text="E-mail" />
 
             <TextView
                 android:id="@+id/textView_Contact_description"
@@ -67,12 +68,12 @@
                 android:singleLine="false"
                 android:text="@{contact.description}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView_Contact_logo"
                 app:layout_constraintTop_toBottomOf="@+id/textView_Contact_title"
-                tools:text="Performed maintenance and repair for Electronic cartridges of Wire-line logging tools and data acquisition computer systems " />
+                tools:text="ahmed.alaskalany@gmail.com" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.circularreveal.cardview.CircularRevealCardView>

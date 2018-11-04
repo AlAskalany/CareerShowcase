@@ -1,11 +1,14 @@
 package com.alaskalany.careershowcase.ui.work;
 
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.entity.WorkEntity;
 import com.alaskalany.careershowcase.databinding.FragmentWorkBinding;
@@ -66,6 +69,8 @@ public class WorkAdapter
 
         holder.mBinding.setWork(mValues.get(position));
         holder.mBinding.setCallback(mCallback);
+        View rootView = holder.mBinding.getRoot();
+        GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewWorkLogo);
         holder.mBinding.executePendingBindings();
     }
 
@@ -92,9 +97,7 @@ public class WorkAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    return mValues.get(oldItemPosition)
-                                  .getId() == workList.get(newItemPosition)
-                                                      .getId();
+                    return mValues.get(oldItemPosition).getId() == workList.get(newItemPosition).getId();
                 }
 
                 @Override

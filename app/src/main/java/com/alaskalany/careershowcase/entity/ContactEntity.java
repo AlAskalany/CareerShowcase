@@ -17,9 +17,14 @@ public class ContactEntity
     @ColumnInfo(name = "contact_id")
     private int id;
 
+    @ColumnInfo(name = "contact_title")
     private String title;
 
+    @ColumnInfo(name = "contact_description")
     private String description;
+
+    @ColumnInfo(name = "contact_logo_url")
+    private String logoUrl;
 
     public ContactEntity() {
 
@@ -68,5 +73,17 @@ public class ContactEntity
     public void setDescription(String description) {
 
         this.description = description;
+    }
+
+    @Override
+    public String getLogoUrl() {
+
+        return logoUrl;
+    }
+
+    @Override
+    public void setLogoUrl(String logoUrl) {
+
+        this.logoUrl = logoUrl;
     }
 }

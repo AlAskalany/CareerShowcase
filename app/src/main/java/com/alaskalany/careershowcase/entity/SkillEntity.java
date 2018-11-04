@@ -28,6 +28,9 @@ public class SkillEntity
     @ColumnInfo(name = "skill_level")
     private int level;
 
+    @ColumnInfo(name = "skill_log_url")
+    private String logoUrl;
+
     /**
      *
      */
@@ -82,5 +85,17 @@ public class SkillEntity
     public void setLevel(int pLevel) {
 
         level = pLevel;
+    }
+
+    @Override
+    public String getLogoUrl() {
+
+        return logoUrl;
+    }
+
+    @Override
+    public void setLogoUrl(String photoUrl) {
+
+        this.logoUrl = photoUrl;
     }
 }

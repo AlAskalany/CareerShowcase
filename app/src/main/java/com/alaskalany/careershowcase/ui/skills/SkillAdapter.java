@@ -1,11 +1,13 @@
 package com.alaskalany.careershowcase.ui.skills;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.entity.SkillEntity;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
@@ -78,6 +80,8 @@ public class SkillAdapter
 
         holder.mBinding.setSkill(mValues.get(position));
         holder.mBinding.setCallback(getCallback());
+        View rootView = holder.mBinding.getRoot();
+        GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewSkillLogo);
         holder.mBinding.executePendingBindings();
     }
 
@@ -104,9 +108,7 @@ public class SkillAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    return mValues.get(oldItemPosition)
-                                  .getId() == skillList.get(newItemPosition)
-                                                       .getId();
+                    return mValues.get(oldItemPosition).getId() == skillList.get(newItemPosition).getId();
                 }
 
                 @Override

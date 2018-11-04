@@ -26,7 +26,7 @@ import java.util.List;
 /**
  *
  */
-@Database(version = 5, entities = {
+@Database(version = 6, entities = {
         ContactEntity.class, EducationEntity.class, SkillEntity.class, WorkEntity.class
 })
 public abstract class AppDatabase
