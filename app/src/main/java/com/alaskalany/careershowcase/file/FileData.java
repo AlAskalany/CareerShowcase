@@ -4,6 +4,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
+import com.alaskalany.careershowcase.entity.ContactEntity;
 import com.alaskalany.careershowcase.entity.EducationEntity;
 import com.alaskalany.careershowcase.entity.SkillEntity;
 import com.alaskalany.careershowcase.entity.WorkEntity;
@@ -21,6 +23,8 @@ public class FileData {
     private static final MediatorLiveData<List<SkillEntity>> skillsLiveData = new MediatorLiveData<>();
 
     private static final MediatorLiveData<List<WorkEntity>> workLiveData = new MediatorLiveData<>();
+
+    private static MutableLiveData<List<ContactEntity>> contactsLiveData = new MediatorLiveData<>();
 
     private FileData() {
 
@@ -78,5 +82,21 @@ public class FileData {
         DataJson dataJson =
                 gson.fromJson(JsonFileReader.loadJSONFromAsset(application.getApplicationContext()), DataJson.class);
         workLiveData.postValue(dataJson.work);
+    }
+
+    public static LiveData<List<ContactEntity>> getContactsLiveData(Application application) {
+
+        if (contactsLiveData.getValue() == null) {
+            loadContacts(application);
+        }
+        return contactsLiveData;
+    }
+
+    private static void loadContacts(@NonNull Application application) {
+
+        Gson gson = new Gson();
+        DataJson dataJson =
+                gson.fromJson(JsonFileReader.loadJSONFromAsset(application.getApplicationContext()), DataJson.class);
+        contactsLiveData.postValue(dataJson.contacts);
     }
 }
