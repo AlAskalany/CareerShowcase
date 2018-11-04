@@ -12,42 +12,116 @@
   ],
   "work": [
     {
-      "id": 1,
+      "id": 2,
       "title": "Software Academy Development Trainee",
       "company": "Novare Potential",
-      "duration": "Aug 2012 - Aug 2015",
+      "duration": "Aug 2018 - Present",
       "location": "Stockholm, Sweden",
       "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
     },
     {
-      "id": 1,
+      "id": 3,
       "title": "CTO & Android Developer",
       "company": "Wasder",
-      "duration": "Aug 2012 - Aug 2015",
+      "duration": "Sep 2017 - Aug 2018",
       "location": "Stockholm, Sweden",
-      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
+      "description": "Established the development environments for and developed Wasder E-Sports platform’s Android MVP with back-end services using Firebase and Google Cloud Platform."
     },
     {
-      "id": 1,
+      "id": 4,
       "title": "Lead QA Engineer",
-      "company": "Novare Potential",
-      "duration": "Aug 2012 - Aug 2015",
+      "company": "FunRock",
+      "duration": "Oct 2016 - Apr 2017",
       "location": "Stockholm, Sweden",
-      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
+      "description": "Debugging and analytics using C# in Unity 3D. Administered Jira and Confluence. Tested multiple production releases of Etihad Al Abtal Android Unity 3D game. Contributed to the Arabic/cultural localization for the game."
     },
     {
-      "id": 1,
-      "title": "Instrumentation Engineer",
-      "company": "Novare Potential",
-      "duration": "Aug 2012 - Aug 2015",
+      "id": 5,
+      "title": "Back-end Development Intern",
+      "company": "One Planet Rating",
+      "duration": "Jul 2017 - Aug 2017",
       "location": "Stockholm, Sweden",
-      "description": "Novare potential in collaboration with KTH Royal Institute of Technology in Stockholm created the Software Development Academy, an intensive programming training for newcomers to Sweden."
+      "description": "Learned about back-end development using Python and the Django Framework. "
+    },
+    {
+      "id": 6,
+      "title": "Graduate Research Assistant",
+      "company": "The American University in Cairo",
+      "duration": "Nov 2012 - Oct 2012",
+      "location": "Cairo, Egypt",
+      "description": "Center of Nanoelectronics and Devices"
+    },
+    {
+      "id": 7,
+      "title": "Co-Founder & Embedded Systems Instructor",
+      "company": "Vertex",
+      "duration": "Nov 2011 - Oct 2012",
+      "location": "Cairo, Egypt",
+      "description": "Instructed undergraduate students in their graduation projects ."
+    },
+    {
+      "id": 8,
+      "title": "Instrumentation Engineer",
+      "company": "Schlumberger Oil Field Services",
+      "duration": "Jul 2010 - Apr 2012",
+      "location": "Red Sea, Egypt",
+      "description": "Performed maintenance and repair for Electronic cartridges of Wire-line logging tools and data acquisition computer systems."
     }
   ],
   "skills": [
     {
       "id": 1,
-      "title": "qwe",
+      "title": "Java",
+      "level": 4
+    },
+    {
+      "id": 2,
+      "title": "Android",
+      "level": 4
+    },
+    {
+      "id": 3,
+      "title": "Firebase",
+      "level": 4
+    },
+    {
+      "id": 4,
+      "title": "Unity 3D",
+      "level": 4
+    },
+    {
+      "id": 5,
+      "title": "C#",
+      "level": 4
+    },
+    {
+      "id": 6,
+      "title": "Jira",
+      "level": 4
+    },
+    {
+      "id": 7,
+      "title": "Git",
+      "level": 4
+    },
+    {
+      "id": 8,
+      "title": "Docker",
+      "level": 4
+    },
+    {
+      "id": 9,
+      "title": "Android Studio",
+      "level": 4
+    },
+    {
+      "id": 10,
+      "title": "IntelliJ IDEA",
+      "level": 4
+    },
+    {
+      "id": 11,
+      "title": "Agile Software Development",
       "level": 4
     }
   ]
