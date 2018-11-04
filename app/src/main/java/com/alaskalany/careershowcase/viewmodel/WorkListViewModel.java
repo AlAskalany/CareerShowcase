@@ -23,12 +23,9 @@ public class WorkListViewModel
         // set by default null, until we get data from the database.
         mObservableProducts.setValue(null);
         //LiveData<List<WorkEntity>> works = ((CareerShowcaseApp) application).getRepository().mWorkRepository.getWorks();
-        FileData fileData = FileData.getInstance();
-        List<WorkEntity> worksASD = fileData.getWork(application.getApplicationContext());
-        LiveData<List<WorkEntity>> works = new MediatorLiveData<>();
-        ((MediatorLiveData<List<WorkEntity>>) works).postValue(worksASD);
+        LiveData<List<WorkEntity>> listLiveData = FileData.getWorkLiveData(application);
         // observe the changes of the products from the database and forward them
-        mObservableProducts.addSource(works, mObservableProducts::setValue);
+        mObservableProducts.addSource(listLiveData, mObservableProducts::setValue);
     }
 
     /**
