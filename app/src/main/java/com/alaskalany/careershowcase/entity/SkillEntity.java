@@ -1,6 +1,6 @@
-package com.alaskalany.careershowcase.database.entity;
+package com.alaskalany.careershowcase.entity;
 
-import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.alaskalany.careershowcase.model.Skill;
@@ -8,26 +8,25 @@ import com.alaskalany.careershowcase.model.Skill;
 /**
  * A skill item representing a piece of description.
  */
-@Entity
+@Entity(tableName = "skills_table")
 public class SkillEntity
         implements Skill {
 
     /**
      *
      */
-    @PrimaryKey
-    @SuppressWarnings("WeakerAccess")
-    public int id;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "skill_id")
+    private int id;
+
     /**
      *
      */
-    @SuppressWarnings("WeakerAccess")
-    public String title;
-    /**
-     *
-     */
-    @SuppressWarnings("WeakerAccess")
-    public String description;
+    @ColumnInfo(name = "skill_title")
+    private String title;
+
+    @ColumnInfo(name = "skill_level")
+    private int level;
 
     /**
      *
@@ -47,12 +46,12 @@ public class SkillEntity
     }
 
     /**
-     * @param id
+     * @param pSkillId
      */
     @Override
-    public void setId(int id) {
+    public void setId(int pSkillId) {
 
-        this.id = id;
+        this.id = pSkillId;
     }
 
     /**
@@ -73,31 +72,15 @@ public class SkillEntity
         this.title = title;
     }
 
-    /**
-     * @return
-     */
     @Override
-    public String getDescription() {
+    public int getLevel() {
 
-        return description;
+        return level;
     }
 
-    /**
-     * @param description
-     */
     @Override
-    public void setDescription(String description) {
+    public void setLevel(int pLevel) {
 
-        this.description = description;
-    }
-
-    /**
-     * @return
-     */
-    @NonNull
-    @Override
-    public String toString() {
-
-        return title;
+        level = pLevel;
     }
 }

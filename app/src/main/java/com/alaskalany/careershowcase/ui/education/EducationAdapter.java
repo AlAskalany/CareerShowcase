@@ -1,37 +1,48 @@
 package com.alaskalany.careershowcase.ui.education;
 
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.R;
+import com.alaskalany.careershowcase.entity.EducationEntity;
 import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
-import com.alaskalany.careershowcase.model.Education;
-import com.alaskalany.careershowcase.ui.BaseRecyclerViewAdapter;
-import com.alaskalany.careershowcase.ui.BaseViewHolder;
+
+import java.util.List;
+import java.util.Objects;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Education}
+ * {@link RecyclerView.Adapter} that can display a {@link EducationEntity}
  * TODO: Replace the implementation with code for your data type.
  */
 public class EducationAdapter
-        extends BaseRecyclerViewAdapter<EducationAdapter.ViewHolder, Education, EducationOnClickCallback> {
+        extends RecyclerView.Adapter<EducationAdapter.ViewHolder> {
 
     /**
-     * @param items
+     *
+     */
+    protected final EducationOnClickCallback mCallback;
+
+    /**
+     *
+     */
+    protected List<EducationEntity> mValues;
+
+    /**
      * @param callback
      */
     @SuppressWarnings("WeakerAccess")
-    public EducationAdapter(SparseArray<Education> items, EducationOnClickCallback callback) {
+    public EducationAdapter(EducationOnClickCallback callback) {
 
-        super(items, callback);
+        this.mCallback = callback;
     }
 
     /**
      * @param parent
      * @param viewType
+     *
      * @return
      */
     @NonNull
@@ -42,6 +53,7 @@ public class EducationAdapter
                                                                    R.layout.fragment_education,
                                                                    parent,
                                                                    false);
+        binding.setCallback(mCallback);
         return new ViewHolder(binding);
     }
 
@@ -52,23 +64,98 @@ public class EducationAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setEducation(mValues.get(positionToKey(position)));
+        holder.mBinding.setEducation(mValues.get(position));
         holder.mBinding.setCallback(getCallback());
         holder.mBinding.executePendingBindings();
+    }
+
+    public void setEducationList(final List<EducationEntity> educationList) {
+
+        if (mValues == null) {
+            mValues = educationList;
+            notifyItemRangeInserted(0, educationList.size());
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+
+                @Override
+                public int getOldListSize() {
+
+                    return mValues.size();
+                }
+
+                @Override
+                public int getNewListSize() {
+
+                    return educationList.size();
+                }
+
+                @Override
+                public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+
+                    return mValues.get(oldItemPosition)
+                                  .getId() == educationList.get(newItemPosition)
+                                                           .getId();
+                }
+
+                @Override
+                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+
+                    EducationEntity newSkill = educationList.get(newItemPosition);
+                    EducationEntity oldSkill = mValues.get(oldItemPosition);
+                    boolean isIdEqual = newSkill.getId() == oldSkill.getId();
+                    boolean isDescriptionEqual =
+                            Objects.equals(newSkill.getDescription(), oldSkill.getDescription());
+                    boolean isTitleEqual = Objects.equals(newSkill.getTitle(), oldSkill.getTitle());
+                    boolean isInstitutionEqual =
+                            Objects.equals(newSkill.getInstitution(), oldSkill.getInstitution());
+                    boolean isLocationEqual =
+                            Objects.equals(newSkill.getLocation(), oldSkill.getLocation());
+                    boolean isDurationEqual =
+                            Objects.equals(newSkill.getDegree(), oldSkill.getDuration());
+                    return isIdEqual && isDescriptionEqual && isTitleEqual && isInstitutionEqual && isLocationEqual &&
+                           isDurationEqual;
+                }
+            });
+            mValues = educationList;
+            result.dispatchUpdatesTo(this);
+        }
+    }
+
+    /**
+     * @return
+     */
+    public EducationOnClickCallback getCallback() {
+
+        return mCallback;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public int getItemCount() {
+
+        return mValues == null ? 0 : mValues.size();
     }
 
     /**
      *
      */
     public static class ViewHolder
-            extends BaseViewHolder<FragmentEducationBinding> {
+            extends RecyclerView.ViewHolder {
+
+        /**
+         *
+         */
+        public final FragmentEducationBinding mBinding;
 
         /**
          * @param binding
          */
         public ViewHolder(FragmentEducationBinding binding) {
 
-            super(binding.getRoot(), binding);
+            super(binding.getRoot());
+            this.mBinding = binding;
         }
     }
 }

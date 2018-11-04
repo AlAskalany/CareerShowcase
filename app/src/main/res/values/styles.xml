@@ -44,6 +44,8 @@
         <item name="android:layout_marginEnd">@dimen/layout_marginEnd_textView_name</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Display1</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <!-- Overview headline -->
@@ -53,6 +55,8 @@
         <item name="android:layout_marginBottom">@dimen/layout_marginBottom_textView_headline</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <!-- Container constraint layout -->
@@ -101,12 +105,14 @@
         <item name="cardBackgroundColor">@color/white</item>
     </style>
 
+    <style name="AppTheme.ItemCardView.EducationCardView" parent="AppTheme.ItemCardView">
+    </style>
+
     <!-- Item title text view -->
     <style name="AppTheme.ItemTitleTextView" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">top</item>
-        <item name="android:layout_margin">@dimen/text_margin</item>
     </style>
 
     <!-- Item description text view -->
@@ -114,6 +120,13 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">bottom</item>
-        <item name="android:layout_margin">@dimen/text_margin</item>
+    </style>
+
+    <style name="AppTheme.ItemTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
     </style>
 </resources>
