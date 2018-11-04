@@ -1,71 +1,82 @@
 package com.alaskalany.careershowcase.file;
 
-import android.content.Context;
-import androidx.fragment.app.FragmentActivity;
-import com.alaskalany.careershowcase.R;
+import android.app.Application;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import com.alaskalany.careershowcase.entity.EducationEntity;
 import com.alaskalany.careershowcase.entity.SkillEntity;
 import com.alaskalany.careershowcase.entity.WorkEntity;
 import com.google.gson.Gson;
+import org.jetbrains.annotations.Contract;
 
-import java.io.*;
 import java.util.List;
 
 public class FileData {
 
     private static final FileData ourInstance = new FileData();
 
-    public static FileData getInstance() {
+    private static final MediatorLiveData<List<EducationEntity>> educationLiveData = new MediatorLiveData<>();
 
-        return ourInstance;
-    }
+    private static final MediatorLiveData<List<SkillEntity>> skillsLiveData = new MediatorLiveData<>();
+
+    private static final MediatorLiveData<List<WorkEntity>> workLiveData = new MediatorLiveData<>();
 
     private FileData() {
 
     }
 
-    public String loadJSONFromAsset(Context context) {
+    @Contract(pure = true)
+    public static FileData getInstance() {
 
-        InputStream is = context.getResources()
-                                 .openRawResource(R.raw.data);
-        Writer writer = new StringWriter();
-        char[] buffer = new char[1024];
-        try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        return ourInstance;
+    }
+
+    public static LiveData<List<EducationEntity>> getEducationLiveData(Application application) {
+
+        if (educationLiveData.getValue() == null) {
+            loadEducation(application);
         }
-        return writer.toString();
+        return educationLiveData;
     }
 
-    public List<WorkEntity> getWork(Context context) {
+    private static void loadEducation(@NonNull Application application) {
 
         Gson gson = new Gson();
-        DataJson dataJson = gson.fromJson(loadJSONFromAsset(context), DataJson.class);
-        return dataJson.work;
+        DataJson dataJson =
+                gson.fromJson(JsonFileReader.loadJSONFromAsset(application.getApplicationContext()), DataJson.class);
+        educationLiveData.postValue(dataJson.education);
     }
 
-    public List<EducationEntity> getEducation(FragmentActivity activity) {
+    public static LiveData<List<SkillEntity>> getSkillsLiveData(Application application) {
 
-        Gson gson = new Gson();
-        DataJson dataJson = gson.fromJson(loadJSONFromAsset(activity), DataJson.class);
-        return dataJson.education;
+        if (skillsLiveData.getValue() == null) {
+            loadSkills(application);
+        }
+        return skillsLiveData;
     }
 
-    public List<SkillEntity> getSkills(FragmentActivity activity) {
+    private static void loadSkills(@NonNull Application application) {
 
         Gson gson = new Gson();
-        DataJson dataJson = gson.fromJson(loadJSONFromAsset(activity), DataJson.class);
-        return dataJson.skills;
+        DataJson dataJson =
+                gson.fromJson(JsonFileReader.loadJSONFromAsset(application.getApplicationContext()), DataJson.class);
+        skillsLiveData.postValue(dataJson.skills);
+    }
+
+    public static LiveData<List<WorkEntity>> getWorkLiveData(Application application) {
+
+        if (workLiveData.getValue() == null) {
+            loadWork(application);
+        }
+        return workLiveData;
+    }
+
+    private static void loadWork(@NonNull Application application) {
+
+        Gson gson = new Gson();
+        DataJson dataJson =
+                gson.fromJson(JsonFileReader.loadJSONFromAsset(application.getApplicationContext()), DataJson.class);
+        workLiveData.postValue(dataJson.work);
     }
 }
