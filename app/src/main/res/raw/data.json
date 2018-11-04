@@ -2,12 +2,39 @@
   "education": [
     {
       "id": 1,
-      "title": "asd",
-      "degree": "qwe",
-      "studyField": "dfg",
-      "institution": "lfjghg",
-      "location": "kgjggj",
-      "duration": "dsfsdf"
+      "title": "Java Software Development Academy",
+      "degree": "Training",
+      "studyField": "Java",
+      "institution": "KTH Royal Institute of Technology",
+      "location": "Stockholm, Sweden",
+      "duration": "Aug 2018 - Present"
+    },
+    {
+      "id": 1,
+      "title": "MSc in Nanotechnology",
+      "degree": "Master of Science",
+      "studyField": "Nanotechnology",
+      "institution": "KTH Royal Institute of Technology",
+      "location": "Stockholm, Sweden",
+      "duration": "Sep 2016 - Jun 2016"
+    },
+    {
+      "id": 1,
+      "title": "Dipl in Nanoelectronics",
+      "degree": "Diploma",
+      "studyField": "Nanoelectronics",
+      "institution": "Information Technology Institute",
+      "location": "Cairo, Egypt",
+      "duration": "2012 - 2013"
+    },
+    {
+      "id": 1,
+      "title": "BSc in Electrical and Computer Engineering",
+      "degree": "Bachelor of Science",
+      "studyField": "Electrical and Computer Engineering",
+      "institution": "Higher Technological Institute",
+      "location": "AsSharqia, Egypt",
+      "duration": "Sep 2004 - Feb 2010"
     }
   ],
   "work": [
