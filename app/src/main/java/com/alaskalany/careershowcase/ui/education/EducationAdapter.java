@@ -22,6 +22,8 @@ import java.util.Objects;
 public class EducationAdapter
         extends RecyclerView.Adapter<EducationAdapter.ViewHolder> {
 
+    private final ScrollCallback scrollCallback;
+
     /**
      *
      */
@@ -33,11 +35,13 @@ public class EducationAdapter
     protected List<EducationEntity> mValues;
 
     /**
+     * @param scrollCallback
      * @param callback
      */
     @SuppressWarnings("WeakerAccess")
-    public EducationAdapter(EducationOnClickCallback callback) {
+    public EducationAdapter(ScrollCallback scrollCallback, EducationOnClickCallback callback) {
 
+        this.scrollCallback = scrollCallback;
         this.mCallback = callback;
     }
 
@@ -70,6 +74,17 @@ public class EducationAdapter
         holder.mBinding.setCallback(getCallback());
         View rootView = holder.mBinding.getRoot();
         GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewEducationLogo);
+        holder.mBinding.imageButton.setOnClickListener(v -> {
+            if (holder.mBinding.dividerEducationCard.getVisibility() == View.GONE) {
+                holder.mBinding.dividerEducationCard.setVisibility(View.VISIBLE);
+                holder.mBinding.textViewEducationDescription.setVisibility(View.VISIBLE);
+                scrollCallback.scrollToPosition(position);
+                holder.mBinding.getRoot().requestFocus();
+            } else {
+                holder.mBinding.dividerEducationCard.setVisibility(View.GONE);
+                holder.mBinding.textViewEducationDescription.setVisibility(View.GONE);
+            }
+        });
         holder.mBinding.executePendingBindings();
     }
 
@@ -102,16 +117,11 @@ public class EducationAdapter
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    EducationEntity newSkill = educationList.get(newItemPosition);
-                    EducationEntity oldSkill = mValues.get(oldItemPosition);
-                    boolean isIdEqual = newSkill.getId() == oldSkill.getId();
-                    boolean isDescriptionEqual = Objects.equals(newSkill.getDescription(), oldSkill.getDescription());
-                    boolean isTitleEqual = Objects.equals(newSkill.getTitle(), oldSkill.getTitle());
-                    boolean isInstitutionEqual = Objects.equals(newSkill.getInstitution(), oldSkill.getInstitution());
-                    boolean isLocationEqual = Objects.equals(newSkill.getLocation(), oldSkill.getLocation());
-                    boolean isDurationEqual = Objects.equals(newSkill.getDegree(), oldSkill.getDuration());
-                    return isIdEqual && isDescriptionEqual && isTitleEqual && isInstitutionEqual && isLocationEqual &&
-                           isDurationEqual;
+                    EducationEntity newEducation = educationList.get(newItemPosition);
+                    EducationEntity oldEducation = mValues.get(oldItemPosition);
+                    return newEducation.getId() == oldEducation.getId() &&
+                           newEducation.getDescription() == oldEducation.getDescription() &&
+                           newEducation.getTitle() == oldEducation.getTitle();
                 }
             });
             mValues = educationList;

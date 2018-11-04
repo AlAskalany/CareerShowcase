@@ -8,36 +8,40 @@
       "institution": "KTH Royal Institute of Technology",
       "location": "Stockholm, Sweden",
       "duration": "Aug 2018 - Present",
+      "description": "Awarded the Study Scholarship by the Swedish Institute (SI), for the study at KTH. The program is focused on advanced techniques used in the research, fabrication, and characterization of nano-materials and nanoelectronics.",
       "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcompany%2Fnovare_logo.png?alt=media&token=05ed0c85-66f3-489c-adb5-df0d14b72b5e"
     },
     {
-      "id": 1,
+      "id": 2,
       "title": "MSc in Nanotechnology",
       "degree": "Master of Science",
       "studyField": "Nanotechnology",
       "institution": "KTH Royal Institute of Technology",
       "location": "Stockholm, Sweden",
       "duration": "Sep 2016 - Jun 2016",
+      "description": "Awarded the Study Scholarship by the Swedish Institute (SI), for the study at KTH. The program is focused on advanced techniques used in the research, fabrication, and characterization of nano-materials and nanoelectronics.",
       "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Fkth_logo.png?alt=media&token=0b544c25-c5d2-4f33-8248-bc5b64967ede"
     },
     {
-      "id": 1,
+      "id": 3,
       "title": "Dipl in Nanoelectronics",
       "degree": "Diploma",
       "studyField": "Nanoelectronics",
       "institution": "Information Technology Institute",
       "location": "Cairo, Egypt",
       "duration": "2012 - 2013",
+      "description": "Awarded the Study Scholarship by the Swedish Institute (SI), for the study at KTH. \n The program is focused on advanced techniques used in the research, fabrication, and characterization of nano-materials and nanoelectronics.",
       "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Fiti_logo.png?alt=media&token=f91e6fc0-41c3-47b9-9971-95bc75dd9a04"
     },
     {
-      "id": 1,
+      "id": 4,
       "title": "BSc in Electrical and Computer Engineering",
       "degree": "Bachelor of Science",
       "studyField": "Electrical and Computer Engineering",
       "institution": "Higher Technological Institute",
       "location": "AsSharqia, Egypt",
       "duration": "Sep 2004 - Feb 2010",
+      "description": "Awarded the Study Scholarship by the Swedish Institute (SI), for the study at KTH. The program is focused on advanced techniques used in the research, fabrication, and characterization of nano-materials and nanoelectronics.",
       "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Fhti_logo.png?alt=media&token=256f5d3f-5dee-4480-91d7-9bbd1586ddcd"
     }
   ],
