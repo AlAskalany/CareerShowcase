@@ -18,15 +18,15 @@
         android:id="@+id/cardView_Skill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="@dimen/card_spacing"
+        android:layout_marginLeft="@dimen/card_spacing"
+        android:layout_marginTop="@dimen/card_spacing"
+        android:layout_marginEnd="@dimen/card_spacing"
+        android:layout_marginRight="@dimen/card_spacing"
+        android:minHeight="@dimen/card_min_height"
         android:onClick="@{() -> callback.onClick(skill)}"
-        app:cardElevation="1dp"
-        app:cardMaxElevation="8dp"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardMaxElevation="@dimen/card_max_elevation"
         app:contentPadding="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
                 android:contentDescription="@string/skill_logo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_build_black_24dp" />
+                app:srcCompat="@drawable/ic_pencil" />
 
             <TextView
                 android:id="@+id/textView_skill_title"
