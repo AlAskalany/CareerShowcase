@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/secondaryTextColor</item>
     </style>
 
     <!-- Profile picture -->
@@ -70,6 +71,8 @@
         <item name="android:layout_width">@dimen/layout_width_bottom_navigation</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/bottomNavigation</item>
+        <item name="itemIconTint">@drawable/bottom_navigation_colors</item>
+        <item name="itemTextColor">@drawable/bottom_navigation_colors</item>
     </style>
 
     <!-- Navigation container -->
@@ -105,8 +108,7 @@
         <item name="cardBackgroundColor">@color/white</item>
     </style>
 
-    <style name="AppTheme.ItemCardView.EducationCardView" parent="AppTheme.ItemCardView">
-    </style>
+    <style name="AppTheme.ItemCardView.EducationCardView" parent="AppTheme.ItemCardView"></style>
 
     <!-- Item title text view -->
     <style name="AppTheme.ItemTitleTextView" parent="TextAppearance.MaterialComponents.Headline5">
