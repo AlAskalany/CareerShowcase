@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/card_spacing"
-        android:focusable="auto"
         android:onClick="@{() -> callback.onClick(education)}"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/card_elevation"
@@ -34,8 +33,6 @@
                 android:id="@+id/imageView_education_logo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_art_artistic_brush_materia" />
@@ -45,28 +42,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:maxLines="2"
                 android:singleLine="false"
                 android:text="@{education.title}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView_education_logo"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="M.Sc. in Nanotechnology" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="?attr/selectableItemBackground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_expand_more_black_24dp" />
 
             <TextView
                 android:id="@+id/textView_institution"
@@ -118,19 +104,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView_duration"
                 tools:text="Stockholm, Sweden" />
 
-            <View
-                android:id="@+id/divider_education_card"
-                android:layout_width="379dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="?android:attr/listDivider"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_location" />
-
             <TextView
                 android:id="@+id/textView_education_description"
                 android:layout_width="0dp"
@@ -143,11 +116,11 @@
                 android:text="@{education.description}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:textSize="12sp"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_education_card"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView_education_logo"
+                app:layout_constraintTop_toBottomOf="@+id/textView_location"
                 tools:text="Awarded the Study Scholarship by the Swedish Institute (SI), for the study at KTH. The program is focused on advanced techniques used in the research, fabrication, and characterization of nano-materials and nanoelectronics." />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

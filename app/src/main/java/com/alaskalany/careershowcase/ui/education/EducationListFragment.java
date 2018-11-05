@@ -53,12 +53,6 @@ public class EducationListFragment
      */
     protected int mColumnCount = 1;
 
-    private final ScrollCallback scrollCallback = position -> {
-        //mBinding.listEducation.smoothScrollToPosition(position);
-    };
-
-    private EducationAdapter adapter;
-
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -93,8 +87,7 @@ public class EducationListFragment
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
-        adapter = new EducationAdapter(scrollCallback, mCallBack);
-        setAdapter(adapter);
+        setAdapter(new EducationAdapter(mCallBack));
         Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             mBinding.listEducation.setLayoutManager(new LinearLayoutManager(context));
