@@ -5,9 +5,15 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="material_card_spacing">8dp</dimen>
 
+    <!-- BottomNavigation -->
+    <dimen name="bottom_navigation_elevation">8dp</dimen>
+
     <!-- CardView -->
-    <dimen name="card_corner_radius">20dp</dimen>
-    <dimen name="card_elevation">3dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
+    <dimen name="card_spacing">8dp</dimen>
+    <dimen name="card_elevation">1dp</dimen>
+    <dimen name="card_max_elevation">8dp</dimen>
+    <dimen name="card_min_height">200dp</dimen>
 
     <!-- Profile picture -->
     <dimen name="layout_width_profile_picture">150dp</dimen>
@@ -15,7 +21,7 @@
     <dimen name="layout_marginStart_profile_picture">8dp</dimen>
     <dimen name="layout_marginTop_profile_picture">32dp</dimen>
     <dimen name="layout_marginBottom_profile_picture">8dp</dimen>
-    <dimen name="elevation_profile_picture">5dp</dimen>
+    <dimen name="elevation_profile_picture">3dp</dimen>
 
     <!-- CardView Overview -->
     <dimen name="layout_width_cardView_overview">0dp</dimen>

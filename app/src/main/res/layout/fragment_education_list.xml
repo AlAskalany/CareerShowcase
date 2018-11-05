@@ -13,6 +13,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listEducation"
         style="@style/AppTheme.RecyclerView"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingRight="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:context=".ui.educationEntity.EducationListFragment"
         tools:listitem="@layout/fragment_education" />

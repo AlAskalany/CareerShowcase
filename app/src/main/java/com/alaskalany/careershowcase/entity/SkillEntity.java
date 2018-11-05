@@ -1,6 +1,6 @@
-package com.alaskalany.careershowcase.database.entity;
+package com.alaskalany.careershowcase.entity;
 
-import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.alaskalany.careershowcase.model.Skill;
@@ -15,21 +15,21 @@ public class SkillEntity
     /**
      *
      */
-    @PrimaryKey
-    @SuppressWarnings("WeakerAccess")
-    public int skillId;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "skill_id")
+    private int id;
 
     /**
      *
      */
-    @SuppressWarnings("WeakerAccess")
-    public String title;
+    @ColumnInfo(name = "skill_title")
+    private String title;
 
-    /**
-     *
-     */
-    @SuppressWarnings("WeakerAccess")
-    public String description;
+    @ColumnInfo(name = "skill_level")
+    private int level;
+
+    @ColumnInfo(name = "skill_log_url")
+    private String logoUrl;
 
     /**
      *
@@ -43,18 +43,18 @@ public class SkillEntity
      * @return
      */
     @Override
-    public int getSkillId() {
+    public int getId() {
 
-        return skillId;
+        return id;
     }
 
     /**
      * @param pSkillId
      */
     @Override
-    public void setSkillId(int pSkillId) {
+    public void setId(int pSkillId) {
 
-        this.skillId = pSkillId;
+        this.id = pSkillId;
     }
 
     /**
@@ -75,31 +75,27 @@ public class SkillEntity
         this.title = title;
     }
 
-    /**
-     * @return
-     */
     @Override
-    public String getDescription() {
+    public int getLevel() {
 
-        return description;
+        return level;
     }
 
-    /**
-     * @param description
-     */
     @Override
-    public void setDescription(String description) {
+    public void setLevel(int pLevel) {
 
-        this.description = description;
+        level = pLevel;
     }
 
-    /**
-     * @return
-     */
-    @NonNull
     @Override
-    public String toString() {
+    public String getLogoUrl() {
 
-        return title;
+        return logoUrl;
+    }
+
+    @Override
+    public void setLogoUrl(String photoUrl) {
+
+        this.logoUrl = photoUrl;
     }
 }

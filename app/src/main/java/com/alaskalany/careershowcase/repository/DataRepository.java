@@ -1,11 +1,7 @@
-package com.alaskalany.careershowcase;
+package com.alaskalany.careershowcase.repository;
 
 import androidx.lifecycle.MediatorLiveData;
 import com.alaskalany.careershowcase.database.AppDatabase;
-import com.alaskalany.careershowcase.repository.ContactRepository;
-import com.alaskalany.careershowcase.repository.EducationRepository;
-import com.alaskalany.careershowcase.repository.SkillRepository;
-import com.alaskalany.careershowcase.repository.WorkRepository;
 
 public class DataRepository {
 

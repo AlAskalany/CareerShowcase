@@ -1,13 +1,15 @@
 package com.alaskalany.careershowcase.ui.skills;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.entity.SkillEntity;
+import com.alaskalany.careershowcase.entity.SkillEntity;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
 import org.jetbrains.annotations.Contract;
 
@@ -76,8 +78,10 @@ public class SkillAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setSkill(mValues.get(positionToKey(position)));
+        holder.mBinding.setSkill(mValues.get(position));
         holder.mBinding.setCallback(getCallback());
+        View rootView = holder.mBinding.getRoot();
+        GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewSkillLogo);
         holder.mBinding.executePendingBindings();
     }
 
@@ -104,9 +108,7 @@ public class SkillAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    return mValues.get(oldItemPosition)
-                                  .getSkillId() == skillList.get(newItemPosition)
-                                                            .getSkillId();
+                    return mValues.get(oldItemPosition).getId() == skillList.get(newItemPosition).getId();
                 }
 
                 @Override
@@ -114,10 +116,9 @@ public class SkillAdapter
 
                     SkillEntity newSkill = skillList.get(newItemPosition);
                     SkillEntity oldSkill = mValues.get(oldItemPosition);
-                    return newSkill.getSkillId() == oldSkill.getSkillId() &&
-                           Objects.equals(newSkill.getDescription(), oldSkill.getDescription()) &&
+                    return newSkill.getId() == oldSkill.getId() &&
                            Objects.equals(newSkill.getTitle(), oldSkill.getTitle()) &&
-                           newSkill.getDescription() == oldSkill.getDescription();
+                           newSkill.getLevel() == oldSkill.getLevel();
                 }
             });
             mValues = skillList;

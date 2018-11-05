@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentOverviewBinding;
+import com.alaskalany.careershowcase.ui.ScrollToTop;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -24,7 +25,8 @@ import org.jetbrains.annotations.Contract;
  * create an instance of this fragment.
  */
 public class OverviewFragment
-        extends Fragment {
+        extends Fragment
+        implements ScrollToTop {
 
     /**
      *
@@ -71,6 +73,7 @@ public class OverviewFragment
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
+     *
      * @return A new instance of fragment OverviewFragment.
      */
     @SuppressWarnings({"unused", "WeakerAccess"})
@@ -135,6 +138,7 @@ public class OverviewFragment
      * @param inflater
      * @param container
      * @param savedInstanceState
+     *
      * @return
      */
     @Override
@@ -144,9 +148,7 @@ public class OverviewFragment
         mBinding.setName("Ahmed AlAskalany");
         mBinding.setHeadline("Software Engineer");
         // Inflate the layout for this fragment
-        GlideApp.with(this)
-                .load("http://chittagongit.com//images/app-icon-material-design/app-icon-material-design-11.jpg")
-                .into(mBinding.imageViewProfilePicture);
+        GlideApp.with(this).load(getString(R.string.profile_picture_url)).into(mBinding.imageViewProfilePicture);
         return mBinding.getRoot();
     }
 
@@ -176,6 +178,11 @@ public class OverviewFragment
     private void unregisterListener() {
 
         mListener = null;
+    }
+
+    @Override
+    public void top() {
+
     }
 
     /**

@@ -10,11 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.database.DataGenerator;
 import com.alaskalany.careershowcase.databinding.FragmentWorkListBinding;
+import com.alaskalany.careershowcase.ui.ScrollToTop;
 import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
 
 /**
@@ -22,7 +23,8 @@ import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
  * <p/>
  */
 public class WorkListFragment
-        extends androidx.fragment.app.Fragment {
+        extends androidx.fragment.app.Fragment
+        implements ScrollToTop {
 
     /**
      *
@@ -33,8 +35,7 @@ public class WorkListFragment
      *
      */
     private final WorkOnClickCallback mCallback =
-            item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT)
-                         .show();
+            item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
      *
@@ -86,8 +87,7 @@ public class WorkListFragment
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
         mAdapter = new WorkAdapter(mCallback);
-        Context context = mBinding.getRoot()
-                                  .getContext();
+        Context context = mBinding.getRoot().getContext();
         if (mColumnCount <= 1) {
             mBinding.listWork.setLayoutManager(new LinearLayoutManager(context));
         } else {
@@ -114,17 +114,15 @@ public class WorkListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        final WorkListViewModel _model = ViewModelProviders.of(this)
-                                                           .get(WorkListViewModel.class);
+        final WorkListViewModel _model = ViewModelProviders.of(this).get(WorkListViewModel.class);
         mBinding.setWorkListViewModel(_model);
-        _model.getWorks()
-              .observe(this, pWorkEntities -> {
-                  if (pWorkEntities != null) {
-                      mAdapter.setWorkList(pWorkEntities);
-                  } else {
-                  }
-                  mBinding.executePendingBindings();
-              });
+        _model.getWorks().observe(this, pWorkEntities -> {
+            if (pWorkEntities != null) {
+                mAdapter.setWorkList(pWorkEntities);
+            } else {
+            }
+            mBinding.executePendingBindings();
+        });
     }
 
     /**
@@ -187,5 +185,11 @@ public class WorkListFragment
     public void onDetach() {
 
         super.onDetach();
+    }
+
+    @Override
+    public void top() {
+
+        mBinding.listWork.smoothScrollToPosition(0);
     }
 }

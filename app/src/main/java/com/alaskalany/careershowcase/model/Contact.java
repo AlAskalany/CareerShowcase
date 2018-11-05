@@ -1,16 +1,11 @@
 package com.alaskalany.careershowcase.model;
 
-public interface Contact {
+import com.alaskalany.careershowcase.model.properties.Description;
+import com.alaskalany.careershowcase.model.properties.Id;
+import com.alaskalany.careershowcase.model.properties.PhotoUrl;
+import com.alaskalany.careershowcase.model.properties.Title;
 
-    int getContactId();
+public interface Contact
+        extends Id, Title, Description, PhotoUrl {
 
-    void setContactId(int contactId);
-
-    String getContactContent();
-
-    void setContactContent(String contactContent);
-
-    String getContactDetails();
-
-    void setContactDetails(String contactDetails);
 }

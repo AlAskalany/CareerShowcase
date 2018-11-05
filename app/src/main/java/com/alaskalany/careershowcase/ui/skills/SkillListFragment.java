@@ -9,11 +9,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentSkillListBinding;
+import com.alaskalany.careershowcase.ui.ScrollToTop;
 import com.alaskalany.careershowcase.viewmodel.SkillListViewModel;
 
 /**
@@ -21,7 +24,8 @@ import com.alaskalany.careershowcase.viewmodel.SkillListViewModel;
  * <p/>
  */
 public class SkillListFragment
-        extends androidx.fragment.app.Fragment {
+        extends Fragment
+        implements ScrollToTop {
 
     /**
      *
@@ -32,8 +36,7 @@ public class SkillListFragment
      *
      */
     private final SkillOnClickCallback mCallback =
-            item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT)
-                         .show();
+            item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
      *
@@ -85,14 +88,13 @@ public class SkillListFragment
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
         setAdapter(new SkillAdapter(mCallback));
-        mBinding.listSkill.setAdapter(getAdapter());
-        Context context = mBinding.getRoot()
-                                  .getContext();
+        Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             mBinding.listSkill.setLayoutManager(new LinearLayoutManager(context));
         } else {
             mBinding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
+        mBinding.listSkill.setAdapter(mAdapter);
         return mBinding.getRoot();
     }
 
@@ -113,17 +115,15 @@ public class SkillListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        final SkillListViewModel _model = ViewModelProviders.of(this)
-                                                            .get(SkillListViewModel.class);
+        final SkillListViewModel _model = ViewModelProviders.of(this).get(SkillListViewModel.class);
         mBinding.setSkillListViewModel(_model);
-        _model.getSkills()
-              .observe(this, pWorkEntities -> {
-                  if (pWorkEntities != null) {
-                      mAdapter.setSkillList(pWorkEntities);
-                  } else {
-                  }
-                  mBinding.executePendingBindings();
-              });
+        _model.getSkills().observe(this, pWorkEntities -> {
+            if (pWorkEntities != null) {
+                mAdapter.setSkillList(pWorkEntities);
+            } else {
+            }
+            mBinding.executePendingBindings();
+        });
     }
 
     /**
@@ -186,5 +186,11 @@ public class SkillListFragment
     public void onDetach() {
 
         super.onDetach();
+    }
+
+    @Override
+    public void top() {
+
+        mBinding.listSkill.smoothScrollToPosition(0);
     }
 }

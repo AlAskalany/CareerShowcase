@@ -4,8 +4,8 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.database.entity.EducationEntity;
+import com.alaskalany.careershowcase.entity.EducationEntity;
+import com.alaskalany.careershowcase.file.FileData;
 
 import java.util.List;
 
@@ -18,15 +18,13 @@ public class EducationListViewModel
     public EducationListViewModel(Application application) {
 
         super(application);
-
         mObservableEducations = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         mObservableEducations.setValue(null);
-        LiveData<List<EducationEntity>> educations =
-                ((CareerShowcaseApp) application).getRepository().mEducationRepository.getEducations();
-
+        // LiveData<List<EducationEntity>> educations = ((CareerShowcaseApp) application).getRepository().mEducationRepository.getEducations();
+        LiveData<List<EducationEntity>> listLiveData = FileData.getEducationLiveData(application);
         // observe the changes of the products from the database and forward them
-        mObservableEducations.addSource(educations, mObservableEducations::setValue);
+        mObservableEducations.addSource(listLiveData, mObservableEducations::setValue);
     }
 
     /**

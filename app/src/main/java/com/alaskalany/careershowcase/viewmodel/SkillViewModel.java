@@ -8,8 +8,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.DataRepository;
-import com.alaskalany.careershowcase.database.entity.SkillEntity;
+import com.alaskalany.careershowcase.repository.DataRepository;
+import com.alaskalany.careershowcase.entity.SkillEntity;
 
 public class SkillViewModel
         extends AndroidViewModel {

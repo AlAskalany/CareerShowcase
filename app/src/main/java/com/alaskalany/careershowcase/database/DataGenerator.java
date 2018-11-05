@@ -2,16 +2,10 @@ package com.alaskalany.careershowcase.database;
 
 import android.util.SparseArray;
 import androidx.annotation.NonNull;
-import com.alaskalany.careershowcase.database.entity.ContactEntity;
-import com.alaskalany.careershowcase.database.entity.EducationEntity;
-import com.alaskalany.careershowcase.database.entity.SkillEntity;
-import com.alaskalany.careershowcase.database.entity.WorkEntity;
+import com.alaskalany.careershowcase.entity.*;
 import org.jetbrains.annotations.Contract;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DataGenerator {
 
@@ -74,7 +68,7 @@ public class DataGenerator {
         private static void addItem(ContactEntity item) {
 
             ITEMS.add(item);
-            ITEM_MAP.put(item.getContactId(), item);
+            ITEM_MAP.put(item.getId(), item);
         }
 
         @NonNull
@@ -127,16 +121,19 @@ public class DataGenerator {
         private static void addItem(EducationEntity item) {
 
             ITEMS.add(item);
-            ITEM_MAP.put(item.getEducationId(), item);
+            ITEM_MAP.put(item.getId(), item);
         }
 
         @NonNull
         private static EducationEntity createEducationItem(int position) {
 
             EducationEntity educationEntity = new EducationEntity();
-            educationEntity.setEducationId(position);
-            educationEntity.setEducationTitle("Education " + position);
-            educationEntity.setEducationDescription(makeDetails(position));
+            educationEntity.setId(position);
+            educationEntity.setTitle("Education " + position);
+            educationEntity.setDescription(makeDetails(position));
+            educationEntity.setInstitution("KTH Royal Institute of Technology");
+            educationEntity.setLocation("Stockholm, Sweden");
+            educationEntity.setDuration("2014-2019");
             return educationEntity;
         }
 
@@ -184,29 +181,22 @@ public class DataGenerator {
         private static void addItem(SkillEntity item) {
 
             ITEMS.add(item);
-            ITEM_MAP.put(item.getSkillId(), item);
+            ITEM_MAP.put(item.getId(), item);
         }
 
         @NonNull
         private static SkillEntity createSkillItem(int position) {
 
             SkillEntity skillEntity = new SkillEntity();
-            skillEntity.setSkillId(position);
+            skillEntity.setId(position);
             skillEntity.setTitle("Skill " + position);
-            skillEntity.setDescription(makeDetails(position));
+            skillEntity.setLevel(makeLevel());
             return skillEntity;
         }
 
-        @NonNull
-        private static String makeDetails(int position) {
+        private static int makeLevel() {
 
-            StringBuilder builder = new StringBuilder();
-            builder.append("Details about Skill: ")
-                   .append(position);
-            for (int i = 0; i < position; i++) {
-                builder.append("\nMore contactDetails information here.");
-            }
-            return builder.toString();
+            return new Random().nextInt(5);
         }
     }
 
@@ -241,14 +231,14 @@ public class DataGenerator {
         private static void addItem(WorkEntity item) {
 
             ITEMS.add(item);
-            ITEM_MAP.put(item.getWorkId(), item);
+            ITEM_MAP.put(item.getId(), item);
         }
 
         @NonNull
         private static WorkEntity createWorkItem(int position) {
 
             WorkEntity workEntity = new WorkEntity();
-            workEntity.setWorkId(position);
+            workEntity.setId(position);
             workEntity.setTitle("Work " + position);
             workEntity.setDescription(makeDetails(position));
             return workEntity;

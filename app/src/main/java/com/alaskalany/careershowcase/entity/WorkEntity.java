@@ -1,4 +1,4 @@
-package com.alaskalany.careershowcase.database.entity;
+package com.alaskalany.careershowcase.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -14,7 +14,7 @@ public class WorkEntity
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "work_id")
-    private int workId;
+    private int id;
 
     @ColumnInfo(name = "work_title")
     private String title;
@@ -25,20 +25,29 @@ public class WorkEntity
     @ColumnInfo(name = "work_company")
     private String company;
 
+    @ColumnInfo(name = "work_location")
+    private String location;
+
+    @ColumnInfo(name = "work_duration")
+    private String duration;
+
+    @ColumnInfo(name = "work_logo_url")
+    private String logoUrl;
+
     public WorkEntity() {
 
     }
 
     @Override
-    public int getWorkId() {
+    public int getId() {
 
-        return workId;
+        return id;
     }
 
     @Override
-    public void setWorkId(int workId) {
+    public void setId(int id) {
 
-        this.workId = workId;
+        this.id = id;
     }
 
     @Override
@@ -56,7 +65,7 @@ public class WorkEntity
     @Override
     public String getDuration() {
 
-        return null;
+        return duration;
     }
 
     @Override
@@ -78,8 +87,38 @@ public class WorkEntity
     }
 
     @Override
-    public void setCompany(String pCompany) {
+    public void setCompany(String company) {
 
-        company = pCompany;
+        this.company = company;
+    }
+
+    @Override
+    public String getLocation() {
+
+        return location;
+    }
+
+    @Override
+    public void setLocation(String location) {
+
+        this.location = location;
+    }
+
+    @Override
+    public void setDuration(String duration) {
+
+        this.duration = duration;
+    }
+
+    @Override
+    public String getLogoUrl() {
+
+        return logoUrl;
+    }
+
+    @Override
+    public void setLogoUrl(String logoUrl) {
+
+        this.logoUrl = logoUrl;
     }
 }

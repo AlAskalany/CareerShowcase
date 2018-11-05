@@ -1,33 +1,11 @@
 package com.alaskalany.careershowcase.model;
 
+import com.alaskalany.careershowcase.model.properties.*;
+
 /**
  *
  */
-public interface Education {
+public interface Education
+        extends Id, Title, Description, Location, Duration, Degree, StudyField, Institution, PhotoUrl {
 
-    /**
-     * @return
-     */
-    int getEducationId();
-
-    /**
-     * @param id
-     */
-    void setEducationId(int id);
-
-    String getEducationTitle();
-
-    void setEducationTitle(String educationTitle);
-
-    String getEducationDegree();
-
-    void setEducationDegree(String educationDegree);
-
-    String getEducationStudyField();
-
-    void setEducationStudyField(String educationStudyField);
-
-    String getEducationDescription();
-
-    void setEducationDescription(String educationDescription);
 }
