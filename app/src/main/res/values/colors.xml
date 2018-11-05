@@ -4,13 +4,13 @@
     <color name="colorPrimaryDark">@color/primaryDarkColor</color>
     <color name="colorAccent">@color/secondaryColor</color>
 
-    <color name="primaryColor">#ffffff</color>
+    <color name="primaryColor">@color/md_blue_500</color>
 
-    <color name="primaryLightColor">#ffffff</color>
+    <color name="primaryLightColor">@color/md_blue_200</color>
 
-    <color name="primaryDarkColor">#cccccc</color>
+    <color name="primaryDarkColor">@color/md_blue_800</color>
 
-    <color name="secondaryColor">#1976d2</color>
+    <color name="secondaryColor">@color/md_amber_500</color>
 
     <!--<color name="secondaryLightColor">#63a4ff</color>-->
 
@@ -26,7 +26,7 @@
     <color name="bottomNavigation">@color/white</color>
     <color name="bottomNavigation_iconTint">@color/colorPrimary</color>
     <color name="bottomNavigation_textColor">@color/colorPrimary</color>
-    <color name="colorBottomNavigationIconTintChecked">@color/colorAccent</color>
+    <color name="colorBottomNavigationIconTintChecked">@color/primaryColor</color>
     <color name="colorBottomNavigationIconTintUnchecked">@color/md_grey_400</color>
 
     <!-- google's material design colours from
