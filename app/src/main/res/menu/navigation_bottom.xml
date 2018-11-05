@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_overview"
+        android:icon="@drawable/ic_education_learn_literatu"
+        android:title="@string/title_overview" />
+
+    <item
+        android:id="@+id/navigation_education"
+        android:icon="@drawable/ic_education_graduation_lea"
+        android:title="@string/title_education" />
+
+    <item
+        android:id="@+id/navigation_work"
+        android:icon="@drawable/ic_building_education_learn"
+        android:title="@string/title_work" />
+
+    <item
+        android:id="@+id/navigation_skills"
+        android:icon="@drawable/ic_education_learn_school_s"
+        android:title="@string/title_skills" />
+
+    <item
+        android:id="@+id/navigation_contact"
+        android:icon="@drawable/ic_education_learn_pencil_s"
+        android:title="@string/title_contact" />
+
+</menu>
