@@ -92,15 +92,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:singleLine="false"
-                android:text="@string/text_introduction"
+                android:text="@string/intro"
+                android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                 android:textColor="@color/md_grey_700"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_headline"
-                tools:text="@string/text_introduction" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_headline" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
