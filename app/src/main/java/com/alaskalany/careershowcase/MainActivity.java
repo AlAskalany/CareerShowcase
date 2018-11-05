@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil;
 import com.alaskalany.careershowcase.databinding.ActivityMainBinding;
 import com.alaskalany.careershowcase.ui.BottomNavigationManager;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * Main activity
@@ -24,17 +25,21 @@ public class MainActivity
     public static final String TAG = "MainActivity";
 
     /**
+     * Activity layout bindings
+     */
+    ActivityMainBinding mBinding;
+
+    /**
      * Bottom navigation
      */
-    private final BottomNavigationManager mNavigationManager = new BottomNavigationManager(this);
+    private BottomNavigationManager mNavigationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        ActivityMainBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mBinding.navigation.setOnNavigationItemSelectedListener(mNavigationManager);
-        mBinding.navigation.setOnNavigationItemReselectedListener(mNavigationManager);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mNavigationManager = new BottomNavigationManager(this, mBinding.navigation);
         // Set bottom navigation to first fragment
         mNavigationManager.init(savedInstanceState == null);
         Runnable networkHandler = new Runnable() {
@@ -70,9 +75,9 @@ public class MainActivity
                 }
             }
 
-            private void doWhenNotConnected() {
+            private void doWhenWifiIsConnected() {
 
-                Toast.makeText(getApplicationContext(), "Not connected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "WiFi connected", Toast.LENGTH_SHORT).show();
             }
 
             private void doWhenMobileIsConnected() {
@@ -80,9 +85,9 @@ public class MainActivity
                 Toast.makeText(getApplicationContext(), "Mobile connected", Toast.LENGTH_SHORT).show();
             }
 
-            private void doWhenWifiIsConnected() {
+            private void doWhenNotConnected() {
 
-                Toast.makeText(getApplicationContext(), "WiFi connected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Not connected", Toast.LENGTH_SHORT).show();
             }
         };
         networkHandler.run();
@@ -94,5 +99,14 @@ public class MainActivity
     @Override
     public void onOverviewFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (!mNavigationManager.onBackPressed()) {
+            //getSupportFragmentManager().popBackStack();
+            super.onBackPressed();
+        }
     }
 }

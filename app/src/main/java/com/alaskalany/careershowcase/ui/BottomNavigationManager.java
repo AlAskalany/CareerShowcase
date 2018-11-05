@@ -1,6 +1,7 @@
 package com.alaskalany.careershowcase.ui;
 
 import android.view.MenuItem;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.collection.SparseArrayCompat;
 import androidx.fragment.app.Fragment;
@@ -23,7 +24,9 @@ import java.util.Objects;
  */
 public class BottomNavigationManager
         implements BottomNavigationView.OnNavigationItemSelectedListener,
-                   BottomNavigationView.OnNavigationItemReselectedListener {
+                   BottomNavigationView.OnNavigationItemReselectedListener,
+                   FragmentManager.OnBackStackChangedListener,
+                   OnBackPressed {
 
     /**
      * {@link OverviewFragment}
@@ -53,25 +56,41 @@ public class BottomNavigationManager
     /**
      * {@link MainActivity}
      */
-    private final FragmentActivity mActivity;
+    private final FragmentActivity activity;
 
     /**
      *
      */
-    private final SparseArrayCompat<ScrollToTop> mFragments;
+    private final SparseArrayCompat<ScrollToTop> fragments;
+
+    private BottomNavigationView navigation;
 
     /**
      * @param fragmentActivity {@link MainActivity}
      */
-    public BottomNavigationManager(FragmentActivity fragmentActivity) {
+    public BottomNavigationManager(FragmentActivity fragmentActivity, BottomNavigationView navigation) {
 
-        mActivity = fragmentActivity;
-        mFragments = new SparseArrayCompat<>();
+        activity = fragmentActivity;
+        fragments = new SparseArrayCompat<>();
+        createFragments(fragments);
+        this.navigation = navigation;
+        setBottomNavigationView(navigation);
+        navigation.setOnNavigationItemSelectedListener(this);
+        navigation.setOnNavigationItemReselectedListener(this);
+    }
+
+    private static void createFragments(@NonNull SparseArrayCompat<ScrollToTop> mFragments) {
+
         mFragments.put(OVERVIEW, new OverviewFragment());
         mFragments.put(EDUCATION, new EducationListFragment());
         mFragments.put(WORK, new WorkListFragment());
         mFragments.put(SKILLS, new SkillListFragment());
         mFragments.put(CONTACT, new ContactListFragment());
+    }
+
+    public void setBottomNavigationView(BottomNavigationView navigation) {
+
+        this.navigation = navigation;
     }
 
     /**
@@ -109,11 +128,13 @@ public class BottomNavigationManager
      */
     private void replaceFragment(int navFragment) throws RuntimeException {
 
-        ScrollToTop fragment = mFragments.get(navFragment);
+        ScrollToTop fragment = fragments.get(navFragment);
         if (fragment != null) {
-            FragmentTransaction transaction = mActivity.getSupportFragmentManager().beginTransaction();
+            FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.container_navigation, (Fragment) fragment);
-            transaction.addToBackStack(null);
+            if (!(fragment instanceof OverviewFragment)) {
+                transaction.addToBackStack(null);
+            }
             transaction.commit();
         } else {
             throw new RuntimeException("Navigation fragment shouldn't be null");
@@ -160,7 +181,7 @@ public class BottomNavigationManager
      */
     private ScrollToTop getFragment(int fragmentId) {
 
-        return Objects.requireNonNull(mFragments.get(fragmentId));
+        return Objects.requireNonNull(fragments.get(fragmentId));
     }
 
     /**
@@ -169,14 +190,30 @@ public class BottomNavigationManager
     public void init(boolean freshStart) {
 
         if (freshStart) {
-            ScrollToTop fragment = mFragments.get(OVERVIEW);
+            ScrollToTop fragment = fragments.get(OVERVIEW);
             if (fragment != null) {
-                FragmentManager supportFragmentManager = mActivity.getSupportFragmentManager();
+                FragmentManager supportFragmentManager = activity.getSupportFragmentManager();
                 FragmentTransaction transaction = supportFragmentManager.beginTransaction();
                 transaction.add(R.id.container_navigation, (Fragment) fragment);
-                transaction.addToBackStack(null);
+                //transaction.addToBackStack(null);
                 transaction.commit();
             }
         }
+    }
+
+    @Override
+    public void onBackStackChanged() {
+
+        Toast.makeText(activity.getApplicationContext(), "Backstack changed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+
+        if (navigation.getSelectedItemId() != R.id.navigation_overview) {
+            navigation.setSelectedItemId(R.id.navigation_overview);
+            return true;
+        }
+        return false;
     }
 }
