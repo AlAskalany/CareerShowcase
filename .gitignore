@@ -155,3 +155,5 @@ fabric.properties
 !.vscode/extensions.json
 
 # End of https://www.gitignore.io/api/visualstudiocode
+app/keystore.jks
+app/release/
