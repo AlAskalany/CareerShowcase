@@ -24,6 +24,7 @@
 
 package com.alaskalany.careershowcase.ui.contact;
 
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,6 +126,23 @@ public class ContactAdapter
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         holder.binding.setContact(contactEntities.get(position));
+
+        String title = contactEntities.get(position)
+                                      .getTitle();
+
+        switch (title) {
+            case "E-mail":
+                holder.binding.textViewContactDescription.setAutoLinkMask(Linkify.EMAIL_ADDRESSES);
+                break;
+            case "Mobile":
+                holder.binding.textViewContactDescription.setAutoLinkMask(Linkify.PHONE_NUMBERS);
+                break;
+            case "Skype":
+                holder.binding.textViewContactDescription.setTextIsSelectable(true);
+                break;
+            default:
+                break;
+        }
 
         holder.binding.setContactOnClickCallback(contactOnClickCallback);
         View rootView = holder.binding.getRoot();
