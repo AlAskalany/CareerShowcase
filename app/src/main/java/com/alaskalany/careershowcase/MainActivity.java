@@ -13,7 +13,6 @@ import androidx.databinding.DataBindingUtil;
 import com.alaskalany.careershowcase.databinding.ActivityMainBinding;
 import com.alaskalany.careershowcase.ui.BottomNavigationManager;
 import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * Main activity
@@ -106,7 +105,7 @@ public class MainActivity
 
         if (!mNavigationManager.onBackPressed()) {
             //getSupportFragmentManager().popBackStack();
-            super.onBackPressed();
+            finish();
         }
     }
 }

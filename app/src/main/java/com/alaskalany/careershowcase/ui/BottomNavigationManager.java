@@ -211,7 +211,8 @@ public class BottomNavigationManager
     public boolean onBackPressed() {
 
         if (navigation.getSelectedItemId() != R.id.navigation_overview) {
-            navigation.setSelectedItemId(R.id.navigation_overview);
+            navigation.getMenu().getItem(0).setChecked(true);
+            replaceFragment(OVERVIEW);
             return true;
         }
         return false;
