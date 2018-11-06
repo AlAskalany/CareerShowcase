@@ -8,28 +8,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.repository.DataRepository;
 import com.alaskalany.careershowcase.entity.EducationEntity;
+import com.alaskalany.careershowcase.repository.DataRepository;
 
 public class EducationViewModel
         extends AndroidViewModel {
 
-    private final LiveData<EducationEntity> mObservableEducation;
+    private final LiveData<EducationEntity> observableEducation;
 
-    private final int mEducationId;
+    private final int educationId;
 
     public ObservableField<EducationEntity> education = new ObservableField<EducationEntity>();
 
     public EducationViewModel(@NonNull Application application, DataRepository dataRepository, final int educationId) {
 
         super(application);
-        mEducationId = educationId;
-        mObservableEducation = dataRepository.mEducationRepository.load(educationId);
+        this.educationId = educationId;
+        observableEducation = dataRepository.educationRepository.load(educationId);
     }
 
     public LiveData<EducationEntity> getObservableEducation() {
 
-        return mObservableEducation;
+        return observableEducation;
     }
 
     public void setEducation(EducationEntity education) {

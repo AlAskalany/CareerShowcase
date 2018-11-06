@@ -8,13 +8,13 @@ import com.alaskalany.careershowcase.repository.DataRepository;
 public class CareerShowcaseApp
         extends Application {
 
-    private AppExecutors mAppExecutors;
+    private AppExecutors appExecutors;
 
     @Override
     public void onCreate() {
 
         super.onCreate();
-        mAppExecutors = new AppExecutors();
+        appExecutors = new AppExecutors();
     }
 
     /**
@@ -30,6 +30,6 @@ public class CareerShowcaseApp
      */
     public AppDatabase getDatabase() {
 
-        return AppDatabase.getInstance(this, mAppExecutors);
+        return AppDatabase.getInstance(this, appExecutors);
     }
 }

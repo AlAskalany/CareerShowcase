@@ -42,23 +42,23 @@ public class OverviewFragment
      *
      */
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
-    private String mParam1;
+    private String param1;
 
     /**
      *
      */
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
-    private String mParam2;
+    private String param2;
 
     /**
      *
      */
-    private OnOverviewFragmentInteractionListener mListener;
+    private OnOverviewFragmentInteractionListener onOverviewFragmentInteractionListener;
 
     /**
      *
      */
-    private FragmentOverviewBinding mBinding;
+    private FragmentOverviewBinding binding;
 
     /**
      *
@@ -73,7 +73,6 @@ public class OverviewFragment
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     *
      * @return A new instance of fragment OverviewFragment.
      */
     @SuppressWarnings({"unused", "WeakerAccess"})
@@ -93,8 +92,8 @@ public class OverviewFragment
     @SuppressWarnings("unused")
     public void onButtonPressed(Uri uri) {
 
-        if (mListener != null) {
-            mListener.onOverviewFragmentInteraction(uri);
+        if (onOverviewFragmentInteractionListener != null) {
+            onOverviewFragmentInteractionListener.onOverviewFragmentInteraction(uri);
         }
     }
 
@@ -115,7 +114,7 @@ public class OverviewFragment
     private void registerListener(Context context) {
 
         if (context instanceof OnOverviewFragmentInteractionListener) {
-            mListener = (OnOverviewFragmentInteractionListener) context;
+            onOverviewFragmentInteractionListener = (OnOverviewFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString() + " must implement OnOverviewFragmentInteractionListener");
         }
@@ -129,8 +128,8 @@ public class OverviewFragment
 
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            param1 = getArguments().getString(ARG_PARAM1);
+            param2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -138,18 +137,17 @@ public class OverviewFragment
      * @param inflater
      * @param container
      * @param savedInstanceState
-     *
      * @return
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false);
-        mBinding.setName("Ahmed AlAskalany");
-        mBinding.setHeadline("Software Engineer");
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false);
+        binding.setName("Ahmed AlAskalany");
+        binding.setHeadline("Software Engineer");
         // Inflate the layout for this fragment
-        GlideApp.with(this).load(getString(R.string.profile_picture_url)).into(mBinding.imageViewProfilePicture);
-        return mBinding.getRoot();
+        GlideApp.with(this).load(getString(R.string.profile_picture_url)).into(binding.imageViewProfilePicture);
+        return binding.getRoot();
     }
 
     /**
@@ -159,7 +157,7 @@ public class OverviewFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        mBinding.executePendingBindings();
+        binding.executePendingBindings();
     }
 
     /**
@@ -177,7 +175,7 @@ public class OverviewFragment
      */
     private void unregisterListener() {
 
-        mListener = null;
+        onOverviewFragmentInteractionListener = null;
     }
 
     @Override

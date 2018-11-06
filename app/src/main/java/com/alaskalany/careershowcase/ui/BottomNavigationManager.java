@@ -24,9 +24,9 @@ import java.util.Objects;
  */
 public class BottomNavigationManager
         implements BottomNavigationView.OnNavigationItemSelectedListener,
-                   BottomNavigationView.OnNavigationItemReselectedListener,
-                   FragmentManager.OnBackStackChangedListener,
-                   OnBackPressed {
+        BottomNavigationView.OnNavigationItemReselectedListener,
+        FragmentManager.OnBackStackChangedListener,
+        OnBackPressed {
 
     /**
      * {@link OverviewFragment}
@@ -95,7 +95,6 @@ public class BottomNavigationManager
 
     /**
      * @param menuItem Bottom navigation menu item
-     *
      * @return True if a menu item was selected
      */
     @Override
@@ -123,7 +122,6 @@ public class BottomNavigationManager
 
     /**
      * @param navFragment Navigation fragment
-     *
      * @throws RuntimeException If the navigation fragment is null
      */
     private void replaceFragment(int navFragment) throws RuntimeException {
@@ -176,7 +174,6 @@ public class BottomNavigationManager
 
     /**
      * @param fragmentId Fragment id
-     *
      * @return Bottom navigation fragment
      */
     private ScrollToTop getFragment(int fragmentId) {

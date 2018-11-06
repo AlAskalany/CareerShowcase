@@ -26,21 +26,21 @@ public class MainActivity
     /**
      * Activity layout bindings
      */
-    ActivityMainBinding mBinding;
+    ActivityMainBinding binding;
 
     /**
      * Bottom navigation
      */
-    private BottomNavigationManager mNavigationManager;
+    private BottomNavigationManager bottomNavigationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mNavigationManager = new BottomNavigationManager(this, mBinding.navigation);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        bottomNavigationManager = new BottomNavigationManager(this, binding.navigation);
         // Set bottom navigation to first fragment
-        mNavigationManager.init(savedInstanceState == null);
+        bottomNavigationManager.init(savedInstanceState == null);
         Runnable networkHandler = new Runnable() {
 
             @Override
@@ -103,7 +103,7 @@ public class MainActivity
     @Override
     public void onBackPressed() {
 
-        if (!mNavigationManager.onBackPressed()) {
+        if (!bottomNavigationManager.onBackPressed()) {
             //getSupportFragmentManager().popBackStack();
             finish();
         }

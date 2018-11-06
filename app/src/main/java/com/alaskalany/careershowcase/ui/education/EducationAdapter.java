@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.entity.EducationEntity;
 import com.alaskalany.careershowcase.databinding.FragmentEducationBinding;
+import com.alaskalany.careershowcase.entity.EducationEntity;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link EducationEntity}
@@ -25,12 +24,12 @@ public class EducationAdapter
     /**
      *
      */
-    protected final EducationOnClickCallback mCallback;
+    protected final EducationOnClickCallback educationOnClickCallback;
 
     /**
      *
      */
-    protected List<EducationEntity> mValues;
+    protected List<EducationEntity> educationEntities;
 
     /**
      * @param callback
@@ -38,13 +37,12 @@ public class EducationAdapter
     @SuppressWarnings("WeakerAccess")
     public EducationAdapter(EducationOnClickCallback callback) {
 
-        this.mCallback = callback;
+        this.educationOnClickCallback = callback;
     }
 
     /**
      * @param parent
      * @param viewType
-     *
      * @return
      */
     @NonNull
@@ -52,10 +50,10 @@ public class EducationAdapter
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         FragmentEducationBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                                                   R.layout.fragment_education,
-                                                                   parent,
-                                                                   false);
-        binding.setCallback(mCallback);
+                R.layout.fragment_education,
+                parent,
+                false);
+        binding.setEducationOnClickCallback(educationOnClickCallback);
         return new ViewHolder(binding);
     }
 
@@ -66,17 +64,18 @@ public class EducationAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setEducation(mValues.get(position));
-        holder.mBinding.setCallback(getCallback());
-        View rootView = holder.mBinding.getRoot();
-        GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewEducationLogo);
-        holder.mBinding.executePendingBindings();
+        holder.binding.setEducation(educationEntities.get(position));
+
+        holder.binding.setEducationOnClickCallback(educationOnClickCallback);
+        View rootView = holder.binding.getRoot();
+        GlideApp.with(rootView).load(educationEntities.get(position).getLogoUrl()).into(holder.binding.imageViewEducationLogo);
+        holder.binding.executePendingBindings();
     }
 
     public void setEducationList(final List<EducationEntity> educationList) {
 
-        if (mValues == null) {
-            mValues = educationList;
+        if (educationEntities == null) {
+            educationEntities = educationList;
             notifyItemRangeInserted(0, educationList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
@@ -84,7 +83,7 @@ public class EducationAdapter
                 @Override
                 public int getOldListSize() {
 
-                    return mValues.size();
+                    return educationEntities.size();
                 }
 
                 @Override
@@ -96,30 +95,22 @@ public class EducationAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    return mValues.get(oldItemPosition).getId() == educationList.get(newItemPosition).getId();
+                    return educationEntities.get(oldItemPosition).getId() == educationList.get(newItemPosition).getId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
 
                     EducationEntity newEducation = educationList.get(newItemPosition);
-                    EducationEntity oldEducation = mValues.get(oldItemPosition);
+                    EducationEntity oldEducation = educationEntities.get(oldItemPosition);
                     return newEducation.getId() == oldEducation.getId() &&
-                           newEducation.getDescription() == oldEducation.getDescription() &&
-                           newEducation.getTitle() == oldEducation.getTitle();
+                            newEducation.getDescription() == oldEducation.getDescription() &&
+                            newEducation.getTitle() == oldEducation.getTitle();
                 }
             });
-            mValues = educationList;
+            educationEntities = educationList;
             result.dispatchUpdatesTo(this);
         }
-    }
-
-    /**
-     * @return
-     */
-    public EducationOnClickCallback getCallback() {
-
-        return mCallback;
     }
 
     /**
@@ -128,7 +119,7 @@ public class EducationAdapter
     @Override
     public int getItemCount() {
 
-        return mValues == null ? 0 : mValues.size();
+        return educationEntities == null ? 0 : educationEntities.size();
     }
 
     /**
@@ -140,7 +131,7 @@ public class EducationAdapter
         /**
          *
          */
-        public final FragmentEducationBinding mBinding;
+        public final FragmentEducationBinding binding;
 
         /**
          * @param binding
@@ -148,7 +139,7 @@ public class EducationAdapter
         public ViewHolder(FragmentEducationBinding binding) {
 
             super(binding.getRoot());
-            this.mBinding = binding;
+            this.binding = binding;
         }
     }
 }

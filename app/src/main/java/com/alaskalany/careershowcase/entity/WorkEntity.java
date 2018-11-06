@@ -69,9 +69,21 @@ public class WorkEntity
     }
 
     @Override
+    public void setDuration(String duration) {
+
+        this.duration = duration;
+    }
+
+    @Override
     public String getCompany() {
 
         return company;
+    }
+
+    @Override
+    public void setCompany(String company) {
+
+        this.company = company;
     }
 
     @Override
@@ -87,12 +99,6 @@ public class WorkEntity
     }
 
     @Override
-    public void setCompany(String company) {
-
-        this.company = company;
-    }
-
-    @Override
     public String getLocation() {
 
         return location;
@@ -102,12 +108,6 @@ public class WorkEntity
     public void setLocation(String location) {
 
         this.location = location;
-    }
-
-    @Override
-    public void setDuration(String duration) {
-
-        this.duration = duration;
     }
 
     @Override

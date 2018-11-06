@@ -8,23 +8,23 @@ import java.util.List;
 
 public class SkillRepository {
 
-    private final DataRepository mDataRepository;
+    private final DataRepository dataRepository;
 
-    private MediatorLiveData<List<SkillEntity>> mObservableSkills;
+    private MediatorLiveData<List<SkillEntity>> observableSkills;
 
-    public SkillRepository(DataRepository pMDataRepository) {
+    public SkillRepository(DataRepository dataRepository) {
 
-        mDataRepository = pMDataRepository;
+        this.dataRepository = dataRepository;
     }
 
     public MediatorLiveData<List<SkillEntity>> getObservableSkills() {
 
-        return mObservableSkills;
+        return observableSkills;
     }
 
-    public void setObservableSkills(MediatorLiveData<List<SkillEntity>> pObservableSkills) {
+    public void setObservableSkills(MediatorLiveData<List<SkillEntity>> observableSkills) {
 
-        mObservableSkills = pObservableSkills;
+        this.observableSkills = observableSkills;
     }
 
     public void insertAll(List<SkillEntity> skillEntities) {
@@ -33,27 +33,27 @@ public class SkillRepository {
 
     public LiveData<SkillEntity> load(int skillId) {
 
-        return mDataRepository.getDatabase()
-                              .skillDao()
-                              .load(skillId);
+        return dataRepository.getDatabase()
+                .skillDao()
+                .load(skillId);
     }
 
     public SkillEntity loadSync(int skillId) {
 
-        return mDataRepository.getDatabase()
-                              .skillDao()
-                              .loadSync(skillId);
+        return dataRepository.getDatabase()
+                .skillDao()
+                .loadSync(skillId);
     }
 
     public LiveData<List<SkillEntity>> loadAll() {
 
-        return mDataRepository.getDatabase()
-                              .skillDao()
-                              .loadAll();
+        return dataRepository.getDatabase()
+                .skillDao()
+                .loadAll();
     }
 
     public MediatorLiveData<List<SkillEntity>> getSkills() {
 
-        return mObservableSkills;
+        return observableSkills;
     }
 }

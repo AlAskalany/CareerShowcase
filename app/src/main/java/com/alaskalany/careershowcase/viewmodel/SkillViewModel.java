@@ -8,28 +8,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.repository.DataRepository;
 import com.alaskalany.careershowcase.entity.SkillEntity;
+import com.alaskalany.careershowcase.repository.DataRepository;
 
 public class SkillViewModel
         extends AndroidViewModel {
 
-    private final LiveData<SkillEntity> mObservableSkill;
+    private final LiveData<SkillEntity> observableSkill;
 
-    private final int mSkillId;
+    private final int skillId;
 
     public ObservableField<SkillEntity> skill = new ObservableField<>();
 
     public SkillViewModel(@NonNull Application application, DataRepository dataRepository, final int skillId) {
 
         super(application);
-        mSkillId = skillId;
-        mObservableSkill = dataRepository.mSkillRepository.load(skillId);
+        this.skillId = skillId;
+        observableSkill = dataRepository.skillRepository.load(skillId);
     }
 
     public LiveData<SkillEntity> getObservableSkill() {
 
-        return mObservableSkill;
+        return observableSkill;
     }
 
     public void setSkill(SkillEntity skill) {

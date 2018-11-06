@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
@@ -34,23 +33,23 @@ public class WorkListFragment
     /**
      *
      */
-    private final WorkOnClickCallback mCallback =
+    private final WorkOnClickCallback workOnClickCallback =
             item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
      *
      */
-    protected FragmentWorkListBinding mBinding;
+    protected FragmentWorkListBinding binding;
 
     /**
      *
      */
-    protected WorkAdapter mAdapter;
+    protected WorkAdapter adapter;
 
     /**
      *
      */
-    protected int mColumnCount = 1;
+    protected int columnCount = 1;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -62,7 +61,6 @@ public class WorkListFragment
 
     /**
      * @param columnCount
-     *
      * @return
      */
     @SuppressWarnings("unused")
@@ -79,22 +77,21 @@ public class WorkListFragment
      * @param inflater
      * @param container
      * @param savedInstanceState
-     *
      * @return
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
-        mAdapter = new WorkAdapter(mCallback);
-        Context context = mBinding.getRoot().getContext();
-        if (mColumnCount <= 1) {
-            mBinding.listWork.setLayoutManager(new LinearLayoutManager(context));
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
+        adapter = new WorkAdapter(workOnClickCallback);
+        Context context = binding.getRoot().getContext();
+        if (columnCount <= 1) {
+            binding.listWork.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            mBinding.listWork.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+            binding.listWork.setLayoutManager(new GridLayoutManager(context, columnCount));
         }
-        mBinding.listWork.setAdapter(mAdapter);
-        return mBinding.getRoot();
+        binding.listWork.setAdapter(adapter);
+        return binding.getRoot();
     }
 
     /**
@@ -103,7 +100,7 @@ public class WorkListFragment
      * initialization once these pieces are in place, such as retrieving
      * views or restoring state.  It is also useful for fragments that use
      * {@link #setRetainInstance(boolean)} to retain their instance,
-     * as this callback tells the fragment when it is fully associated with
+     * as this skillOnClickCallback tells the fragment when it is fully associated with
      * the new activity instance.  This is called after {@link #onCreateView}
      * and before {@link #onViewStateRestored(Bundle)}.
      *
@@ -115,13 +112,13 @@ public class WorkListFragment
 
         super.onActivityCreated(savedInstanceState);
         final WorkListViewModel _model = ViewModelProviders.of(this).get(WorkListViewModel.class);
-        mBinding.setWorkListViewModel(_model);
+        binding.setWorkListViewModel(_model);
         _model.getWorks().observe(this, pWorkEntities -> {
             if (pWorkEntities != null) {
-                mAdapter.setWorkList(pWorkEntities);
+                adapter.setWorkList(pWorkEntities);
             } else {
             }
-            mBinding.executePendingBindings();
+            binding.executePendingBindings();
         });
     }
 
@@ -130,7 +127,7 @@ public class WorkListFragment
      */
     protected int getColumnCount() {
 
-        return mColumnCount;
+        return columnCount;
     }
 
     /**
@@ -138,7 +135,7 @@ public class WorkListFragment
      */
     protected void setColumnCount(int mColumnCount) {
 
-        this.mColumnCount = mColumnCount;
+        this.columnCount = mColumnCount;
     }
 
     /**
@@ -146,7 +143,7 @@ public class WorkListFragment
      */
     protected WorkAdapter getAdapter() {
 
-        return mAdapter;
+        return adapter;
     }
 
     /**
@@ -154,7 +151,7 @@ public class WorkListFragment
      */
     protected void setAdapter(WorkAdapter adapter) {
 
-        this.mAdapter = adapter;
+        this.adapter = adapter;
     }
 
     /**
@@ -190,6 +187,6 @@ public class WorkListFragment
     @Override
     public void top() {
 
-        mBinding.listWork.smoothScrollToPosition(0);
+        binding.listWork.smoothScrollToPosition(0);
     }
 }

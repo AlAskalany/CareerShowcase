@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
@@ -35,23 +34,23 @@ public class EducationListFragment
     /**
      *
      */
-    private final EducationOnClickCallback mCallBack =
+    private final EducationOnClickCallback educationOnClickCallback =
             item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
      *
      */
-    protected FragmentEducationListBinding mBinding;
+    protected FragmentEducationListBinding binding;
 
     /**
      *
      */
-    protected EducationAdapter mAdapter;
+    protected EducationAdapter adapter;
 
     /**
      *
      */
-    protected int mColumnCount = 1;
+    protected int columnCount = 1;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -63,7 +62,6 @@ public class EducationListFragment
 
     /**
      * @param columnCount
-     *
      * @return
      */
     @SuppressWarnings("unused")
@@ -80,22 +78,21 @@ public class EducationListFragment
      * @param inflater
      * @param container
      * @param savedInstanceState
-     *
      * @return
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
-        setAdapter(new EducationAdapter(mCallBack));
-        Context context = mBinding.getRoot().getContext();
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
+        setAdapter(new EducationAdapter(educationOnClickCallback));
+        Context context = binding.getRoot().getContext();
         if (getColumnCount() <= 1) {
-            mBinding.listEducation.setLayoutManager(new LinearLayoutManager(context));
+            binding.listEducation.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            mBinding.listEducation.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+            binding.listEducation.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
-        mBinding.listEducation.setAdapter(getAdapter());
-        return mBinding.getRoot();
+        binding.listEducation.setAdapter(getAdapter());
+        return binding.getRoot();
     }
 
     /**
@@ -104,7 +101,7 @@ public class EducationListFragment
      * initialization once these pieces are in place, such as retrieving
      * views or restoring state.  It is also useful for fragments that use
      * {@link #setRetainInstance(boolean)} to retain their instance,
-     * as this callback tells the fragment when it is fully associated with
+     * as this skillOnClickCallback tells the fragment when it is fully associated with
      * the new activity instance.  This is called after {@link #onCreateView}
      * and before {@link #onViewStateRestored(Bundle)}.
      *
@@ -116,13 +113,13 @@ public class EducationListFragment
 
         super.onActivityCreated(savedInstanceState);
         final EducationListViewModel _model = ViewModelProviders.of(this).get(EducationListViewModel.class);
-        mBinding.setEducationListViewModel(_model);
+        binding.setEducationListViewModel(_model);
         _model.getEducations().observe(this, pWorkEntities -> {
             if (pWorkEntities != null) {
-                mAdapter.setEducationList(pWorkEntities);
+                adapter.setEducationList(pWorkEntities);
             } else {
             }
-            mBinding.executePendingBindings();
+            binding.executePendingBindings();
         });
     }
 
@@ -131,7 +128,7 @@ public class EducationListFragment
      */
     protected int getColumnCount() {
 
-        return mColumnCount;
+        return columnCount;
     }
 
     /**
@@ -139,7 +136,7 @@ public class EducationListFragment
      */
     protected void setColumnCount(int mColumnCount) {
 
-        this.mColumnCount = mColumnCount;
+        this.columnCount = mColumnCount;
     }
 
     /**
@@ -147,7 +144,7 @@ public class EducationListFragment
      */
     protected EducationAdapter getAdapter() {
 
-        return mAdapter;
+        return adapter;
     }
 
     /**
@@ -155,7 +152,7 @@ public class EducationListFragment
      */
     protected void setAdapter(EducationAdapter adapter) {
 
-        this.mAdapter = adapter;
+        this.adapter = adapter;
     }
 
     /**
@@ -191,6 +188,6 @@ public class EducationListFragment
     @Override
     public void top() {
 
-        mBinding.listEducation.smoothScrollToPosition(0);
+        binding.listEducation.smoothScrollToPosition(0);
     }
 }

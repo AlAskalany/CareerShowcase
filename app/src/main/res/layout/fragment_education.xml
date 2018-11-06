@@ -10,7 +10,7 @@
             type="com.alaskalany.careershowcase.model.Education" />
 
         <variable
-            name="callback"
+            name="educationOnClickCallback"
             type="com.alaskalany.careershowcase.ui.education.EducationOnClickCallback" />
     </data>
 
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/card_spacing"
-        android:onClick="@{() -> callback.onClick(education)}"
+        android:onClick="@{() -> educationOnClickCallback.onClick(education)}"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/card_elevation"
         app:cardMaxElevation="@dimen/card_max_elevation"

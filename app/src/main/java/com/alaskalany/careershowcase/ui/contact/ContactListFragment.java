@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
@@ -35,23 +34,23 @@ public class ContactListFragment
     /**
      *
      */
-    private final ContactOnClickCallback mCallBack =
+    private final ContactOnClickCallback contactOnClickCallback =
             item -> Toast.makeText(getContext(), "Clicked on ContactEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
      *
      */
-    protected FragmentContactListBinding mBinding;
+    protected FragmentContactListBinding binding;
 
     /**
      *
      */
-    protected ContactAdapter mAdapter;
+    protected ContactAdapter adapter;
 
     /**
      *
      */
-    protected int mColumnCount = 1;
+    protected int columnCount = 1;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -63,7 +62,6 @@ public class ContactListFragment
 
     /**
      * @param columnCount
-     *
      * @return
      */
     @SuppressWarnings("unused")
@@ -80,22 +78,21 @@ public class ContactListFragment
      * @param inflater
      * @param container
      * @param savedInstanceState
-     *
      * @return
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_list, container, false);
-        setAdapter(new ContactAdapter(mCallBack));
-        Context context = mBinding.getRoot().getContext();
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_list, container, false);
+        setAdapter(new ContactAdapter(contactOnClickCallback));
+        Context context = binding.getRoot().getContext();
         if (getColumnCount() <= 1) {
-            mBinding.listContact.setLayoutManager(new LinearLayoutManager(context));
+            binding.listContact.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            mBinding.listContact.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+            binding.listContact.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
-        mBinding.listContact.setAdapter(getAdapter());
-        return mBinding.getRoot();
+        binding.listContact.setAdapter(getAdapter());
+        return binding.getRoot();
     }
 
     /**
@@ -104,7 +101,7 @@ public class ContactListFragment
      * initialization once these pieces are in place, such as retrieving
      * views or restoring state.  It is also useful for fragments that use
      * {@link #setRetainInstance(boolean)} to retain their instance,
-     * as this callback tells the fragment when it is fully associated with
+     * as this skillOnClickCallback tells the fragment when it is fully associated with
      * the new activity instance.  This is called after {@link #onCreateView}
      * and before {@link #onViewStateRestored(Bundle)}.
      *
@@ -116,13 +113,13 @@ public class ContactListFragment
 
         super.onActivityCreated(savedInstanceState);
         final ContactListViewModel _model = ViewModelProviders.of(this).get(ContactListViewModel.class);
-        mBinding.setContactListViewModel(_model);
+        binding.setContactListViewModel(_model);
         _model.getContacts().observe(this, contactEntities -> {
             if (contactEntities != null) {
-                mAdapter.setContactList(contactEntities);
+                adapter.setContactList(contactEntities);
             } else {
             }
-            mBinding.executePendingBindings();
+            binding.executePendingBindings();
         });
     }
 
@@ -131,7 +128,7 @@ public class ContactListFragment
      */
     protected int getColumnCount() {
 
-        return mColumnCount;
+        return columnCount;
     }
 
     /**
@@ -139,7 +136,7 @@ public class ContactListFragment
      */
     protected void setColumnCount(int mColumnCount) {
 
-        this.mColumnCount = mColumnCount;
+        this.columnCount = mColumnCount;
     }
 
     /**
@@ -147,7 +144,7 @@ public class ContactListFragment
      */
     protected ContactAdapter getAdapter() {
 
-        return mAdapter;
+        return adapter;
     }
 
     /**
@@ -155,7 +152,7 @@ public class ContactListFragment
      */
     protected void setAdapter(ContactAdapter adapter) {
 
-        this.mAdapter = adapter;
+        this.adapter = adapter;
     }
 
     /**
@@ -191,6 +188,6 @@ public class ContactListFragment
     @Override
     public void top() {
 
-        mBinding.listContact.smoothScrollToPosition(0);
+        binding.listContact.smoothScrollToPosition(0);
     }
 }

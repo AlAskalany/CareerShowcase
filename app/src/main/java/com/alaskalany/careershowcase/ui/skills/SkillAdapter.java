@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
-import com.alaskalany.careershowcase.entity.SkillEntity;
 import com.alaskalany.careershowcase.databinding.FragmentSkillBinding;
+import com.alaskalany.careershowcase.entity.SkillEntity;
 import org.jetbrains.annotations.Contract;
 
 import java.util.List;
@@ -26,25 +26,24 @@ public class SkillAdapter
     /**
      *
      */
-    protected final SkillOnClickCallback mCallback;
+    protected final SkillOnClickCallback skillOnClickCallback;
 
     /**
      *
      */
-    protected List<SkillEntity> mValues;
+    protected List<SkillEntity> skillEntities;
 
     /**
-     * @param callback
+     * @param skillOnClickCallback
      */
     @SuppressWarnings("WeakerAccess")
-    public SkillAdapter(SkillOnClickCallback callback) {
+    public SkillAdapter(SkillOnClickCallback skillOnClickCallback) {
 
-        this.mCallback = callback;
+        this.skillOnClickCallback = skillOnClickCallback;
     }
 
     /**
      * @param position
-     *
      * @return
      */
     @Contract(pure = true)
@@ -56,7 +55,6 @@ public class SkillAdapter
     /**
      * @param parent
      * @param viewType
-     *
      * @return
      */
     @NonNull
@@ -64,10 +62,10 @@ public class SkillAdapter
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         FragmentSkillBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                                               R.layout.fragment_skill,
-                                                               parent,
-                                                               false);
-        binding.setCallback(mCallback);
+                R.layout.fragment_skill,
+                parent,
+                false);
+        binding.setSkillOnClickCallback(skillOnClickCallback);
         return new ViewHolder(binding);
     }
 
@@ -78,17 +76,18 @@ public class SkillAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setSkill(mValues.get(position));
-        holder.mBinding.setCallback(getCallback());
-        View rootView = holder.mBinding.getRoot();
-        GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewSkillLogo);
-        holder.mBinding.executePendingBindings();
+        holder.binding.setSkill(skillEntities.get(position));
+
+        holder.binding.setSkillOnClickCallback(skillOnClickCallback);
+        View rootView = holder.binding.getRoot();
+        GlideApp.with(rootView).load(skillEntities.get(position).getLogoUrl()).into(holder.binding.imageViewSkillLogo);
+        holder.binding.executePendingBindings();
     }
 
     public void setSkillList(final List<SkillEntity> skillList) {
 
-        if (mValues == null) {
-            mValues = skillList;
+        if (skillEntities == null) {
+            skillEntities = skillList;
             notifyItemRangeInserted(0, skillList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
@@ -96,7 +95,7 @@ public class SkillAdapter
                 @Override
                 public int getOldListSize() {
 
-                    return mValues.size();
+                    return skillEntities.size();
                 }
 
                 @Override
@@ -108,30 +107,22 @@ public class SkillAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    return mValues.get(oldItemPosition).getId() == skillList.get(newItemPosition).getId();
+                    return skillEntities.get(oldItemPosition).getId() == skillList.get(newItemPosition).getId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
 
                     SkillEntity newSkill = skillList.get(newItemPosition);
-                    SkillEntity oldSkill = mValues.get(oldItemPosition);
+                    SkillEntity oldSkill = skillEntities.get(oldItemPosition);
                     return newSkill.getId() == oldSkill.getId() &&
-                           Objects.equals(newSkill.getTitle(), oldSkill.getTitle()) &&
-                           newSkill.getLevel() == oldSkill.getLevel();
+                            Objects.equals(newSkill.getTitle(), oldSkill.getTitle()) &&
+                            newSkill.getLevel() == oldSkill.getLevel();
                 }
             });
-            mValues = skillList;
+            skillEntities = skillList;
             result.dispatchUpdatesTo(this);
         }
-    }
-
-    /**
-     * @return
-     */
-    public SkillOnClickCallback getCallback() {
-
-        return mCallback;
     }
 
     /**
@@ -140,7 +131,7 @@ public class SkillAdapter
     @Override
     public int getItemCount() {
 
-        return mValues == null ? 0 : mValues.size();
+        return skillEntities == null ? 0 : skillEntities.size();
     }
 
     /**
@@ -152,7 +143,7 @@ public class SkillAdapter
         /**
          *
          */
-        public final FragmentSkillBinding mBinding;
+        public final FragmentSkillBinding binding;
 
         /**
          * @param binding
@@ -160,7 +151,7 @@ public class SkillAdapter
         public ViewHolder(FragmentSkillBinding binding) {
 
             super(binding.getRoot());
-            this.mBinding = binding;
+            this.binding = binding;
         }
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class FileData {
 
-    private static final FileData ourInstance = new FileData();
+    private static final FileData INSTANCE = new FileData();
 
     private static final MediatorLiveData<List<EducationEntity>> educationLiveData = new MediatorLiveData<>();
 
@@ -33,7 +33,7 @@ public class FileData {
     @Contract(pure = true)
     public static FileData getInstance() {
 
-        return ourInstance;
+        return INSTANCE;
     }
 
     public static LiveData<List<EducationEntity>> getEducationLiveData(Application application) {

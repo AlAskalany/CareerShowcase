@@ -10,7 +10,7 @@
             type="com.alaskalany.careershowcase.model.Skill" />
 
         <variable
-            name="callback"
+            name="skillOnClickCallback"
             type="com.alaskalany.careershowcase.ui.skills.SkillOnClickCallback" />
     </data>
 
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/card_spacing"
-        android:onClick="@{() -> callback.onClick(skill)}"
+        android:onClick="@{() -> skillOnClickCallback.onClick(skill)}"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/card_elevation"
         app:cardMaxElevation="@dimen/card_max_elevation"

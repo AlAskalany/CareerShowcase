@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
@@ -35,7 +34,7 @@ public class SkillListFragment
     /**
      *
      */
-    private final SkillOnClickCallback mCallback =
+    private final SkillOnClickCallback skillOnClickCallback =
             item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
 
     /**
@@ -63,7 +62,6 @@ public class SkillListFragment
 
     /**
      * @param columnCount
-     *
      * @return
      */
     @SuppressWarnings("unused")
@@ -80,14 +78,13 @@ public class SkillListFragment
      * @param inflater
      * @param container
      * @param savedInstanceState
-     *
      * @return
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
-        setAdapter(new SkillAdapter(mCallback));
+        setAdapter(new SkillAdapter(skillOnClickCallback));
         Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             mBinding.listSkill.setLayoutManager(new LinearLayoutManager(context));
@@ -104,7 +101,7 @@ public class SkillListFragment
      * initialization once these pieces are in place, such as retrieving
      * views or restoring state.  It is also useful for fragments that use
      * {@link #setRetainInstance(boolean)} to retain their instance,
-     * as this callback tells the fragment when it is fully associated with
+     * as this skillOnClickCallback tells the fragment when it is fully associated with
      * the new activity instance.  This is called after {@link #onCreateView}
      * and before {@link #onViewStateRestored(Bundle)}.
      *

@@ -13,18 +13,18 @@ public class SkillListViewModel
         extends AndroidViewModel {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<SkillEntity>> mObservableSkills;
+    private final MediatorLiveData<List<SkillEntity>> observableSkills;
 
     public SkillListViewModel(Application application) {
 
         super(application);
-        mObservableSkills = new MediatorLiveData<>();
+        observableSkills = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableSkills.setValue(null);
-        //LiveData<List<SkillEntity>> skills = ((CareerShowcaseApp) application).getRepository().mSkillRepository.getSkills();
+        observableSkills.setValue(null);
+        //LiveData<List<SkillEntity>> skills = ((CareerShowcaseApp) application).getRepository().skillRepository.getSkills();
         LiveData<List<SkillEntity>> listLiveData = FileData.getSkillsLiveData(application);
         // observe the changes of the products from the database and forward them
-        mObservableSkills.addSource(listLiveData, mObservableSkills::setValue);
+        observableSkills.addSource(listLiveData, observableSkills::setValue);
     }
 
     /**
@@ -32,6 +32,6 @@ public class SkillListViewModel
      */
     public LiveData<List<SkillEntity>> getSkills() {
 
-        return mObservableSkills;
+        return observableSkills;
     }
 }

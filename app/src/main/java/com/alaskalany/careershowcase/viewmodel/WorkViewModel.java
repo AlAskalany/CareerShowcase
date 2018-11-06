@@ -8,28 +8,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.repository.DataRepository;
 import com.alaskalany.careershowcase.entity.WorkEntity;
+import com.alaskalany.careershowcase.repository.DataRepository;
 
 public class WorkViewModel
         extends AndroidViewModel {
 
-    private final LiveData<WorkEntity> mObservableWork;
+    private final LiveData<WorkEntity> observableWork;
 
-    private final int mWorkId;
+    private final int workId;
 
     public ObservableField<WorkEntity> work = new ObservableField<>();
 
     public WorkViewModel(@NonNull Application application, DataRepository dataRepository, final int workId) {
 
         super(application);
-        mWorkId = workId;
-        mObservableWork = dataRepository.mWorkRepository.load(workId);
+        this.workId = workId;
+        observableWork = dataRepository.workRepository.load(workId);
     }
 
     public LiveData<WorkEntity> getObservableWork() {
 
-        return mObservableWork;
+        return observableWork;
     }
 
     public void setWork(WorkEntity product) {
@@ -47,23 +47,23 @@ public class WorkViewModel
             extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull
-        private final Application mApplication;
+        private final Application application;
 
-        private final int mWorkId;
+        private final int workId;
 
-        private final DataRepository mRepository;
+        private final DataRepository repository;
 
         public Factory(@NonNull Application application, int workId) {
 
-            mApplication = application;
-            mWorkId = workId;
-            mRepository = ((CareerShowcaseApp) application).getRepository();
+            this.application = application;
+            this.workId = workId;
+            repository = ((CareerShowcaseApp) application).getRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new WorkViewModel(mApplication, mRepository, mWorkId);
+            return (T) new WorkViewModel(application, repository, workId);
         }
     }
 }

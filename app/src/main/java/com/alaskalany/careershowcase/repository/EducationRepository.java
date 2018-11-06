@@ -8,23 +8,23 @@ import java.util.List;
 
 public class EducationRepository {
 
-    private final DataRepository mDataRepository;
+    private final DataRepository dataRepository;
 
-    private MediatorLiveData<List<EducationEntity>> mObservableEducations;
+    private MediatorLiveData<List<EducationEntity>> observableEducations;
 
-    public EducationRepository(DataRepository pMDataRepository) {
+    public EducationRepository(DataRepository dataRepository) {
 
-        mDataRepository = pMDataRepository;
+        this.dataRepository = dataRepository;
     }
 
     public MediatorLiveData<List<EducationEntity>> getObservableEducations() {
 
-        return mObservableEducations;
+        return observableEducations;
     }
 
-    public void setObservableEducations(MediatorLiveData<List<EducationEntity>> pObservableEducations) {
+    public void setObservableEducations(MediatorLiveData<List<EducationEntity>> observableEducations) {
 
-        mObservableEducations = pObservableEducations;
+        this.observableEducations = observableEducations;
     }
 
     public void insertAll(List<EducationEntity> educationEntities) {
@@ -33,27 +33,27 @@ public class EducationRepository {
 
     public LiveData<EducationEntity> load(int educationId) {
 
-        return mDataRepository.getDatabase()
-                              .educationDao()
-                              .load(educationId);
+        return dataRepository.getDatabase()
+                .educationDao()
+                .load(educationId);
     }
 
     public EducationEntity loadSync(int educationId) {
 
-        return mDataRepository.getDatabase()
-                              .educationDao()
-                              .loadSync(educationId);
+        return dataRepository.getDatabase()
+                .educationDao()
+                .loadSync(educationId);
     }
 
     public LiveData<List<EducationEntity>> loadAll() {
 
-        return mDataRepository.getDatabase()
-                              .educationDao()
-                              .loadAll();
+        return dataRepository.getDatabase()
+                .educationDao()
+                .loadAll();
     }
 
     public MediatorLiveData<List<EducationEntity>> getEducations() {
 
-        return mObservableEducations;
+        return observableEducations;
     }
 }

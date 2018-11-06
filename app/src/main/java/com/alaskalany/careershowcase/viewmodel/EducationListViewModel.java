@@ -13,18 +13,18 @@ public class EducationListViewModel
         extends AndroidViewModel {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<EducationEntity>> mObservableEducations;
+    private final MediatorLiveData<List<EducationEntity>> observableEducations;
 
     public EducationListViewModel(Application application) {
 
         super(application);
-        mObservableEducations = new MediatorLiveData<>();
+        observableEducations = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableEducations.setValue(null);
-        // LiveData<List<EducationEntity>> educations = ((CareerShowcaseApp) application).getRepository().mEducationRepository.getEducations();
+        observableEducations.setValue(null);
+        // LiveData<List<EducationEntity>> educations = ((CareerShowcaseApp) application).getRepository().educationRepository.getEducations();
         LiveData<List<EducationEntity>> listLiveData = FileData.getEducationLiveData(application);
         // observe the changes of the products from the database and forward them
-        mObservableEducations.addSource(listLiveData, mObservableEducations::setValue);
+        observableEducations.addSource(listLiveData, observableEducations::setValue);
     }
 
     /**
@@ -32,6 +32,6 @@ public class EducationListViewModel
      */
     public LiveData<List<EducationEntity>> getEducations() {
 
-        return mObservableEducations;
+        return observableEducations;
     }
 }

@@ -8,13 +8,13 @@ import java.util.List;
 
 public class WorkRepository {
 
-    private final DataRepository mDataRepository;
+    private final DataRepository dataRepository;
 
-    public MediatorLiveData<List<WorkEntity>> mObservableWorks;
+    public MediatorLiveData<List<WorkEntity>> observableWorks;
 
-    public WorkRepository(DataRepository pMDataRepository) {
+    public WorkRepository(DataRepository dataRepository) {
 
-        mDataRepository = pMDataRepository;
+        this.dataRepository = dataRepository;
     }
 
     public void insertAll(List<WorkEntity> workEntities) {
@@ -23,27 +23,27 @@ public class WorkRepository {
 
     public LiveData<WorkEntity> load(int workId) {
 
-        return mDataRepository.getDatabase()
-                              .workDao()
-                              .load(workId);
+        return dataRepository.getDatabase()
+                .workDao()
+                .load(workId);
     }
 
     public WorkEntity loadSync(int workId) {
 
-        return mDataRepository.getDatabase()
-                              .workDao()
-                              .loadSync(workId);
+        return dataRepository.getDatabase()
+                .workDao()
+                .loadSync(workId);
     }
 
     public LiveData<List<WorkEntity>> loadAll() {
 
-        return mDataRepository.getDatabase()
-                              .workDao()
-                              .loadAll();
+        return dataRepository.getDatabase()
+                .workDao()
+                .loadAll();
     }
 
     public MediatorLiveData<List<WorkEntity>> getWorks() {
 
-        return mObservableWorks;
+        return observableWorks;
     }
 }

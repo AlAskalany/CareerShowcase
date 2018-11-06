@@ -8,23 +8,23 @@ import java.util.List;
 
 public class ContactRepository {
 
-    private final DataRepository mDataRepository;
+    private final DataRepository dataRepository;
 
-    private MediatorLiveData<List<ContactEntity>> mObservableContacts;
+    private MediatorLiveData<List<ContactEntity>> observableContacts;
 
-    public ContactRepository(DataRepository pMDataRepository) {
+    public ContactRepository(DataRepository dataRepository) {
 
-        mDataRepository = pMDataRepository;
+        this.dataRepository = dataRepository;
     }
 
     public MediatorLiveData<List<ContactEntity>> getObservableContacts() {
 
-        return mObservableContacts;
+        return observableContacts;
     }
 
-    public void setObservableContacts(MediatorLiveData<List<ContactEntity>> pObservableContacts) {
+    public void setObservableContacts(MediatorLiveData<List<ContactEntity>> observableContacts) {
 
-        mObservableContacts = pObservableContacts;
+        this.observableContacts = observableContacts;
     }
 
     public void insertAll(List<ContactEntity> contactEntities) {
@@ -33,27 +33,27 @@ public class ContactRepository {
 
     public LiveData<ContactEntity> load(int contactId) {
 
-        return mDataRepository.getDatabase()
-                              .contactDao()
-                              .load(contactId);
+        return dataRepository.getDatabase()
+                .contactDao()
+                .load(contactId);
     }
 
     public ContactEntity loadSync(int contactId) {
 
-        return mDataRepository.getDatabase()
-                              .contactDao()
-                              .loadSync(contactId);
+        return dataRepository.getDatabase()
+                .contactDao()
+                .loadSync(contactId);
     }
 
     public LiveData<List<ContactEntity>> loadAll() {
 
-        return mDataRepository.getDatabase()
-                              .contactDao()
-                              .loadAll();
+        return dataRepository.getDatabase()
+                .contactDao()
+                .loadAll();
     }
 
     public MediatorLiveData<List<ContactEntity>> getContacts() {
 
-        return mObservableContacts;
+        return observableContacts;
     }
 }

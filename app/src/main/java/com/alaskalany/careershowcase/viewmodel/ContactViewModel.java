@@ -8,28 +8,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
-import com.alaskalany.careershowcase.repository.DataRepository;
 import com.alaskalany.careershowcase.entity.ContactEntity;
+import com.alaskalany.careershowcase.repository.DataRepository;
 
 public class ContactViewModel
         extends AndroidViewModel {
 
-    private final LiveData<ContactEntity> mObservableContact;
+    private final LiveData<ContactEntity> observableContact;
 
-    private final int mContactId;
+    private final int contactId;
 
     public ObservableField<ContactEntity> contact = new ObservableField<>();
 
     public ContactViewModel(@NonNull Application application, DataRepository dataRepository, final int contactId) {
 
         super(application);
-        mContactId = contactId;
-        mObservableContact = dataRepository.mContactRepository.load(contactId);
+        this.contactId = contactId;
+        observableContact = dataRepository.contactRepository.load(contactId);
     }
 
     public LiveData<ContactEntity> getObservableContact() {
 
-        return mObservableContact;
+        return observableContact;
     }
 
     public void setContact(ContactEntity contact) {

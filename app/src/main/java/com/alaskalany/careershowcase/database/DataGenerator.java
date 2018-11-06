@@ -2,7 +2,10 @@ package com.alaskalany.careershowcase.database;
 
 import android.util.SparseArray;
 import androidx.annotation.NonNull;
-import com.alaskalany.careershowcase.entity.*;
+import com.alaskalany.careershowcase.entity.ContactEntity;
+import com.alaskalany.careershowcase.entity.EducationEntity;
+import com.alaskalany.careershowcase.entity.SkillEntity;
+import com.alaskalany.careershowcase.entity.WorkEntity;
 import org.jetbrains.annotations.Contract;
 
 import java.util.*;
@@ -82,7 +85,7 @@ public class DataGenerator {
 
             StringBuilder builder = new StringBuilder();
             builder.append("Details about Item: ")
-                   .append(position);
+                    .append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }
@@ -142,7 +145,7 @@ public class DataGenerator {
 
             StringBuilder builder = new StringBuilder();
             builder.append("Details about Education: ")
-                   .append(position);
+                    .append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }
@@ -249,7 +252,7 @@ public class DataGenerator {
 
             StringBuilder builder = new StringBuilder();
             builder.append("Details about Work: ")
-                   .append(position);
+                    .append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }

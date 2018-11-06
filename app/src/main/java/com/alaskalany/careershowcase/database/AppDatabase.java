@@ -41,84 +41,11 @@ public abstract class AppDatabase
     /**
      *
      */
-    private static AppDatabase sInstance;
-
+    private static AppDatabase INSTANCE;
     /**
      *
      */
-    private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
-
-    /**
-     * @param context
-     * @param executors
-     *
-     * @return
-     */
-    public static AppDatabase getInstance(final Context context, final AppExecutors executors) {
-
-        if (sInstance == null) {
-            synchronized (AppDatabase.class) {
-                if (sInstance == null) {
-                    sInstance = buildDatabase(context.getApplicationContext(), executors);
-                    sInstance.updateDatabaseCreated(context.getApplicationContext());
-                }
-            }
-        }
-        return sInstance;
-    }
-
-    /**
-     * @param context
-     * @param executors
-     *
-     * @return
-     */
-    @NonNull
-    private static AppDatabase buildDatabase(final Context context, final AppExecutors executors) {
-
-        return Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME)
-                   .addCallback(new Callback() {
-
-                       /**
-                        * Called when the database is created for the first time. This is called after all the
-                        * tables are created.
-                        *
-                        * @param db The database.
-                        */
-                       @Override
-                       public void onCreate(@NonNull SupportSQLiteDatabase db) {
-
-                           super.onCreate(db);
-                           executors.diskIO()
-                                    .execute(() -> {
-                                        // Add a delay to simulate a long-running operation
-                                        addDelay();
-                                        // Generate the data for pre-population
-                                        AppDatabase database = AppDatabase.getInstance(context, executors);
-                                        List<ContactEntity> contactEntities = DataGenerator.generateContacts();
-                                        List<EducationEntity> educationEntities = DataGenerator.generateEducations();
-                                        List<SkillEntity> skillEntities = DataGenerator.generateSkills();
-                                        List<WorkEntity> workEntities = DataGenerator.generateWorks();
-                                        database.runInTransaction(() -> {
-                                            (database.contactDao()).insertAll((contactEntities));
-                                            (database.educationDao()).insertAll((educationEntities));
-                                            (database.skillDao()).insertAll((skillEntities));
-                                            (database.workDao()).insertAll((workEntities));
-                                        });
-                                        // notify that the database was created and it's ready to be used
-                                        database.setDatabaseCreated();
-                                    });
-                       }
-                   })
-                   .addCallback(mCallback)
-                   .fallbackToDestructiveMigration()
-                   .build();
-    }
-
-    /**
-     *
-     */
-    static RoomDatabase.Callback mCallback = new Callback() {
+    static RoomDatabase.Callback roomDatabaseCallback = new Callback() {
 
         /**
          * Called when the database has been opened.
@@ -129,9 +56,78 @@ public abstract class AppDatabase
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
 
             super.onCreate(db);
-            new PopulateDatabaseAsync(sInstance).execute();
+            new PopulateDatabaseAsync(INSTANCE).execute();
         }
     };
+    /**
+     *
+     */
+    private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
+
+    /**
+     * @param context
+     * @param executors
+     * @return
+     */
+    public static AppDatabase getInstance(final Context context, final AppExecutors executors) {
+
+        if (INSTANCE == null) {
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = buildDatabase(context.getApplicationContext(), executors);
+                    INSTANCE.updateDatabaseCreated(context.getApplicationContext());
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    /**
+     * @param context
+     * @param executors
+     * @return
+     */
+    @NonNull
+    private static AppDatabase buildDatabase(final Context context, final AppExecutors executors) {
+
+        return Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME)
+                .addCallback(new Callback() {
+
+                    /**
+                     * Called when the database is created for the first time. This is called after all the
+                     * tables are created.
+                     *
+                     * @param db The database.
+                     */
+                    @Override
+                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
+
+                        super.onCreate(db);
+                        executors.diskIO()
+                                .execute(() -> {
+                                    // Add a delay to simulate a long-running operation
+                                    addDelay();
+                                    // Generate the data for pre-population
+                                    AppDatabase database = AppDatabase.getInstance(context, executors);
+                                    List<ContactEntity> contactEntities = DataGenerator.generateContacts();
+                                    List<EducationEntity> educationEntities = DataGenerator.generateEducations();
+                                    List<SkillEntity> skillEntities = DataGenerator.generateSkills();
+                                    List<WorkEntity> workEntities = DataGenerator.generateWorks();
+                                    database.runInTransaction(() -> {
+                                        (database.contactDao()).insertAll((contactEntities));
+                                        (database.educationDao()).insertAll((educationEntities));
+                                        (database.skillDao()).insertAll((skillEntities));
+                                        (database.workDao()).insertAll((workEntities));
+                                    });
+                                    // notify that the database was created and it's ready to be used
+                                    database.setDatabaseCreated();
+                                });
+                    }
+                })
+                .addCallback(roomDatabaseCallback)
+                .fallbackToDestructiveMigration()
+                .build();
+    }
 
     /**
      *
@@ -170,7 +166,7 @@ public abstract class AppDatabase
     private void updateDatabaseCreated(@NonNull final Context context) {
 
         if (context.getDatabasePath(DATABASE_NAME)
-                   .exists()) {
+                .exists()) {
             setDatabaseCreated();
         }
     }
@@ -180,7 +176,7 @@ public abstract class AppDatabase
      */
     private void setDatabaseCreated() {
 
-        mIsDatabaseCreated.postValue(true);
+        isDatabaseCreated.postValue(true);
     }
 
     /**
@@ -188,7 +184,7 @@ public abstract class AppDatabase
      */
     public LiveData<Boolean> getDatabaseCreated() {
 
-        return mIsDatabaseCreated;
+        return isDatabaseCreated;
     }
 
     /**
@@ -200,26 +196,26 @@ public abstract class AppDatabase
         /**
          *
          */
-        private final EducationDao mEducationDao;
+        private final EducationDao educationDao;
 
         /**
          *
          */
-        private final WorkDao mWorkDao;
+        private final WorkDao workDao;
 
         /**
          *
          */
-        private final SkillDao mSkillDao;
+        private final SkillDao skillDao;
 
         /**
          * @param pInstance
          */
         public PopulateDatabaseAsync(AppDatabase pInstance) {
 
-            mEducationDao = pInstance.educationDao();
-            mWorkDao = pInstance.workDao();
-            mSkillDao = pInstance.skillDao();
+            educationDao = pInstance.educationDao();
+            workDao = pInstance.workDao();
+            skillDao = pInstance.skillDao();
         }
 
         /**
@@ -230,9 +226,7 @@ public abstract class AppDatabase
          * on the UI thread.
          *
          * @param pVoids The parameters of the task.
-         *
          * @return A result, defined by the subclass of this task.
-         *
          * @see #onPreExecute()
          * @see #onPostExecute
          * @see #publishProgress
@@ -241,11 +235,11 @@ public abstract class AppDatabase
         protected ViewOutlineProvider doInBackground(Void... pVoids) {
 
             List<EducationEntity> _educationEntities = DataGenerator.EducationContent.ITEMS;
-            mEducationDao.insertAll(_educationEntities);
+            educationDao.insertAll(_educationEntities);
             List<WorkEntity> _workEntities = DataGenerator.WorkContent.ITEMS;
-            mWorkDao.insertAll(_workEntities);
+            workDao.insertAll(_workEntities);
             List<SkillEntity> _skillEntities = DataGenerator.SkillContent.ITEMS;
-            mSkillDao.insertAll(_skillEntities);
+            skillDao.insertAll(_skillEntities);
             return null;
         }
     }

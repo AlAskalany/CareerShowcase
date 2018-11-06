@@ -4,9 +4,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.*;
 import com.alaskalany.careershowcase.CareerShowcaseApp;
+import com.alaskalany.careershowcase.entity.WorkEntity;
 import com.alaskalany.careershowcase.file.FileData;
 import com.alaskalany.careershowcase.repository.DataRepository;
-import com.alaskalany.careershowcase.entity.WorkEntity;
 
 import java.util.List;
 
@@ -14,18 +14,18 @@ public class WorkListViewModel
         extends AndroidViewModel {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<WorkEntity>> mObservableProducts;
+    private final MediatorLiveData<List<WorkEntity>> observableProducts;
 
     public WorkListViewModel(Application application) {
 
         super(application);
-        mObservableProducts = new MediatorLiveData<>();
+        observableProducts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableProducts.setValue(null);
-        //LiveData<List<WorkEntity>> works = ((CareerShowcaseApp) application).getRepository().mWorkRepository.getWorks();
+        observableProducts.setValue(null);
+        //LiveData<List<WorkEntity>> works = ((CareerShowcaseApp) application).getRepository().workRepository.getWorks();
         LiveData<List<WorkEntity>> listLiveData = FileData.getWorkLiveData(application);
         // observe the changes of the products from the database and forward them
-        mObservableProducts.addSource(listLiveData, mObservableProducts::setValue);
+        observableProducts.addSource(listLiveData, observableProducts::setValue);
     }
 
     /**
@@ -33,30 +33,30 @@ public class WorkListViewModel
      */
     public LiveData<List<WorkEntity>> getWorks() {
 
-        return mObservableProducts;
+        return observableProducts;
     }
 
     public static class Factory
             extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull
-        private final Application mApplication;
+        private final Application application;
 
-        private final int mWorkId;
+        private final int workId;
 
-        private final DataRepository mRepository;
+        private final DataRepository repository;
 
         public Factory(@NonNull Application application, int workId) {
 
-            mApplication = application;
-            mWorkId = workId;
-            mRepository = ((CareerShowcaseApp) application).getRepository();
+            this.application = application;
+            this.workId = workId;
+            repository = ((CareerShowcaseApp) application).getRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new WorkViewModel(mApplication, mRepository, mWorkId);
+            return (T) new WorkViewModel(application, repository, workId);
         }
     }
 }

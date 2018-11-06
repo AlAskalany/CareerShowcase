@@ -4,7 +4,6 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import com.alaskalany.careershowcase.CareerShowcaseApp;
 import com.alaskalany.careershowcase.entity.ContactEntity;
 import com.alaskalany.careershowcase.file.FileData;
 
@@ -14,19 +13,19 @@ public class ContactListViewModel
         extends AndroidViewModel {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<ContactEntity>> mObservableContacts;
+    private final MediatorLiveData<List<ContactEntity>> observableContacts;
 
     public ContactListViewModel(Application application) {
 
         super(application);
 
-        mObservableContacts = new MediatorLiveData<>();
+        observableContacts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        mObservableContacts.setValue(null);
-        // LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository().mContactRepository.getContacts();
+        observableContacts.setValue(null);
+        // LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository().contactRepository.getContacts();
         LiveData<List<ContactEntity>> listLiveData = FileData.getContactsLiveData(application);
         // observe the changes of the products from the database and forward them
-        mObservableContacts.addSource(listLiveData, mObservableContacts::setValue);
+        observableContacts.addSource(listLiveData, observableContacts::setValue);
     }
 
     /**
@@ -34,6 +33,6 @@ public class ContactListViewModel
      */
     public LiveData<List<ContactEntity>> getContacts() {
 
-        return mObservableContacts;
+        return observableContacts;
     }
 }

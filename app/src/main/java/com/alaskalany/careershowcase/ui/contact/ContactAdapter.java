@@ -25,12 +25,12 @@ public class ContactAdapter
     /**
      *
      */
-    protected final ContactOnClickCallback mCallback;
+    protected final ContactOnClickCallback contactOnClickCallback;
 
     /**
      *
      */
-    protected List<ContactEntity> mValues;
+    protected List<ContactEntity> contactEntities;
 
     /**
      * @param callback
@@ -38,13 +38,12 @@ public class ContactAdapter
     @SuppressWarnings("WeakerAccess")
     public ContactAdapter(ContactOnClickCallback callback) {
 
-        this.mCallback = callback;
+        this.contactOnClickCallback = callback;
     }
 
     /**
      * @param parent
      * @param viewType
-     *
      * @return
      */
     @NonNull
@@ -52,10 +51,10 @@ public class ContactAdapter
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         FragmentContactBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                                                 R.layout.fragment_contact,
-                                                                 parent,
-                                                                 false);
-        binding.setCallback(mCallback);
+                R.layout.fragment_contact,
+                parent,
+                false);
+        binding.setContactOnClickCallback(contactOnClickCallback);
         return new ViewHolder(binding);
     }
 
@@ -66,17 +65,18 @@ public class ContactAdapter
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        holder.mBinding.setContact(mValues.get(position));
-        holder.mBinding.setCallback(getCallback());
-        View rootView = holder.mBinding.getRoot();
-        GlideApp.with(rootView).load(mValues.get(position).getLogoUrl()).into(holder.mBinding.imageViewContactLogo);
-        holder.mBinding.executePendingBindings();
+        holder.binding.setContact(contactEntities.get(position));
+
+        holder.binding.setContactOnClickCallback(contactOnClickCallback);
+        View rootView = holder.binding.getRoot();
+        GlideApp.with(rootView).load(contactEntities.get(position).getLogoUrl()).into(holder.binding.imageViewContactLogo);
+        holder.binding.executePendingBindings();
     }
 
     public void setContactList(final List<ContactEntity> contactList) {
 
-        if (mValues == null) {
-            mValues = contactList;
+        if (contactEntities == null) {
+            contactEntities = contactList;
             notifyItemRangeInserted(0, contactList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
@@ -84,7 +84,7 @@ public class ContactAdapter
                 @Override
                 public int getOldListSize() {
 
-                    return mValues.size();
+                    return contactEntities.size();
                 }
 
                 @Override
@@ -96,14 +96,14 @@ public class ContactAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    return mValues.get(oldItemPosition).getId() == contactList.get(newItemPosition).getId();
+                    return contactEntities.get(oldItemPosition).getId() == contactList.get(newItemPosition).getId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
 
                     ContactEntity newContact = contactList.get(newItemPosition);
-                    ContactEntity oldContact = mValues.get(oldItemPosition);
+                    ContactEntity oldContact = contactEntities.get(oldItemPosition);
                     boolean isIdEqual = newContact.getId() == oldContact.getId();
                     boolean isDescriptionEqual =
                             Objects.equals(newContact.getDescription(), oldContact.getDescription());
@@ -111,17 +111,9 @@ public class ContactAdapter
                     return isIdEqual && isDescriptionEqual && isTitleEqual;
                 }
             });
-            mValues = contactList;
+            contactEntities = contactList;
             result.dispatchUpdatesTo(this);
         }
-    }
-
-    /**
-     * @return
-     */
-    public ContactOnClickCallback getCallback() {
-
-        return mCallback;
     }
 
     /**
@@ -130,7 +122,7 @@ public class ContactAdapter
     @Override
     public int getItemCount() {
 
-        return mValues == null ? 0 : mValues.size();
+        return contactEntities == null ? 0 : contactEntities.size();
     }
 
     /**
@@ -142,7 +134,7 @@ public class ContactAdapter
         /**
          *
          */
-        public final FragmentContactBinding mBinding;
+        public final FragmentContactBinding binding;
 
         /**
          * @param binding
@@ -150,7 +142,7 @@ public class ContactAdapter
         public ViewHolder(FragmentContactBinding binding) {
 
             super(binding.getRoot());
-            this.mBinding = binding;
+            this.binding = binding;
         }
     }
 }

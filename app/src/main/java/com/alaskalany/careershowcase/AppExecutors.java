@@ -15,17 +15,17 @@ public class AppExecutors {
     /**
      * Disk IO {@link Executor}
      */
-    private final Executor mDiskIO;
+    private final Executor diskIoExecutor;
 
     /**
      * Network IO {@link Executor}
      */
-    private final Executor mNetworkIO;
+    private final Executor networkIoExecutor;
 
     /**
      * Main thread {@link Executor}
      */
-    private final Executor mMainThread;
+    private final Executor mainThreadExecutor;
 
     /**
      * App {@link Executor}s
@@ -42,9 +42,9 @@ public class AppExecutors {
      */
     private AppExecutors(Executor diskIO, Executor networkIO, Executor mainThread) {
 
-        this.mDiskIO = diskIO;
-        this.mNetworkIO = networkIO;
-        this.mMainThread = mainThread;
+        this.diskIoExecutor = diskIO;
+        this.networkIoExecutor = networkIO;
+        this.mainThreadExecutor = mainThread;
     }
 
     /**
@@ -52,7 +52,7 @@ public class AppExecutors {
      */
     public Executor diskIO() {
 
-        return mDiskIO;
+        return diskIoExecutor;
     }
 
     /**
@@ -60,7 +60,7 @@ public class AppExecutors {
      */
     public Executor networkIO() {
 
-        return mNetworkIO;
+        return networkIoExecutor;
     }
 
     /**
@@ -68,7 +68,7 @@ public class AppExecutors {
      */
     public Executor mainThread() {
 
-        return mMainThread;
+        return mainThreadExecutor;
     }
 
     /**
