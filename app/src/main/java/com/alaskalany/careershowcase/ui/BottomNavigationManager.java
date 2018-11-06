@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Ahmed AlAskalany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.alaskalany.careershowcase.ui;
 
 import android.view.MenuItem;
@@ -20,13 +44,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.Objects;
 
 /**
- *
+ * Bottom Navigation Manager that handles {@link BottomNavigationView}
  */
 public class BottomNavigationManager
         implements BottomNavigationView.OnNavigationItemSelectedListener,
-        BottomNavigationView.OnNavigationItemReselectedListener,
-        FragmentManager.OnBackStackChangedListener,
-        OnBackPressed {
+                   BottomNavigationView.OnNavigationItemReselectedListener,
+                   FragmentManager.OnBackStackChangedListener,
+                   OnBackPressed {
 
     /**
      * {@link OverviewFragment}
@@ -59,10 +83,13 @@ public class BottomNavigationManager
     private final FragmentActivity activity;
 
     /**
-     *
+     * Collection of fragments used with {@link BottomNavigationView}
      */
     private final SparseArrayCompat<ScrollToTop> fragments;
 
+    /**
+     * {@link BottomNavigationView}
+     */
     private BottomNavigationView navigation;
 
     /**
@@ -74,7 +101,11 @@ public class BottomNavigationManager
         fragments = new SparseArrayCompat<>();
         createFragments(fragments);
         this.navigation = navigation;
+
+        // Set the bottom navigation view
         setBottomNavigationView(navigation);
+
+        // listen to item selection and reselection from the bottom navigation view
         navigation.setOnNavigationItemSelectedListener(this);
         navigation.setOnNavigationItemReselectedListener(this);
     }
@@ -88,13 +119,17 @@ public class BottomNavigationManager
         mFragments.put(CONTACT, new ContactListFragment());
     }
 
-    public void setBottomNavigationView(BottomNavigationView navigation) {
+    /**
+     * @param navigation {@link BottomNavigationView}
+     */
+    private void setBottomNavigationView(BottomNavigationView navigation) {
 
         this.navigation = navigation;
     }
 
     /**
      * @param menuItem Bottom navigation menu item
+     *
      * @return True if a menu item was selected
      */
     @Override
@@ -122,13 +157,15 @@ public class BottomNavigationManager
 
     /**
      * @param navFragment Navigation fragment
+     *
      * @throws RuntimeException If the navigation fragment is null
      */
     private void replaceFragment(int navFragment) throws RuntimeException {
 
         ScrollToTop fragment = fragments.get(navFragment);
         if (fragment != null) {
-            FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+            FragmentTransaction transaction = activity.getSupportFragmentManager()
+                                                      .beginTransaction();
             transaction.replace(R.id.container_navigation, (Fragment) fragment);
             if (!(fragment instanceof OverviewFragment)) {
                 transaction.addToBackStack(null);
@@ -140,31 +177,40 @@ public class BottomNavigationManager
     }
 
     /**
+     * Handles reselection of a {@link BottomNavigationView}'s menu item, by scrolling to the top of the screen
+     *
      * @param menuItem Bottom navigation menu item
      */
     @Override
     public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-        // Replace current fragment with requested fragment
+
         switch (menuItem.getItemId()) {
             case R.id.navigation_overview:
+                // Overview menu item reselected, scroll to the top of the overview fragment
                 scrollToFragmentTop(getFragment(OVERVIEW));
                 break;
             case R.id.navigation_education:
+                // Education menu item reselected, scroll to the top of the education fragment
                 scrollToFragmentTop(getFragment(EDUCATION));
                 break;
             case R.id.navigation_work:
+                // Work menu item reselected, scroll to the top of the work fragment
                 scrollToFragmentTop(getFragment(WORK));
                 break;
             case R.id.navigation_skills:
+                // Skills menu item reselected, scroll to the top of the skills fragment
                 scrollToFragmentTop(getFragment(SKILLS));
                 break;
             case R.id.navigation_contact:
+                // Contact menu item reselected, scroll to the top of the contact fragment
                 scrollToFragmentTop(getFragment(CONTACT));
                 break;
         }
     }
 
     /**
+     * Scroll to the top of the fragment implemented {@link ScrollToTop}
+     *
      * @param fragment Bottom navigation fragment
      */
     private void scrollToFragmentTop(@NonNull ScrollToTop fragment) {
@@ -174,6 +220,7 @@ public class BottomNavigationManager
 
     /**
      * @param fragmentId Fragment id
+     *
      * @return Bottom navigation fragment
      */
     private ScrollToTop getFragment(int fragmentId) {
@@ -182,6 +229,8 @@ public class BottomNavigationManager
     }
 
     /**
+     * For app start, attach the {@link OverviewFragment}
+     *
      * @param freshStart Is this a fresh activity start
      */
     public void init(boolean freshStart) {
@@ -198,20 +247,36 @@ public class BottomNavigationManager
         }
     }
 
+    /**
+     * Called whenever the contents of the back stack change.
+     */
     @Override
     public void onBackStackChanged() {
-
-        Toast.makeText(activity.getApplicationContext(), "Backstack changed", Toast.LENGTH_SHORT).show();
+        // TODO
+        Toast.makeText(activity.getApplicationContext(), "Backstack changed", Toast.LENGTH_SHORT)
+             .show();
     }
 
+    /**
+     * Handling back presses by replacing any fragment with the {@link OverviewFragment}
+     *
+     * @return true if back was pressed with a fragment other than {@link OverviewFragment} attached
+     */
     @Override
     public boolean onBackPressed() {
-
+        // If back was pressed with a fragment other than the overview fragment attached
         if (navigation.getSelectedItemId() != R.id.navigation_overview) {
-            navigation.getMenu().getItem(0).setChecked(true);
+
+            // Set the overview menu item in the bottom navigation view as selected
+            navigation.getMenu()
+                      .getItem(0)
+                      .setChecked(true);
+
+            // Attach the overview fragment
             replaceFragment(OVERVIEW);
             return true;
         }
+        // If back was pressed with the overview fragment attached
         return false;
     }
 }

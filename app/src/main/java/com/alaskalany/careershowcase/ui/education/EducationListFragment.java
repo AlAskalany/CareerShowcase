@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Ahmed AlAskalany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.alaskalany.careershowcase.ui.education;
 
 import android.content.Context;
@@ -35,7 +59,8 @@ public class EducationListFragment
      *
      */
     private final EducationOnClickCallback educationOnClickCallback =
-            item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
+            item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT)
+                         .show();
 
     /**
      *
@@ -62,6 +87,7 @@ public class EducationListFragment
 
     /**
      * @param columnCount
+     *
      * @return
      */
     @SuppressWarnings("unused")
@@ -75,9 +101,31 @@ public class EducationListFragment
     }
 
     /**
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+
+        super.onAttach(context);
+    }
+
+    /**
+     * @param savedInstanceState
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
+        }
+    }
+
+    /**
      * @param inflater
      * @param container
      * @param savedInstanceState
+     *
      * @return
      */
     @Override
@@ -85,7 +133,8 @@ public class EducationListFragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
         setAdapter(new EducationAdapter(educationOnClickCallback));
-        Context context = binding.getRoot().getContext();
+        Context context = binding.getRoot()
+                                 .getContext();
         if (getColumnCount() <= 1) {
             binding.listEducation.setLayoutManager(new LinearLayoutManager(context));
         } else {
@@ -112,15 +161,26 @@ public class EducationListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        final EducationListViewModel _model = ViewModelProviders.of(this).get(EducationListViewModel.class);
+        final EducationListViewModel _model = ViewModelProviders.of(this)
+                                                                .get(EducationListViewModel.class);
         binding.setEducationListViewModel(_model);
-        _model.getEducations().observe(this, pWorkEntities -> {
-            if (pWorkEntities != null) {
-                adapter.setEducationList(pWorkEntities);
-            } else {
-            }
-            binding.executePendingBindings();
-        });
+        _model.getEducations()
+              .observe(this, pWorkEntities -> {
+                  if (pWorkEntities != null) {
+                      adapter.setEducationList(pWorkEntities);
+                  } else {
+                  }
+                  binding.executePendingBindings();
+              });
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onDetach() {
+
+        super.onDetach();
     }
 
     /**
@@ -153,36 +213,6 @@ public class EducationListFragment
     protected void setAdapter(EducationAdapter adapter) {
 
         this.adapter = adapter;
-    }
-
-    /**
-     * @param context
-     */
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-    }
-
-    /**
-     * @param savedInstanceState
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
-        }
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
     }
 
     @Override

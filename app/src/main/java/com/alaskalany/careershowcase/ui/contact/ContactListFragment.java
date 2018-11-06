@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Ahmed AlAskalany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.alaskalany.careershowcase.ui.contact;
 
 import android.content.Context;
@@ -35,7 +59,8 @@ public class ContactListFragment
      *
      */
     private final ContactOnClickCallback contactOnClickCallback =
-            item -> Toast.makeText(getContext(), "Clicked on ContactEntity Item", Toast.LENGTH_SHORT).show();
+            item -> Toast.makeText(getContext(), "Clicked on ContactEntity Item", Toast.LENGTH_SHORT)
+                         .show();
 
     /**
      *
@@ -62,6 +87,7 @@ public class ContactListFragment
 
     /**
      * @param columnCount
+     *
      * @return
      */
     @SuppressWarnings("unused")
@@ -75,9 +101,31 @@ public class ContactListFragment
     }
 
     /**
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+
+        super.onAttach(context);
+    }
+
+    /**
+     * @param savedInstanceState
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
+        }
+    }
+
+    /**
      * @param inflater
      * @param container
      * @param savedInstanceState
+     *
      * @return
      */
     @Override
@@ -85,7 +133,8 @@ public class ContactListFragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_list, container, false);
         setAdapter(new ContactAdapter(contactOnClickCallback));
-        Context context = binding.getRoot().getContext();
+        Context context = binding.getRoot()
+                                 .getContext();
         if (getColumnCount() <= 1) {
             binding.listContact.setLayoutManager(new LinearLayoutManager(context));
         } else {
@@ -112,15 +161,26 @@ public class ContactListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        final ContactListViewModel _model = ViewModelProviders.of(this).get(ContactListViewModel.class);
+        final ContactListViewModel _model = ViewModelProviders.of(this)
+                                                              .get(ContactListViewModel.class);
         binding.setContactListViewModel(_model);
-        _model.getContacts().observe(this, contactEntities -> {
-            if (contactEntities != null) {
-                adapter.setContactList(contactEntities);
-            } else {
-            }
-            binding.executePendingBindings();
-        });
+        _model.getContacts()
+              .observe(this, contactEntities -> {
+                  if (contactEntities != null) {
+                      adapter.setContactList(contactEntities);
+                  } else {
+                  }
+                  binding.executePendingBindings();
+              });
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onDetach() {
+
+        super.onDetach();
     }
 
     /**
@@ -153,36 +213,6 @@ public class ContactListFragment
     protected void setAdapter(ContactAdapter adapter) {
 
         this.adapter = adapter;
-    }
-
-    /**
-     * @param context
-     */
-    @Override
-    public void onAttach(Context context) {
-
-        super.onAttach(context);
-    }
-
-    /**
-     * @param savedInstanceState
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
-        }
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void onDetach() {
-
-        super.onDetach();
     }
 
     @Override
