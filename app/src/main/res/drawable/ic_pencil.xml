@@ -1,13 +1,57 @@
-<vector android:autoMirrored="true" android:height="24dp"
-    android:viewportHeight="64" android:viewportWidth="64"
-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#77B3D4" android:pathData="M32,32m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0"/>
-    <path android:fillAlpha="0.2" android:fillColor="#231F20"
-        android:pathData="M37,14H27c-1.657,0 -3,1.343 -3,3v5v1v23l5.333,8L32,58l2.667,-4L40,46V23v-1v-5C40,15.343 38.657,14 37,14z" android:strokeAlpha="0.2"/>
-    <path android:fillColor="#C75C5C" android:pathData="M40,21c0,1.657 -1.343,3 -3,3H27c-1.657,0 -3,-1.343 -3,-3v-6c0,-1.657 1.343,-3 3,-3h10c1.657,0 3,1.343 3,3V21z"/>
-    <path android:fillColor="#E0995E" android:pathData="M24,20h4v24h-4z"/>
-    <path android:fillColor="#F5CF87" android:pathData="M28,20h8v26h-8z"/>
-    <path android:fillColor="#E0995E" android:pathData="M36,20h4v24h-4z"/>
-    <path android:fillColor="#4F5D73" android:pathData="M32,56l2.667,-4l-5.334,0z"/>
-    <path android:fillColor="#FFFFFF" android:pathData="M24,44l5.333,8l5.334,0l5.333,-8l-2,0l-2,-2l-4,4l-4,-4l-2,2z"/>
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2018 Ahmed AlAskalany
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:autoMirrored="true"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+    <path
+        android:fillColor="#77B3D4"
+        android:pathData="M32,32m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0" />
+    <path
+        android:fillAlpha="0.2"
+        android:fillColor="#231F20"
+        android:pathData="M37,14H27c-1.657,0 -3,1.343 -3,3v5v1v23l5.333,8L32,58l2.667,-4L40,46V23v-1v-5C40,15.343 38.657,14 37,14z"
+        android:strokeAlpha="0.2" />
+    <path
+        android:fillColor="#C75C5C"
+        android:pathData="M40,21c0,1.657 -1.343,3 -3,3H27c-1.657,0 -3,-1.343 -3,-3v-6c0,-1.657 1.343,-3 3,-3h10c1.657,0 3,1.343 3,3V21z" />
+    <path
+        android:fillColor="#E0995E"
+        android:pathData="M24,20h4v24h-4z" />
+    <path
+        android:fillColor="#F5CF87"
+        android:pathData="M28,20h8v26h-8z" />
+    <path
+        android:fillColor="#E0995E"
+        android:pathData="M36,20h4v24h-4z" />
+    <path
+        android:fillColor="#4F5D73"
+        android:pathData="M32,56l2.667,-4l-5.334,0z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,44l5.333,8l5.334,0l5.333,-8l-2,0l-2,-2l-4,4l-4,-4l-2,2z" />
 </vector>

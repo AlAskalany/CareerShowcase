@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Ahmed AlAskalany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.alaskalany.careershowcase.repository;
 
 import androidx.lifecycle.MediatorLiveData;
@@ -5,73 +29,68 @@ import com.alaskalany.careershowcase.database.AppDatabase;
 
 public class DataRepository {
 
-    private static DataRepository sInstance;
-
-    private final AppDatabase mDatabase;
-
-    public final ContactRepository mContactRepository = new ContactRepository(this);
-
-    public final WorkRepository mWorkRepository = new WorkRepository(this);
-
-    public final SkillRepository mSkillRepository = new SkillRepository(this);
-
-    public final EducationRepository mEducationRepository = new EducationRepository(this);
+    private static DataRepository INSTANCE;
+    public final ContactRepository contactRepository = new ContactRepository(this);
+    public final WorkRepository workRepository = new WorkRepository(this);
+    public final SkillRepository skillRepository = new SkillRepository(this);
+    public final EducationRepository educationRepository = new EducationRepository(this);
+    private final AppDatabase appDatabase;
 
     private DataRepository(final AppDatabase database) {
 
-        mDatabase = database;
-        mWorkRepository.mObservableWorks = new MediatorLiveData<>();
-        mWorkRepository.mObservableWorks.addSource(mWorkRepository.loadAll(), workEntities -> {
+        appDatabase = database;
+        workRepository.observableWorks = new MediatorLiveData<>();
+        workRepository.observableWorks.addSource(workRepository.loadAll(), workEntities -> {
             if (isDatabaseCreated() != null) {
-                mWorkRepository.mObservableWorks.postValue(workEntities);
+                workRepository.observableWorks.postValue(workEntities);
             }
         });
-        mEducationRepository.setObservableEducations(new MediatorLiveData<>());
-        mEducationRepository.getObservableEducations()
-                            .addSource(mEducationRepository.loadAll(), educationEntities -> {
-                                if (isDatabaseCreated() != null) {
-                                    mEducationRepository.getObservableEducations()
-                                                        .postValue(educationEntities);
-                                }
-                            });
-        mSkillRepository.setObservableSkills(new MediatorLiveData<>());
-        mSkillRepository.getObservableSkills()
-                        .addSource(mSkillRepository.loadAll(), skillEntities -> {
-                            if (isDatabaseCreated() != null) {
-                                mSkillRepository.getObservableSkills()
-                                                .postValue(skillEntities);
-                            }
-                        });
-        mContactRepository.setObservableContacts(new MediatorLiveData<>());
-        mContactRepository.getObservableContacts()
-                          .addSource(mContactRepository.loadAll(), contactEntities -> {
-                              if (isDatabaseCreated() != null) {
-                                  mContactRepository.getObservableContacts()
-                                                    .postValue(contactEntities);
-                              }
-                          });
-    }
-
-    private Boolean isDatabaseCreated() {
-
-        return mDatabase.getDatabaseCreated()
-                        .getValue();
+        educationRepository.setObservableEducations(new MediatorLiveData<>());
+        educationRepository.getObservableEducations()
+                .addSource(educationRepository.loadAll(), educationEntities -> {
+                    if (isDatabaseCreated() != null) {
+                        educationRepository.getObservableEducations()
+                                .postValue(educationEntities);
+                    }
+                });
+        skillRepository.setObservableSkills(new MediatorLiveData<>());
+        skillRepository.getObservableSkills()
+                .addSource(skillRepository.loadAll(), skillEntities -> {
+                    if (isDatabaseCreated() != null) {
+                        skillRepository.getObservableSkills()
+                                .postValue(skillEntities);
+                    }
+                });
+        contactRepository.setObservableContacts(new MediatorLiveData<>());
+        contactRepository.getObservableContacts()
+                .addSource(contactRepository.loadAll(), contactEntities -> {
+                    if (isDatabaseCreated() != null) {
+                        contactRepository.getObservableContacts()
+                                .postValue(contactEntities);
+                    }
+                });
     }
 
     public static DataRepository getInstance(final AppDatabase database) {
 
-        if (sInstance == null) {
+        if (INSTANCE == null) {
             synchronized (DataRepository.class) {
-                if (sInstance == null) {
-                    sInstance = new DataRepository(database);
+                if (INSTANCE == null) {
+                    INSTANCE = new DataRepository(database);
                 }
             }
         }
-        return sInstance;
+        return INSTANCE;
+    }
+
+    private Boolean isDatabaseCreated() {
+
+        return appDatabase.getDatabaseCreated()
+                .getValue();
     }
 
     public AppDatabase getDatabase() {
 
-        return mDatabase;
+        return appDatabase;
     }
 }
