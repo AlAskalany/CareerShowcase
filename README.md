@@ -1,5 +1,7 @@
 <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="Career Showcase App Launcher Icon" title="Title" height="" width=""/>
 
+<img src="https://travis-ci.com/AlAskalany/CareerShowcase.svg?branch=master"/>
+
 # Career Showcase Android App
 
 # App Screens

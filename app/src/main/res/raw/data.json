@@ -151,7 +151,7 @@
       "id": 7,
       "title": "Git",
       "level": 4,
-      "logoUrl": "-https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2Fif_github_287583.png?alt=media&token=d0a71bfd-fa63-4a6a-a183-f7ea058c2c82"
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2Fif_github_287583.png?alt=media&token=d0a71bfd-fa63-4a6a-a183-f7ea058c2c82"
     },
     {
       "id": 8,
@@ -183,19 +183,19 @@
       "id": 1,
       "title": "E-mail",
       "description": "ahmed.alaskalany@gmail.com",
-      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcommunication%2F1055030%20-%20mail.png?alt=media&token=85c374e7-505e-406b-8f78-f31943ebe2b7"
     },
     {
       "id": 2,
       "title": "Mobile",
       "description": "+46 73 489 47 96",
-      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fcommunication%2F1055012%20-%20phone.png?alt=media&token=ebcf4d26-e32b-404d-acd2-f2ac939c8d18"
     },
     {
       "id": 3,
       "title": "Skype",
       "description": "ahmed.al-askalany",
-      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fskill%2F1269841%20-%20android%20googl.png?alt=media&token=5b50f975-9a89-4fc4-a29f-4e6aae728799"
+      "logoUrl": "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fsocial%2F3225186%20-%20app%20logo%20media%20popular%20skype%20social.png?alt=media&token=d430fac5-b6f3-4ac1-b917-d860db8698f2"
     }
   ]
 }
