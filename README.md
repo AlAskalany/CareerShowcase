@@ -12,9 +12,9 @@
 :---:|:---:
 <img src="docs/images/screenshots/Screenshot_3_work.png" title="Overview" height="" width="300">|<img src="docs/images/screenshots/Screenshot_4_skills.png" title="Overview" height="" width="300">
 
-**Contact Screen** |
-:---:|:---:
-<img src="docs/images/screenshots/Screenshot_5_contact.png" title="Overview" height="" width="300">|
+| **Contact Screen** |
+|:---:|
+| <img src="docs/images/screenshots/Screenshot_5_contact.png" title="Overview" height="" width="300"> |
 
 # Running in Android Studio
 
