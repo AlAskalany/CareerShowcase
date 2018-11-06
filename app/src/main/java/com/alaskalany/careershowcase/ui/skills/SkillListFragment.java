@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Ahmed AlAskalany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.alaskalany.careershowcase.ui.skills;
 
 import android.content.Context;
@@ -11,7 +35,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
@@ -35,8 +58,9 @@ public class SkillListFragment
     /**
      *
      */
-    private final SkillOnClickCallback mCallback =
-            item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
+    private final SkillOnClickCallback skillOnClickCallback =
+            item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT)
+                         .show();
 
     /**
      *
@@ -77,72 +101,6 @@ public class SkillListFragment
     }
 
     /**
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     *
-     * @return
-     */
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
-        setAdapter(new SkillAdapter(mCallback));
-        Context context = mBinding.getRoot().getContext();
-        if (getColumnCount() <= 1) {
-            mBinding.listSkill.setLayoutManager(new LinearLayoutManager(context));
-        } else {
-            mBinding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
-        }
-        mBinding.listSkill.setAdapter(mAdapter);
-        return mBinding.getRoot();
-    }
-
-    /**
-     * Called when the fragment's activity has been created and this
-     * fragment's view hierarchy instantiated.  It can be used to do final
-     * initialization once these pieces are in place, such as retrieving
-     * views or restoring state.  It is also useful for fragments that use
-     * {@link #setRetainInstance(boolean)} to retain their instance,
-     * as this callback tells the fragment when it is fully associated with
-     * the new activity instance.  This is called after {@link #onCreateView}
-     * and before {@link #onViewStateRestored(Bundle)}.
-     *
-     * @param savedInstanceState If the fragment is being re-created from
-     *                           a previous saved state, this is the state.
-     */
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
-        super.onActivityCreated(savedInstanceState);
-        final SkillListViewModel _model = ViewModelProviders.of(this).get(SkillListViewModel.class);
-        mBinding.setSkillListViewModel(_model);
-        _model.getSkills().observe(this, pWorkEntities -> {
-            if (pWorkEntities != null) {
-                mAdapter.setSkillList(pWorkEntities);
-            } else {
-            }
-            mBinding.executePendingBindings();
-        });
-    }
-
-    /**
-     * @return
-     */
-    protected int getColumnCount() {
-
-        return mColumnCount;
-    }
-
-    /**
-     * @param mColumnCount
-     */
-    protected void setColumnCount(int mColumnCount) {
-
-        this.mColumnCount = mColumnCount;
-    }
-
-    /**
      * @return
      */
     protected SkillAdapter getAdapter() {
@@ -180,12 +138,81 @@ public class SkillListFragment
     }
 
     /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     *
+     * @return
+     */
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
+        setAdapter(new SkillAdapter(skillOnClickCallback));
+        Context context = mBinding.getRoot()
+                                  .getContext();
+        if (getColumnCount() <= 1) {
+            mBinding.listSkill.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            mBinding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+        }
+        mBinding.listSkill.setAdapter(mAdapter);
+        return mBinding.getRoot();
+    }
+
+    /**
+     * Called when the fragment's activity has been created and this
+     * fragment's view hierarchy instantiated.  It can be used to do final
+     * initialization once these pieces are in place, such as retrieving
+     * views or restoring state.  It is also useful for fragments that use
+     * {@link #setRetainInstance(boolean)} to retain their instance,
+     * as this skillOnClickCallback tells the fragment when it is fully associated with
+     * the new activity instance.  This is called after {@link #onCreateView}
+     * and before {@link #onViewStateRestored(Bundle)}.
+     *
+     * @param savedInstanceState If the fragment is being re-created from
+     *                           a previous saved state, this is the state.
+     */
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+        final SkillListViewModel _model = ViewModelProviders.of(this)
+                                                            .get(SkillListViewModel.class);
+        mBinding.setSkillListViewModel(_model);
+        _model.getSkills()
+              .observe(this, pWorkEntities -> {
+                  if (pWorkEntities != null) {
+                      mAdapter.setSkillList(pWorkEntities);
+                  } else {
+                  }
+                  mBinding.executePendingBindings();
+              });
+    }
+
+    /**
      *
      */
     @Override
     public void onDetach() {
 
         super.onDetach();
+    }
+
+    /**
+     * @return
+     */
+    protected int getColumnCount() {
+
+        return mColumnCount;
+    }
+
+    /**
+     * @param mColumnCount
+     */
+    protected void setColumnCount(int mColumnCount) {
+
+        this.mColumnCount = mColumnCount;
     }
 
     @Override

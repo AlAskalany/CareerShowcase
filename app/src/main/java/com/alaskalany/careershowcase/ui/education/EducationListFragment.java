@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Ahmed AlAskalany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.alaskalany.careershowcase.ui.education;
 
 import android.content.Context;
@@ -11,7 +35,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.alaskalany.careershowcase.R;
@@ -35,23 +58,24 @@ public class EducationListFragment
     /**
      *
      */
-    private final EducationOnClickCallback mCallBack =
-            item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
+    private final EducationOnClickCallback educationOnClickCallback =
+            item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT)
+                         .show();
 
     /**
      *
      */
-    protected FragmentEducationListBinding mBinding;
+    protected FragmentEducationListBinding binding;
 
     /**
      *
      */
-    protected EducationAdapter mAdapter;
+    protected EducationAdapter adapter;
 
     /**
      *
      */
-    protected int mColumnCount = 1;
+    protected int columnCount = 1;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -77,88 +101,6 @@ public class EducationListFragment
     }
 
     /**
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     *
-     * @return
-     */
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
-        setAdapter(new EducationAdapter(mCallBack));
-        Context context = mBinding.getRoot().getContext();
-        if (getColumnCount() <= 1) {
-            mBinding.listEducation.setLayoutManager(new LinearLayoutManager(context));
-        } else {
-            mBinding.listEducation.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
-        }
-        mBinding.listEducation.setAdapter(getAdapter());
-        return mBinding.getRoot();
-    }
-
-    /**
-     * Called when the fragment's activity has been created and this
-     * fragment's view hierarchy instantiated.  It can be used to do final
-     * initialization once these pieces are in place, such as retrieving
-     * views or restoring state.  It is also useful for fragments that use
-     * {@link #setRetainInstance(boolean)} to retain their instance,
-     * as this callback tells the fragment when it is fully associated with
-     * the new activity instance.  This is called after {@link #onCreateView}
-     * and before {@link #onViewStateRestored(Bundle)}.
-     *
-     * @param savedInstanceState If the fragment is being re-created from
-     *                           a previous saved state, this is the state.
-     */
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
-        super.onActivityCreated(savedInstanceState);
-        final EducationListViewModel _model = ViewModelProviders.of(this).get(EducationListViewModel.class);
-        mBinding.setEducationListViewModel(_model);
-        _model.getEducations().observe(this, pWorkEntities -> {
-            if (pWorkEntities != null) {
-                mAdapter.setEducationList(pWorkEntities);
-            } else {
-            }
-            mBinding.executePendingBindings();
-        });
-    }
-
-    /**
-     * @return
-     */
-    protected int getColumnCount() {
-
-        return mColumnCount;
-    }
-
-    /**
-     * @param mColumnCount
-     */
-    protected void setColumnCount(int mColumnCount) {
-
-        this.mColumnCount = mColumnCount;
-    }
-
-    /**
-     * @return
-     */
-    protected EducationAdapter getAdapter() {
-
-        return mAdapter;
-    }
-
-    /**
-     * @param adapter
-     */
-    protected void setAdapter(EducationAdapter adapter) {
-
-        this.mAdapter = adapter;
-    }
-
-    /**
      * @param context
      */
     @Override
@@ -180,6 +122,59 @@ public class EducationListFragment
     }
 
     /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     *
+     * @return
+     */
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
+        setAdapter(new EducationAdapter(educationOnClickCallback));
+        Context context = binding.getRoot()
+                                 .getContext();
+        if (getColumnCount() <= 1) {
+            binding.listEducation.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            binding.listEducation.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+        }
+        binding.listEducation.setAdapter(getAdapter());
+        return binding.getRoot();
+    }
+
+    /**
+     * Called when the fragment's activity has been created and this
+     * fragment's view hierarchy instantiated.  It can be used to do final
+     * initialization once these pieces are in place, such as retrieving
+     * views or restoring state.  It is also useful for fragments that use
+     * {@link #setRetainInstance(boolean)} to retain their instance,
+     * as this skillOnClickCallback tells the fragment when it is fully associated with
+     * the new activity instance.  This is called after {@link #onCreateView}
+     * and before {@link #onViewStateRestored(Bundle)}.
+     *
+     * @param savedInstanceState If the fragment is being re-created from
+     *                           a previous saved state, this is the state.
+     */
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+        final EducationListViewModel _model = ViewModelProviders.of(this)
+                                                                .get(EducationListViewModel.class);
+        binding.setEducationListViewModel(_model);
+        _model.getEducations()
+              .observe(this, pWorkEntities -> {
+                  if (pWorkEntities != null) {
+                      adapter.setEducationList(pWorkEntities);
+                  } else {
+                  }
+                  binding.executePendingBindings();
+              });
+    }
+
+    /**
      *
      */
     @Override
@@ -188,9 +183,41 @@ public class EducationListFragment
         super.onDetach();
     }
 
+    /**
+     * @return
+     */
+    protected int getColumnCount() {
+
+        return columnCount;
+    }
+
+    /**
+     * @param mColumnCount
+     */
+    protected void setColumnCount(int mColumnCount) {
+
+        this.columnCount = mColumnCount;
+    }
+
+    /**
+     * @return
+     */
+    protected EducationAdapter getAdapter() {
+
+        return adapter;
+    }
+
+    /**
+     * @param adapter
+     */
+    protected void setAdapter(EducationAdapter adapter) {
+
+        this.adapter = adapter;
+    }
+
     @Override
     public void top() {
 
-        mBinding.listEducation.smoothScrollToPosition(0);
+        binding.listEducation.smoothScrollToPosition(0);
     }
 }

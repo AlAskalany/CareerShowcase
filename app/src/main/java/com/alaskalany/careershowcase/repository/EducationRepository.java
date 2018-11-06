@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Ahmed AlAskalany
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.alaskalany.careershowcase.repository;
 
 import androidx.lifecycle.LiveData;
@@ -8,23 +32,23 @@ import java.util.List;
 
 public class EducationRepository {
 
-    private final DataRepository mDataRepository;
+    private final DataRepository dataRepository;
 
-    private MediatorLiveData<List<EducationEntity>> mObservableEducations;
+    private MediatorLiveData<List<EducationEntity>> observableEducations;
 
-    public EducationRepository(DataRepository pMDataRepository) {
+    public EducationRepository(DataRepository dataRepository) {
 
-        mDataRepository = pMDataRepository;
+        this.dataRepository = dataRepository;
     }
 
     public MediatorLiveData<List<EducationEntity>> getObservableEducations() {
 
-        return mObservableEducations;
+        return observableEducations;
     }
 
-    public void setObservableEducations(MediatorLiveData<List<EducationEntity>> pObservableEducations) {
+    public void setObservableEducations(MediatorLiveData<List<EducationEntity>> observableEducations) {
 
-        mObservableEducations = pObservableEducations;
+        this.observableEducations = observableEducations;
     }
 
     public void insertAll(List<EducationEntity> educationEntities) {
@@ -33,27 +57,27 @@ public class EducationRepository {
 
     public LiveData<EducationEntity> load(int educationId) {
 
-        return mDataRepository.getDatabase()
-                              .educationDao()
-                              .load(educationId);
+        return dataRepository.getDatabase()
+                .educationDao()
+                .load(educationId);
     }
 
     public EducationEntity loadSync(int educationId) {
 
-        return mDataRepository.getDatabase()
-                              .educationDao()
-                              .loadSync(educationId);
+        return dataRepository.getDatabase()
+                .educationDao()
+                .loadSync(educationId);
     }
 
     public LiveData<List<EducationEntity>> loadAll() {
 
-        return mDataRepository.getDatabase()
-                              .educationDao()
-                              .loadAll();
+        return dataRepository.getDatabase()
+                .educationDao()
+                .loadAll();
     }
 
     public MediatorLiveData<List<EducationEntity>> getEducations() {
 
-        return mObservableEducations;
+        return observableEducations;
     }
 }
