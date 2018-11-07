@@ -4,21 +4,21 @@
 
 [![Build Status](https://travis-ci.com/AlAskalany/CareerShowcase.svg?branch=master)](https://travis-ci.com/AlAskalany/CareerShowcase)
 
-<img src="docs\images\stores\320px-Get_it_on_Google_play.svg.png" alt="Get it on Google Play" title="Title" height="" width="200"/>
+[<img src="docs\images\stores\320px-Get_it_on_Google_play.svg.png" alt="Get it on Google Play" title="Title" height="" width="200"/>](https://play.google.com/store/apps/details?id=com.alaskalany.careershowcase)
 
 # App Screens
 
 **Overview Screen** | **Education Screen**
 :---:|:---:
-<img src="docs/images/screenshots/Screenshot_1_overview.png" title="Overview" height="" width="300">|<img src="docs/images/screenshots/Screenshot_2_education.png" title="Overview" height="" width="300">
+<img src="docs/images/screenshots/Screenshot_1_overview_frame.png" title="Overview" height="" width="300">|<img src="docs/images/screenshots/Screenshot_2_education_frame.png" title="Overview" height="" width="300">
 
 **Work Screen** | **Skills Screen**
 :---:|:---:
-<img src="docs/images/screenshots/Screenshot_3_work.png" title="Overview" height="" width="300">|<img src="docs/images/screenshots/Screenshot_4_skills.png" title="Overview" height="" width="300">
+<img src="docs/images/screenshots/Screenshot_3_work_frame.png" title="Overview" height="" width="300">|<img src="docs/images/screenshots/Screenshot_4_skills_frame.png" title="Overview" height="" width="300">
 
 | **Contact Screen** |
 |:---:|
-| <img src="docs/images/screenshots/Screenshot_5_contact.png" title="Overview" height="" width="300"> |
+| <img src="docs/images/screenshots/Screenshot_5_contact_frame.png" title="Overview" height="" width="300"> |
 
 # Running in Android Studio
 
