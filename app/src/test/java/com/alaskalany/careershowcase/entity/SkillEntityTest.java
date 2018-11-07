@@ -22,25 +22,70 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase;
+package com.alaskalany.careershowcase.entity;
 
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
 
-import static org.junit.Assert.assertEquals;
+public class SkillEntityTest {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
-@RunWith(RobolectricTestRunner.class)
-public class ExampleUnitTest {
+    @Before
+    public void setUp() throws Exception {
+
+    }
+
+    @After
+    public void tearDown() throws Exception {
+
+    }
 
     @Test
-    public void addition_isCorrect() {
+    public void getId() {
 
-        assertEquals(4, 2 + 2);
+        Assert.fail();
+    }
+
+    @Test
+    public void setId() {
+
+        Assert.fail();
+    }
+
+    @Test
+    public void getTitle() {
+
+        Assert.fail();
+    }
+
+    @Test
+    public void setTitle() {
+
+        Assert.fail();
+    }
+
+    @Test
+    public void getLevel() {
+
+        Assert.fail();
+    }
+
+    @Test
+    public void setLevel() {
+
+        Assert.fail();
+    }
+
+    @Test
+    public void getLogoUrl() {
+
+        Assert.fail();
+    }
+
+    @Test
+    public void setLogoUrl() {
+
+        Assert.fail();
     }
 }

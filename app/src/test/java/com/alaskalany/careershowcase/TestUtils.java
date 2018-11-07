@@ -24,23 +24,32 @@
 
 package com.alaskalany.careershowcase;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
+import androidx.fragment.app.FragmentActivity;
 
-import static org.junit.Assert.assertEquals;
+class TestUtils {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
-@RunWith(RobolectricTestRunner.class)
-public class ExampleUnitTest {
+    static void clickOn(FragmentActivity activity, int viewId) {
 
-    @Test
-    public void addition_isCorrect() {
+        activity.findViewById(viewId)
+                .performClick();
+    }
 
-        assertEquals(4, 2 + 2);
+    public static boolean isCurrentFragment(FragmentActivity activity, Class<?> expectedFragmentClass) {
+
+        Class<?> currentFragmentClass = getFragmentClass(activity, R.id.container_navigation);
+
+        return expectedFragmentClass == currentFragmentClass;
+    }
+
+    static Class<?> getFragmentClass(FragmentActivity activity, int containerViewId) {
+
+        return activity.getSupportFragmentManager()
+                       .findFragmentById(containerViewId)
+                       .getClass();
+    }
+
+    static void pressBack(FragmentActivity activity) {
+
+        activity.onBackPressed();
     }
 }
