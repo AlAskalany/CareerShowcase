@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.com/AlAskalany/CareerShowcase.svg?branch=master)](https://travis-ci.com/AlAskalany/CareerShowcase)
 
-<img src="docs\images\stores\320px-Get_it_on_Google_play.svg.png" alt="Get it on Google Play" title="Title" height="" width="200"/>
+[<img src="docs\images\stores\320px-Get_it_on_Google_play.svg.png" alt="Get it on Google Play" title="Title" height="" width="200"/>](https://play.google.com/store/apps/details?id=com.alaskalany.careershowcase)
 
 # App Screens
 
