@@ -25,6 +25,7 @@
 package com.alaskalany.careershowcase.ui.overview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -171,6 +172,21 @@ public class OverviewFragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false);
         binding.setName("Ahmed AlAskalany");
         binding.setHeadline("Software Engineer");
+
+        binding.imageButtonLinkedin.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/askalany/"));
+            startActivity(browserIntent);
+        });
+
+        binding.imageButtonGithub.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/AlAskalany"));
+            startActivity(browserIntent);
+        });
+
+        binding.imageButtonTwitter.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/Askalanism"));
+            startActivity(browserIntent);
+        });
         // Inflate the layout for this fragment
         GlideApp.with(this)
                 .load(getString(R.string.profile_picture_url))
