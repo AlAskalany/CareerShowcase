@@ -6,7 +6,11 @@
 
 [<img src="docs\images\stores\320px-Get_it_on_Google_play.svg.png" alt="Get it on Google Play" title="Title" height="" width="200"/>](https://play.google.com/store/apps/details?id=com.alaskalany.careershowcase)
 
-# App Screens
+[1. App Screens](#1-app-screens)
+
+[2. Contributing](#2-contributing)
+
+# 1. App Screens
 
 **Overview Screen** | **Education Screen**
 :---:|:---:
@@ -20,6 +24,6 @@
 |:---:|
 | <img src="docs/images/screenshots/Screenshot_5_contact_frame.png" title="Overview" height="" width="300"> |
 
-# Contributing
+# 2. Contributing
 
 For running on Android studio check [Contributing](docs/CONTRIBUTING.md)
