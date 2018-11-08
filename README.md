@@ -1,4 +1,4 @@
-<img alt="Career Showcase Android App" src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" height="">
+<img alt="Career Showcase Android App" src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" height="100">
 
 # Career Showcase Android App
 
