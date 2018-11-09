@@ -44,8 +44,9 @@ android {
         enabled true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+
+    sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
     testOptions {
         unitTests {
@@ -59,10 +60,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.appcompat:appcompat:$rootProject.androidxVersion"
-    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appcompatVersion"
+    implementation "com.google.android.material:material:1.1.0-alpha01"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayoutVersion"
-    implementation "androidx.vectordrawable:vectordrawable:$rootProject.androidxVersion"
+    implementation "androidx.vectordrawable:vectordrawable:1.0.1"
     implementation "androidx.legacy:legacy-support-v4:$rootProject.androidxVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.androidxVersion"
     // Room components
@@ -83,7 +84,6 @@ dependencies {
     implementation "com.google.firebase:firebase-core:$rootProject.firebaseCoreVersion"
     implementation "com.google.firebase:firebase-firestore:$rootProject.firebaseFirestoreVersion"
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.google.android.material:material:1.1.0-alpha01'
     // Robolectric
     testImplementation "org.robolectric:robolectric:4.0.1"
     testImplementation "androidx.test:core:1.0.0"
