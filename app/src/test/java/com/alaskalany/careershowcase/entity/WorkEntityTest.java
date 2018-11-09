@@ -25,103 +25,168 @@
 package com.alaskalany.careershowcase.entity;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class WorkEntityTest {
+import static junit.framework.TestCase.assertEquals;
 
+public class WorkEntityTest {
+    
+    private static final int ID = 123;
+    
+    private static final String TITLE = "MSc in Master of Science";
+    
+    private static final String DESCRIPTION =
+            "I have a B.Sc. in Electrical and Computer Engineering and studied for a M.Sc. in Nanotechnology. Worked in the software industry for 2 years, in Quality Assurance and Mobile App Development. My primary fields of expertise is Java development for Android applications and building mobile back-ends using Firebase and Google Cloud Platform.\n" +
+            "\n" +
+            "My goal is to work on building quality Android applications with reliable back-end services, and to become a world-class expert in this specialty. I combine my educational background and technical skills with a broad knowledge of various technologies to come up with highly efficient and cost-effective solutions. Through motivation and high work ethic, I create and thrive in an environment of collaboration and eagerness to achieve set goals.";
+    
+    private static final String COMPANY = "KTH Royal Institute of Technology";
+    
+    private static final String LOCATION = "Cairo, Egypt";
+    
+    private static final String DURATION = "August 2014 - September 2018";
+    
+    private static final String LOGO_URL =
+            "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Famit_logo.png?alt=media&token=86499d5f-def9-4c8d-8d13-bc14b53b78db";
+    
+    private WorkEntity workEntity;
+    
     @Before
     public void setUp() throws Exception {
-
+        
+        workEntity = new WorkEntity();
     }
-
+    
     @After
     public void tearDown() throws Exception {
-
+        
+        workEntity = null;
     }
-
+    
     @Test
     public void getId() {
-
-        Assert.fail();
+        
+        int expected = ID;
+        workEntity.setId(expected);
+        int actual = workEntity.getId();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setId() {
-
-        Assert.fail();
+        
+        int expected = ID;
+        workEntity.setId(expected);
+        int actual = workEntity.getId();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getDescription() {
-
-        Assert.fail();
+        
+        String expected = DESCRIPTION;
+        workEntity.setDescription(expected);
+        String actual = workEntity.getDescription();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setDescription() {
-
-        Assert.fail();
+        
+        String expected = DESCRIPTION;
+        workEntity.setDescription(expected);
+        String actual = workEntity.getDescription();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getDuration() {
-
-        Assert.fail();
+        
+        String expected = DURATION;
+        workEntity.setDuration(expected);
+        String actual = workEntity.getDuration();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setDuration() {
-
-        Assert.fail();
+        
+        String expected = DURATION;
+        workEntity.setDuration(expected);
+        String actual = workEntity.getDuration();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getCompany() {
-
-        Assert.fail();
+        
+        String expected = COMPANY;
+        workEntity.setCompany(expected);
+        String actual = workEntity.getCompany();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setCompany() {
-
-        Assert.fail();
+        
+        String expected = COMPANY;
+        workEntity.setCompany(expected);
+        String actual = workEntity.getCompany();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getTitle() {
-
-        Assert.fail();
+        
+        String expected = TITLE;
+        workEntity.setTitle(expected);
+        String actual = workEntity.getTitle();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setTitle() {
-
-        Assert.fail();
+        
+        String expected = TITLE;
+        workEntity.setTitle(expected);
+        String actual = workEntity.getTitle();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getLocation() {
-
-        Assert.fail();
+        
+        String expected = LOCATION;
+        workEntity.setLocation(expected);
+        String actual = workEntity.getLocation();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setLocation() {
-
-        Assert.fail();
+        
+        String expected = LOCATION;
+        workEntity.setLocation(expected);
+        String actual = workEntity.getLocation();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getLogoUrl() {
-
-        Assert.fail();
+        
+        String expected = LOGO_URL;
+        workEntity.setLogoUrl(expected);
+        String actual = workEntity.getLogoUrl();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setLogoUrl() {
-
-        Assert.fail();
+        
+        String expected = LOGO_URL;
+        workEntity.setLogoUrl(expected);
+        String actual = workEntity.getLogoUrl();
+        assertEquals(expected, actual);
     }
 }

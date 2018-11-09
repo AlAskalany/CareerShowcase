@@ -25,67 +25,96 @@
 package com.alaskalany.careershowcase.entity;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ContactEntityTest {
+import static junit.framework.TestCase.assertEquals;
 
+public class ContactEntityTest {
+    
+    private ContactEntity contactEntity;
+    
     @Before
     public void setUp() throws Exception {
-
+        
+        contactEntity = new ContactEntity();
     }
-
+    
     @After
     public void tearDown() throws Exception {
-
+        
+        contactEntity = null;
     }
-
+    
     @Test
     public void getId() {
-
-        Assert.fail();
+        
+        int expected = 123;
+        contactEntity.setId(expected);
+        int actual = contactEntity.getId();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setId() {
-
-        Assert.fail();
+        
+        int expected = 123;
+        contactEntity.setId(expected);
+        int actual = contactEntity.getId();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getTitle() {
-
-        Assert.fail();
+        
+        String expected = "E-mail";
+        contactEntity.setTitle(expected);
+        String actual = contactEntity.getTitle();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setTitle() {
-
-        Assert.fail();
+        
+        String expected = "E-mail";
+        contactEntity.setTitle(expected);
+        String actual = contactEntity.getTitle();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getDescription() {
-
-        Assert.fail();
+        
+        String expected = "E-mail address";
+        contactEntity.setDescription(expected);
+        String actual = contactEntity.getDescription();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setDescription() {
-
-        Assert.fail();
+        
+        String expected = "E-mail address";
+        contactEntity.setTitle(expected);
+        String actual = contactEntity.getTitle();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getLogoUrl() {
-
-        Assert.fail();
+        
+        String expected = "gs://careershowcase-96976.appspot.com/images/logo/communication/1055030 - mail.png";
+        contactEntity.setTitle(expected);
+        String actual = contactEntity.getTitle();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setLogoUrl() {
-
-        Assert.fail();
+        
+        String expected = "gs://careershowcase-96976.appspot.com/images/logo/communication/1055030 - mail.png";
+        contactEntity.setTitle(expected);
+        String actual = contactEntity.getTitle();
+        assertEquals(expected, actual);
     }
 }

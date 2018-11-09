@@ -25,67 +25,103 @@
 package com.alaskalany.careershowcase.entity;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SkillEntityTest {
+import static junit.framework.TestCase.assertEquals;
 
+public class SkillEntityTest {
+    
+    private static final int ID = 123;
+    
+    private static final String TITLE = "Java";
+    
+    private static final String LOGO_URL =
+            "https://firebasestorage.googleapis.com/v0/b/careershowcase-96976.appspot.com/o/images%2Flogo%2Fschool%2Famit_logo.png?alt=media&token=86499d5f-def9-4c8d-8d13-bc14b53b78db";
+    
+    private SkillEntity skillEntity;
+    
     @Before
     public void setUp() throws Exception {
-
+        
+        skillEntity = new SkillEntity();
     }
-
+    
     @After
     public void tearDown() throws Exception {
-
+        
+        skillEntity = null;
     }
-
+    
     @Test
     public void getId() {
-
-        Assert.fail();
+        
+        int expected = ID;
+        skillEntity.setId(expected);
+        int actual = skillEntity.getId();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setId() {
-
-        Assert.fail();
+        
+        int expected = ID;
+        skillEntity.setId(expected);
+        int actual = skillEntity.getId();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getTitle() {
-
-        Assert.fail();
+        
+        String expected = TITLE;
+        skillEntity.setTitle(expected);
+        String actual = skillEntity.getTitle();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setTitle() {
-
-        Assert.fail();
+        
+        String expected = TITLE;
+        skillEntity.setTitle(expected);
+        String actual = skillEntity.getTitle();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getLevel() {
-
-        Assert.fail();
+        
+        int expected = 1;
+        skillEntity.setLevel(expected);
+        int actual = skillEntity.getLevel();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setLevel() {
-
-        Assert.fail();
+        
+        int expected = 1;
+        skillEntity.setLevel(expected);
+        int actual = skillEntity.getLevel();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void getLogoUrl() {
-
-        Assert.fail();
+        
+        String expected = LOGO_URL;
+        skillEntity.setLogoUrl(expected);
+        String actual = skillEntity.getLogoUrl();
+        assertEquals(expected, actual);
     }
-
+    
     @Test
     public void setLogoUrl() {
-
-        Assert.fail();
+        
+        String expected = LOGO_URL;
+        skillEntity.setLogoUrl(expected);
+        String actual = skillEntity.getLogoUrl();
+        assertEquals(expected, actual);
     }
 }
