@@ -69,7 +69,7 @@ public class FileDataTest {
         
         MainActivity mainActivity = Robolectric.setupActivity(MainActivity.class);
         LiveData<List<EducationEntity>> educationLiveData =
-                FileData.getEducationLiveData(mainActivity.getApplication());
+                FileData.INSTANCE.getEducationLiveData(mainActivity.getApplication());
         assertNotNull(educationLiveData);
     }
     
@@ -77,7 +77,7 @@ public class FileDataTest {
     public void getSkillsLiveData() {
         
         MainActivity mainActivity = Robolectric.setupActivity(MainActivity.class);
-        LiveData<List<SkillEntity>> skillsLiveData = FileData.getSkillsLiveData(mainActivity.getApplication());
+        LiveData<List<SkillEntity>> skillsLiveData = FileData.INSTANCE.getSkillsLiveData(mainActivity.getApplication());
         assertNotNull(skillsLiveData);
     }
     
@@ -85,7 +85,7 @@ public class FileDataTest {
     public void getWorkLiveData() {
         
         MainActivity mainActivity = Robolectric.setupActivity(MainActivity.class);
-        LiveData<List<WorkEntity>> workLiveData = FileData.getWorkLiveData(mainActivity.getApplication());
+        LiveData<List<WorkEntity>> workLiveData = FileData.INSTANCE.getWorkLiveData(mainActivity.getApplication());
         assertNotNull(workLiveData);
     }
     
@@ -93,7 +93,7 @@ public class FileDataTest {
     public void getContactsLiveData() {
         
         MainActivity mainActivity = Robolectric.setupActivity(MainActivity.class);
-        LiveData<List<ContactEntity>> contactsLiveData = FileData.getContactsLiveData(mainActivity.getApplication());
+        LiveData<List<ContactEntity>> contactsLiveData = FileData.INSTANCE.getContactsLiveData(mainActivity.getApplication());
         assertNotNull(contactsLiveData);
     }
 }

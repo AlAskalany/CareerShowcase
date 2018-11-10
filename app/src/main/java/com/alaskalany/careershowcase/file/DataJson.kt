@@ -22,22 +22,20 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.file;
+package com.alaskalany.careershowcase.file
 
-import com.alaskalany.careershowcase.entity.ContactEntity;
-import com.alaskalany.careershowcase.entity.EducationEntity;
-import com.alaskalany.careershowcase.entity.SkillEntity;
-import com.alaskalany.careershowcase.entity.WorkEntity;
+import com.alaskalany.careershowcase.entity.ContactEntity
+import com.alaskalany.careershowcase.entity.EducationEntity
+import com.alaskalany.careershowcase.entity.SkillEntity
+import com.alaskalany.careershowcase.entity.WorkEntity
 
-import java.util.List;
+class DataJson {
 
-public class DataJson {
+    var education: List<EducationEntity>? = null
 
-    public List<EducationEntity> education;
+    var work: List<WorkEntity>? = null
 
-    public List<WorkEntity> work;
+    var skills: List<SkillEntity>? = null
 
-    public List<SkillEntity> skills;
-
-    public List<ContactEntity> contacts;
+    var contacts: List<ContactEntity>? = null
 }
