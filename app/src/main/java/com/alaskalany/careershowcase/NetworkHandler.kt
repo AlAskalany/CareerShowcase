@@ -27,6 +27,8 @@ package com.alaskalany.careershowcase
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
+import android.net.NetworkCapabilities
+import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import android.net.NetworkInfo
 import android.widget.Toast
 
@@ -66,14 +68,15 @@ internal constructor(private val context: Context) : Runnable {
             // Check connectivity for all networks
             for (network in connMgr.allNetworks) {
                 val networkInfo = connMgr.getNetworkInfo(network)
-                if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
+
+                if (connMgr.getNetworkCapabilities(network).hasTransport(TRANSPORT_WIFI)) {
                     // If Wi-Fi
                     isWifiConn = isWifiConn or networkInfo.isConnected
                     if (isWifiConn) {
                         doWhenWifiIsConnected()
                     }
                 }
-                if (networkInfo.type == ConnectivityManager.TYPE_MOBILE) {
+                if (connMgr.getNetworkCapabilities(network).hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
                     // If mobile network
                     isMobileConn = isMobileConn or networkInfo.isConnected
                     if (isMobileConn) {
