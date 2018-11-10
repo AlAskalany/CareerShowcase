@@ -22,15 +22,15 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.ui;
+package com.alaskalany.careershowcase.ui
 
 /**
  *
  */
-public interface OnBackPressed {
+interface OnBackPressed {
 
     /**
      * @return true if back was pressed
      */
-    boolean onBackPressed();
+    fun onBackPressed(): Boolean
 }
