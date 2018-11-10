@@ -22,16 +22,16 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.ui;
+package com.alaskalany.careershowcase.ui
 
-import android.view.View;
-import androidx.databinding.BindingAdapter;
+import android.view.View
+import androidx.databinding.BindingAdapter
 
-public class BindingAdapters {
+object BindingAdapters {
 
     @BindingAdapter("visibleGone")
-    public static void showHide(View view, boolean show) {
+    fun showHide(view: View, show: Boolean) {
 
-        view.setVisibility(show ? View.VISIBLE : View.GONE);
+        view.visibility = if (show) View.VISIBLE else View.GONE
     }
 }
