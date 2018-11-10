@@ -32,5 +32,5 @@ interface Description {
     /**
      * @param description
      */
-    var description: String
+    var description: String?
 }

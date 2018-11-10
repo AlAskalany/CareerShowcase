@@ -29,5 +29,5 @@ interface Company {
     /**
      * @return
      */
-    var company: String
+    var company: String?
 }

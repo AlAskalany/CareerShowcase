@@ -26,5 +26,5 @@ package com.alaskalany.careershowcase.model.properties
 
 interface StudyField {
 
-    var studyField: String
+    var studyField: String?
 }

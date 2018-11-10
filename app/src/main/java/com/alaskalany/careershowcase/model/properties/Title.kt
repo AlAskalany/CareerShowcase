@@ -32,5 +32,5 @@ interface Title {
     /**
      * @param title
      */
-    var title: String
+    var title: String?
 }

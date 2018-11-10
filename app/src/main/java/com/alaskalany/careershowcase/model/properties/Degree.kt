@@ -26,5 +26,5 @@ package com.alaskalany.careershowcase.model.properties
 
 interface Degree {
 
-    var degree: String
+    var degree: String?
 }

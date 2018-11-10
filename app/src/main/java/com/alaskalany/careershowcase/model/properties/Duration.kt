@@ -29,5 +29,5 @@ interface Duration {
     /**
      * @return
      */
-    var duration: String
+    var duration: String?
 }
