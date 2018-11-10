@@ -57,7 +57,7 @@ class WorkListViewModel(application: Application) : AndroidViewModel(application
         private val repository: DataRepository
 
         init {
-            repository = (application as CareerShowcaseApp).repository
+            repository = (application as CareerShowcaseApp).repository!!
         }
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

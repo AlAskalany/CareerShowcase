@@ -61,7 +61,7 @@ class WorkViewModel(application: Application, dataRepository: DataRepository, pr
         private val repository: DataRepository
 
         init {
-            repository = (application as CareerShowcaseApp).repository
+            repository = (application as CareerShowcaseApp).repository!!
         }
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -61,7 +61,7 @@ class SkillViewModel(application: Application, dataRepository: DataRepository, p
         private val mRepository: DataRepository
 
         init {
-            mRepository = (mApplication as CareerShowcaseApp).repository
+            mRepository = (mApplication as CareerShowcaseApp).repository!!
         }
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

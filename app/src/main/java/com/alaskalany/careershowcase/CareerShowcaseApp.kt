@@ -22,64 +22,61 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase;
+package com.alaskalany.careershowcase
 
-import android.app.Application;
-import androidx.room.RoomDatabase;
-import com.alaskalany.careershowcase.database.AppDatabase;
-import com.alaskalany.careershowcase.repository.DataRepository;
+import android.app.Application
+import androidx.room.RoomDatabase
+import com.alaskalany.careershowcase.database.AppDatabase
+import com.alaskalany.careershowcase.repository.DataRepository
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.Executor
 
 /**
- * App class extending {@link Application}
+ * App class extending [Application]
  */
-public class CareerShowcaseApp
-        extends Application {
+class CareerShowcaseApp : Application() {
 
     /**
-     * App executors; Disk IO {@link Executor},Network {@link Executor},and Main thread {@link Executor}.
+     * App executors; Disk IO [Executor],Network [Executor],and Main thread [Executor].
      */
-    private AppExecutors appExecutors;
+    private var appExecutors: AppExecutors? = null
+
+    /**
+     * Gets [DataRepository]
+     *
+     * @return Data repository
+     */
+    val repository: DataRepository?
+        get() = DataRepository.getInstance(database!!)
+
+    /**
+     * @return Application's [RoomDatabase]
+     */
+    val database: AppDatabase?
+        get() = AppDatabase.getInstance(this, appExecutors!!)
 
     /**
      * Called when the application is starting, before any activity, service,
      * or receiver objects (excluding content providers) have been created.
-     * <p>Implementations should be as quick as possible (for example using
+     *
+     * Implementations should be as quick as possible (for example using
      * lazy initialization of state) since the time spent in this function
      * directly impacts the performance of starting the first activity,
-     * service, or receiver in a process.</p>
-     * <p>If you override this method, be sure to call {@code super.onCreate()}.</p>
-     * <p class="note">Be aware that direct boot may also affect callback order on
-     * Android {@link android.os.Build.VERSION_CODES#N} and later devices.
+     * service, or receiver in a process.
+     *
+     * If you override this method, be sure to call `super.onCreate()`.
+     *
+     * Be aware that direct boot may also affect callback order on
+     * Android [android.os.Build.VERSION_CODES.N] and later devices.
      * Until the user unlocks the device, only direct boot aware components are
      * allowed to run. You should consider that all direct boot unaware
-     * components, including such {@link android.content.ContentProvider}, are
+     * components, including such [android.content.ContentProvider], are
      * disabled until user unlock happens, especially when component callback
-     * order matters.</p>
+     * order matters.
      */
-    @Override
-    public void onCreate() {
+    override fun onCreate() {
 
-        super.onCreate();
-        appExecutors = new AppExecutors();
-    }
-
-    /**
-     * Gets {@link DataRepository}
-     *
-     * @return Data repository
-     */
-    public DataRepository getRepository() {
-
-        return DataRepository.Companion.getInstance(getDatabase());
-    }
-
-    /**
-     * @return Application's {@link RoomDatabase}
-     */
-    public AppDatabase getDatabase() {
-
-        return AppDatabase.Companion.getInstance(this, appExecutors);
+        super.onCreate()
+        appExecutors = AppExecutors()
     }
 }
