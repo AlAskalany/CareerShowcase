@@ -22,49 +22,20 @@
  * SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.alaskalany.careershowcase.file
 
-buildscript {
-    ext.kotlin_version = '1.3.0'
+import com.alaskalany.careershowcase.entity.ContactEntity
+import com.alaskalany.careershowcase.entity.EducationEntity
+import com.alaskalany.careershowcase.entity.SkillEntity
+import com.alaskalany.careershowcase.entity.WorkEntity
 
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0-alpha03'
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+class DataJson {
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
+    var education: List<EducationEntity>? = null
 
-ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
-    minSdkVersion = 21
-    androidxVersion = '1.0.0'
-    roomVersion = '1.1.1'
-    archLifecycleVersion = '1.1.1'
-    materialVersion = '1.0.0'
-    testRunnerVersion = '1.1.0'
-    espressoVersion = '3.1.0'
-    constraintlayoutVersion = '2.0.0-alpha2'
-    glideVersion = '4.8.0'
-    firebaseCoreVersion = '16.0.5'
-    firebaseFirestoreVersion = '17.1.3'
-    appcompatVersion = '1.0.2'
-}
+    var work: List<WorkEntity>? = null
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
+    var skills: List<SkillEntity>? = null
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    var contacts: List<ContactEntity>? = null
 }

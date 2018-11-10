@@ -22,49 +22,43 @@
  * SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.alaskalany.careershowcase.repository
 
-buildscript {
-    ext.kotlin_version = '1.3.0'
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import com.alaskalany.careershowcase.entity.ContactEntity
 
-    repositories {
-        google()
-        jcenter()
+class ContactRepository(private val dataRepository: DataRepository) {
+
+    var observableContacts: MediatorLiveData<List<ContactEntity>>? = null
+
+    fun insertAll(contactEntities: List<ContactEntity>) {
+
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0-alpha03'
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    fun load(contactId: Int): LiveData<ContactEntity> {
+
+        return dataRepository.database
+                .contactDao()
+                .load(contactId)
     }
-}
 
-ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
-    minSdkVersion = 21
-    androidxVersion = '1.0.0'
-    roomVersion = '1.1.1'
-    archLifecycleVersion = '1.1.1'
-    materialVersion = '1.0.0'
-    testRunnerVersion = '1.1.0'
-    espressoVersion = '3.1.0'
-    constraintlayoutVersion = '2.0.0-alpha2'
-    glideVersion = '4.8.0'
-    firebaseCoreVersion = '16.0.5'
-    firebaseFirestoreVersion = '17.1.3'
-    appcompatVersion = '1.0.2'
-}
+    fun loadSync(contactId: Int): ContactEntity {
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
+        return dataRepository.database
+                .contactDao()
+                .loadSync(contactId)
     }
-}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    fun loadAll(): LiveData<List<ContactEntity>> {
+
+        return dataRepository.database
+                .contactDao()
+                .loadAll()
+    }
+
+    fun getContacts(): MediatorLiveData<List<ContactEntity>>? {
+
+        return observableContacts
+    }
 }

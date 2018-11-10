@@ -22,49 +22,41 @@
  * SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.alaskalany.careershowcase.file
 
-buildscript {
-    ext.kotlin_version = '1.3.0'
+import com.alaskalany.careershowcase.MainActivity
 
-    repositories {
-        google()
-        jcenter()
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.Robolectric
+import org.robolectric.RobolectricTestRunner
+
+import junit.framework.TestCase.assertNotNull
+
+@RunWith(RobolectricTestRunner::class)
+class JsonFileReaderTest {
+
+    private val jsonFileReader: JsonFileReader? = null
+
+    @Before
+    @Throws(Exception::class)
+    fun setUp() {
+
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0-alpha03'
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    @After
+    @Throws(Exception::class)
+    fun tearDown() {
+
     }
-}
 
-ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
-    minSdkVersion = 21
-    androidxVersion = '1.0.0'
-    roomVersion = '1.1.1'
-    archLifecycleVersion = '1.1.1'
-    materialVersion = '1.0.0'
-    testRunnerVersion = '1.1.0'
-    espressoVersion = '3.1.0'
-    constraintlayoutVersion = '2.0.0-alpha2'
-    glideVersion = '4.8.0'
-    firebaseCoreVersion = '16.0.5'
-    firebaseFirestoreVersion = '17.1.3'
-    appcompatVersion = '1.0.2'
-}
+    @Test
+    fun loadJSONFromAsset() {
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
+        val mainActivity = Robolectric.setupActivity(MainActivity::class.java)
+        val jsonString = JsonFileReader.loadJSONFromAsset(mainActivity)
+        assertNotNull(jsonString)
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

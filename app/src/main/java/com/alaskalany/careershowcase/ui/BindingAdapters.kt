@@ -22,49 +22,16 @@
  * SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.alaskalany.careershowcase.ui
 
-buildscript {
-    ext.kotlin_version = '1.3.0'
+import android.view.View
+import androidx.databinding.BindingAdapter
 
-    repositories {
-        google()
-        jcenter()
+object BindingAdapters {
+
+    @BindingAdapter("visibleGone")
+    fun showHide(view: View, show: Boolean) {
+
+        view.visibility = if (show) View.VISIBLE else View.GONE
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0-alpha03'
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
-    minSdkVersion = 21
-    androidxVersion = '1.0.0'
-    roomVersion = '1.1.1'
-    archLifecycleVersion = '1.1.1'
-    materialVersion = '1.0.0'
-    testRunnerVersion = '1.1.0'
-    espressoVersion = '3.1.0'
-    constraintlayoutVersion = '2.0.0-alpha2'
-    glideVersion = '4.8.0'
-    firebaseCoreVersion = '16.0.5'
-    firebaseFirestoreVersion = '17.1.3'
-    appcompatVersion = '1.0.2'
-}
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

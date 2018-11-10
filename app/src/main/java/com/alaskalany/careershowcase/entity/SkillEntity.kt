@@ -22,49 +22,50 @@
  * SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.alaskalany.careershowcase.entity
 
-buildscript {
-    ext.kotlin_version = '1.3.0'
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.alaskalany.careershowcase.model.Skill
 
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0-alpha03'
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+/**
+ * A skill item representing a piece of description.
+ */
+/**
+ *
+ */
+@Entity(tableName = "skills_table")
+class SkillEntity : Skill {
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
+    /**
+     *
+     */
+    /**
+     * @return
+     */
+    /**
+     * @param pSkillId
+     */
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "skill_id")
+    override var id: Int = 0
 
-ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
-    minSdkVersion = 21
-    androidxVersion = '1.0.0'
-    roomVersion = '1.1.1'
-    archLifecycleVersion = '1.1.1'
-    materialVersion = '1.0.0'
-    testRunnerVersion = '1.1.0'
-    espressoVersion = '3.1.0'
-    constraintlayoutVersion = '2.0.0-alpha2'
-    glideVersion = '4.8.0'
-    firebaseCoreVersion = '16.0.5'
-    firebaseFirestoreVersion = '17.1.3'
-    appcompatVersion = '1.0.2'
-}
+    /**
+     *
+     */
+    /**
+     * @return
+     */
+    /**
+     * @param title
+     */
+    @ColumnInfo(name = "skill_title")
+    override var title: String? = null
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
+    @ColumnInfo(name = "skill_level")
+    override var level: Int = 0
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    @ColumnInfo(name = "skill_log_url")
+    override var logoUrl: String? = null
 }

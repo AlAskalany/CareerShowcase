@@ -22,49 +22,38 @@
  * SOFTWARE.
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+package com.alaskalany.careershowcase
 
-buildscript {
-    ext.kotlin_version = '1.3.0'
+import android.view.View
+import androidx.fragment.app.FragmentActivity
 
-    repositories {
-        google()
-        jcenter()
+internal object TestUtils {
+
+    @JvmStatic
+    fun clickOn(activity: FragmentActivity, viewId: Int) {
+
+        activity.findViewById<View>(viewId)
+                .performClick()
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0-alpha03'
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    @JvmStatic
+    fun isCurrentFragment(activity: FragmentActivity, expectedFragmentClass: Class<*>): Boolean {
+
+        val currentFragmentClass = getFragmentClass(activity, R.id.container_navigation)
+
+        return expectedFragmentClass == currentFragmentClass
     }
-}
 
-ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
-    minSdkVersion = 21
-    androidxVersion = '1.0.0'
-    roomVersion = '1.1.1'
-    archLifecycleVersion = '1.1.1'
-    materialVersion = '1.0.0'
-    testRunnerVersion = '1.1.0'
-    espressoVersion = '3.1.0'
-    constraintlayoutVersion = '2.0.0-alpha2'
-    glideVersion = '4.8.0'
-    firebaseCoreVersion = '16.0.5'
-    firebaseFirestoreVersion = '17.1.3'
-    appcompatVersion = '1.0.2'
-}
+    @JvmStatic
+    fun getFragmentClass(activity: FragmentActivity, containerViewId: Int): Class<*> {
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
+        return activity.supportFragmentManager
+                .findFragmentById(containerViewId)!!.javaClass
     }
-}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    @JvmStatic
+    fun pressBack(activity: FragmentActivity) {
+
+        activity.onBackPressed()
+    }
 }
