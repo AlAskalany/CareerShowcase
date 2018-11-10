@@ -22,103 +22,96 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase;
+package com.alaskalany.careershowcase
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkInfo;
-import android.widget.Toast;
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkInfo
+import android.widget.Toast
 
-public class NetworkHandler
-        implements Runnable {
-
-    private final Context context;
-
-    /**
-     * @param context {@link Context}
-     */
-    NetworkHandler(Context context) {
-
-        this.context = context;
-    }
+class NetworkHandler
+/**
+ * @param context [Context]
+ */
+internal constructor(private val context: Context) : Runnable {
 
     /**
-     * When an object implementing interface <code>Runnable</code> is used
+     * When an object implementing interface `Runnable` is used
      * to create a thread, starting the thread causes the object's
-     * <code>run</code> method to be called in that separately executing
+     * `run` method to be called in that separately executing
      * thread.
-     * <p>
-     * The general contract of the method <code>run</code> is that it may
+     *
+     *
+     * The general contract of the method `run` is that it may
      * take any action whatsoever.
      *
-     * @see Thread#run()
+     * @see Thread.run
      */
-    @Override
-    public void run() {
+    override fun run() {
         // Get the connectivity manager
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        val connMgr = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        boolean isWifiConn = false;
-        boolean isMobileConn = false;
+        var isWifiConn = false
+        var isMobileConn = false
 
         // Get active network information
-        NetworkInfo networkInfo1 = connMgr.getActiveNetworkInfo();
+        val networkInfo1 = connMgr.activeNetworkInfo
 
         // Online if network info exists and is connected
-        boolean isOnline = networkInfo1 != null && networkInfo1.isConnected();
+        val isOnline = networkInfo1 != null && networkInfo1.isConnected
 
         if (isOnline) {
             // If online
             // Check connectivity for all networks
-            for (Network network : connMgr.getAllNetworks()) {
-                NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
-                if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+            for (network in connMgr.allNetworks) {
+                val networkInfo = connMgr.getNetworkInfo(network)
+                if (networkInfo.type == ConnectivityManager.TYPE_WIFI) {
                     // If Wi-Fi
-                    isWifiConn |= networkInfo.isConnected();
+                    isWifiConn = isWifiConn or networkInfo.isConnected
                     if (isWifiConn) {
-                        doWhenWifiIsConnected();
+                        doWhenWifiIsConnected()
                     }
                 }
-                if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+                if (networkInfo.type == ConnectivityManager.TYPE_MOBILE) {
                     // If mobile network
-                    isMobileConn |= networkInfo.isConnected();
+                    isMobileConn = isMobileConn or networkInfo.isConnected
                     if (isMobileConn) {
-                        doWhenMobileIsConnected();
+                        doWhenMobileIsConnected()
                     }
                 }
             }
         } else {
             // If not connected
-            doWhenNotConnected();
+            doWhenNotConnected()
         }
     }
 
     /**
      * If connected through Wi-Fi do this
      */
-    private void doWhenWifiIsConnected() {
+    private fun doWhenWifiIsConnected() {
         // TODO handle if Wi-Fi is connected
-        Toast.makeText(context.getApplicationContext(), "WiFi connected", Toast.LENGTH_SHORT)
-             .show();
+        Toast.makeText(context.applicationContext, "WiFi connected", Toast.LENGTH_SHORT)
+                .show()
     }
 
     /**
      * If connected through mobile network do this
      */
-    private void doWhenMobileIsConnected() {
+    private fun doWhenMobileIsConnected() {
         // TODO handle if mobile network is connected
-        Toast.makeText(context.getApplicationContext(), "Mobile connected", Toast.LENGTH_SHORT)
-             .show();
+        Toast.makeText(context.applicationContext, "Mobile connected", Toast.LENGTH_SHORT)
+                .show()
     }
 
     /**
      * If not connected do this
      */
-    private void doWhenNotConnected() {
+    private fun doWhenNotConnected() {
 
         // TODO handle if disconnected
-        Toast.makeText(context.getApplicationContext(), "Not connected", Toast.LENGTH_SHORT)
-             .show();
+        Toast.makeText(context.applicationContext, "Not connected", Toast.LENGTH_SHORT)
+                .show()
     }
 }
