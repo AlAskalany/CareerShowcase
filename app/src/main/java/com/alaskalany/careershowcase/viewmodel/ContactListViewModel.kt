@@ -22,40 +22,35 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.viewmodel;
+package com.alaskalany.careershowcase.viewmodel
 
-import android.app.Application;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import com.alaskalany.careershowcase.entity.EducationEntity;
-import com.alaskalany.careershowcase.file.FileData;
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
+import com.alaskalany.careershowcase.entity.ContactEntity
+import com.alaskalany.careershowcase.file.FileData
 
-import java.util.List;
-
-public class EducationListViewModel
-        extends AndroidViewModel {
+class ContactListViewModel(application: Application) : AndroidViewModel(application) {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<EducationEntity>> observableEducations;
-
-    public EducationListViewModel(Application application) {
-
-        super(application);
-        observableEducations = new MediatorLiveData<>();
-        // set by default null, until we get data from the database.
-        observableEducations.setValue(null);
-        // LiveData<List<EducationEntity>> educations = ((CareerShowcaseApp) application).getRepository().educationRepository.getEducations();
-        LiveData<List<EducationEntity>> listLiveData = FileData.getEducationLiveData(application);
-        // observe the changes of the products from the database and forward them
-        observableEducations.addSource(listLiveData, observableEducations::setValue);
-    }
+    private val observableContacts: MediatorLiveData<List<ContactEntity>>
 
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
-    public LiveData<List<EducationEntity>> getEducations() {
+    val contacts: LiveData<List<ContactEntity>>
+        get() = observableContacts
 
-        return observableEducations;
+    init {
+
+        observableContacts = MediatorLiveData()
+        // set by default null, until we get data from the database.
+        observableContacts.value = null
+        // LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository().contactRepository.getContacts();
+        val listLiveData = FileData.getContactsLiveData(application)
+        // observe the changes of the products from the database and forward them
+        observableContacts.addSource(listLiveData, Observer<List<ContactEntity>> { observableContacts.setValue(it) })
     }
 }

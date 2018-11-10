@@ -22,40 +22,34 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.viewmodel;
+package com.alaskalany.careershowcase.viewmodel
 
-import android.app.Application;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import com.alaskalany.careershowcase.entity.SkillEntity;
-import com.alaskalany.careershowcase.file.FileData;
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
+import com.alaskalany.careershowcase.entity.SkillEntity
+import com.alaskalany.careershowcase.file.FileData
 
-import java.util.List;
-
-public class SkillListViewModel
-        extends AndroidViewModel {
+class SkillListViewModel(application: Application) : AndroidViewModel(application) {
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<SkillEntity>> observableSkills;
-
-    public SkillListViewModel(Application application) {
-
-        super(application);
-        observableSkills = new MediatorLiveData<>();
-        // set by default null, until we get data from the database.
-        observableSkills.setValue(null);
-        //LiveData<List<SkillEntity>> skills = ((CareerShowcaseApp) application).getRepository().skillRepository.getSkills();
-        LiveData<List<SkillEntity>> listLiveData = FileData.getSkillsLiveData(application);
-        // observe the changes of the products from the database and forward them
-        observableSkills.addSource(listLiveData, observableSkills::setValue);
-    }
+    private val observableSkills: MediatorLiveData<List<SkillEntity>>
 
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
-    public LiveData<List<SkillEntity>> getSkills() {
+    val skills: LiveData<List<SkillEntity>>
+        get() = observableSkills
 
-        return observableSkills;
+    init {
+        observableSkills = MediatorLiveData()
+        // set by default null, until we get data from the database.
+        observableSkills.value = null
+        //LiveData<List<SkillEntity>> skills = ((CareerShowcaseApp) application).getRepository().skillRepository.getSkills();
+        val listLiveData = FileData.getSkillsLiveData(application)
+        // observe the changes of the products from the database and forward them
+        observableSkills.addSource(listLiveData, Observer<List<SkillEntity>> { observableSkills.setValue(it) })
     }
 }
