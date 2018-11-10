@@ -22,29 +22,27 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.database.dao;
+package com.alaskalany.careershowcase.database.dao
 
-import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
-import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
-import androidx.room.Query;
-import com.alaskalany.careershowcase.entity.SkillEntity;
-
-import java.util.List;
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.alaskalany.careershowcase.entity.ContactEntity
 
 @Dao
-public interface SkillDao {
+interface ContactDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<SkillEntity> skillEntities);
+    fun insertAll(contactEntities: List<ContactEntity>)
 
-    @Query("select * from skills_table where skill_id = :id")
-    LiveData<SkillEntity> load(int id);
+    @Query("select * from contacts_table where contact_id = :id")
+    fun load(id: Int): LiveData<ContactEntity>
 
-    @Query("select * from skills_table where skill_id = :id")
-    SkillEntity loadSync(int id);
+    @Query("select * from contacts_table where contact_id = :id")
+    fun loadSync(id: Int): ContactEntity
 
-    @Query("SELECT * FROM skills_table")
-    LiveData<List<SkillEntity>> loadAll();
+    @Query("SELECT * FROM contacts_table")
+    fun loadAll(): LiveData<List<ContactEntity>>
 }

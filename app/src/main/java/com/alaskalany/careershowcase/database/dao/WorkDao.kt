@@ -22,29 +22,27 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.database.dao;
+package com.alaskalany.careershowcase.database.dao
 
-import androidx.lifecycle.LiveData;
-import androidx.room.Dao;
-import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
-import androidx.room.Query;
-import com.alaskalany.careershowcase.entity.WorkEntity;
-
-import java.util.List;
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.alaskalany.careershowcase.entity.WorkEntity
 
 @Dao
-public interface WorkDao {
+interface WorkDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<WorkEntity> workEntities);
+    fun insertAll(workEntities: List<WorkEntity>)
 
     @Query("select * from works_table where work_id = :id")
-    LiveData<WorkEntity> load(int id);
+    fun load(id: Int): LiveData<WorkEntity>
 
     @Query("select * from works_table where work_id = :id")
-    WorkEntity loadSync(int id);
+    fun loadSync(id: Int): WorkEntity
 
     @Query("SELECT * FROM works_table")
-    LiveData<List<WorkEntity>> loadAll();
+    fun loadAll(): LiveData<List<WorkEntity>>
 }
