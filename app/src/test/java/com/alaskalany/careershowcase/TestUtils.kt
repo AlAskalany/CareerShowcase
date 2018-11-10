@@ -22,34 +22,38 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase;
+package com.alaskalany.careershowcase
 
-import androidx.fragment.app.FragmentActivity;
+import android.view.View
+import androidx.fragment.app.FragmentActivity
 
-class TestUtils {
+internal object TestUtils {
 
-    static void clickOn(FragmentActivity activity, int viewId) {
+    @JvmStatic
+    fun clickOn(activity: FragmentActivity, viewId: Int) {
 
-        activity.findViewById(viewId)
-                .performClick();
+        activity.findViewById<View>(viewId)
+                .performClick()
     }
 
-    public static boolean isCurrentFragment(FragmentActivity activity, Class<?> expectedFragmentClass) {
+    @JvmStatic
+    fun isCurrentFragment(activity: FragmentActivity, expectedFragmentClass: Class<*>): Boolean {
 
-        Class<?> currentFragmentClass = getFragmentClass(activity, R.id.container_navigation);
+        val currentFragmentClass = getFragmentClass(activity, R.id.container_navigation)
 
-        return expectedFragmentClass == currentFragmentClass;
+        return expectedFragmentClass == currentFragmentClass
     }
 
-    static Class<?> getFragmentClass(FragmentActivity activity, int containerViewId) {
+    @JvmStatic
+    fun getFragmentClass(activity: FragmentActivity, containerViewId: Int): Class<*> {
 
-        return activity.getSupportFragmentManager()
-                       .findFragmentById(containerViewId)
-                       .getClass();
+        return activity.supportFragmentManager
+                .findFragmentById(containerViewId)!!.javaClass
     }
 
-    static void pressBack(FragmentActivity activity) {
+    @JvmStatic
+    fun pressBack(activity: FragmentActivity) {
 
-        activity.onBackPressed();
+        activity.onBackPressed()
     }
 }
