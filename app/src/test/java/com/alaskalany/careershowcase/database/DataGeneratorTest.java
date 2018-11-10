@@ -28,6 +28,7 @@ import com.alaskalany.careershowcase.entity.ContactEntity;
 import com.alaskalany.careershowcase.entity.EducationEntity;
 import com.alaskalany.careershowcase.entity.SkillEntity;
 import com.alaskalany.careershowcase.entity.WorkEntity;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,45 +38,41 @@ import java.util.List;
 import static junit.framework.TestCase.assertNotNull;
 
 public class DataGeneratorTest {
-    
-    private DataGenerator dataGenerator;
-    
+
     @Before
     public void setUp() throws Exception {
-        
-        dataGenerator = new DataGenerator();
+
     }
-    
+
     @After
     public void tearDown() throws Exception {
-        
-        dataGenerator = null;
+
     }
-    
+
     @Test
     public void generateContacts() {
-        
+
         final List<ContactEntity> contactEntities = DataGenerator.generateContacts();
         assertNotNull(contactEntities);
     }
-    
+
     @Test
     public void generateEducations() {
-        
+
         final List<EducationEntity> educationEntities = DataGenerator.generateEducations();
         assertNotNull(educationEntities);
     }
-    
+
     @Test
     public void generateSkills() {
-        
+
         final List<SkillEntity> skillEntities = DataGenerator.generateSkills();
         assertNotNull(skillEntities);
     }
-    
+
     @Test
     public void generateWorks() {
-        
+
         final List<WorkEntity> workEntities = DataGenerator.generateWorks();
         assertNotNull(workEntities);
     }

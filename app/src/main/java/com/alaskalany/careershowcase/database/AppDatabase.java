@@ -258,11 +258,11 @@ public abstract class AppDatabase
         @Override
         protected ViewOutlineProvider doInBackground(Void... pVoids) {
 
-            List<EducationEntity> _educationEntities = DataGenerator.EducationContent.ITEMS;
+            List<EducationEntity> _educationEntities = DataGenerator.EducationContent.INSTANCE.getITEMS();
             educationDao.insertAll(_educationEntities);
-            List<WorkEntity> _workEntities = DataGenerator.WorkContent.ITEMS;
+            List<WorkEntity> _workEntities = DataGenerator.WorkContent.INSTANCE.getITEMS();
             workDao.insertAll(_workEntities);
-            List<SkillEntity> _skillEntities = DataGenerator.SkillContent.ITEMS;
+            List<SkillEntity> _skillEntities = DataGenerator.SkillContent.INSTANCE.getITEMS();
             skillDao.insertAll(_skillEntities);
             return null;
         }
