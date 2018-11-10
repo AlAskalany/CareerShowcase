@@ -80,6 +80,6 @@ public class CareerShowcaseApp
      */
     public AppDatabase getDatabase() {
 
-        return AppDatabase.getInstance(this, appExecutors);
+        return AppDatabase.Companion.getInstance(this, appExecutors);
     }
 }

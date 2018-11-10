@@ -55,7 +55,7 @@ public class AppDatabaseTest {
         
         mainActivity = Robolectric.setupActivity(MainActivity.class);
         appExecutors = new AppExecutors();
-        appDatabase = AppDatabase.getInstance(mainActivity, appExecutors);
+        appDatabase = AppDatabase.Companion.getInstance(mainActivity, appExecutors);
     }
     
     @After
@@ -68,7 +68,7 @@ public class AppDatabaseTest {
     public void getInstance() {
         
         AppDatabase expected = appDatabase;
-        AppDatabase actual = AppDatabase.getInstance(mainActivity, appExecutors);
+        AppDatabase actual = AppDatabase.Companion.getInstance(mainActivity, appExecutors);
         assertEquals(expected, actual);
     }
     
