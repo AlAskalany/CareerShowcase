@@ -22,39 +22,25 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.file;
+package com.alaskalany.careershowcase
 
-import com.alaskalany.careershowcase.MainActivity;
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
+import org.junit.Assert.assertEquals
 
-import static junit.framework.TestCase.assertNotNull;
-
-@RunWith(RobolectricTestRunner.class)
-public class JsonFileReaderTest {
-
-    private JsonFileReader jsonFileReader;
-
-    @Before
-    public void setUp() throws Exception {
-
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * @see [Testing documentation](http://d.android.com/tools/testing)
+ */
+@RunWith(RobolectricTestRunner::class)
+class ExampleUnitTest {
 
     @Test
-    public void loadJSONFromAsset() {
+    fun addition_isCorrect() {
 
-        final MainActivity mainActivity = Robolectric.setupActivity(MainActivity.class);
-        String jsonString = JsonFileReader.INSTANCE.loadJSONFromAsset(mainActivity);
-        assertNotNull(jsonString);
+        assertEquals(4, (2 + 2).toLong())
     }
 }

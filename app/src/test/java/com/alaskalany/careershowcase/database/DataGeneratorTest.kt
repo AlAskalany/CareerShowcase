@@ -22,58 +22,52 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.database;
+package com.alaskalany.careershowcase.database
 
-import com.alaskalany.careershowcase.entity.ContactEntity;
-import com.alaskalany.careershowcase.entity.EducationEntity;
-import com.alaskalany.careershowcase.entity.SkillEntity;
-import com.alaskalany.careershowcase.entity.WorkEntity;
+import junit.framework.TestCase.assertNotNull
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
-
-import static junit.framework.TestCase.assertNotNull;
-
-public class DataGeneratorTest {
+class DataGeneratorTest {
 
     @Before
-    public void setUp() throws Exception {
+    @Throws(Exception::class)
+    fun setUp() {
 
     }
 
     @After
-    public void tearDown() throws Exception {
+    @Throws(Exception::class)
+    fun tearDown() {
 
     }
 
     @Test
-    public void generateContacts() {
+    fun generateContacts() {
 
-        final List<ContactEntity> contactEntities = DataGenerator.generateContacts();
-        assertNotNull(contactEntities);
+        val contactEntities = DataGenerator.generateContacts()
+        assertNotNull(contactEntities)
     }
 
     @Test
-    public void generateEducations() {
+    fun generateEducations() {
 
-        final List<EducationEntity> educationEntities = DataGenerator.generateEducations();
-        assertNotNull(educationEntities);
+        val educationEntities = DataGenerator.generateEducations()
+        assertNotNull(educationEntities)
     }
 
     @Test
-    public void generateSkills() {
+    fun generateSkills() {
 
-        final List<SkillEntity> skillEntities = DataGenerator.generateSkills();
-        assertNotNull(skillEntities);
+        val skillEntities = DataGenerator.generateSkills()
+        assertNotNull(skillEntities)
     }
 
     @Test
-    public void generateWorks() {
+    fun generateWorks() {
 
-        final List<WorkEntity> workEntities = DataGenerator.generateWorks();
-        assertNotNull(workEntities);
+        val workEntities = DataGenerator.generateWorks()
+        assertNotNull(workEntities)
     }
 }
