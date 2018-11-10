@@ -51,12 +51,8 @@ import com.alaskalany.careershowcase.viewmodel.WorkListViewModel
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop {
-
-    /**
-     *
-     */
-    private val workOnClickCallback = WorkOnClickCallback {
+class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop, WorkOnClickCallback {
+    override fun onClick(item: Work) {
         Toast.makeText(this@WorkListFragment.context, "Clicked on WorkEntity Item", Toast.LENGTH_SHORT)
                 .show()
     }
@@ -117,7 +113,7 @@ class WorkListFragment : androidx.fragment.app.Fragment(), ScrollToTop {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false)
-        adapter = WorkAdapter(workOnClickCallback)
+        adapter = WorkAdapter(this)
         val context = binding!!.root
                 .context
         if (columnCount <= 1) {

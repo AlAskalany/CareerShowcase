@@ -22,17 +22,17 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.ui.contact;
+package com.alaskalany.careershowcase.ui.work
 
-import com.alaskalany.careershowcase.model.Contact;
+import com.alaskalany.careershowcase.model.Work
 
 /**
  *
  */
-public interface ContactOnClickCallback {
+interface WorkOnClickCallback {
 
     /**
      * @param item
      */
-    void onClick(Contact item);
+    fun onClick(item: Work)
 }

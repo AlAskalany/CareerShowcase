@@ -52,12 +52,8 @@ import com.alaskalany.careershowcase.viewmodel.EducationListViewModel
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-class EducationListFragment : Fragment(), ScrollToTop {
-
-    /**
-     *
-     */
-    private val educationOnClickCallback = EducationOnClickCallback {
+class EducationListFragment : Fragment(), ScrollToTop, EducationOnClickCallback {
+    override fun onClick(item: Education) {
         Toast.makeText(this@EducationListFragment.context, "Clicked on EducationEntity Item", Toast.LENGTH_SHORT)
                 .show()
     }
@@ -118,7 +114,7 @@ class EducationListFragment : Fragment(), ScrollToTop {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false)
-        adapter = EducationAdapter(educationOnClickCallback)
+        adapter = EducationAdapter(this)
         val context = binding!!.root
                 .context
         if (columnCount <= 1) {

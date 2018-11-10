@@ -52,12 +52,8 @@ import com.alaskalany.careershowcase.viewmodel.ContactListViewModel
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-class ContactListFragment : Fragment(), ScrollToTop {
-
-    /**
-     *
-     */
-    private val contactOnClickCallback = ContactOnClickCallback {
+class ContactListFragment : Fragment(), ScrollToTop, ContactOnClickCallback {
+    override fun onClick(item: Contact) {
         Toast.makeText(this@ContactListFragment.context, "Clicked on ContactEntity Item", Toast.LENGTH_SHORT)
                 .show()
     }
@@ -118,7 +114,7 @@ class ContactListFragment : Fragment(), ScrollToTop {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_list, container, false)
-        adapter = ContactAdapter(contactOnClickCallback)
+        adapter = ContactAdapter(this)
         val context = binding!!.root
                 .context
         if (columnCount <= 1) {

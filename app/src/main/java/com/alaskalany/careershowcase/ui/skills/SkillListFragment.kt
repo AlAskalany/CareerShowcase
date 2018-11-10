@@ -53,12 +53,8 @@ import com.alaskalany.careershowcase.viewmodel.SkillListViewModel
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-class SkillListFragment : Fragment(), ScrollToTop {
-
-    /**
-     *
-     */
-    private val skillOnClickCallback = SkillOnClickCallback {
+class SkillListFragment : Fragment(), ScrollToTop, SkillOnClickCallback {
+    override fun onClick(item: Skill) {
         Toast.makeText(this@SkillListFragment.context, "Clicked on SkillEntity Item", Toast.LENGTH_SHORT)
                 .show()
     }
@@ -119,7 +115,7 @@ class SkillListFragment : Fragment(), ScrollToTop {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false)
-        adapter = SkillAdapter(skillOnClickCallback)
+        adapter = SkillAdapter(this)
         val context = mBinding!!.root
                 .context
         if (columnCount <= 1) {
