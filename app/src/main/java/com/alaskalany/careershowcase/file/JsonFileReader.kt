@@ -22,35 +22,38 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.file;
+package com.alaskalany.careershowcase.file
 
-import android.content.Context;
-import com.alaskalany.careershowcase.R;
+import android.content.Context
 
-import java.io.*;
+import com.alaskalany.careershowcase.R
 
-public class JsonFileReader {
+import java.io.*
 
-    public static String loadJSONFromAsset(Context context) {
+object JsonFileReader {
 
-        InputStream is = context.getResources().openRawResource(R.raw.data);
-        Writer writer = new StringWriter();
-        char[] buffer = new char[1024];
+    fun loadJSONFromAsset(context: Context): String {
+
+        val `is` = context.resources.openRawResource(R.raw.data)
+        val writer = StringWriter()
+        val buffer = CharArray(1024)
         try {
-            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            int n;
-            while ((n = reader.read(buffer)) != -1) {
-                writer.write(buffer, 0, n);
+            val reader = BufferedReader(InputStreamReader(`is`, "UTF-8"))
+            var n = reader.read(buffer)
+            while (n != -1) {
+                writer.write(buffer, 0, n)
+                n = reader.read(buffer)
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (e: IOException) {
+            e.printStackTrace()
         } finally {
             try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                `is`.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
             }
+
         }
-        return writer.toString();
+        return writer.toString()
     }
 }

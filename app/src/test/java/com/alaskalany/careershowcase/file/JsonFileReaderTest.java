@@ -25,6 +25,7 @@
 package com.alaskalany.careershowcase.file;
 
 import com.alaskalany.careershowcase.MainActivity;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,26 +37,24 @@ import static junit.framework.TestCase.assertNotNull;
 
 @RunWith(RobolectricTestRunner.class)
 public class JsonFileReaderTest {
-    
+
     private JsonFileReader jsonFileReader;
-    
+
     @Before
     public void setUp() throws Exception {
-        
-        jsonFileReader = new JsonFileReader();
+
     }
-    
+
     @After
     public void tearDown() throws Exception {
-        
-        jsonFileReader = null;
+
     }
-    
+
     @Test
     public void loadJSONFromAsset() {
-        
+
         final MainActivity mainActivity = Robolectric.setupActivity(MainActivity.class);
-        String jsonString = JsonFileReader.loadJSONFromAsset(mainActivity);
+        String jsonString = JsonFileReader.INSTANCE.loadJSONFromAsset(mainActivity);
         assertNotNull(jsonString);
     }
 }
