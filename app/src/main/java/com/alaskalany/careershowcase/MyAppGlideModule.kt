@@ -22,17 +22,14 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase;
+package com.alaskalany.careershowcase
 
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 
 /**
- * Class extending {@link AppGlideModule}
+ * Class extending [AppGlideModule]
  * Defines a set of dependencies and options to use when initializing Glide within an application.
  */
 @GlideModule
-public final class MyAppGlideModule
-        extends AppGlideModule {
-
-}
+class MyAppGlideModule : AppGlideModule()
