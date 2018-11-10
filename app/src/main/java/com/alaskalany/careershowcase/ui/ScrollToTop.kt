@@ -22,15 +22,15 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.ui;
+package com.alaskalany.careershowcase.ui
 
 /**
  *
  */
-public interface ScrollToTop {
+interface ScrollToTop {
 
     /**
      *
      */
-    void top();
+    fun top()
 }
