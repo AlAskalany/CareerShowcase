@@ -72,7 +72,7 @@ public class CareerShowcaseApp
      */
     public DataRepository getRepository() {
 
-        return DataRepository.getInstance(getDatabase());
+        return DataRepository.Companion.getInstance(getDatabase());
     }
 
     /**

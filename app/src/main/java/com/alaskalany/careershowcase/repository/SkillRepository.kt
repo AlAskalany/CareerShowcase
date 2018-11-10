@@ -22,52 +22,43 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.repository;
+package com.alaskalany.careershowcase.repository
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import com.alaskalany.careershowcase.entity.WorkEntity;
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import com.alaskalany.careershowcase.entity.SkillEntity
 
-import java.util.List;
+class SkillRepository(private val dataRepository: DataRepository) {
 
-public class WorkRepository {
+    var observableSkills: MediatorLiveData<List<SkillEntity>>? = null
 
-    private final DataRepository dataRepository;
-
-    public MediatorLiveData<List<WorkEntity>> observableWorks;
-
-    public WorkRepository(DataRepository dataRepository) {
-
-        this.dataRepository = dataRepository;
-    }
-
-    public void insertAll(List<WorkEntity> workEntities) {
+    fun insertAll(skillEntities: List<SkillEntity>) {
 
     }
 
-    public LiveData<WorkEntity> load(int workId) {
+    fun load(skillId: Int): LiveData<SkillEntity> {
 
-        return dataRepository.getDatabase()
-                .workDao()
-                .load(workId);
+        return dataRepository.database
+                .skillDao()
+                .load(skillId)
     }
 
-    public WorkEntity loadSync(int workId) {
+    fun loadSync(skillId: Int): SkillEntity {
 
-        return dataRepository.getDatabase()
-                .workDao()
-                .loadSync(workId);
+        return dataRepository.database
+                .skillDao()
+                .loadSync(skillId)
     }
 
-    public LiveData<List<WorkEntity>> loadAll() {
+    fun loadAll(): LiveData<List<SkillEntity>> {
 
-        return dataRepository.getDatabase()
-                .workDao()
-                .loadAll();
+        return dataRepository.database
+                .skillDao()
+                .loadAll()
     }
 
-    public MediatorLiveData<List<WorkEntity>> getWorks() {
+    fun getSkills(): MediatorLiveData<List<SkillEntity>>? {
 
-        return observableWorks;
+        return observableSkills
     }
 }
