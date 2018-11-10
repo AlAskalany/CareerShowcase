@@ -22,11 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface Level {
+interface Introduction {
 
-    int getLevel();
-
-    void setLevel(int level);
+    var introduction: String
 }

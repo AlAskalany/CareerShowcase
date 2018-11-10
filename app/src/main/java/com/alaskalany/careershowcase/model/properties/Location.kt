@@ -22,11 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface HeadLine {
+interface Location {
 
-    String getHeadline();
-
-    void setHeadline(String headline);
+    var location: String
 }

@@ -22,14 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface Company {
+interface HeadLine {
 
-    /**
-     * @return
-     */
-    String getCompany();
-
-    void setCompany(String company);
+    var headline: String
 }

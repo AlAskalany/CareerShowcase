@@ -22,11 +22,12 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface StudyField {
+interface Company {
 
-    String getStudyField();
-
-    void setStudyField(String studyField);
+    /**
+     * @return
+     */
+    var company: String
 }

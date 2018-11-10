@@ -22,11 +22,15 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface FirstName {
+interface Title {
 
-    String getFirstName();
-
-    void setFirstName(String firstName);
+    /**
+     * @return
+     */
+    /**
+     * @param title
+     */
+    var title: String
 }

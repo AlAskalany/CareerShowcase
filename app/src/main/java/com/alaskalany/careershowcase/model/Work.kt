@@ -22,17 +22,8 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model
 
-public interface Description {
+import com.alaskalany.careershowcase.model.properties.*
 
-    /**
-     * @return
-     */
-    String getDescription();
-
-    /**
-     * @param description
-     */
-    void setDescription(String description);
-}
+interface Work : Id, Description, Duration, Company, Title, Location, PhotoUrl

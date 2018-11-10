@@ -22,11 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface PictureUrl {
+interface LastName {
 
-    String getPictureUrl();
-
-    void setPictureUrl(String pictureUrl);
+    var lastName: String
 }

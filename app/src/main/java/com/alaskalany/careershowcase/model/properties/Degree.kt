@@ -22,14 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model;
+package com.alaskalany.careershowcase.model.properties
 
-import com.alaskalany.careershowcase.model.properties.*;
+interface Degree {
 
-/**
- *
- */
-public interface Education
-        extends Id, Title, Description, Location, Duration, Degree, StudyField, Institution, PhotoUrl {
-
+    var degree: String
 }

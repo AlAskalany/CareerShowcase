@@ -22,11 +22,15 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface Degree {
+interface Description {
 
-    String getDegree();
-
-    void setDegree(String degree);
+    /**
+     * @return
+     */
+    /**
+     * @param description
+     */
+    var description: String
 }

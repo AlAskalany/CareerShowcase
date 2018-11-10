@@ -22,11 +22,11 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model
 
-public interface Location {
+import com.alaskalany.careershowcase.model.properties.Id
+import com.alaskalany.careershowcase.model.properties.Level
+import com.alaskalany.careershowcase.model.properties.PhotoUrl
+import com.alaskalany.careershowcase.model.properties.Title
 
-    String getLocation();
-
-    void setLocation(String location);
-}
+interface Skill : Id, Title, Level, PhotoUrl

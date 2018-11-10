@@ -22,17 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface Id {
+interface Institution {
 
-    /**
-     * @return
-     */
-    int getId();
-
-    /**
-     * @param id
-     */
-    void setId(int id);
+    var institution: String
 }

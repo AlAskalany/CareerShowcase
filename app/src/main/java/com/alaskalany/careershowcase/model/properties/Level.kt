@@ -22,11 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface Institution {
+interface Level {
 
-    String getInstitution();
-
-    void setInstitution(String institution);
+    var level: Int
 }

@@ -22,11 +22,12 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model;
+package com.alaskalany.careershowcase.model.properties
 
-import com.alaskalany.careershowcase.model.properties.*;
+interface Duration {
 
-public interface Work
-        extends Id, Description, Duration, Company, Title, Location, PhotoUrl {
-
+    /**
+     * @return
+     */
+    var duration: String
 }

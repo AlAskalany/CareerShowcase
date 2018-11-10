@@ -22,14 +22,11 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model
 
-public interface Duration {
+import com.alaskalany.careershowcase.model.properties.Description
+import com.alaskalany.careershowcase.model.properties.Id
+import com.alaskalany.careershowcase.model.properties.PhotoUrl
+import com.alaskalany.careershowcase.model.properties.Title
 
-    /**
-     * @return
-     */
-    String getDuration();
-
-    void setDuration(String duration);
-}
+interface Contact : Id, Title, Description, PhotoUrl

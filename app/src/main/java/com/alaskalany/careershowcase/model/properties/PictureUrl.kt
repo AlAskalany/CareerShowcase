@@ -22,14 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model;
+package com.alaskalany.careershowcase.model.properties
 
-import com.alaskalany.careershowcase.model.properties.Id;
-import com.alaskalany.careershowcase.model.properties.Level;
-import com.alaskalany.careershowcase.model.properties.PhotoUrl;
-import com.alaskalany.careershowcase.model.properties.Title;
+interface PictureUrl {
 
-public interface Skill
-        extends Id, Title, Level, PhotoUrl {
-
+    var pictureUrl: String
 }

@@ -22,17 +22,11 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model
 
-public interface Title {
+import com.alaskalany.careershowcase.model.properties.*
 
-    /**
-     * @return
-     */
-    String getTitle();
-
-    /**
-     * @param title
-     */
-    void setTitle(String title);
-}
+/**
+ *
+ */
+interface Education : Id, Title, Description, Location, Duration, Degree, StudyField, Institution, PhotoUrl

@@ -22,14 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model;
+package com.alaskalany.careershowcase.model.properties
 
-import com.alaskalany.careershowcase.model.properties.Description;
-import com.alaskalany.careershowcase.model.properties.Id;
-import com.alaskalany.careershowcase.model.properties.PhotoUrl;
-import com.alaskalany.careershowcase.model.properties.Title;
+interface StudyField {
 
-public interface Contact
-        extends Id, Title, Description, PhotoUrl {
-
+    var studyField: String
 }

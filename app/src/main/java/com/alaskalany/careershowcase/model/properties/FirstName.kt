@@ -22,11 +22,9 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface Introduction {
+interface FirstName {
 
-    String getIntroduction();
-
-    void setIntroduction(String introduction);
+    var firstName: String
 }

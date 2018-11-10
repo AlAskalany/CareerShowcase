@@ -22,11 +22,15 @@
  * SOFTWARE.
  */
 
-package com.alaskalany.careershowcase.model.properties;
+package com.alaskalany.careershowcase.model.properties
 
-public interface PhotoUrl {
+interface Id {
 
-    String getLogoUrl();
-
-    void setLogoUrl(String logoUrl);
+    /**
+     * @return
+     */
+    /**
+     * @param id
+     */
+    var id: Int
 }
