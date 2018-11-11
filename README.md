@@ -3,7 +3,7 @@
 # Career Showcase Android App
 
 [<img alt="Career Showcase Android App" src="docs/images/stores/320px-Get_it_on_Google_play.svg.png" height="20">](https://play.google.com/store/apps/details?id=com.alaskalany.careershowcase)
-[<img alt="Career Showcase Android App" src="https://travis-ci.com/AlAskalany/CareerShowcase.svg?branch=master" height="20">](https://travis-ci.com/AlAskalany/CareerShowcase.svg?branch=master)
+[<img alt="Career Showcase Android App" src="https://travis-ci.com/AlAskalany/CareerShowcase.svg?branch=master" height="20">](https://travis-ci.com/AlAskalany/CareerShowcase.svg?branch=master) [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/AlAskalany/career-showcase-android-app)
 
 
 1. [App Screens](#1-app-screens)
