@@ -11,7 +11,7 @@
 
 ## 1. Stack
 
-<img src="docs/images/stackshare/careershowcase_stackshare.png" title="Overview" height="" width="500">
+[<img src="docs/images/stackshare/careershowcase_stackshare.png" title="Overview" height="" width="500">](https://stackshare.io/AlAskalany/career-showcase-android-app)
 
 ## 2. App Screens
 
