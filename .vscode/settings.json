@@ -1,5 +1,19 @@
 {
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "cSpell.words": [
+        "Askalany",
+        "alaskalany",
+        "appinvite",
+        "appspot",
+        "careershowcase",
+        "frameborder",
+        "mipmap",
+        "mobilesdk",
+        "socio",
+        "stackshare",
+        "xxxhdpi"
+    ]
 }
