@@ -49,42 +49,42 @@ import com.alaskalany.careershowcase.viewmodel.EducationListViewModel;
 public class EducationListFragment
         extends Fragment
         implements ScrollToTop {
-
+    
     /**
      *
      */
     protected static final String ARG_COLUMN_COUNT = "column-count";
-
+    
     /**
      *
      */
     private final EducationOnClickCallback educationOnClickCallback =
             item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT)
                          .show();
-
+    
     /**
      *
      */
     protected FragmentEducationListBinding binding;
-
+    
     /**
      *
      */
     protected EducationAdapter adapter;
-
+    
     /**
      *
      */
     protected int columnCount = 1;
-
+    
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public EducationListFragment() {
-
+    
     }
-
+    
     /**
      * @param columnCount
      *
@@ -92,35 +92,35 @@ public class EducationListFragment
      */
     @SuppressWarnings("unused")
     public static EducationListFragment newInstance(int columnCount) {
-
+        
         EducationListFragment fragment = new EducationListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
-
+    
     /**
      * @param context
      */
     @Override
     public void onAttach(Context context) {
-
+        
         super.onAttach(context);
     }
-
+    
     /**
      * @param savedInstanceState
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
+        
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -130,7 +130,7 @@ public class EducationListFragment
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
         setAdapter(new EducationAdapter(educationOnClickCallback));
         Context context = binding.getRoot()
@@ -143,7 +143,7 @@ public class EducationListFragment
         binding.listEducation.setAdapter(getAdapter());
         return binding.getRoot();
     }
-
+    
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -159,7 +159,7 @@ public class EducationListFragment
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
+        
         super.onActivityCreated(savedInstanceState);
         final EducationListViewModel _model = ViewModelProviders.of(this)
                                                                 .get(EducationListViewModel.class);
@@ -173,51 +173,51 @@ public class EducationListFragment
                   binding.executePendingBindings();
               });
     }
-
+    
     /**
      *
      */
     @Override
     public void onDetach() {
-
+        
         super.onDetach();
     }
-
+    
     /**
      * @return
      */
     protected int getColumnCount() {
-
+        
         return columnCount;
     }
-
+    
     /**
      * @param mColumnCount
      */
     protected void setColumnCount(int mColumnCount) {
-
+        
         this.columnCount = mColumnCount;
     }
-
+    
     /**
      * @return
      */
     protected EducationAdapter getAdapter() {
-
+        
         return adapter;
     }
-
+    
     /**
      * @param adapter
      */
     protected void setAdapter(EducationAdapter adapter) {
-
+        
         this.adapter = adapter;
     }
-
+    
     @Override
     public void top() {
-
+        
         binding.listEducation.smoothScrollToPosition(0);
     }
 }

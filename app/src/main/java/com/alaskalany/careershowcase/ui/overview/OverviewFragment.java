@@ -52,46 +52,46 @@ import org.jetbrains.annotations.Contract;
 public class OverviewFragment
         extends Fragment
         implements ScrollToTop {
-
+    
     /**
      *
      */
     private static final String ARG_PARAM1 = "param1";
-
+    
     /**
      *
      */
     private static final String ARG_PARAM2 = "param2";
-
+    
     /**
      *
      */
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String param1;
-
+    
     /**
      *
      */
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String param2;
-
+    
     /**
      *
      */
     private OnOverviewFragmentInteractionListener onOverviewFragmentInteractionListener;
-
+    
     /**
      *
      */
     private FragmentOverviewBinding binding;
-
+    
     /**
      *
      */
     public OverviewFragment() {
         // Required empty public constructor
     }
-
+    
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -103,7 +103,7 @@ public class OverviewFragment
      */
     @SuppressWarnings({"unused", "WeakerAccess"})
     public static OverviewFragment newInstance(String param1, String param2) {
-
+        
         OverviewFragment fragment = new OverviewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -111,54 +111,54 @@ public class OverviewFragment
         fragment.setArguments(args);
         return fragment;
     }
-
+    
     /**
      * @param uri
      */
     @SuppressWarnings("unused")
     public void onButtonPressed(Uri uri) {
-
+        
         if (onOverviewFragmentInteractionListener != null) {
             onOverviewFragmentInteractionListener.onOverviewFragmentInteraction(uri);
         }
     }
-
+    
     /**
      * @param context
      */
     @Override
     public void onAttach(Context context) {
-
+        
         super.onAttach(context);
         registerListener(context);
     }
-
+    
     /**
      * @param context
      */
     @Contract("null -> fail")
     private void registerListener(Context context) {
-
+        
         if (context instanceof OnOverviewFragmentInteractionListener) {
             onOverviewFragmentInteractionListener = (OnOverviewFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString() + " must implement OnOverviewFragmentInteractionListener");
         }
     }
-
+    
     /**
      * @param savedInstanceState
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
+        
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             param1 = getArguments().getString(ARG_PARAM1);
             param2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -168,21 +168,21 @@ public class OverviewFragment
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview, container, false);
         binding.setName("Ahmed AlAskalany");
         binding.setHeadline("Software Engineer");
-
+        
         binding.imageButtonLinkedin.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/askalany/"));
             startActivity(browserIntent);
         });
-
+        
         binding.imageButtonGithub.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/AlAskalany"));
             startActivity(browserIntent);
         });
-
+        
         binding.imageButtonTwitter.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/Askalanism"));
             startActivity(browserIntent);
@@ -193,40 +193,40 @@ public class OverviewFragment
                 .into(binding.imageViewProfilePicture);
         return binding.getRoot();
     }
-
+    
     /**
      * @param savedInstanceState
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
+        
         super.onActivityCreated(savedInstanceState);
         binding.executePendingBindings();
     }
-
+    
     /**
      *
      */
     @Override
     public void onDetach() {
-
+        
         super.onDetach();
         unregisterListener();
     }
-
+    
     /**
      *
      */
     private void unregisterListener() {
-
+        
         onOverviewFragmentInteractionListener = null;
     }
-
+    
     @Override
     public void top() {
-
+    
     }
-
+    
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -238,7 +238,7 @@ public class OverviewFragment
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnOverviewFragmentInteractionListener {
-
+        
         // TODO: Update argument type and name
         void onOverviewFragmentInteraction(Uri uri);
     }

@@ -32,17 +32,17 @@ import android.widget.Toast;
 
 public class NetworkHandler
         implements Runnable {
-
+    
     private final Context context;
-
+    
     /**
      * @param context {@link Context}
      */
     NetworkHandler(Context context) {
-
+        
         this.context = context;
     }
-
+    
     /**
      * When an object implementing interface <code>Runnable</code> is used
      * to create a thread, starting the thread causes the object's
@@ -58,16 +58,16 @@ public class NetworkHandler
     public void run() {
         // Get the connectivity manager
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
+        
         boolean isWifiConn = false;
         boolean isMobileConn = false;
-
+        
         // Get active network information
         NetworkInfo networkInfo1 = connMgr.getActiveNetworkInfo();
-
+        
         // Online if network info exists and is connected
         boolean isOnline = networkInfo1 != null && networkInfo1.isConnected();
-
+        
         if (isOnline) {
             // If online
             // Check connectivity for all networks
@@ -93,7 +93,7 @@ public class NetworkHandler
             doWhenNotConnected();
         }
     }
-
+    
     /**
      * If connected through Wi-Fi do this
      */
@@ -102,7 +102,7 @@ public class NetworkHandler
         Toast.makeText(context.getApplicationContext(), "WiFi connected", Toast.LENGTH_SHORT)
              .show();
     }
-
+    
     /**
      * If connected through mobile network do this
      */
@@ -111,12 +111,12 @@ public class NetworkHandler
         Toast.makeText(context.getApplicationContext(), "Mobile connected", Toast.LENGTH_SHORT)
              .show();
     }
-
+    
     /**
      * If not connected do this
      */
     private void doWhenNotConnected() {
-
+        
         // TODO handle if disconnected
         Toast.makeText(context.getApplicationContext(), "Not connected", Toast.LENGTH_SHORT)
              .show();

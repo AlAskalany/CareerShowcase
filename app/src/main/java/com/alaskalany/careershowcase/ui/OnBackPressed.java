@@ -28,7 +28,7 @@ package com.alaskalany.careershowcase.ui;
  *
  */
 public interface OnBackPressed {
-
+    
     /**
      * @return true if back was pressed
      */

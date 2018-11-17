@@ -48,26 +48,26 @@ import java.util.Objects;
  */
 public class SkillAdapter
         extends RecyclerView.Adapter<SkillAdapter.ViewHolder> {
-
+    
     /**
      *
      */
     private final SkillOnClickCallback skillOnClickCallback;
-
+    
     /**
      *
      */
     private List<SkillEntity> skillEntities;
-
+    
     /**
      * @param skillOnClickCallback Listener to clicks on Skill items
      */
     @SuppressWarnings("WeakerAccess")
     public SkillAdapter(SkillOnClickCallback skillOnClickCallback) {
-
+        
         this.skillOnClickCallback = skillOnClickCallback;
     }
-
+    
     /**
      * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
      * an item.
@@ -93,7 +93,7 @@ public class SkillAdapter
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        
         FragmentSkillBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                                                                R.layout.fragment_skill,
                                                                parent,
@@ -101,7 +101,7 @@ public class SkillAdapter
         binding.setSkillOnClickCallback(skillOnClickCallback);
         return new ViewHolder(binding);
     }
-
+    
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the {@link RecyclerView.ViewHolder#itemView} to reflect the item at the given
@@ -123,9 +123,9 @@ public class SkillAdapter
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-
+        
         holder.binding.setSkill(skillEntities.get(position));
-
+        
         holder.binding.setSkillOnClickCallback(skillOnClickCallback);
         View rootView = holder.binding.getRoot();
         GlideApp.with(rootView)
@@ -134,7 +134,7 @@ public class SkillAdapter
                 .into(holder.binding.imageViewSkillLogo);
         holder.binding.executePendingBindings();
     }
-
+    
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
@@ -142,18 +142,18 @@ public class SkillAdapter
      */
     @Override
     public int getItemCount() {
-
+        
         return skillEntities == null ? 0 : skillEntities.size();
     }
-
+    
     void setSkillList(final List<SkillEntity> skillList) {
-
+        
         if (skillEntities == null) {
             skillEntities = skillList;
             notifyItemRangeInserted(0, skillList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
-
+                
                 /**
                  * Returns the size of the old list.
                  *
@@ -161,10 +161,10 @@ public class SkillAdapter
                  */
                 @Override
                 public int getOldListSize() {
-
+                    
                     return skillEntities.size();
                 }
-
+                
                 /**
                  * Returns the size of the new list.
                  *
@@ -172,10 +172,10 @@ public class SkillAdapter
                  */
                 @Override
                 public int getNewListSize() {
-
+                    
                     return skillList.size();
                 }
-
+                
                 /**
                  * Called by the DiffUtil to decide whether two object represent the same Item.
                  * <p>
@@ -187,12 +187,12 @@ public class SkillAdapter
                  */
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-
+                    
                     return skillEntities.get(oldItemPosition)
                                         .getId() == skillList.get(newItemPosition)
                                                              .getId();
                 }
-
+                
                 /**
                  * Called by the DiffUtil when it wants to check whether two items have the same data.
                  * DiffUtil uses this information to detect if the contents of an item has changed.
@@ -213,7 +213,7 @@ public class SkillAdapter
                  */
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-
+                    
                     SkillEntity newSkill = skillList.get(newItemPosition);
                     SkillEntity oldSkill = skillEntities.get(oldItemPosition);
                     return newSkill.getId() == oldSkill.getId() &&
@@ -225,7 +225,7 @@ public class SkillAdapter
             result.dispatchUpdatesTo(this);
         }
     }
-
+    
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      *
@@ -241,17 +241,17 @@ public class SkillAdapter
      */
     public static class ViewHolder
             extends RecyclerView.ViewHolder {
-
+        
         /**
          *
          */
         public final FragmentSkillBinding binding;
-
+        
         /**
          * @param binding binding for the FragmentSkill layout
          */
         ViewHolder(@NonNull FragmentSkillBinding binding) {
-
+            
             super(binding.getRoot());
             this.binding = binding;
         }

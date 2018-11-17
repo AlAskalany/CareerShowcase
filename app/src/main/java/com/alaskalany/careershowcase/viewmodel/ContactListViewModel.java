@@ -35,14 +35,14 @@ import java.util.List;
 
 public class ContactListViewModel
         extends AndroidViewModel {
-
+    
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<ContactEntity>> observableContacts;
-
+    
     public ContactListViewModel(Application application) {
-
+        
         super(application);
-
+        
         observableContacts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableContacts.setValue(null);
@@ -51,12 +51,12 @@ public class ContactListViewModel
         // observe the changes of the products from the database and forward them
         observableContacts.addSource(listLiveData, observableContacts::setValue);
     }
-
+    
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
     public LiveData<List<ContactEntity>> getContacts() {
-
+        
         return observableContacts;
     }
 }

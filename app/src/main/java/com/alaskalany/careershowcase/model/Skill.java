@@ -31,5 +31,5 @@ import com.alaskalany.careershowcase.model.properties.Title;
 
 public interface Skill
         extends Id, Title, Level, PhotoUrl {
-
+    
 }

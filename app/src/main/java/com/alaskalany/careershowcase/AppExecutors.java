@@ -36,77 +36,77 @@ import java.util.concurrent.RejectedExecutionException;
  * App {@link Executor}s
  */
 public class AppExecutors {
-
+    
     /**
      * Disk IO {@link Executor}
      */
     private final Executor diskIoExecutor;
-
+    
     /**
      * Network IO {@link Executor}
      */
     private final Executor networkIoExecutor;
-
+    
     /**
      * Main thread {@link Executor}
      */
     private final Executor mainThreadExecutor;
-
+    
     /**
      * App {@link Executor}s
      */
     public AppExecutors() {
-
+        
         this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3), new MainThreadExecutor());
     }
-
+    
     /**
      * @param diskIO     Disk IO {@link Executor}
      * @param networkIO  Network IO {@link Executor}
      * @param mainThread Main thread {@link Executor}
      */
     private AppExecutors(Executor diskIO, Executor networkIO, Executor mainThread) {
-
+        
         this.diskIoExecutor = diskIO;
         this.networkIoExecutor = networkIO;
         this.mainThreadExecutor = mainThread;
     }
-
+    
     /**
      * @return DisK IO {@link Executor}
      */
     public Executor diskIO() {
-
+        
         return diskIoExecutor;
     }
-
+    
     /**
      * @return Network IO {@link Executor}
      */
     public Executor networkIO() {
-
+        
         return networkIoExecutor;
     }
-
+    
     /**
      * @return Main thread {@link Executor}
      */
     public Executor mainThread() {
-
+        
         return mainThreadExecutor;
     }
-
+    
     /**
      * Main thread {@link Executor}
      */
     private static class MainThreadExecutor
             implements Executor {
-
+        
         /**
          * Main thread handler
          */
         private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
-
+        
         /**
          * Executes the given command at some time in the future.  The command
          * may execute in a new thread, in a pooled thread, or in the calling
@@ -120,7 +120,7 @@ public class AppExecutors {
          */
         @Override
         public void execute(@NonNull Runnable command) {
-
+            
             mainThreadHandler.post(command);
         }
     }

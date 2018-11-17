@@ -35,12 +35,12 @@ import java.util.List;
 
 public class EducationListViewModel
         extends AndroidViewModel {
-
+    
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<EducationEntity>> observableEducations;
-
+    
     public EducationListViewModel(Application application) {
-
+        
         super(application);
         observableEducations = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
@@ -50,12 +50,12 @@ public class EducationListViewModel
         // observe the changes of the products from the database and forward them
         observableEducations.addSource(listLiveData, observableEducations::setValue);
     }
-
+    
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
     public LiveData<List<EducationEntity>> getEducations() {
-
+        
         return observableEducations;
     }
 }

@@ -35,16 +35,16 @@ import java.util.List;
 
 @Dao
 public interface ContactDao {
-
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<ContactEntity> contactEntities);
-
+    
     @Query("select * from contacts_table where contact_id = :id")
     LiveData<ContactEntity> load(int id);
-
+    
     @Query("select * from contacts_table where contact_id = :id")
     ContactEntity loadSync(int id);
-
+    
     @Query("SELECT * FROM contacts_table")
     LiveData<List<ContactEntity>> loadAll();
 }

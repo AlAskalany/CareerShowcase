@@ -48,26 +48,26 @@ import java.util.Objects;
  */
 public class WorkAdapter
         extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
-
+    
     /**
      *
      */
     private final WorkOnClickCallback workOnClickCallback;
-
+    
     /**
      *
      */
     private List<WorkEntity> workEntities;
-
+    
     /**
      * @param workOnClickCallback Listener to clicks on Work items
      */
     @SuppressWarnings("WeakerAccess")
     public WorkAdapter(WorkOnClickCallback workOnClickCallback) {
-
+        
         this.workOnClickCallback = workOnClickCallback;
     }
-
+    
     /**
      * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
      * an item.
@@ -93,7 +93,7 @@ public class WorkAdapter
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        
         FragmentWorkBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                                                               R.layout.fragment_work,
                                                               parent,
@@ -101,7 +101,7 @@ public class WorkAdapter
         binding.setWorkOnClickCallback(workOnClickCallback);
         return new ViewHolder(binding);
     }
-
+    
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the {@link RecyclerView.ViewHolder#itemView} to reflect the item at the given
@@ -123,7 +123,7 @@ public class WorkAdapter
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-
+        
         holder.binding.setWork(workEntities.get(position));
         holder.binding.setWorkOnClickCallback(workOnClickCallback);
         View rootView = holder.binding.getRoot();
@@ -133,7 +133,7 @@ public class WorkAdapter
                 .into(holder.binding.imageViewWorkLogo);
         holder.binding.executePendingBindings();
     }
-
+    
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
@@ -141,18 +141,18 @@ public class WorkAdapter
      */
     @Override
     public int getItemCount() {
-
+        
         return workEntities == null ? 0 : workEntities.size();
     }
-
+    
     void setWorkList(final List<WorkEntity> workList) {
-
+        
         if (workEntities == null) {
             workEntities = workList;
             notifyItemRangeInserted(0, workList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
-
+                
                 /**
                  * Returns the size of the old list.
                  *
@@ -160,10 +160,10 @@ public class WorkAdapter
                  */
                 @Override
                 public int getOldListSize() {
-
+                    
                     return workEntities.size();
                 }
-
+                
                 /**
                  * Returns the size of the new list.
                  *
@@ -171,10 +171,10 @@ public class WorkAdapter
                  */
                 @Override
                 public int getNewListSize() {
-
+                    
                     return workList.size();
                 }
-
+                
                 /**
                  * Called by the DiffUtil to decide whether two object represent the same Item.
                  * <p>
@@ -186,12 +186,12 @@ public class WorkAdapter
                  */
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-
+                    
                     return workEntities.get(oldItemPosition)
                                        .getId() == workList.get(newItemPosition)
                                                            .getId();
                 }
-
+                
                 /**
                  * Called by the DiffUtil when it wants to check whether two items have the same data.
                  * DiffUtil uses this information to detect if the contents of an item has changed.
@@ -212,7 +212,7 @@ public class WorkAdapter
                  */
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-
+                    
                     WorkEntity newWork = workList.get(newItemPosition);
                     WorkEntity oldProduct = workEntities.get(oldItemPosition);
                     return newWork.getId() == oldProduct.getId() &&
@@ -225,7 +225,7 @@ public class WorkAdapter
             result.dispatchUpdatesTo(this);
         }
     }
-
+    
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      *
@@ -241,17 +241,17 @@ public class WorkAdapter
      */
     public static class ViewHolder
             extends RecyclerView.ViewHolder {
-
+        
         /**
          *
          */
         public final FragmentWorkBinding binding;
-
+        
         /**
          * @param binding binding for the FragmentWork layout
          */
         ViewHolder(@NonNull FragmentWorkBinding binding) {
-
+            
             super(binding.getRoot());
             this.binding = binding;
         }

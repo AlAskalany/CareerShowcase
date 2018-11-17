@@ -31,5 +31,5 @@ import com.alaskalany.careershowcase.model.properties.Title;
 
 public interface Contact
         extends Id, Title, Description, PhotoUrl {
-
+    
 }

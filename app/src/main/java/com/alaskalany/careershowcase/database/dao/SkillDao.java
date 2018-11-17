@@ -35,16 +35,16 @@ import java.util.List;
 
 @Dao
 public interface SkillDao {
-
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<SkillEntity> skillEntities);
-
+    
     @Query("select * from skills_table where skill_id = :id")
     LiveData<SkillEntity> load(int id);
-
+    
     @Query("select * from skills_table where skill_id = :id")
     SkillEntity loadSync(int id);
-
+    
     @Query("SELECT * FROM skills_table")
     LiveData<List<SkillEntity>> loadAll();
 }

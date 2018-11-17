@@ -30,7 +30,7 @@ import com.alaskalany.careershowcase.model.Contact;
  *
  */
 public interface ContactOnClickCallback {
-
+    
     /**
      * @param item
      */

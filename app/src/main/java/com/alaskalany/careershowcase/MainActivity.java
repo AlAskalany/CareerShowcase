@@ -38,23 +38,23 @@ import com.alaskalany.careershowcase.ui.overview.OverviewFragment;
 public class MainActivity
         extends AppCompatActivity
         implements OverviewFragment.OnOverviewFragmentInteractionListener {
-
+    
     /**
      * Debugging tag
      */
     @SuppressWarnings("unused")
     public static final String TAG = "MainActivity";
-
+    
     /**
      * Activity layout bindings
      */
     ActivityMainBinding binding;
-
+    
     /**
      * Bottom navigation manager {@link BottomNavigationManager}
      */
     private BottomNavigationManager bottomNavigationManager;
-
+    
     /**
      * Called when the activity is starting.  This is where most initialization
      * should go: calling {@link #setContentView(int)} to inflate the
@@ -81,23 +81,23 @@ public class MainActivity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        
         super.onCreate(savedInstanceState);
-
+        
         // Bind to layout
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+        
         // Instantiate the bottom navigation manager
         bottomNavigationManager = new BottomNavigationManager(this, binding.navigation);
-
+        
         // Set bottom navigation to first fragment
         bottomNavigationManager.init(savedInstanceState == null);
-
+        
         // Handle connectivity
         NetworkHandler networkHandler = new NetworkHandler(getApplicationContext());
         networkHandler.run();
     }
-
+    
     /**
      * Interface {@link OverviewFragment.OnOverviewFragmentInteractionListener}
      * for interacting with {@link OverviewFragment}
@@ -108,7 +108,7 @@ public class MainActivity
     public void onOverviewFragmentInteraction(Uri uri) {
         // TODO handle interaction with the OverviewFragment from MainActivity
     }
-
+    
     /**
      * Called when the activity has detected the user's press of the back
      * key.  The default implementation simply finishes the current activity,
@@ -116,7 +116,7 @@ public class MainActivity
      */
     @Override
     public void onBackPressed() {
-
+        
         if (!bottomNavigationManager.onBackPressed()) {
             // TODO make sure this is the write way to handle back-press
             //getSupportFragmentManager().popBackStack();

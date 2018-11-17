@@ -50,42 +50,42 @@ import com.alaskalany.careershowcase.viewmodel.SkillListViewModel;
 public class SkillListFragment
         extends Fragment
         implements ScrollToTop {
-
+    
     /**
      *
      */
     protected static final String ARG_COLUMN_COUNT = "column-count";
-
+    
     /**
      *
      */
     private final SkillOnClickCallback skillOnClickCallback =
             item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT)
                          .show();
-
+    
     /**
      *
      */
     protected FragmentSkillListBinding mBinding;
-
+    
     /**
      *
      */
     protected SkillAdapter mAdapter;
-
+    
     /**
      *
      */
     protected int mColumnCount = 1;
-
+    
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public SkillListFragment() {
-
+    
     }
-
+    
     /**
      * @param columnCount
      *
@@ -93,51 +93,51 @@ public class SkillListFragment
      */
     @SuppressWarnings("unused")
     public static SkillListFragment newInstance(int columnCount) {
-
+        
         SkillListFragment fragment = new SkillListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
-
+    
     /**
      * @return
      */
     protected SkillAdapter getAdapter() {
-
+        
         return mAdapter;
     }
-
+    
     /**
      * @param adapter
      */
     protected void setAdapter(SkillAdapter adapter) {
-
+        
         this.mAdapter = adapter;
     }
-
+    
     /**
      * @param context
      */
     @Override
     public void onAttach(Context context) {
-
+        
         super.onAttach(context);
     }
-
+    
     /**
      * @param savedInstanceState
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
+        
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -147,7 +147,7 @@ public class SkillListFragment
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
         setAdapter(new SkillAdapter(skillOnClickCallback));
         Context context = mBinding.getRoot()
@@ -161,10 +161,10 @@ public class SkillListFragment
                 new DividerItemDecoration(getActivity().getApplicationContext(), DividerItemDecoration.HORIZONTAL);
         mBinding.listSkill.addItemDecoration(decor);
         mBinding.listSkill.setAdapter(mAdapter);
-
+        
         return mBinding.getRoot();
     }
-
+    
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -180,7 +180,7 @@ public class SkillListFragment
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
+        
         super.onActivityCreated(savedInstanceState);
         final SkillListViewModel _model = ViewModelProviders.of(this)
                                                             .get(SkillListViewModel.class);
@@ -194,35 +194,35 @@ public class SkillListFragment
                   mBinding.executePendingBindings();
               });
     }
-
+    
     /**
      *
      */
     @Override
     public void onDetach() {
-
+        
         super.onDetach();
     }
-
+    
     /**
      * @return
      */
     protected int getColumnCount() {
-
+        
         return mColumnCount;
     }
-
+    
     /**
      * @param mColumnCount
      */
     protected void setColumnCount(int mColumnCount) {
-
+        
         this.mColumnCount = mColumnCount;
     }
-
+    
     @Override
     public void top() {
-
+        
         mBinding.listSkill.smoothScrollToPosition(0);
     }
 }

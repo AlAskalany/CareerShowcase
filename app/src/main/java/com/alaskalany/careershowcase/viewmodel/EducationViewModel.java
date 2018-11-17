@@ -37,30 +37,30 @@ import com.alaskalany.careershowcase.repository.DataRepository;
 
 public class EducationViewModel
         extends AndroidViewModel {
-
+    
     private final LiveData<EducationEntity> observableEducation;
-
+    
     private final int educationId;
-
+    
     public ObservableField<EducationEntity> education = new ObservableField<EducationEntity>();
-
+    
     public EducationViewModel(@NonNull Application application, DataRepository dataRepository, final int educationId) {
-
+        
         super(application);
         this.educationId = educationId;
         observableEducation = dataRepository.educationRepository.load(educationId);
     }
-
+    
     public LiveData<EducationEntity> getObservableEducation() {
-
+        
         return observableEducation;
     }
-
+    
     public void setEducation(EducationEntity education) {
-
+        
         this.education.set(education);
     }
-
+    
     /**
      * A creator is used to inject the product ID into the ViewModel
      * <p>
@@ -69,21 +69,21 @@ public class EducationViewModel
      */
     public static class Factory
             extends ViewModelProvider.NewInstanceFactory {
-
+        
         @NonNull
         private final Application mApplication;
-
+        
         private final int mEducationId;
-
+        
         private final DataRepository mRepository;
-
+        
         public Factory(@NonNull Application application, int educationId) {
-
+            
             mApplication = application;
             mEducationId = educationId;
             mRepository = ((CareerShowcaseApp) application).getRepository();
         }
-
+        
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked

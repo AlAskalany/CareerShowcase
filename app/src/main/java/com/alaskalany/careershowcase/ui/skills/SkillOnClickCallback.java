@@ -30,7 +30,7 @@ import com.alaskalany.careershowcase.model.Skill;
  *
  */
 public interface SkillOnClickCallback {
-
+    
     /**
      * @param item
      */

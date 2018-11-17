@@ -32,12 +32,12 @@ import com.alaskalany.careershowcase.entity.WorkEntity;
 import java.util.List;
 
 public class DataJson {
-
+    
     public List<EducationEntity> education;
-
+    
     public List<WorkEntity> work;
-
+    
     public List<SkillEntity> skills;
-
+    
     public List<ContactEntity> contacts;
 }

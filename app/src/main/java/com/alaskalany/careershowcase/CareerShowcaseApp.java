@@ -36,12 +36,12 @@ import java.util.concurrent.Executor;
  */
 public class CareerShowcaseApp
         extends Application {
-
+    
     /**
      * App executors; Disk IO {@link Executor},Network {@link Executor},and Main thread {@link Executor}.
      */
     private AppExecutors appExecutors;
-
+    
     /**
      * Called when the application is starting, before any activity, service,
      * or receiver objects (excluding content providers) have been created.
@@ -60,26 +60,26 @@ public class CareerShowcaseApp
      */
     @Override
     public void onCreate() {
-
+        
         super.onCreate();
         appExecutors = new AppExecutors();
     }
-
+    
     /**
      * Gets {@link DataRepository}
      *
      * @return Data repository
      */
     public DataRepository getRepository() {
-
+        
         return DataRepository.getInstance(getDatabase());
     }
-
+    
     /**
      * @return Application's {@link RoomDatabase}
      */
     public AppDatabase getDatabase() {
-
+        
         return AppDatabase.getInstance(this, appExecutors);
     }
 }

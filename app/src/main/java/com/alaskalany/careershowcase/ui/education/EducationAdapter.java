@@ -48,26 +48,26 @@ import java.util.Objects;
  */
 public class EducationAdapter
         extends RecyclerView.Adapter<EducationAdapter.ViewHolder> {
-
+    
     /**
      *
      */
     private final EducationOnClickCallback educationOnClickCallback;
-
+    
     /**
      *
      */
     private List<EducationEntity> educationEntities;
-
+    
     /**
      * @param educationOnClickCallback Listener to clicks on Education items
      */
     @SuppressWarnings("WeakerAccess")
     public EducationAdapter(EducationOnClickCallback educationOnClickCallback) {
-
+        
         this.educationOnClickCallback = educationOnClickCallback;
     }
-
+    
     /**
      * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
      * an item.
@@ -93,7 +93,7 @@ public class EducationAdapter
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        
         FragmentEducationBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                                                                    R.layout.fragment_education,
                                                                    parent,
@@ -101,7 +101,7 @@ public class EducationAdapter
         binding.setEducationOnClickCallback(educationOnClickCallback);
         return new ViewHolder(binding);
     }
-
+    
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the {@link RecyclerView.ViewHolder#itemView} to reflect the item at the given
@@ -123,9 +123,9 @@ public class EducationAdapter
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-
+        
         holder.binding.setEducation(educationEntities.get(position));
-
+        
         holder.binding.setEducationOnClickCallback(educationOnClickCallback);
         View rootView = holder.binding.getRoot();
         GlideApp.with(rootView)
@@ -134,7 +134,7 @@ public class EducationAdapter
                 .into(holder.binding.imageViewEducationLogo);
         holder.binding.executePendingBindings();
     }
-
+    
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
@@ -142,18 +142,18 @@ public class EducationAdapter
      */
     @Override
     public int getItemCount() {
-
+        
         return educationEntities == null ? 0 : educationEntities.size();
     }
-
+    
     void setEducationList(final List<EducationEntity> educationList) {
-
+        
         if (educationEntities == null) {
             educationEntities = educationList;
             notifyItemRangeInserted(0, educationList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
-
+                
                 /**
                  * Returns the size of the old list.
                  *
@@ -161,10 +161,10 @@ public class EducationAdapter
                  */
                 @Override
                 public int getOldListSize() {
-
+                    
                     return educationEntities.size();
                 }
-
+                
                 /**
                  * Returns the size of the new list.
                  *
@@ -172,10 +172,10 @@ public class EducationAdapter
                  */
                 @Override
                 public int getNewListSize() {
-
+                    
                     return educationList.size();
                 }
-
+                
                 /**
                  * Called by the DiffUtil to decide whether two object represent the same Item.
                  * <p>
@@ -187,12 +187,12 @@ public class EducationAdapter
                  */
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-
+                    
                     return educationEntities.get(oldItemPosition)
                                             .getId() == educationList.get(newItemPosition)
                                                                      .getId();
                 }
-
+                
                 /**
                  * Called by the DiffUtil when it wants to check whether two items have the same data.
                  * DiffUtil uses this information to detect if the contents of an item has changed.
@@ -213,7 +213,7 @@ public class EducationAdapter
                  */
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-
+                    
                     EducationEntity newEducation = educationList.get(newItemPosition);
                     EducationEntity oldEducation = educationEntities.get(oldItemPosition);
                     return newEducation.getId() == oldEducation.getId() &&
@@ -225,7 +225,7 @@ public class EducationAdapter
             result.dispatchUpdatesTo(this);
         }
     }
-
+    
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      *
@@ -241,17 +241,17 @@ public class EducationAdapter
      */
     public static class ViewHolder
             extends RecyclerView.ViewHolder {
-
+        
         /**
          *
          */
         public final FragmentEducationBinding binding;
-
+        
         /**
          * @param binding binding for the FragmentEducation layout
          */
         ViewHolder(@NonNull FragmentEducationBinding binding) {
-
+            
             super(binding.getRoot());
             this.binding = binding;
         }

@@ -48,42 +48,42 @@ import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
 public class WorkListFragment
         extends androidx.fragment.app.Fragment
         implements ScrollToTop {
-
+    
     /**
      *
      */
     protected static final String ARG_COLUMN_COUNT = "column-count";
-
+    
     /**
      *
      */
     private final WorkOnClickCallback workOnClickCallback =
             item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT)
                          .show();
-
+    
     /**
      *
      */
     protected FragmentWorkListBinding binding;
-
+    
     /**
      *
      */
     protected WorkAdapter adapter;
-
+    
     /**
      *
      */
     protected int columnCount = 1;
-
+    
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public WorkListFragment() {
-
+    
     }
-
+    
     /**
      * @param columnCount
      *
@@ -91,67 +91,67 @@ public class WorkListFragment
      */
     @SuppressWarnings("unused")
     public static WorkListFragment newInstance(int columnCount) {
-
+        
         WorkListFragment fragment = new WorkListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
-
+    
     /**
      * @return
      */
     protected int getColumnCount() {
-
+        
         return columnCount;
     }
-
+    
     /**
      * @param mColumnCount
      */
     protected void setColumnCount(int mColumnCount) {
-
+        
         this.columnCount = mColumnCount;
     }
-
+    
     /**
      * @return
      */
     protected WorkAdapter getAdapter() {
-
+        
         return adapter;
     }
-
+    
     /**
      * @param adapter
      */
     protected void setAdapter(WorkAdapter adapter) {
-
+        
         this.adapter = adapter;
     }
-
+    
     /**
      * @param context
      */
     @Override
     public void onAttach(Context context) {
-
+        
         super.onAttach(context);
     }
-
+    
     /**
      * @param savedInstanceState
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
+        
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -161,7 +161,7 @@ public class WorkListFragment
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
         adapter = new WorkAdapter(workOnClickCallback);
         Context context = binding.getRoot()
@@ -174,7 +174,7 @@ public class WorkListFragment
         binding.listWork.setAdapter(adapter);
         return binding.getRoot();
     }
-
+    
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -190,7 +190,7 @@ public class WorkListFragment
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
+        
         super.onActivityCreated(savedInstanceState);
         final WorkListViewModel _model = ViewModelProviders.of(this)
                                                            .get(WorkListViewModel.class);
@@ -204,19 +204,19 @@ public class WorkListFragment
                   binding.executePendingBindings();
               });
     }
-
+    
     /**
      *
      */
     @Override
     public void onDetach() {
-
+        
         super.onDetach();
     }
-
+    
     @Override
     public void top() {
-
+        
         binding.listWork.smoothScrollToPosition(0);
     }
 }

@@ -28,5 +28,5 @@ import com.alaskalany.careershowcase.model.properties.*;
 
 public interface Work
         extends Id, Description, Duration, Company, Title, Location, PhotoUrl {
-
+    
 }

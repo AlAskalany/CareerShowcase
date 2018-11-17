@@ -49,26 +49,26 @@ import java.util.Objects;
  */
 public class ContactAdapter
         extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
-
+    
     /**
      *
      */
     private final ContactOnClickCallback contactOnClickCallback;
-
+    
     /**
      *
      */
     private List<ContactEntity> contactEntities;
-
+    
     /**
      * @param callback Callback for click on Contact items
      */
     @SuppressWarnings("WeakerAccess")
     public ContactAdapter(ContactOnClickCallback callback) {
-
+        
         this.contactOnClickCallback = callback;
     }
-
+    
     /**
      * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
      * an item.
@@ -94,7 +94,7 @@ public class ContactAdapter
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        
         FragmentContactBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                                                                  R.layout.fragment_contact,
                                                                  parent,
@@ -102,7 +102,7 @@ public class ContactAdapter
         binding.setContactOnClickCallback(contactOnClickCallback);
         return new ViewHolder(binding);
     }
-
+    
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
      * update the contents of the {@link RecyclerView.ViewHolder#itemView} to reflect the item at the given
@@ -124,12 +124,12 @@ public class ContactAdapter
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-
+        
         holder.binding.setContact(contactEntities.get(position));
-
+        
         String title = contactEntities.get(position)
                                       .getTitle();
-
+        
         switch (title) {
             case "E-mail":
                 holder.binding.textViewContactDescription.setAutoLinkMask(Linkify.EMAIL_ADDRESSES);
@@ -143,7 +143,7 @@ public class ContactAdapter
             default:
                 break;
         }
-
+        
         holder.binding.setContactOnClickCallback(contactOnClickCallback);
         View rootView = holder.binding.getRoot();
         GlideApp.with(rootView)
@@ -152,7 +152,7 @@ public class ContactAdapter
                 .into(holder.binding.imageViewContactLogo);
         holder.binding.executePendingBindings();
     }
-
+    
     /**
      * Returns the total number of items in the data set held by the adapter.
      *
@@ -160,18 +160,18 @@ public class ContactAdapter
      */
     @Override
     public int getItemCount() {
-
+        
         return contactEntities == null ? 0 : contactEntities.size();
     }
-
+    
     void setContactList(final List<ContactEntity> contactList) {
-
+        
         if (contactEntities == null) {
             contactEntities = contactList;
             notifyItemRangeInserted(0, contactList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
-
+                
                 /**
                  * Returns the size of the old list.
                  *
@@ -179,10 +179,10 @@ public class ContactAdapter
                  */
                 @Override
                 public int getOldListSize() {
-
+                    
                     return contactEntities.size();
                 }
-
+                
                 /**
                  * Returns the size of the new list.
                  *
@@ -190,10 +190,10 @@ public class ContactAdapter
                  */
                 @Override
                 public int getNewListSize() {
-
+                    
                     return contactList.size();
                 }
-
+                
                 /**
                  * Called by the DiffUtil to decide whether two object represent the same Item.
                  * <p>
@@ -205,12 +205,12 @@ public class ContactAdapter
                  */
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-
+                    
                     return contactEntities.get(oldItemPosition)
                                           .getId() == contactList.get(newItemPosition)
                                                                  .getId();
                 }
-
+                
                 /**
                  * Called by the DiffUtil when it wants to check whether two items have the same data.
                  * DiffUtil uses this information to detect if the contents of an item has changed.
@@ -231,7 +231,7 @@ public class ContactAdapter
                  */
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-
+                    
                     ContactEntity newContact = contactList.get(newItemPosition);
                     ContactEntity oldContact = contactEntities.get(oldItemPosition);
                     boolean isIdEqual = newContact.getId() == oldContact.getId();
@@ -245,7 +245,7 @@ public class ContactAdapter
             result.dispatchUpdatesTo(this);
         }
     }
-
+    
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      *
@@ -261,17 +261,17 @@ public class ContactAdapter
      */
     public static class ViewHolder
             extends RecyclerView.ViewHolder {
-
+        
         /**
          *
          */
         public final FragmentContactBinding binding;
-
+        
         /**
          * @param binding binding for the FragmentContact layout
          */
         ViewHolder(@NonNull FragmentContactBinding binding) {
-
+            
             super(binding.getRoot());
             this.binding = binding;
         }

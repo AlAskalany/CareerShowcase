@@ -37,30 +37,30 @@ import com.alaskalany.careershowcase.repository.DataRepository;
 
 public class SkillViewModel
         extends AndroidViewModel {
-
+    
     private final LiveData<SkillEntity> observableSkill;
-
+    
     private final int skillId;
-
+    
     public ObservableField<SkillEntity> skill = new ObservableField<>();
-
+    
     public SkillViewModel(@NonNull Application application, DataRepository dataRepository, final int skillId) {
-
+        
         super(application);
         this.skillId = skillId;
         observableSkill = dataRepository.skillRepository.load(skillId);
     }
-
+    
     public LiveData<SkillEntity> getObservableSkill() {
-
+        
         return observableSkill;
     }
-
+    
     public void setSkill(SkillEntity skill) {
-
+        
         this.skill.set(skill);
     }
-
+    
     /**
      * A creator is used to inject the product ID into the ViewModel
      * <p>
@@ -69,21 +69,21 @@ public class SkillViewModel
      */
     public static class Factory
             extends ViewModelProvider.NewInstanceFactory {
-
+        
         @NonNull
         private final Application mApplication;
-
+        
         private final int mSkillId;
-
+        
         private final DataRepository mRepository;
-
+        
         public Factory(@NonNull Application application, int skillId) {
-
+            
             mApplication = application;
             mSkillId = skillId;
             mRepository = ((CareerShowcaseApp) application).getRepository();
         }
-
+        
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked

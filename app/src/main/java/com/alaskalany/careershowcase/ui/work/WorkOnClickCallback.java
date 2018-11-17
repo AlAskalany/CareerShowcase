@@ -30,7 +30,7 @@ import com.alaskalany.careershowcase.model.Work;
  *
  */
 public interface WorkOnClickCallback {
-
+    
     /**
      * @param item
      */

@@ -55,22 +55,23 @@ import java.util.List;
 })
 public abstract class AppDatabase
         extends RoomDatabase {
-
+    
     /**
      *
      */
     @VisibleForTesting
     public static final String DATABASE_NAME = "app-db";
-
+    
     /**
      *
      */
     private static AppDatabase INSTANCE;
+    
     /**
      *
      */
     static RoomDatabase.Callback roomDatabaseCallback = new Callback() {
-
+        
         /**
          * Called when the database has been opened.
          *
@@ -78,23 +79,25 @@ public abstract class AppDatabase
          */
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
-
+            
             super.onCreate(db);
             new PopulateDatabaseAsync(INSTANCE).execute();
         }
     };
+    
     /**
      *
      */
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
-
+    
     /**
      * @param context
      * @param executors
+     *
      * @return
      */
     public static AppDatabase getInstance(final Context context, final AppExecutors executors) {
-
+        
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
@@ -105,143 +108,144 @@ public abstract class AppDatabase
         }
         return INSTANCE;
     }
-
+    
     /**
      * @param context
      * @param executors
+     *
      * @return
      */
     @NonNull
     private static AppDatabase buildDatabase(final Context context, final AppExecutors executors) {
-
+        
         return Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME)
-                .addCallback(new Callback() {
-
-                    /**
-                     * Called when the database is created for the first time. This is called after all the
-                     * tables are created.
-                     *
-                     * @param db The database.
-                     */
-                    @Override
-                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
-
-                        super.onCreate(db);
-                        executors.diskIO()
-                                .execute(() -> {
-                                    // Add a delay to simulate a long-running operation
-                                    addDelay();
-                                    // Generate the data for pre-population
-                                    AppDatabase database = AppDatabase.getInstance(context, executors);
-                                    List<ContactEntity> contactEntities = DataGenerator.generateContacts();
-                                    List<EducationEntity> educationEntities = DataGenerator.generateEducations();
-                                    List<SkillEntity> skillEntities = DataGenerator.generateSkills();
-                                    List<WorkEntity> workEntities = DataGenerator.generateWorks();
-                                    database.runInTransaction(() -> {
-                                        (database.contactDao()).insertAll((contactEntities));
-                                        (database.educationDao()).insertAll((educationEntities));
-                                        (database.skillDao()).insertAll((skillEntities));
-                                        (database.workDao()).insertAll((workEntities));
+                   .addCallback(new Callback() {
+            
+                       /**
+                        * Called when the database is created for the first time. This is called after all the
+                        * tables are created.
+                        *
+                        * @param db The database.
+                        */
+                       @Override
+                       public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                
+                           super.onCreate(db);
+                           executors.diskIO()
+                                    .execute(() -> {
+                                        // Add a delay to simulate a long-running operation
+                                        addDelay();
+                                        // Generate the data for pre-population
+                                        AppDatabase database = AppDatabase.getInstance(context, executors);
+                                        List<ContactEntity> contactEntities = DataGenerator.generateContacts();
+                                        List<EducationEntity> educationEntities = DataGenerator.generateEducations();
+                                        List<SkillEntity> skillEntities = DataGenerator.generateSkills();
+                                        List<WorkEntity> workEntities = DataGenerator.generateWorks();
+                                        database.runInTransaction(() -> {
+                                            (database.contactDao()).insertAll((contactEntities));
+                                            (database.educationDao()).insertAll((educationEntities));
+                                            (database.skillDao()).insertAll((skillEntities));
+                                            (database.workDao()).insertAll((workEntities));
+                                        });
+                                        // notify that the database was created and it's ready to be used
+                                        database.setDatabaseCreated();
                                     });
-                                    // notify that the database was created and it's ready to be used
-                                    database.setDatabaseCreated();
-                                });
-                    }
-                })
-                .addCallback(roomDatabaseCallback)
-                .fallbackToDestructiveMigration()
-                .build();
+                       }
+                   })
+                   .addCallback(roomDatabaseCallback)
+                   .fallbackToDestructiveMigration()
+                   .build();
     }
-
+    
     /**
      *
      */
     private static void addDelay() {
-
+        
         try {
             Thread.sleep(4000);
         } catch (InterruptedException ignored) {
         }
     }
-
+    
     /**
      * @return
      */
     public abstract WorkDao workDao();
-
+    
     /**
      * @return
      */
     public abstract SkillDao skillDao();
-
+    
     /**
      * @return
      */
     public abstract EducationDao educationDao();
-
+    
     /**
      * @return
      */
     public abstract ContactDao contactDao();
-
+    
     /**
      * @param context
      */
     private void updateDatabaseCreated(@NonNull final Context context) {
-
+        
         if (context.getDatabasePath(DATABASE_NAME)
-                .exists()) {
+                   .exists()) {
             setDatabaseCreated();
         }
     }
-
+    
     /**
      *
      */
     private void setDatabaseCreated() {
-
+        
         isDatabaseCreated.postValue(true);
     }
-
+    
     /**
      * @return
      */
     public LiveData<Boolean> getDatabaseCreated() {
-
+        
         return isDatabaseCreated;
     }
-
+    
     /**
      *
      */
     private static class PopulateDatabaseAsync
             extends AsyncTask<Void, Void, ViewOutlineProvider> {
-
+        
         /**
          *
          */
         private final EducationDao educationDao;
-
+        
         /**
          *
          */
         private final WorkDao workDao;
-
+        
         /**
          *
          */
         private final SkillDao skillDao;
-
+        
         /**
          * @param pInstance
          */
         public PopulateDatabaseAsync(AppDatabase pInstance) {
-
+            
             educationDao = pInstance.educationDao();
             workDao = pInstance.workDao();
             skillDao = pInstance.skillDao();
         }
-
+        
         /**
          * Override this method to perform a computation on a background thread. The
          * specified parameters are the parameters passed to {@link #execute}
@@ -250,14 +254,16 @@ public abstract class AppDatabase
          * on the UI thread.
          *
          * @param pVoids The parameters of the task.
+         *
          * @return A result, defined by the subclass of this task.
+         *
          * @see #onPreExecute()
          * @see #onPostExecute
          * @see #publishProgress
          */
         @Override
         protected ViewOutlineProvider doInBackground(Void... pVoids) {
-
+            
             List<EducationEntity> _educationEntities = DataGenerator.EducationContent.ITEMS;
             educationDao.insertAll(_educationEntities);
             List<WorkEntity> _workEntities = DataGenerator.WorkContent.ITEMS;

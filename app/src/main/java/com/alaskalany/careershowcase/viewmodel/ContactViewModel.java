@@ -37,30 +37,30 @@ import com.alaskalany.careershowcase.repository.DataRepository;
 
 public class ContactViewModel
         extends AndroidViewModel {
-
+    
     private final LiveData<ContactEntity> observableContact;
-
+    
     private final int contactId;
-
+    
     public ObservableField<ContactEntity> contact = new ObservableField<>();
-
+    
     public ContactViewModel(@NonNull Application application, DataRepository dataRepository, final int contactId) {
-
+        
         super(application);
         this.contactId = contactId;
         observableContact = dataRepository.contactRepository.load(contactId);
     }
-
+    
     public LiveData<ContactEntity> getObservableContact() {
-
+        
         return observableContact;
     }
-
+    
     public void setContact(ContactEntity contact) {
-
+        
         this.contact.set(contact);
     }
-
+    
     /**
      * A creator is used to inject the product ID into the ViewModel
      * <p>
@@ -69,21 +69,21 @@ public class ContactViewModel
      */
     public static class Factory
             extends ViewModelProvider.NewInstanceFactory {
-
+        
         @NonNull
         private final Application mApplication;
-
+        
         private final int mContactId;
-
+        
         private final DataRepository mRepository;
-
+        
         public Factory(@NonNull Application application, int contactId) {
-
+            
             mApplication = application;
             mContactId = contactId;
             mRepository = ((CareerShowcaseApp) application).getRepository();
         }
-
+        
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked

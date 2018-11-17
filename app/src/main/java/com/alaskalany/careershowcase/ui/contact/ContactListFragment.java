@@ -49,42 +49,42 @@ import com.alaskalany.careershowcase.viewmodel.ContactListViewModel;
 public class ContactListFragment
         extends Fragment
         implements ScrollToTop {
-
+    
     /**
      *
      */
     protected static final String ARG_COLUMN_COUNT = "column-count";
-
+    
     /**
      *
      */
     private final ContactOnClickCallback contactOnClickCallback =
             item -> Toast.makeText(getContext(), "Clicked on ContactEntity Item", Toast.LENGTH_SHORT)
                          .show();
-
+    
     /**
      *
      */
     protected FragmentContactListBinding binding;
-
+    
     /**
      *
      */
     protected ContactAdapter adapter;
-
+    
     /**
      *
      */
     protected int columnCount = 1;
-
+    
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public ContactListFragment() {
-
+    
     }
-
+    
     /**
      * @param columnCount
      *
@@ -92,35 +92,35 @@ public class ContactListFragment
      */
     @SuppressWarnings("unused")
     public static ContactListFragment newInstance(int columnCount) {
-
+        
         ContactListFragment fragment = new ContactListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
-
+    
     /**
      * @param context
      */
     @Override
     public void onAttach(Context context) {
-
+        
         super.onAttach(context);
     }
-
+    
     /**
      * @param savedInstanceState
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
+        
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             setColumnCount(getArguments().getInt(ARG_COLUMN_COUNT));
         }
     }
-
+    
     /**
      * @param inflater
      * @param container
@@ -130,7 +130,7 @@ public class ContactListFragment
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_list, container, false);
         setAdapter(new ContactAdapter(contactOnClickCallback));
         Context context = binding.getRoot()
@@ -143,7 +143,7 @@ public class ContactListFragment
         binding.listContact.setAdapter(getAdapter());
         return binding.getRoot();
     }
-
+    
     /**
      * Called when the fragment's activity has been created and this
      * fragment's view hierarchy instantiated.  It can be used to do final
@@ -159,7 +159,7 @@ public class ContactListFragment
      */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-
+        
         super.onActivityCreated(savedInstanceState);
         final ContactListViewModel _model = ViewModelProviders.of(this)
                                                               .get(ContactListViewModel.class);
@@ -173,51 +173,51 @@ public class ContactListFragment
                   binding.executePendingBindings();
               });
     }
-
+    
     /**
      *
      */
     @Override
     public void onDetach() {
-
+        
         super.onDetach();
     }
-
+    
     /**
      * @return
      */
     protected int getColumnCount() {
-
+        
         return columnCount;
     }
-
+    
     /**
      * @param mColumnCount
      */
     protected void setColumnCount(int mColumnCount) {
-
+        
         this.columnCount = mColumnCount;
     }
-
+    
     /**
      * @return
      */
     protected ContactAdapter getAdapter() {
-
+        
         return adapter;
     }
-
+    
     /**
      * @param adapter
      */
     protected void setAdapter(ContactAdapter adapter) {
-
+        
         this.adapter = adapter;
     }
-
+    
     @Override
     public void top() {
-
+        
         binding.listContact.smoothScrollToPosition(0);
     }
 }

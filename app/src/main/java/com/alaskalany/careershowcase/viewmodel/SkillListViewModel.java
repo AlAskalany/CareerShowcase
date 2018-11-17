@@ -35,12 +35,12 @@ import java.util.List;
 
 public class SkillListViewModel
         extends AndroidViewModel {
-
+    
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<SkillEntity>> observableSkills;
-
+    
     public SkillListViewModel(Application application) {
-
+        
         super(application);
         observableSkills = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
@@ -50,12 +50,12 @@ public class SkillListViewModel
         // observe the changes of the products from the database and forward them
         observableSkills.addSource(listLiveData, observableSkills::setValue);
     }
-
+    
     /**
      * Expose the LiveData Products query so the UI can observe it.
      */
     public LiveData<List<SkillEntity>> getSkills() {
-
+        
         return observableSkills;
     }
 }
