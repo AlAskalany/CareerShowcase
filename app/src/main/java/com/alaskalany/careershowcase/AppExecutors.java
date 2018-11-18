@@ -99,8 +99,7 @@ public class AppExecutors {
     /**
      * Main thread {@link Executor}
      */
-    private static class MainThreadExecutor
-            implements Executor {
+    private static class MainThreadExecutor implements Executor {
         
         /**
          * Main thread handler

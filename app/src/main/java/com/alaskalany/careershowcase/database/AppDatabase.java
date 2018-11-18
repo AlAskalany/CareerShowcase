@@ -53,8 +53,7 @@ import java.util.List;
 @Database(version = 6, entities = {
         ContactEntity.class, EducationEntity.class, SkillEntity.class, WorkEntity.class
 })
-public abstract class AppDatabase
-        extends RoomDatabase {
+public abstract class AppDatabase extends RoomDatabase {
     
     /**
      *
@@ -118,43 +117,38 @@ public abstract class AppDatabase
     @NonNull
     private static AppDatabase buildDatabase(final Context context, final AppExecutors executors) {
         
-        return Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME)
-                   .addCallback(new Callback() {
+        return Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME).addCallback(new Callback() {
             
-                       /**
-                        * Called when the database is created for the first time. This is called after all the
-                        * tables are created.
-                        *
-                        * @param db The database.
-                        */
-                       @Override
-                       public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            /**
+             * Called when the database is created for the first time. This is called after all the
+             * tables are created.
+             *
+             * @param db The database.
+             */
+            @Override
+            public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 
-                           super.onCreate(db);
-                           executors.diskIO()
-                                    .execute(() -> {
-                                        // Add a delay to simulate a long-running operation
-                                        addDelay();
-                                        // Generate the data for pre-population
-                                        AppDatabase database = AppDatabase.getInstance(context, executors);
-                                        List<ContactEntity> contactEntities = DataGenerator.generateContacts();
-                                        List<EducationEntity> educationEntities = DataGenerator.generateEducations();
-                                        List<SkillEntity> skillEntities = DataGenerator.generateSkills();
-                                        List<WorkEntity> workEntities = DataGenerator.generateWorks();
-                                        database.runInTransaction(() -> {
-                                            (database.contactDao()).insertAll((contactEntities));
-                                            (database.educationDao()).insertAll((educationEntities));
-                                            (database.skillDao()).insertAll((skillEntities));
-                                            (database.workDao()).insertAll((workEntities));
-                                        });
-                                        // notify that the database was created and it's ready to be used
-                                        database.setDatabaseCreated();
-                                    });
-                       }
-                   })
-                   .addCallback(roomDatabaseCallback)
-                   .fallbackToDestructiveMigration()
-                   .build();
+                super.onCreate(db);
+                executors.diskIO().execute(() -> {
+                    // Add a delay to simulate a long-running operation
+                    addDelay();
+                    // Generate the data for pre-population
+                    AppDatabase database = AppDatabase.getInstance(context, executors);
+                    List<ContactEntity> contactEntities = DataGenerator.generateContacts();
+                    List<EducationEntity> educationEntities = DataGenerator.generateEducations();
+                    List<SkillEntity> skillEntities = DataGenerator.generateSkills();
+                    List<WorkEntity> workEntities = DataGenerator.generateWorks();
+                    database.runInTransaction(() -> {
+                        (database.contactDao()).insertAll((contactEntities));
+                        (database.educationDao()).insertAll((educationEntities));
+                        (database.skillDao()).insertAll((skillEntities));
+                        (database.workDao()).insertAll((workEntities));
+                    });
+                    // notify that the database was created and it's ready to be used
+                    database.setDatabaseCreated();
+                });
+            }
+        }).addCallback(roomDatabaseCallback).fallbackToDestructiveMigration().build();
     }
     
     /**
@@ -193,8 +187,7 @@ public abstract class AppDatabase
      */
     private void updateDatabaseCreated(@NonNull final Context context) {
         
-        if (context.getDatabasePath(DATABASE_NAME)
-                   .exists()) {
+        if (context.getDatabasePath(DATABASE_NAME).exists()) {
             setDatabaseCreated();
         }
     }
@@ -218,8 +211,7 @@ public abstract class AppDatabase
     /**
      *
      */
-    private static class PopulateDatabaseAsync
-            extends AsyncTask<Void, Void, ViewOutlineProvider> {
+    private static class PopulateDatabaseAsync extends AsyncTask<Void, Void, ViewOutlineProvider> {
         
         /**
          *

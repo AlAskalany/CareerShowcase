@@ -34,8 +34,7 @@ import com.alaskalany.careershowcase.repository.DataRepository;
 
 import java.util.List;
 
-public class WorkListViewModel
-        extends AndroidViewModel {
+public class WorkListViewModel extends AndroidViewModel {
     
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<WorkEntity>> observableProducts;
@@ -46,7 +45,8 @@ public class WorkListViewModel
         observableProducts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableProducts.setValue(null);
-        //LiveData<List<WorkEntity>> works = ((CareerShowcaseApp) application).getRepository().workRepository.getWorks();
+        //LiveData<List<WorkEntity>> works = ((CareerShowcaseApp) application).getRepository().workRepository
+        // .getWorks();
         LiveData<List<WorkEntity>> listLiveData = FileData.getWorkLiveData(application);
         // observe the changes of the products from the database and forward them
         observableProducts.addSource(listLiveData, observableProducts::setValue);
@@ -60,8 +60,7 @@ public class WorkListViewModel
         return observableProducts;
     }
     
-    public static class Factory
-            extends ViewModelProvider.NewInstanceFactory {
+    public static class Factory extends ViewModelProvider.NewInstanceFactory {
         
         @NonNull
         private final Application application;

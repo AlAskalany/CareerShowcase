@@ -34,8 +34,7 @@ import com.alaskalany.careershowcase.model.Contact;
  * A contact item representing a piece of description.
  */
 @Entity(tableName = "contacts_table")
-public class ContactEntity
-        implements Contact {
+public class ContactEntity implements Contact {
     
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "contact_id")

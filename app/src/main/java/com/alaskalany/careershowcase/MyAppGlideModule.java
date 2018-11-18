@@ -32,7 +32,6 @@ import com.bumptech.glide.module.AppGlideModule;
  * Defines a set of dependencies and options to use when initializing Glide within an application.
  */
 @GlideModule
-public final class MyAppGlideModule
-        extends AppGlideModule {
+public final class MyAppGlideModule extends AppGlideModule {
     
 }

@@ -33,8 +33,7 @@ import com.alaskalany.careershowcase.model.Education;
  * A education item representing a piece of description.
  */
 @Entity(tableName = "education_table")
-public class EducationEntity
-        implements Education {
+public class EducationEntity implements Education {
     
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "education_id")

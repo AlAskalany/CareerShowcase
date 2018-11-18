@@ -57,23 +57,17 @@ public class EducationRepository {
     
     public LiveData<EducationEntity> load(int educationId) {
         
-        return dataRepository.getDatabase()
-                             .educationDao()
-                             .load(educationId);
+        return dataRepository.getDatabase().educationDao().load(educationId);
     }
     
     public EducationEntity loadSync(int educationId) {
         
-        return dataRepository.getDatabase()
-                             .educationDao()
-                             .loadSync(educationId);
+        return dataRepository.getDatabase().educationDao().loadSync(educationId);
     }
     
     public LiveData<List<EducationEntity>> loadAll() {
         
-        return dataRepository.getDatabase()
-                             .educationDao()
-                             .loadAll();
+        return dataRepository.getDatabase().educationDao().loadAll();
     }
     
     public MediatorLiveData<List<EducationEntity>> getEducations() {

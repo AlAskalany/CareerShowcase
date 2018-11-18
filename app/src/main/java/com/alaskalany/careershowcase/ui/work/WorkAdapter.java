@@ -46,8 +46,7 @@ import java.util.Objects;
  * * within a {@link RecyclerView}.</p>
  * TODO: Replace the implementation with code for your data type.
  */
-public class WorkAdapter
-        extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
+public class WorkAdapter extends RecyclerView.Adapter<WorkAdapter.ViewHolder> {
     
     /**
      *
@@ -94,10 +93,8 @@ public class WorkAdapter
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         
-        FragmentWorkBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                                              R.layout.fragment_work,
-                                                              parent,
-                                                              false);
+        FragmentWorkBinding binding = DataBindingUtil
+                .inflate(LayoutInflater.from(parent.getContext()), R.layout.fragment_work, parent, false);
         binding.setWorkOnClickCallback(workOnClickCallback);
         return new ViewHolder(binding);
     }
@@ -127,10 +124,7 @@ public class WorkAdapter
         holder.binding.setWork(workEntities.get(position));
         holder.binding.setWorkOnClickCallback(workOnClickCallback);
         View rootView = holder.binding.getRoot();
-        GlideApp.with(rootView)
-                .load(workEntities.get(position)
-                                  .getLogoUrl())
-                .into(holder.binding.imageViewWorkLogo);
+        GlideApp.with(rootView).load(workEntities.get(position).getLogoUrl()).into(holder.binding.imageViewWorkLogo);
         holder.binding.executePendingBindings();
     }
     
@@ -187,9 +181,7 @@ public class WorkAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
                     
-                    return workEntities.get(oldItemPosition)
-                                       .getId() == workList.get(newItemPosition)
-                                                           .getId();
+                    return workEntities.get(oldItemPosition).getId() == workList.get(newItemPosition).getId();
                 }
                 
                 /**
@@ -239,8 +231,7 @@ public class WorkAdapter
      * to <code>ViewHolder</code> objects and that <code>RecyclerView</code> instances may hold
      * strong references to extra off-screen item views for caching purposes</p>
      */
-    public static class ViewHolder
-            extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         
         /**
          *

@@ -107,8 +107,7 @@ public class DataGenerator {
         private static String makeDetails(int position) {
             
             StringBuilder builder = new StringBuilder();
-            builder.append("Details about Item: ")
-                   .append(position);
+            builder.append("Details about Item: ").append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }
@@ -160,8 +159,7 @@ public class DataGenerator {
         private static String makeDetails(int position) {
             
             StringBuilder builder = new StringBuilder();
-            builder.append("Details about Education: ")
-                   .append(position);
+            builder.append("Details about Education: ").append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }
@@ -253,8 +251,7 @@ public class DataGenerator {
         private static String makeDetails(int position) {
             
             StringBuilder builder = new StringBuilder();
-            builder.append("Details about Work: ")
-                   .append(position);
+            builder.append("Details about Work: ").append(position);
             for (int i = 0; i < position; i++) {
                 builder.append("\nMore contactDetails information here.");
             }

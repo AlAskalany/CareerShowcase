@@ -33,8 +33,7 @@ import com.alaskalany.careershowcase.model.Skill;
  * A skill item representing a piece of description.
  */
 @Entity(tableName = "skills_table")
-public class SkillEntity
-        implements Skill {
+public class SkillEntity implements Skill {
     
     /**
      *

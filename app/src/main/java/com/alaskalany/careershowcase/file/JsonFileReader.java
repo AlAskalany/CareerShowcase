@@ -33,8 +33,7 @@ public class JsonFileReader {
     
     public static String loadJSONFromAsset(Context context) {
         
-        InputStream is = context.getResources()
-                                .openRawResource(R.raw.data);
+        InputStream is = context.getResources().openRawResource(R.raw.data);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
         try {

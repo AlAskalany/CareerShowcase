@@ -47,8 +47,7 @@ import java.util.Objects;
  * * within a {@link RecyclerView}.</p>
  * TODO: Replace the implementation with code for your data type.
  */
-public class ContactAdapter
-        extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
+public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
     
     /**
      *
@@ -95,10 +94,8 @@ public class ContactAdapter
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         
-        FragmentContactBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                                                 R.layout.fragment_contact,
-                                                                 parent,
-                                                                 false);
+        FragmentContactBinding binding = DataBindingUtil
+                .inflate(LayoutInflater.from(parent.getContext()), R.layout.fragment_contact, parent, false);
         binding.setContactOnClickCallback(contactOnClickCallback);
         return new ViewHolder(binding);
     }
@@ -127,8 +124,7 @@ public class ContactAdapter
         
         holder.binding.setContact(contactEntities.get(position));
         
-        String title = contactEntities.get(position)
-                                      .getTitle();
+        String title = contactEntities.get(position).getTitle();
         
         switch (title) {
             case "E-mail":
@@ -146,9 +142,7 @@ public class ContactAdapter
         
         holder.binding.setContactOnClickCallback(contactOnClickCallback);
         View rootView = holder.binding.getRoot();
-        GlideApp.with(rootView)
-                .load(contactEntities.get(position)
-                                     .getLogoUrl())
+        GlideApp.with(rootView).load(contactEntities.get(position).getLogoUrl())
                 .into(holder.binding.imageViewContactLogo);
         holder.binding.executePendingBindings();
     }
@@ -206,9 +200,7 @@ public class ContactAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
                     
-                    return contactEntities.get(oldItemPosition)
-                                          .getId() == contactList.get(newItemPosition)
-                                                                 .getId();
+                    return contactEntities.get(oldItemPosition).getId() == contactList.get(newItemPosition).getId();
                 }
                 
                 /**
@@ -259,8 +251,7 @@ public class ContactAdapter
      * to <code>ViewHolder</code> objects and that <code>RecyclerView</code> instances may hold
      * strong references to extra off-screen item views for caching purposes</p>
      */
-    public static class ViewHolder
-            extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         
         /**
          *

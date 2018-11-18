@@ -33,8 +33,7 @@ import com.alaskalany.careershowcase.file.FileData;
 
 import java.util.List;
 
-public class ContactListViewModel
-        extends AndroidViewModel {
+public class ContactListViewModel extends AndroidViewModel {
     
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<ContactEntity>> observableContacts;
@@ -46,7 +45,8 @@ public class ContactListViewModel
         observableContacts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableContacts.setValue(null);
-        // LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository().contactRepository.getContacts();
+        // LiveData<List<ContactEntity>> contacts = ((CareerShowcaseApp) application).getRepository()
+        // .contactRepository.getContacts();
         LiveData<List<ContactEntity>> listLiveData = FileData.getContactsLiveData(application);
         // observe the changes of the products from the database and forward them
         observableContacts.addSource(listLiveData, observableContacts::setValue);

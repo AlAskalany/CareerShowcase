@@ -34,8 +34,7 @@ import java.util.concurrent.Executor;
 /**
  * App class extending {@link Application}
  */
-public class CareerShowcaseApp
-        extends Application {
+public class CareerShowcaseApp extends Application {
     
     /**
      * App executors; Disk IO {@link Executor},Network {@link Executor},and Main thread {@link Executor}.

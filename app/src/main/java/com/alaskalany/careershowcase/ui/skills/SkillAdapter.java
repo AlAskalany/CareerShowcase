@@ -46,8 +46,7 @@ import java.util.Objects;
  * * within a {@link RecyclerView}.</p>
  * TODO: Replace the implementation with code for your data type.
  */
-public class SkillAdapter
-        extends RecyclerView.Adapter<SkillAdapter.ViewHolder> {
+public class SkillAdapter extends RecyclerView.Adapter<SkillAdapter.ViewHolder> {
     
     /**
      *
@@ -94,10 +93,8 @@ public class SkillAdapter
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         
-        FragmentSkillBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                                               R.layout.fragment_skill,
-                                                               parent,
-                                                               false);
+        FragmentSkillBinding binding = DataBindingUtil
+                .inflate(LayoutInflater.from(parent.getContext()), R.layout.fragment_skill, parent, false);
         binding.setSkillOnClickCallback(skillOnClickCallback);
         return new ViewHolder(binding);
     }
@@ -128,10 +125,7 @@ public class SkillAdapter
         
         holder.binding.setSkillOnClickCallback(skillOnClickCallback);
         View rootView = holder.binding.getRoot();
-        GlideApp.with(rootView)
-                .load(skillEntities.get(position)
-                                   .getLogoUrl())
-                .into(holder.binding.imageViewSkillLogo);
+        GlideApp.with(rootView).load(skillEntities.get(position).getLogoUrl()).into(holder.binding.imageViewSkillLogo);
         holder.binding.executePendingBindings();
     }
     
@@ -188,9 +182,7 @@ public class SkillAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
                     
-                    return skillEntities.get(oldItemPosition)
-                                        .getId() == skillList.get(newItemPosition)
-                                                             .getId();
+                    return skillEntities.get(oldItemPosition).getId() == skillList.get(newItemPosition).getId();
                 }
                 
                 /**
@@ -239,8 +231,7 @@ public class SkillAdapter
      * to <code>ViewHolder</code> objects and that <code>RecyclerView</code> instances may hold
      * strong references to extra off-screen item views for caching purposes</p>
      */
-    public static class ViewHolder
-            extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         
         /**
          *

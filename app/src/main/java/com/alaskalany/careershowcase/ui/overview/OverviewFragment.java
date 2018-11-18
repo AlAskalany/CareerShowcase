@@ -228,7 +228,7 @@ public class OverviewFragment extends Fragment implements ScrollToTop, SwipeRefr
     
     @Override
     public void onRefresh() {
-    
+        
         binding.swipeRefreshLayout.setRefreshing(false);
     }
     

@@ -51,35 +51,28 @@ public class DataRepository {
             }
         });
         educationRepository.setObservableEducations(new MediatorLiveData<>());
-        educationRepository.getObservableEducations()
-                           .addSource(educationRepository.loadAll(), educationEntities -> {
-                               if (isDatabaseCreated() != null) {
-                                   educationRepository.getObservableEducations()
-                                                      .postValue(educationEntities);
-                               }
-                           });
+        educationRepository.getObservableEducations().addSource(educationRepository.loadAll(), educationEntities -> {
+            if (isDatabaseCreated() != null) {
+                educationRepository.getObservableEducations().postValue(educationEntities);
+            }
+        });
         skillRepository.setObservableSkills(new MediatorLiveData<>());
-        skillRepository.getObservableSkills()
-                       .addSource(skillRepository.loadAll(), skillEntities -> {
-                           if (isDatabaseCreated() != null) {
-                               skillRepository.getObservableSkills()
-                                              .postValue(skillEntities);
-                           }
-                       });
+        skillRepository.getObservableSkills().addSource(skillRepository.loadAll(), skillEntities -> {
+            if (isDatabaseCreated() != null) {
+                skillRepository.getObservableSkills().postValue(skillEntities);
+            }
+        });
         contactRepository.setObservableContacts(new MediatorLiveData<>());
-        contactRepository.getObservableContacts()
-                         .addSource(contactRepository.loadAll(), contactEntities -> {
-                             if (isDatabaseCreated() != null) {
-                                 contactRepository.getObservableContacts()
-                                                  .postValue(contactEntities);
-                             }
-                         });
+        contactRepository.getObservableContacts().addSource(contactRepository.loadAll(), contactEntities -> {
+            if (isDatabaseCreated() != null) {
+                contactRepository.getObservableContacts().postValue(contactEntities);
+            }
+        });
     }
     
     private Boolean isDatabaseCreated() {
         
-        return appDatabase.getDatabaseCreated()
-                          .getValue();
+        return appDatabase.getDatabaseCreated().getValue();
     }
     
     public static DataRepository getInstance(final AppDatabase database) {

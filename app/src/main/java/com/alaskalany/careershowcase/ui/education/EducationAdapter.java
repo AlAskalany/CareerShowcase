@@ -46,8 +46,7 @@ import java.util.Objects;
  * * within a {@link RecyclerView}.</p>
  * TODO: Replace the implementation with code for your data type.
  */
-public class EducationAdapter
-        extends RecyclerView.Adapter<EducationAdapter.ViewHolder> {
+public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.ViewHolder> {
     
     /**
      *
@@ -94,10 +93,8 @@ public class EducationAdapter
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         
-        FragmentEducationBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                                                                   R.layout.fragment_education,
-                                                                   parent,
-                                                                   false);
+        FragmentEducationBinding binding = DataBindingUtil
+                .inflate(LayoutInflater.from(parent.getContext()), R.layout.fragment_education, parent, false);
         binding.setEducationOnClickCallback(educationOnClickCallback);
         return new ViewHolder(binding);
     }
@@ -128,9 +125,7 @@ public class EducationAdapter
         
         holder.binding.setEducationOnClickCallback(educationOnClickCallback);
         View rootView = holder.binding.getRoot();
-        GlideApp.with(rootView)
-                .load(educationEntities.get(position)
-                                       .getLogoUrl())
+        GlideApp.with(rootView).load(educationEntities.get(position).getLogoUrl())
                 .into(holder.binding.imageViewEducationLogo);
         holder.binding.executePendingBindings();
     }
@@ -188,9 +183,7 @@ public class EducationAdapter
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
                     
-                    return educationEntities.get(oldItemPosition)
-                                            .getId() == educationList.get(newItemPosition)
-                                                                     .getId();
+                    return educationEntities.get(oldItemPosition).getId() == educationList.get(newItemPosition).getId();
                 }
                 
                 /**
@@ -239,8 +232,7 @@ public class EducationAdapter
      * to <code>ViewHolder</code> objects and that <code>RecyclerView</code> instances may hold
      * strong references to extra off-screen item views for caching purposes</p>
      */
-    public static class ViewHolder
-            extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         
         /**
          *

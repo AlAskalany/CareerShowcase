@@ -35,8 +35,7 @@ import com.alaskalany.careershowcase.CareerShowcaseApp;
 import com.alaskalany.careershowcase.entity.SkillEntity;
 import com.alaskalany.careershowcase.repository.DataRepository;
 
-public class SkillViewModel
-        extends AndroidViewModel {
+public class SkillViewModel extends AndroidViewModel {
     
     private final LiveData<SkillEntity> observableSkill;
     
@@ -67,8 +66,7 @@ public class SkillViewModel
      * This creator is to showcase how to inject dependencies into ViewModels. It's not
      * actually necessary in this case, as the product ID can be passed in a public method.
      */
-    public static class Factory
-            extends ViewModelProvider.NewInstanceFactory {
+    public static class Factory extends ViewModelProvider.NewInstanceFactory {
         
         @NonNull
         private final Application mApplication;

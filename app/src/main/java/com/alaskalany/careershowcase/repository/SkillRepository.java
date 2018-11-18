@@ -57,23 +57,17 @@ public class SkillRepository {
     
     public LiveData<SkillEntity> load(int skillId) {
         
-        return dataRepository.getDatabase()
-                             .skillDao()
-                             .load(skillId);
+        return dataRepository.getDatabase().skillDao().load(skillId);
     }
     
     public SkillEntity loadSync(int skillId) {
         
-        return dataRepository.getDatabase()
-                             .skillDao()
-                             .loadSync(skillId);
+        return dataRepository.getDatabase().skillDao().loadSync(skillId);
     }
     
     public LiveData<List<SkillEntity>> loadAll() {
         
-        return dataRepository.getDatabase()
-                             .skillDao()
-                             .loadAll();
+        return dataRepository.getDatabase().skillDao().loadAll();
     }
     
     public MediatorLiveData<List<SkillEntity>> getSkills() {

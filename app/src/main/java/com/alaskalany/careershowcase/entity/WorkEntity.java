@@ -33,8 +33,7 @@ import com.alaskalany.careershowcase.model.Work;
  * A contact item representing a piece of description.
  */
 @Entity(tableName = "works_table")
-public class WorkEntity
-        implements Work {
+public class WorkEntity implements Work {
     
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "work_id")
