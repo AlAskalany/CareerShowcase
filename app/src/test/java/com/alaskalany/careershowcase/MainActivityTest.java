@@ -66,7 +66,7 @@ public class MainActivityTest {
 
         Class<?> expected = EducationListFragment.class;
 
-        Class<?> actual = getFragmentClass(mainActivity, R.id.container_navigation);
+        Class<?> actual = getFragmentClass(mainActivity, R.id.frameLayout);
         assertEquals(expected, actual);
     }
 

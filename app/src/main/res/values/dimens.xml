@@ -30,7 +30,7 @@
     <dimen name="material_card_spacing">8dp</dimen>
 
     <!-- BottomNavigation -->
-    <dimen name="bottom_navigation_elevation">8dp</dimen>
+    <dimen name="bottom_navigation_elevation">4dp</dimen>
 
     <!-- CardView -->
     <dimen name="card_corner_radius">10dp</dimen>

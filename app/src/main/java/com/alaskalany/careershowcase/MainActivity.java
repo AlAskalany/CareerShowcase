@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity
         // Bind to layout
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         
-        bottomNavigationView = binding.navigation;
+        bottomNavigationView = binding.bottomNavigationView;
         
         // listen to item selection and reselection from the bottom navigation view
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity
             if (fragment != null) {
                 FragmentManager supportFragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-                transaction.add(R.id.container_navigation, (Fragment) fragment);
+                transaction.add(R.id.frameLayout, (Fragment) fragment);
                 transaction.commit();
             }
         }
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity
         ScrollToTop fragment = fragments.get(navFragment);
         if (fragment != null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container_navigation, (Fragment) fragment);
+            transaction.replace(R.id.frameLayout, (Fragment) fragment);
             if (!(fragment instanceof OverviewFragment)) {
                 transaction.addToBackStack(null);
             }
