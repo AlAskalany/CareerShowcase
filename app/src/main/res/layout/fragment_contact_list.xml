@@ -33,16 +33,21 @@
             type="com.alaskalany.careershowcase.viewmodel.ContactListViewModel" />
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listContact"
-        style="@style/AppTheme.RecyclerView"
-        android:clipToPadding="false"
-        android:paddingStart="8dp"
-        android:paddingLeft="8dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="8dp"
-        android:paddingRight="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:context=".ui.contact.ContactListFragment"
-        tools:listitem="@layout/fragment_contact" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listContact"
+            style="@style/AppTheme.RecyclerView"
+            android:clipToPadding="false"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:context=".ui.contact.ContactListFragment"
+            tools:listitem="@layout/fragment_contact" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>
