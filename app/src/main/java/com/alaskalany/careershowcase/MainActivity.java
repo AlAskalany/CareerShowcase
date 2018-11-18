@@ -24,12 +24,12 @@
 
 package com.alaskalany.careershowcase;
 
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,9 +52,10 @@ import java.util.Objects;
 /**
  * Main activity
  */
-public class MainActivity
-        extends AppCompatActivity
-        implements OverviewFragment.OnOverviewFragmentInteractionListener, FragmentManager.OnBackStackChangedListener {
+public class MainActivity extends AppCompatActivity
+        implements OverviewFragment.OnOverviewFragmentInteractionListener, FragmentManager.OnBackStackChangedListener,
+                   BottomNavigationView.OnNavigationItemSelectedListener,
+                   BottomNavigationView.OnNavigationItemReselectedListener {
     
     /**
      * Debugging tag
@@ -102,30 +103,6 @@ public class MainActivity
      */
     private BottomNavigationView bottomNavigationView;
     
-    /**
-     * Called when the activity is starting.  This is where most initialization
-     * should go: calling {@link #setContentView(int)} to inflate the
-     * activity's UI, using {@link #findViewById} to programmatically interact
-     * with widgets in the UI, calling
-     * {@link #managedQuery(android.net.Uri, String[], String, String[], String)} to retrieve
-     * cursors for data being displayed, etc.
-     * <p>You can call {@link #finish} from within this function, in
-     * which case onDestroy() will be immediately called after {onCreate} without any of the
-     * rest of the activity lifecycle ({@link #onStart}, {@link #onResume}, {@link #onPause}, etc)
-     * executing.
-     * <p><em>Derived classes must call through to the super class's
-     * implementation of this method.  If they do not, an exception will be
-     * thrown.</em></p>
-     *
-     * @param savedInstanceState If the activity is being re-initialized after
-     *                           previously being shut down then this Bundle contains the data it most
-     *                           recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
-     *
-     * @see #onStart
-     * @see #onSaveInstanceState
-     * @see #onRestoreInstanceState
-     * @see #onPostCreate
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         
@@ -137,184 +114,16 @@ public class MainActivity
         bottomNavigationView = binding.navigation;
         
         // listen to item selection and reselection from the bottom navigation view
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            
-            // Replace current fragment with requested fragment
-            switch (item.getItemId()) {
-                case R.id.navigation_overview:
-                    replaceFragment(OVERVIEW);
-                    return true;
-                case R.id.navigation_education:
-                    replaceFragment(EDUCATION);
-                    return true;
-                case R.id.navigation_work:
-                    replaceFragment(WORK);
-                    return true;
-                case R.id.navigation_skills:
-                    replaceFragment(SKILLS);
-                    return true;
-                case R.id.navigation_contact:
-                    replaceFragment(CONTACT);
-                    return true;
-            }
-            return false;
-        });
-        bottomNavigationView.setOnNavigationItemReselectedListener(item -> {
-            
-            switch (item.getItemId()) {
-                case R.id.navigation_overview:
-                    // Overview menu item reselected, scroll to the top of the overview fragment
-                    scrollToFragmentTop(getFragment(OVERVIEW));
-                    break;
-                case R.id.navigation_education:
-                    // Education menu item reselected, scroll to the top of the education fragment
-                    scrollToFragmentTop(getFragment(EDUCATION));
-                    break;
-                case R.id.navigation_work:
-                    // Work menu item reselected, scroll to the top of the work fragment
-                    scrollToFragmentTop(getFragment(WORK));
-                    break;
-                case R.id.navigation_skills:
-                    // Skills menu item reselected, scroll to the top of the skills fragment
-                    scrollToFragmentTop(getFragment(SKILLS));
-                    break;
-                case R.id.navigation_contact:
-                    // Contact menu item reselected, scroll to the top of the contact fragment
-                    scrollToFragmentTop(getFragment(CONTACT));
-                    break;
-            }
-        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnNavigationItemReselectedListener(this);
         
         createFragments(fragments);
         
-        init(savedInstanceState == null);
+        initializeBottomNavigation(savedInstanceState == null);
         
         // Handle connectivity
-        android.content.Context context1 = getApplicationContext();
-        Runnable networkHandler = new Runnable() {
-            
-            private final Context context = context1;
-            
-            /**
-             * When an object implementing interface <code>Runnable</code> is used
-             * to create a thread, starting the thread causes the object's
-             * <code>run</code> method to be called in that separately executing
-             * thread.
-             * <p>
-             * The general contract of the method <code>run</code> is that it may
-             * take any action whatsoever.
-             *
-             * @see Thread#run()
-             */
-            @Override
-            public void run() {
-                // Get the connectivity manager
-                ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
-                
-                boolean isWifiConn = false;
-                boolean isMobileConn = false;
-                
-                // Get active network information
-                NetworkInfo networkInfo1 = connMgr.getActiveNetworkInfo();
-                
-                // Online if network info exists and is connected
-                boolean isOnline = networkInfo1 != null && networkInfo1.isConnected();
-                
-                if (isOnline) {
-                    // If online
-                    // Check connectivity for all networks
-                    for (Network network : connMgr.getAllNetworks()) {
-                        NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
-                        if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                            // If Wi-Fi
-                            isWifiConn |= networkInfo.isConnected();
-                            if (isWifiConn) {
-                                doWhenWifiIsConnected();
-                            }
-                        }
-                        if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
-                            // If mobile network
-                            isMobileConn |= networkInfo.isConnected();
-                            if (isMobileConn) {
-                                doWhenMobileIsConnected();
-                            }
-                        }
-                    }
-                } else {
-                    // If not connected
-                    doWhenNotConnected();
-                }
-            }
-            
-            /**
-             * If connected through Wi-Fi do this
-             */
-            private void doWhenWifiIsConnected() {
-                // TODO handle if Wi-Fi is connected
-                Toast.makeText(context.getApplicationContext(), "WiFi connected", Toast.LENGTH_SHORT)
-                     .show();
-            }
-            
-            /**
-             * If connected through mobile network do this
-             */
-            private void doWhenMobileIsConnected() {
-                // TODO handle if mobile network is connected
-                Toast.makeText(context.getApplicationContext(), "Mobile connected", Toast.LENGTH_SHORT)
-                     .show();
-            }
-            
-            /**
-             * If not connected do this
-             */
-            private void doWhenNotConnected() {
-                
-                // TODO handle if disconnected
-                Toast.makeText(context.getApplicationContext(), "Not connected", Toast.LENGTH_SHORT)
-                     .show();
-            }
-        };
+        Runnable networkHandler = this::handleNetwork;
         networkHandler.run();
-    }
-    
-    /**
-     * @param navFragment Navigation fragment
-     *
-     * @throws RuntimeException If the navigation fragment is null
-     */
-    private void replaceFragment(int navFragment) throws RuntimeException {
-        
-        ScrollToTop fragment = fragments.get(navFragment);
-        if (fragment != null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container_navigation, (Fragment) fragment);
-            if (!(fragment instanceof OverviewFragment)) {
-                transaction.addToBackStack(null);
-            }
-            transaction.commit();
-        } else {
-            throw new RuntimeException("Navigation fragment shouldn't be null");
-        }
-    }
-    
-    /**
-     * Scroll to the top of the fragment implemented {@link ScrollToTop}
-     *
-     * @param fragment Bottom navigation fragment
-     */
-    private void scrollToFragmentTop(@NonNull ScrollToTop fragment) {
-        
-        fragment.top();
-    }
-    
-    /**
-     * @param fragmentId Fragment id
-     *
-     * @return Bottom navigation fragment
-     */
-    private ScrollToTop getFragment(int fragmentId) {
-        
-        return Objects.requireNonNull(fragments.get(fragmentId));
     }
     
     private static void createFragments(@NonNull SparseArrayCompat<ScrollToTop> mFragments) {
@@ -331,7 +140,7 @@ public class MainActivity
      *
      * @param freshStart Is this a fresh activity start
      */
-    public void init(boolean freshStart) {
+    public void initializeBottomNavigation(boolean freshStart) {
         
         if (freshStart) {
             ScrollToTop fragment = fragments.get(OVERVIEW);
@@ -339,7 +148,6 @@ public class MainActivity
                 FragmentManager supportFragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = supportFragmentManager.beginTransaction();
                 transaction.add(R.id.container_navigation, (Fragment) fragment);
-                //transaction.addToBackStack(null);
                 transaction.commit();
             }
         }
@@ -351,8 +159,7 @@ public class MainActivity
     @Override
     public void onBackStackChanged() {
         // TODO
-        Toast.makeText(getApplicationContext(), "Backstack changed", Toast.LENGTH_SHORT)
-             .show();
+        Toast.makeText(getApplicationContext(), "Backstack changed", Toast.LENGTH_SHORT).show();
     }
     
     /**
@@ -376,14 +183,147 @@ public class MainActivity
         
         // If back was pressed with a fragment other than the overview fragment attached
         if (bottomNavigationView.getSelectedItemId() != R.id.navigation_overview) {
-            
             // Set the overview menu item in the bottom navigation view as selected
-            bottomNavigationView.getMenu()
-                                .getItem(0)
-                                .setChecked(true);
-            
+            bottomNavigationView.getMenu().getItem(0).setChecked(true);
             // Attach the overview fragment
             replaceFragment(OVERVIEW);
+        } else {
+            finish();
+        }
+    }
+    
+    /**
+     * @param navFragment Navigation fragment
+     *
+     * @throws RuntimeException If the navigation fragment is null
+     */
+    private void replaceFragment(int navFragment) throws RuntimeException {
+        
+        ScrollToTop fragment = fragments.get(navFragment);
+        if (fragment != null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.container_navigation, (Fragment) fragment);
+            if (!(fragment instanceof OverviewFragment)) {
+                transaction.addToBackStack(null);
+            }
+            transaction.commit();
+        } else {
+            throw new RuntimeException("Navigation fragment shouldn't be null");
+        }
+    }
+    
+    @Override
+    public void onNavigationItemReselected(@NonNull MenuItem item) {
+        
+        switch (item.getItemId()) {
+            case R.id.navigation_overview:
+                // Overview menu item reselected, scroll to the top of the overview fragment
+                scrollToFragmentTop(getFragment(OVERVIEW));
+                break;
+            case R.id.navigation_education:
+                // Education menu item reselected, scroll to the top of the education fragment
+                scrollToFragmentTop(getFragment(EDUCATION));
+                break;
+            case R.id.navigation_work:
+                // Work menu item reselected, scroll to the top of the work fragment
+                scrollToFragmentTop(getFragment(WORK));
+                break;
+            case R.id.navigation_skills:
+                // Skills menu item reselected, scroll to the top of the skills fragment
+                scrollToFragmentTop(getFragment(SKILLS));
+                break;
+            case R.id.navigation_contact:
+                // Contact menu item reselected, scroll to the top of the contact fragment
+                scrollToFragmentTop(getFragment(CONTACT));
+                break;
+        }
+    }
+    
+    /**
+     * Scroll to the top of the fragment implemented {@link ScrollToTop}
+     *
+     * @param fragment Bottom navigation fragment
+     */
+    private void scrollToFragmentTop(@NonNull ScrollToTop fragment) {
+        
+        fragment.top();
+    }
+    
+    /**
+     * @param fragmentId Fragment id
+     *
+     * @return Bottom navigation fragment
+     */
+    private ScrollToTop getFragment(int fragmentId) {
+        
+        return Objects.requireNonNull(fragments.get(fragmentId));
+    }
+    
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        
+        // Replace current fragment with requested fragment
+        switch (item.getItemId()) {
+            case R.id.navigation_overview:
+                replaceFragment(OVERVIEW);
+                return true;
+            case R.id.navigation_education:
+                replaceFragment(EDUCATION);
+                return true;
+            case R.id.navigation_work:
+                replaceFragment(WORK);
+                return true;
+            case R.id.navigation_skills:
+                replaceFragment(SKILLS);
+                return true;
+            case R.id.navigation_contact:
+                replaceFragment(CONTACT);
+                return true;
+        }
+        return false;
+    }
+    
+    private void handleNetwork() {
+        
+        ConnectivityManager connMgr =
+                (ConnectivityManager) getApplicationContext().getSystemService(CONNECTIVITY_SERVICE);
+        
+        boolean isWifiConn = false;
+        boolean isMobileConn = false;
+        
+        // Get active network information
+        NetworkInfo networkInfo = null;
+        if (connMgr != null) {
+            networkInfo = connMgr.getActiveNetworkInfo();
+        }
+        
+        // Online if network info exists and is connected
+        boolean isOnline = networkInfo != null && networkInfo.isConnected();
+        
+        if (isOnline) {
+            // If online
+            // Check connectivity for all networks
+            for (Network network : connMgr.getAllNetworks()) {
+                NetworkInfo info = connMgr.getNetworkInfo(network);
+                if (info.getType() == ConnectivityManager.TYPE_WIFI) {
+                    // If Wi-Fi
+                    isWifiConn |= info.isConnected();
+                    if (isWifiConn) {
+                        Toast.makeText(getApplicationContext().getApplicationContext(), "WiFi connected",
+                                       Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
+                    // If mobile network
+                    isMobileConn |= info.isConnected();
+                    if (isMobileConn) {
+                        Toast.makeText(getApplicationContext().getApplicationContext(), "Mobile connected",
+                                       Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        } else {
+            Toast.makeText(getApplicationContext().getApplicationContext(), "Not connected", Toast.LENGTH_SHORT).show();
         }
     }
 }
