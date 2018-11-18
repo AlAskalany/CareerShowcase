@@ -36,7 +36,7 @@ class TestUtils {
 
     public static boolean isCurrentFragment(FragmentActivity activity, Class<?> expectedFragmentClass) {
 
-        Class<?> currentFragmentClass = getFragmentClass(activity, R.id.container_navigation);
+        Class<?> currentFragmentClass = getFragmentClass(activity, R.id.frameLayout);
 
         return expectedFragmentClass == currentFragmentClass;
     }
