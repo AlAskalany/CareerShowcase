@@ -37,6 +37,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentContactListBinding;
 import com.alaskalany.careershowcase.ui.ScrollToTop;
@@ -46,9 +47,7 @@ import com.alaskalany.careershowcase.viewmodel.ContactListViewModel;
  * A fragment representing a list of Items.
  * <p/>
  */
-public class ContactListFragment
-        extends Fragment
-        implements ScrollToTop {
+public class ContactListFragment extends Fragment implements ScrollToTop, SwipeRefreshLayout.OnRefreshListener {
     
     /**
      *
@@ -59,8 +58,7 @@ public class ContactListFragment
      *
      */
     private final ContactOnClickCallback contactOnClickCallback =
-            item -> Toast.makeText(getContext(), "Clicked on ContactEntity Item", Toast.LENGTH_SHORT)
-                         .show();
+            item -> Toast.makeText(getContext(), "Clicked on ContactEntity Item", Toast.LENGTH_SHORT).show();
     
     /**
      *
@@ -133,14 +131,14 @@ public class ContactListFragment
         
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_list, container, false);
         setAdapter(new ContactAdapter(contactOnClickCallback));
-        Context context = binding.getRoot()
-                                 .getContext();
+        Context context = binding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             binding.listContact.setLayoutManager(new LinearLayoutManager(context));
         } else {
             binding.listContact.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
         binding.listContact.setAdapter(getAdapter());
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
         return binding.getRoot();
     }
     
@@ -161,17 +159,15 @@ public class ContactListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         
         super.onActivityCreated(savedInstanceState);
-        final ContactListViewModel _model = ViewModelProviders.of(this)
-                                                              .get(ContactListViewModel.class);
+        final ContactListViewModel _model = ViewModelProviders.of(this).get(ContactListViewModel.class);
         binding.setContactListViewModel(_model);
-        _model.getContacts()
-              .observe(this, contactEntities -> {
-                  if (contactEntities != null) {
-                      adapter.setContactList(contactEntities);
-                  } else {
-                  }
-                  binding.executePendingBindings();
-              });
+        _model.getContacts().observe(this, contactEntities -> {
+            if (contactEntities != null) {
+                adapter.setContactList(contactEntities);
+            } else {
+            }
+            binding.executePendingBindings();
+        });
     }
     
     /**
@@ -219,5 +215,11 @@ public class ContactListFragment
     public void top() {
         
         binding.listContact.smoothScrollToPosition(0);
+    }
+    
+    @Override
+    public void onRefresh() {
+        
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }

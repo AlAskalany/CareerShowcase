@@ -35,6 +35,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.alaskalany.careershowcase.GlideApp;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentOverviewBinding;
@@ -49,9 +50,7 @@ import org.jetbrains.annotations.Contract;
  * Use the {@link OverviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OverviewFragment
-        extends Fragment
-        implements ScrollToTop {
+public class OverviewFragment extends Fragment implements ScrollToTop, SwipeRefreshLayout.OnRefreshListener {
     
     /**
      *
@@ -173,6 +172,8 @@ public class OverviewFragment
         binding.setName("Ahmed AlAskalany");
         binding.setHeadline("Software Engineer");
         
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
+        
         binding.imageButtonLinkedin.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/askalany/"));
             startActivity(browserIntent);
@@ -188,9 +189,7 @@ public class OverviewFragment
             startActivity(browserIntent);
         });
         // Inflate the layout for this fragment
-        GlideApp.with(this)
-                .load(getString(R.string.profile_picture_url))
-                .into(binding.imageViewProfilePicture);
+        GlideApp.with(this).load(getString(R.string.profile_picture_url)).into(binding.imageViewProfilePicture);
         return binding.getRoot();
     }
     
@@ -225,6 +224,12 @@ public class OverviewFragment
     @Override
     public void top() {
     
+    }
+    
+    @Override
+    public void onRefresh() {
+    
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
     
     /**

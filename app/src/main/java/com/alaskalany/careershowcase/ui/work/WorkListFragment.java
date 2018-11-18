@@ -36,6 +36,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentWorkListBinding;
 import com.alaskalany.careershowcase.ui.ScrollToTop;
@@ -45,9 +46,8 @@ import com.alaskalany.careershowcase.viewmodel.WorkListViewModel;
  * A fragment representing a list of Items.
  * <p/>
  */
-public class WorkListFragment
-        extends androidx.fragment.app.Fragment
-        implements ScrollToTop {
+public class WorkListFragment extends androidx.fragment.app.Fragment
+        implements ScrollToTop, SwipeRefreshLayout.OnRefreshListener {
     
     /**
      *
@@ -58,8 +58,7 @@ public class WorkListFragment
      *
      */
     private final WorkOnClickCallback workOnClickCallback =
-            item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT)
-                         .show();
+            item -> Toast.makeText(getContext(), "Clicked on WorkEntity Item", Toast.LENGTH_SHORT).show();
     
     /**
      *
@@ -164,14 +163,14 @@ public class WorkListFragment
         
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_work_list, container, false);
         adapter = new WorkAdapter(workOnClickCallback);
-        Context context = binding.getRoot()
-                                 .getContext();
+        Context context = binding.getRoot().getContext();
         if (columnCount <= 1) {
             binding.listWork.setLayoutManager(new LinearLayoutManager(context));
         } else {
             binding.listWork.setLayoutManager(new GridLayoutManager(context, columnCount));
         }
         binding.listWork.setAdapter(adapter);
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
         return binding.getRoot();
     }
     
@@ -192,17 +191,15 @@ public class WorkListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         
         super.onActivityCreated(savedInstanceState);
-        final WorkListViewModel _model = ViewModelProviders.of(this)
-                                                           .get(WorkListViewModel.class);
+        final WorkListViewModel _model = ViewModelProviders.of(this).get(WorkListViewModel.class);
         binding.setWorkListViewModel(_model);
-        _model.getWorks()
-              .observe(this, pWorkEntities -> {
-                  if (pWorkEntities != null) {
-                      adapter.setWorkList(pWorkEntities);
-                  } else {
-                  }
-                  binding.executePendingBindings();
-              });
+        _model.getWorks().observe(this, pWorkEntities -> {
+            if (pWorkEntities != null) {
+                adapter.setWorkList(pWorkEntities);
+            } else {
+            }
+            binding.executePendingBindings();
+        });
     }
     
     /**
@@ -218,5 +215,11 @@ public class WorkListFragment
     public void top() {
         
         binding.listWork.smoothScrollToPosition(0);
+    }
+    
+    @Override
+    public void onRefresh() {
+        
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }

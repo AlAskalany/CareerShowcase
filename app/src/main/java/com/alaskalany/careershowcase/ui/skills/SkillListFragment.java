@@ -38,6 +38,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentSkillListBinding;
 import com.alaskalany.careershowcase.ui.ScrollToTop;
@@ -47,9 +48,7 @@ import com.alaskalany.careershowcase.viewmodel.SkillListViewModel;
  * A fragment representing a list of Items.
  * <p/>
  */
-public class SkillListFragment
-        extends Fragment
-        implements ScrollToTop {
+public class SkillListFragment extends Fragment implements ScrollToTop, SwipeRefreshLayout.OnRefreshListener {
     
     /**
      *
@@ -60,13 +59,12 @@ public class SkillListFragment
      *
      */
     private final SkillOnClickCallback skillOnClickCallback =
-            item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT)
-                         .show();
+            item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
     
     /**
      *
      */
-    protected FragmentSkillListBinding mBinding;
+    protected FragmentSkillListBinding binding;
     
     /**
      *
@@ -148,21 +146,20 @@ public class SkillListFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
         setAdapter(new SkillAdapter(skillOnClickCallback));
-        Context context = mBinding.getRoot()
-                                  .getContext();
+        Context context = binding.getRoot().getContext();
         if (getColumnCount() <= 1) {
-            mBinding.listSkill.setLayoutManager(new LinearLayoutManager(context));
+            binding.listSkill.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            mBinding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+            binding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
         DividerItemDecoration decor =
                 new DividerItemDecoration(getActivity().getApplicationContext(), DividerItemDecoration.HORIZONTAL);
-        mBinding.listSkill.addItemDecoration(decor);
-        mBinding.listSkill.setAdapter(mAdapter);
-        
-        return mBinding.getRoot();
+        binding.listSkill.addItemDecoration(decor);
+        binding.listSkill.setAdapter(mAdapter);
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
+        return binding.getRoot();
     }
     
     /**
@@ -182,17 +179,15 @@ public class SkillListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         
         super.onActivityCreated(savedInstanceState);
-        final SkillListViewModel _model = ViewModelProviders.of(this)
-                                                            .get(SkillListViewModel.class);
-        mBinding.setSkillListViewModel(_model);
-        _model.getSkills()
-              .observe(this, pWorkEntities -> {
-                  if (pWorkEntities != null) {
-                      mAdapter.setSkillList(pWorkEntities);
-                  } else {
-                  }
-                  mBinding.executePendingBindings();
-              });
+        final SkillListViewModel _model = ViewModelProviders.of(this).get(SkillListViewModel.class);
+        binding.setSkillListViewModel(_model);
+        _model.getSkills().observe(this, pWorkEntities -> {
+            if (pWorkEntities != null) {
+                mAdapter.setSkillList(pWorkEntities);
+            } else {
+            }
+            binding.executePendingBindings();
+        });
     }
     
     /**
@@ -223,6 +218,12 @@ public class SkillListFragment
     @Override
     public void top() {
         
-        mBinding.listSkill.smoothScrollToPosition(0);
+        binding.listSkill.smoothScrollToPosition(0);
+    }
+    
+    @Override
+    public void onRefresh() {
+        
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }
