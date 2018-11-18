@@ -38,6 +38,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentSkillListBinding;
 import com.alaskalany.careershowcase.ui.ScrollToTop;
@@ -47,9 +48,7 @@ import com.alaskalany.careershowcase.viewmodel.SkillListViewModel;
  * A fragment representing a list of Items.
  * <p/>
  */
-public class SkillListFragment
-        extends Fragment
-        implements ScrollToTop {
+public class SkillListFragment extends Fragment implements ScrollToTop, SwipeRefreshLayout.OnRefreshListener {
     
     /**
      *
@@ -60,8 +59,7 @@ public class SkillListFragment
      *
      */
     private final SkillOnClickCallback skillOnClickCallback =
-            item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT)
-                         .show();
+            item -> Toast.makeText(getContext(), "Clicked on SkillEntity Item", Toast.LENGTH_SHORT).show();
     
     /**
      *
@@ -150,8 +148,7 @@ public class SkillListFragment
         
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
         setAdapter(new SkillAdapter(skillOnClickCallback));
-        Context context = mBinding.getRoot()
-                                  .getContext();
+        Context context = mBinding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             mBinding.listSkill.setLayoutManager(new LinearLayoutManager(context));
         } else {
@@ -182,17 +179,15 @@ public class SkillListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         
         super.onActivityCreated(savedInstanceState);
-        final SkillListViewModel _model = ViewModelProviders.of(this)
-                                                            .get(SkillListViewModel.class);
+        final SkillListViewModel _model = ViewModelProviders.of(this).get(SkillListViewModel.class);
         mBinding.setSkillListViewModel(_model);
-        _model.getSkills()
-              .observe(this, pWorkEntities -> {
-                  if (pWorkEntities != null) {
-                      mAdapter.setSkillList(pWorkEntities);
-                  } else {
-                  }
-                  mBinding.executePendingBindings();
-              });
+        _model.getSkills().observe(this, pWorkEntities -> {
+            if (pWorkEntities != null) {
+                mAdapter.setSkillList(pWorkEntities);
+            } else {
+            }
+            mBinding.executePendingBindings();
+        });
     }
     
     /**
@@ -224,5 +219,10 @@ public class SkillListFragment
     public void top() {
         
         mBinding.listSkill.smoothScrollToPosition(0);
+    }
+    
+    @Override
+    public void onRefresh() {
+    
     }
 }

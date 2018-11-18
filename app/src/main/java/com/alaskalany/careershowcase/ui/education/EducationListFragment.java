@@ -37,6 +37,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.alaskalany.careershowcase.R;
 import com.alaskalany.careershowcase.databinding.FragmentEducationListBinding;
 import com.alaskalany.careershowcase.ui.ScrollToTop;
@@ -46,9 +47,7 @@ import com.alaskalany.careershowcase.viewmodel.EducationListViewModel;
  * A fragment representing a list of Items.
  * <p/>
  */
-public class EducationListFragment
-        extends Fragment
-        implements ScrollToTop {
+public class EducationListFragment extends Fragment implements ScrollToTop, SwipeRefreshLayout.OnRefreshListener {
     
     /**
      *
@@ -59,8 +58,7 @@ public class EducationListFragment
      *
      */
     private final EducationOnClickCallback educationOnClickCallback =
-            item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT)
-                         .show();
+            item -> Toast.makeText(getContext(), "Clicked on EducationEntity Item", Toast.LENGTH_SHORT).show();
     
     /**
      *
@@ -133,8 +131,7 @@ public class EducationListFragment
         
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_education_list, container, false);
         setAdapter(new EducationAdapter(educationOnClickCallback));
-        Context context = binding.getRoot()
-                                 .getContext();
+        Context context = binding.getRoot().getContext();
         if (getColumnCount() <= 1) {
             binding.listEducation.setLayoutManager(new LinearLayoutManager(context));
         } else {
@@ -161,17 +158,15 @@ public class EducationListFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         
         super.onActivityCreated(savedInstanceState);
-        final EducationListViewModel _model = ViewModelProviders.of(this)
-                                                                .get(EducationListViewModel.class);
+        final EducationListViewModel _model = ViewModelProviders.of(this).get(EducationListViewModel.class);
         binding.setEducationListViewModel(_model);
-        _model.getEducations()
-              .observe(this, pWorkEntities -> {
-                  if (pWorkEntities != null) {
-                      adapter.setEducationList(pWorkEntities);
-                  } else {
-                  }
-                  binding.executePendingBindings();
-              });
+        _model.getEducations().observe(this, pWorkEntities -> {
+            if (pWorkEntities != null) {
+                adapter.setEducationList(pWorkEntities);
+            } else {
+            }
+            binding.executePendingBindings();
+        });
     }
     
     /**
@@ -219,5 +214,10 @@ public class EducationListFragment
     public void top() {
         
         binding.listEducation.smoothScrollToPosition(0);
+    }
+    
+    @Override
+    public void onRefresh() {
+    
     }
 }
