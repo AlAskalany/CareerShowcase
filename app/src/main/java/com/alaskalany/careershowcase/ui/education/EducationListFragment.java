@@ -138,6 +138,7 @@ public class EducationListFragment extends Fragment implements ScrollToTop, Swip
             binding.listEducation.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
         binding.listEducation.setAdapter(getAdapter());
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
         return binding.getRoot();
     }
     
@@ -218,6 +219,7 @@ public class EducationListFragment extends Fragment implements ScrollToTop, Swip
     
     @Override
     public void onRefresh() {
-    
+        
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }

@@ -138,6 +138,7 @@ public class ContactListFragment extends Fragment implements ScrollToTop, SwipeR
             binding.listContact.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
         binding.listContact.setAdapter(getAdapter());
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
         return binding.getRoot();
     }
     
@@ -218,6 +219,7 @@ public class ContactListFragment extends Fragment implements ScrollToTop, SwipeR
     
     @Override
     public void onRefresh() {
-    
+        
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }

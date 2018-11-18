@@ -172,6 +172,8 @@ public class OverviewFragment extends Fragment implements ScrollToTop, SwipeRefr
         binding.setName("Ahmed AlAskalany");
         binding.setHeadline("Software Engineer");
         
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
+        
         binding.imageButtonLinkedin.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/askalany/"));
             startActivity(browserIntent);
@@ -227,6 +229,7 @@ public class OverviewFragment extends Fragment implements ScrollToTop, SwipeRefr
     @Override
     public void onRefresh() {
     
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
     
     /**

@@ -64,7 +64,7 @@ public class SkillListFragment extends Fragment implements ScrollToTop, SwipeRef
     /**
      *
      */
-    protected FragmentSkillListBinding mBinding;
+    protected FragmentSkillListBinding binding;
     
     /**
      *
@@ -146,20 +146,20 @@ public class SkillListFragment extends Fragment implements ScrollToTop, SwipeRef
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_skill_list, container, false);
         setAdapter(new SkillAdapter(skillOnClickCallback));
-        Context context = mBinding.getRoot().getContext();
+        Context context = binding.getRoot().getContext();
         if (getColumnCount() <= 1) {
-            mBinding.listSkill.setLayoutManager(new LinearLayoutManager(context));
+            binding.listSkill.setLayoutManager(new LinearLayoutManager(context));
         } else {
-            mBinding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
+            binding.listSkill.setLayoutManager(new GridLayoutManager(context, getColumnCount()));
         }
         DividerItemDecoration decor =
                 new DividerItemDecoration(getActivity().getApplicationContext(), DividerItemDecoration.HORIZONTAL);
-        mBinding.listSkill.addItemDecoration(decor);
-        mBinding.listSkill.setAdapter(mAdapter);
-        
-        return mBinding.getRoot();
+        binding.listSkill.addItemDecoration(decor);
+        binding.listSkill.setAdapter(mAdapter);
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
+        return binding.getRoot();
     }
     
     /**
@@ -180,13 +180,13 @@ public class SkillListFragment extends Fragment implements ScrollToTop, SwipeRef
         
         super.onActivityCreated(savedInstanceState);
         final SkillListViewModel _model = ViewModelProviders.of(this).get(SkillListViewModel.class);
-        mBinding.setSkillListViewModel(_model);
+        binding.setSkillListViewModel(_model);
         _model.getSkills().observe(this, pWorkEntities -> {
             if (pWorkEntities != null) {
                 mAdapter.setSkillList(pWorkEntities);
             } else {
             }
-            mBinding.executePendingBindings();
+            binding.executePendingBindings();
         });
     }
     
@@ -218,11 +218,12 @@ public class SkillListFragment extends Fragment implements ScrollToTop, SwipeRef
     @Override
     public void top() {
         
-        mBinding.listSkill.smoothScrollToPosition(0);
+        binding.listSkill.smoothScrollToPosition(0);
     }
     
     @Override
     public void onRefresh() {
-    
+        
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }

@@ -170,6 +170,7 @@ public class WorkListFragment extends androidx.fragment.app.Fragment
             binding.listWork.setLayoutManager(new GridLayoutManager(context, columnCount));
         }
         binding.listWork.setAdapter(adapter);
+        binding.swipeRefreshLayout.setOnRefreshListener(this);
         return binding.getRoot();
     }
     
@@ -218,6 +219,7 @@ public class WorkListFragment extends androidx.fragment.app.Fragment
     
     @Override
     public void onRefresh() {
-    
+        
+        binding.swipeRefreshLayout.setRefreshing(false);
     }
 }
