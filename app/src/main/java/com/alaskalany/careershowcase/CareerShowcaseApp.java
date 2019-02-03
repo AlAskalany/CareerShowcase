@@ -25,22 +25,29 @@
 package com.alaskalany.careershowcase;
 
 import android.app.Application;
-import androidx.room.RoomDatabase;
+
 import com.alaskalany.careershowcase.database.AppDatabase;
 import com.alaskalany.careershowcase.repository.DataRepository;
+import com.appsflyer.AppsFlyerConversionListener;
+import com.appsflyer.AppsFlyerLib;
 
+import java.util.Map;
 import java.util.concurrent.Executor;
+
+import androidx.room.RoomDatabase;
 
 /**
  * App class extending {@link Application}
  */
 public class CareerShowcaseApp extends Application {
-    
+
+    private static final String AF_DEV_KEY = "53i8fBK5BE2zSfUKE85tyW";
+
     /**
      * App executors; Disk IO {@link Executor},Network {@link Executor},and Main thread {@link Executor}.
      */
     private AppExecutors appExecutors;
-    
+
     /**
      * Called when the application is starting, before any activity, service,
      * or receiver objects (excluding content providers) have been created.
@@ -59,26 +66,50 @@ public class CareerShowcaseApp extends Application {
      */
     @Override
     public void onCreate() {
-        
+
         super.onCreate();
         appExecutors = new AppExecutors();
+        AppsFlyerConversionListener conversionDataListener = new AppsFlyerConversionListener() {
+
+            @Override
+            public void onInstallConversionDataLoaded(Map<String, String> conversionData) {
+
+            }
+
+            @Override
+            public void onInstallConversionFailure(String errorMessage) {
+
+            }
+
+            @Override
+            public void onAppOpenAttribution(Map<String, String> attributionData) {
+
+            }
+
+            @Override
+            public void onAttributionFailure(String errorMessage) {
+
+            }
+        };
+        AppsFlyerLib.getInstance().registerConversionListener(this, conversionDataListener);
+        AppsFlyerLib.getInstance().startTracking(this, AF_DEV_KEY);
     }
-    
+
     /**
      * Gets {@link DataRepository}
      *
      * @return Data repository
      */
     public DataRepository getRepository() {
-        
+
         return DataRepository.getInstance(getDatabase());
     }
-    
+
     /**
      * @return Application's {@link RoomDatabase}
      */
     public AppDatabase getDatabase() {
-        
+
         return AppDatabase.getInstance(this, appExecutors);
     }
 }

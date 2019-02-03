@@ -28,3 +28,5 @@
   public *;
 }
 -dontwarn com.bumptech.glide.load.resource.bitmap.VideoDecoder
+# AppsFlyer
+-keep class com.appsflyer.** { *; }
