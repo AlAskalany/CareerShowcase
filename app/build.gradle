@@ -25,6 +25,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+        }
+    }
     compileSdkVersion rootProject.compileSdkVersion
     defaultConfig {
         applicationId "com.alaskalany.careershowcase"
@@ -38,6 +42,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     dataBinding {
@@ -45,7 +50,7 @@ android {
     }
     compileOptions {
 
-    sourceCompatibility = '1.8'
+        sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
     testOptions {
@@ -61,9 +66,9 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.appcompat:appcompat:$rootProject.appcompatVersion"
-    implementation "com.google.android.material:material:1.1.0-alpha01"
+    implementation 'com.google.android.material:material:1.1.0-alpha01'
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayoutVersion"
-    implementation "androidx.vectordrawable:vectordrawable:1.0.1"
+    implementation 'androidx.vectordrawable:vectordrawable:1.0.1'
     implementation "androidx.legacy:legacy-support-v4:$rootProject.androidxVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.androidxVersion"
     // Room components
@@ -85,9 +90,8 @@ dependencies {
     implementation "com.google.firebase:firebase-firestore:$rootProject.firebaseFirestoreVersion"
     implementation 'com.google.code.gson:gson:2.8.5'
     // Robolectric
-    testImplementation "org.robolectric:robolectric:4.0.1"
-    testImplementation "androidx.test:core:1.0.0"
-
+    testImplementation 'org.robolectric:robolectric:4.0.1'
+    testImplementation 'androidx.test:core:1.0.0'
     implementation 'com.appsflyer:af-android-sdk:4+@aar'
     implementation 'com.android.installreferrer:installreferrer:1.0'
 }
